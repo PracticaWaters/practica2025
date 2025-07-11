@@ -1,22 +1,20 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { Support } from './support/support';
+import { FreqQuestionsComponent } from './support/freq-questions/freq-questions';
 
 @NgModule({
   declarations: [
-    App,
-    Support
+    App
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FreqQuestionsComponent  // 🔹 OK aici pentru că e standalone
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
-  ],
+  providers: [],
   bootstrap: [App]
 })
 export class AppModule { }
