@@ -7,7 +7,7 @@ namespace CinemaAPI.Models {
         public int Id {  get; set; }
         public string Name { get; set; }
         //public Gen Gen { get; set; }
-        public List<string> Distributtion { get; set; }
+        //public List<string> Distributtion { get; set; }
         public string Image { get; set; }
         [Url(ErrorMessage ="Url is not valid")]
         public string Trailer { get; set; }
