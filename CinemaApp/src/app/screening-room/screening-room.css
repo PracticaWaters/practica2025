@@ -1,0 +1,438 @@
+
+:host {
+  --dark-blue: #1A2130;
+  --medium-blue: #5A72A0;
+  --light-blue: #83B4FF;
+  --cream: #FDFFE2;
+  --dark-bg: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+}
+
+.screening-room-container {
+  min-height: 100vh;
+  background-color: var(--dark-bg);
+  font-family: Arial, sans-serif;
+  color: var(--text-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.movie-header {
+  background-color: var(--dark-blue);
+  color: var(--text-primary);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--light-blue);
+}
+
+.movie-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.movie-poster {
+  width: 200px;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+.poster-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--medium-blue);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.movie-details {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-card {
+  background-color: var(--card-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--medium-blue);
+}
+
+.movie-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.warning-card {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  border: 1px solid var(--medium-blue);
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Selector Data și Ora */
+.datetime-selector {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid var(--medium-blue);
+}
+
+.datetime-selector h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  margin-top: 0;
+}
+
+.date-section,
+.time-section {
+  margin-bottom: 1.5rem;
+}
+
+.date-section:last-child,
+.time-section:last-child {
+  margin-bottom: 0;
+}
+
+.date-section h3,
+.time-section h3 {
+  margin-bottom: 1rem;
+  color: var(--light-blue);
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+
+.date-buttons,
+.time-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.date-btn,
+.time-btn {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--medium-blue);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.date-btn {
+  min-width: 80px;
+}
+
+.date-btn.selected,
+.time-btn.selected {
+  border-color: var(--light-blue);
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+}
+
+.day-num {
+  font-size: 1.2rem;
+}
+
+.time-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.cinema-hall {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border: 1px solid var(--medium-blue);
+}
+
+.cinema-hall h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin-top: 0;
+}
+
+.hall-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.screen {
+  width: 80%;
+  height: 20px;
+  background-color: var(--light-blue);
+  margin: 0 auto 2rem auto;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(131, 180, 255, 0.25);
+}
+
+.screen-label {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--light-blue);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.seat-row {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.row-number {
+  width: 20px;
+  font-size: 0.8rem;
+  color: var(--light-blue);
+  text-align: center;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.seat {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid var(--dark-blue);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: white;
+}
+
+.seat.available {
+  background-color: var(--medium-blue);
+}
+
+.seat.selected {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  box-shadow: 0 0 8px var(--light-blue);
+}
+
+.seat.occupied {
+  background-color: #666666;
+  cursor: not-allowed;
+}
+
+.seat.middle-gap {
+  margin-right: 1rem;
+}
+
+.seat:hover:not(.occupied) {
+  transform: scale(1.1);
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--dark-blue);
+}
+
+.legend-color.available {
+  background-color: var(--medium-blue);
+}
+
+.legend-color.selected {
+  background-color: var(--light-blue);
+  box-shadow: 0 0 8px var(--light-blue);
+}
+
+.legend-color.occupied {
+  background-color: #666666;
+}
+
+.booking-summary {
+  background-color: var(--dark-blue);
+  color: var(--text-primary);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 2px solid var(--light-blue);
+  box-shadow: 0 4px 20px rgba(131, 180, 255, 0.125);
+}
+
+.booking-summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--light-blue);
+  margin-top: 0;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.selected-seats {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--medium-blue);
+}
+
+.summary-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.total-price {
+  font-size: 1.2rem;
+  color: var(--light-blue);
+}
+
+.continue-btn {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(131, 180, 255, 0.25);
+}
+
+.continue-btn:hover {
+  background-color: var(--medium-blue);
+  color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .movie-header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .movie-poster {
+    width: 150px;
+    height: 225px;
+  }
+  
+  .movie-title {
+    font-size: 2rem;
+  }
+  
+  .movie-stats {
+    justify-content: center;
+  }
+  
+  .main-content {
+    padding: 0 0.5rem;
+  }
+  
+  .datetime-selector,
+  .cinema-hall,
+  .booking-summary {
+    padding: 1rem;
+  }
+  
+  .seat {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+  
+  .summary-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .continue-btn {
+    width: 100%;
+  }
+}
