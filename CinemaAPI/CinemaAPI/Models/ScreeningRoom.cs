@@ -7,6 +7,7 @@
         public int NumOfRow { get; set; }
         public int NumOfSeatsPerRow { get; set; }
         public List<string> Format { get; set; } //placeholder
+        public List<Seat> SeatList {  get; set; }
 
     }
 }

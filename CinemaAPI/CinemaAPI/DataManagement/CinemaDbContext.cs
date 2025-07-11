@@ -6,6 +6,7 @@ namespace CinemaAPI.DataManagement
     public class CinemaDbContext : DbContext
     {
         public DbSet<ScreeningRoom> screeningRooms { get; set; }
+        public DbSet<Seat> seats { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");

@@ -47,6 +47,45 @@ namespace CinemaAPI.Migrations
 
                     b.ToTable("screeningRooms");
                 });
+
+            modelBuilder.Entity("CinemaAPI.Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsReserved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Row")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ScreeningRoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScreeningRoomId");
+
+                    b.ToTable("seats");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Seat", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.ScreeningRoom", null)
+                        .WithMany("SeatList")
+                        .HasForeignKey("ScreeningRoomId");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.ScreeningRoom", b =>
+                {
+                    b.Navigation("SeatList");
+                });
 #pragma warning restore 612, 618
         }
     }
