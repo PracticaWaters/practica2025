@@ -45,7 +45,6 @@ dlldata.c
 project.lock.json
 project.fragment.lock.json
 artifacts/
-**/Properties/launchSettings.json
 
 # VS Code
 .vscode/
@@ -287,3 +286,70 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+
+#####################################################
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+CinemaApp/dist
+CinemaApp/tmp
+CinemaApp/out-tsc
+# Only exists if Bazel was run
+CinemaApp/bazel-out
+
+# Dependencies
+CinemaApp/node_modules
+
+# Cordova
+CinemaApp/www
+CinemaApp/plugins
+CinemaApp/platforms
+
+# Electron
+CinemaApp/dist-electron
+CinemaApp/dist-packages
+CinemaApp/electron.main.js
+
+# IDEs and editors
+.idea/*
+!.idea/runConfigurations/
+!.idea/codeStyleSettings.xml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+xcuserdata/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Maven
+CinemaApp/target
+CinemaApp/log
+
+# Misc
+CinemaApp/.sass-cache
+CinemaApp/connect.lock
+CinemaApp/coverage
+CinemaApp/libpeerconnection.log
+CinemaApp/npm-debug.log
+CinemaApp/yarn-error.log
+CinemaApp/testem.log
+CinemaApp/typings
+CinemaApp/reports
+CinemaApp/src/translations/template.*
+# /src/environments/.env.*
+
+# System Files
+.DS_Store
+Thumbs.db
+
+CinemaApp/.angular
