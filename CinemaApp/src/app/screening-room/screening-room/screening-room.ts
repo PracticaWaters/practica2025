@@ -34,7 +34,7 @@ export class ScreeningRoom implements OnInit {
   };
 
   dates: DateOption[] = [
-    { date: '2025-07-11', day: 'Ven', dayNum: '11' },
+    { date: '2025-07-11', day: 'Vin', dayNum: '11' },
     { date: '2025-07-12', day: 'Sâm', dayNum: '12' },
     { date: '2025-07-13', day: 'Dum', dayNum: '13' },
     { date: '2025-07-14', day: 'Lun', dayNum: '14' },
@@ -71,15 +71,21 @@ export class ScreeningRoom implements OnInit {
   }
 
   generateSeats(): void {
-    for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
-      const rowSeats: Seat[] = [];
-      for (let col = 1; col <= this.screeningRoom.noOfSeatsOnRow; col++) {
-        const isOccupied =
-          this.screeningRoom.occupiedSeats?.includes(`${row}-${col}`) ?? false;
-        rowSeats.push(new Seat(row, col, isOccupied));
-      }
-      this.seatsGrid.push(rowSeats);
+      for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
+    const rowLetter = String.fromCharCode(64 + row);
+    const rowSeats: Seat[] = [];
+
+    const seatsInThisRow = row === this.screeningRoom.noOfRows ? 12 : 16;
+    const middleOfRow = Math.ceil(seatsInThisRow / 2);
+
+    for (let col = 1; col <= this.screeningRoom.noOfSeatsOnRow; col++) {
+      const isOccupied = this.screeningRoom.occupiedSeats?.includes(`${rowLetter}-${col}`) ?? false;
+      rowSeats.push(new Seat(rowLetter, col, isOccupied));
     }
+    this.seatsGrid.push(rowSeats);
+    }
+
+    
   }
 
   toggle(seat: Seat): void {
@@ -94,10 +100,12 @@ export class ScreeningRoom implements OnInit {
   }
 
   onDateSelect(date: string): void {
+    this.deselectAllSeats();
     this.selectedDate = date;
   }
 
   onTimeSelect(time: string): void {
+    this.deselectAllSeats();
     this.selectedTime = time;
   }
 
@@ -126,5 +134,18 @@ export class ScreeningRoom implements OnInit {
 
   onSeatClick(seat: Seat): void {
     this.toggle(seat);
+  }
+
+   getRowLetter(rowNumber: number): string {
+    return String.fromCharCode(64 + rowNumber);
+}
+
+
+  deselectAllSeats(): void {
+    this.seatsGrid.forEach(row => {
+      row.forEach(seat => {
+        seat.selected = false;
+      });
+    });
   }
 }

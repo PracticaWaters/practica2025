@@ -45,7 +45,7 @@
         </div>
         
         <div class="warning-card">
-          <strong>Atenție!</strong> Filmul conține mai multe efecte și secvențe cu 
+          <strong>⚠️ Atenție! : </strong> Filmul conține mai multe efecte și secvențe cu 
           lumini intermitente care pot afecta persoanele care suferă de 
           epilepsie fotosensibilă sau au alte fotosensibilități.
         </div>
@@ -89,7 +89,7 @@
       <h2>{{ screeningRoom.name }}</h2>
 
       <div class="hall-info">
-        {{ screeningRoom.noOfRows }} rânduri × {{ screeningRoom.noOfSeatsOnRow }} locuri per rând
+        {{ screeningRoom.noOfRows }} rânduri × {{ screeningRoom.noOfSeatsOnRow }} locuri per rând + 1 rând VIP
       </div>
 
       <div class="screen">
@@ -97,15 +97,17 @@
       </div>
 
       <div class="seats-container">
-        <div *ngFor="let row of seatsGrid; let rowIndex = index" class="seat-row">
-          <div class="row-number">{{ rowIndex + 1 }}</div>
+        <div *ngFor="let row of seatsGrid; let rowIndex = index" 
+            class="seat-row" 
+            [class.vip-row]="rowIndex === seatsGrid.length - 1">
+          <div class="row-number">{{ getRowLetter(rowIndex + 1) }}</div>
           
           <button 
             *ngFor="let seat of row; let seatIndex = index" 
             (click)="onSeatClick(seat)"
             [disabled]="seat.occupied"
             [class]="getSeatClass(seat)"
-            [class.middle-gap]="seatIndex === 7">
+            [class.middle-gap]="(rowIndex === seatsGrid.length - 1 && seatIndex === 5) || (rowIndex < seatsGrid.length - 1 && seatIndex === 7)">
             {{ seat.number }}
           </button>
         </div>
