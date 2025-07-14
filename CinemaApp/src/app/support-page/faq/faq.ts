@@ -17,7 +17,7 @@ export class Faq implements OnInit {
   }
 
   loadFaqData(): void {
-    this.http.get<any[]>('assets/faq-data.json').subscribe({
+    this.http.get<any[]>('assets/support/faq-data.json').subscribe({
       next: (data) => {
         this.faqs = data;
       },
