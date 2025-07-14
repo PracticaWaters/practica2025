@@ -5,6 +5,9 @@ namespace CinemaAPI.DataManagement
 {
     public class CinemaDbContext : DbContext
     {
+        public DbSet<User> users { get; set; }
+        public DbSet<Film> films { get; set; }
+        
         public DbSet<ScreeningRoom> screeningRooms { get; set; }
         public DbSet<Seat> seats { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

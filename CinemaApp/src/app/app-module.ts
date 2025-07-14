@@ -1,6 +1,7 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatMenuModule} from '@angular/material/menu'
+import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule, RoutingComponent } from './app-routing-module';
 import { App } from './app';
 import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
@@ -17,6 +18,8 @@ import { AddScreeningRoom } from './screening-room-operations/add-screening-room
     AppRoutingModule,
     MatTableModule,
     MatSortModule,
+    MatInputModule,
+    MatMenuModule,
     MatPaginatorModule,
     HttpClientModule,
   ],
