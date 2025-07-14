@@ -1,25 +1,210 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
+>
+  <!-- Background Pattern -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-gray-800/20 to-gray-900/20 opacity-30"
+  ></div>
 
-<section class="support-page text-white">
-<h1 class="text-3xl text-center font-bold p-20">Suport</h1>
-<div class="max-w-7xl mx-auto text-center bg-color-accent py-4">
-    <div class="grid grid-cols-2 gap-2 text-center">
-    <div class="border p-2">
-        <h2 class="text-xl p-5 font-semibold">Întrebări frecvente</h2>
-        <app-faq class="text-left"></app-faq>
+  <!-- Header Section -->
+  <div
+    class="relative z-10 flex flex-col justify-center items-center pt-16 pb-12 px-4"
+  >
+    <div class="text-center max-w-4xl mx-auto">
+      <h1
+        class="text-white text-2xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+      >
+        Support Center
+      </h1>
+      <p
+        class="text-gray-300 text-lg sm:text-sm lg:text-xl text-center leading-relaxed"
+      >
+        Find quick answers to frequently asked questions or contact us for
+        personalized support
+      </p>
+    </div>
+  </div>
 
+  <!-- Main Content -->
+  <div class="relative z-10 max-w-[85%] mx-auto px-4 pb-16">
+    <!-- FAQ Section with Hero Image -->
+    <div class="grid lg:grid-cols-3 gap-8 mb-12">
+      <!-- FAQ Content -->
+      <div class="lg:col-span-2">
+        <div class="backdrop-blur-lg shadow-2xl rounded-3xl p-8">
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white text-xl">❓</span>
+            </div>
+            <h2 class="text-white text-2xl lg:text-3xl font-bold">
+              Frequently Asked Questions
+            </h2>
+          </div>
+          <div class="space-y-4">
+            <app-faq></app-faq>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="lg:col-span-1">
+        <div
+          class="backdrop-blur-lg shadow-2xl rounded-3xl border-white/20 p-6 h-full flex items-center justify-center"
+        >
+          <div class="text-center">
+            <img
+              src="../../assets/support/mascota-intrebari.png"
+              alt="Mascota FAQ"
+              class="w-110 h-110 object-contain mx-auto mb-4 drop-shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="border p-4">
-        <img src="../../assets/support/mascota-intrebari.png" >
+    <!-- Contact Section -->
+    <div class="grid lg:grid-cols-3 gap-8 mb-12">
+      <!-- Contact Hero Image -->
+      <div class="lg:col-span-1">
+        <div
+          class="backdrop-blur-lg shadow-2xl rounded-3xl border-white/20 p-6 h-full flex items-center justify-center bg-gradient-to-br"
+        >
+          <div class="text-center">
+            <img
+              src="../../assets/support/mascota-formular.png"
+              alt="Contact Form"
+              class="w-110 h-110 object-contain mx-auto mb-4 drop-shadow-2xl rotate-y-180"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="lg:col-span-2">
+        <div
+          class="backdrop-blur-lg shadow-2xl rounded-3xl border-white/20 p-8"
+        >
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white text-xl">📧</span>
+            </div>
+            <h2 class="text-white text-2xl lg:text-3xl font-bold">
+              Tell us your problem
+            </h2>
+          </div>
+          <app-support-form></app-support-form>
+        </div>
+      </div>
     </div>
 
-    <div class="border p-4">
-       <img src="../../assets/support/mascota-formular.png" >
-    </div>
+    <!-- Additional Info Section -->
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Contact Information -->
+      <div class="lg:col-span-2">
+        <div
+          class="backdrop-blur-lg shadow-2xl rounded-3xl border-white/20 p-8"
+        >
+          <div class="flex items-center gap-4 mb-8">
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center"
+            >
+              <span class="text-white text-xl">📍</span>
+            </div>
+            <h2 class="text-white text-2xl lg:text-3xl font-bold">
+              Contact Us
+            </h2>
+          </div>
 
-    <div class="border p-4">
-        <app-support-form> </app-support-form>
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Telefon -->
+            <div
+              class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center"
+              >
+                <span class="text-white text-xl">📞</span>
+              </div>
+              <div>
+                <p class="text-gray-300 text-sm font-medium">Phone number</p>
+                <p class="text-white font-semibold">+40 123 456 789</p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div
+              class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center"
+              >
+                <span class="text-white text-xl">📧</span>
+              </div>
+              <div>
+                <p class="text-gray-300 text-sm font-medium">Email</p>
+                <p class="text-white font-semibold">support&#64;cinema.ro</p>
+              </div>
+            </div>
+
+            <!-- Adresa -->
+            <div
+              class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center"
+              >
+                <span class="text-white text-xl">📍</span>
+              </div>
+              <div>
+                <p class="text-gray-300 text-sm font-medium">Adress</p>
+                <p class="text-white font-semibold">
+                  Street Cinema, Nr. 123<br />Brasov, Romania
+                </p>
+              </div>
+            </div>
+
+            <!-- Program -->
+            <div
+              class="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center"
+              >
+                <span class="text-white text-xl">🕒</span>
+              </div>
+              <div>
+                <p class="text-gray-300 text-sm font-medium">Schedule</p>
+                <p class="text-white font-semibold">
+                  Monday - Friday: 9:00-22:00<br />Saturday - Sunday:
+                  10:00-23:00
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info Hero Image -->
+      <div class="lg:col-span-1">
+        <div
+          class="backdrop-blur-lg shadow-2xl rounded-3xl border-white/20 p-6 h-full flex items-center justify-center"
+        >
+          <div class="text-center">
+            <div
+              class="w-48 h-48 flex items-center justify-center mx-auto mb-4"
+            >
+              <img
+                src="../../assets/support/mascota-call.png"
+                alt="Contact Form"
+                class="w-110 h-110 object-contain mx-auto mb-4 drop-shadow-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </div>
-</section>
