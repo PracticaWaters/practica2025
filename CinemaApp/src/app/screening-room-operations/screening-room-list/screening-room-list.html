@@ -1,0 +1,56 @@
+<div>
+  <table
+    mat-table
+    [dataSource]="screeningRoomList"
+    matSort
+    class="mat-elevation-z8"
+  >
+    <!-- Column id-->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <!-- Column name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <!-- Column number of rows-->
+    <ng-container matColumnDef="numOfRows">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Number Of Rows</th>
+      <td mat-cell *matCellDef="let element">{{ element.numOfRows }}</td>
+    </ng-container>
+    <!-- Column number of seats per row-->
+    <ng-container matColumnDef="numOfSeatsPerRow">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Number Of Seats Per Row
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.numOfSeatsPerRow }}</td>
+    </ng-container>
+    <!-- Column format-->
+    <ng-container matColumnDef="format">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Format</th>
+      <td mat-cell *matCellDef="let element">{{ element.format }}</td>
+    </ng-container>
+    <!-- Column seat list-->
+    <ng-container matColumnDef="seatList">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Seat List</th>
+      <td mat-cell *matCellDef="let element">{{ element.seatList }}</td>
+    </ng-container>
+
+    <!-- Column actions
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <a routerLink="/edit/{{ element.id }}">Edit</a>
+      </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[3, 6, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
