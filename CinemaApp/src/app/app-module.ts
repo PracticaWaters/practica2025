@@ -4,10 +4,12 @@ import {MatMenuModule} from '@angular/material/menu'
 import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { SupportPage } from './support-page/support-page';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    SupportPage
   ],
   imports: [
     BrowserModule,
