@@ -10,36 +10,77 @@
 </head>
 
 
+
 <body>
     <div class="cinema-container">
+        
         <!-- Partea stângă - Informații despre cinema -->
         <div class="cinema-info">
-            <h1><i>{{detaliicinemaData.name}}</i></h1>
+            <button (click)="toggleEdit()" class="button_edit">
+    {{ editMode ? 'Salvează' : 'Editează' }}
+  </button>
+
+            <h1>
+  <i *ngIf="!editMode">{{ detaliicinemaData.name }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.name" />
+</h1>
             
             <div class="info-section">
                 <h2><i class="fas fa-info-circle"></i> Despre noi</h2>
-                <p><i>{{detaliicinemaData.aboutus}}</i></p>
+                <p>
+  <i *ngIf="!editMode">{{ detaliicinemaData.aboutus }}</i>
+  <textarea *ngIf="editMode" [(ngModel)]="detaliicinemaData.aboutus"></textarea>
+</p>
             </div>
             
             <div class="info-section">
                 <h2><i class="fas fa-map-marker-alt"></i> Locație</h2>
-                <p><i>{{detaliicinemaData.address}}</i></p>
+                <p>
+  <i *ngIf="!editMode">{{ detaliicinemaData.address }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.address" />
+</p>
+
             </div>
             
             <div class="info-section">
                 <h2><i class="fas fa-phone"></i> Contact</h2>
-                <p><i>Numar telefon: {{detaliicinemaData.phone}}</i></p>
-                <p><i>Email: {{detaliicinemaData.email}}</i></p>
-                <p>Website: <i>{{detaliicinemaData.website}}</i></p>
+              <p>
+  <i *ngIf="!editMode">Numar telefon: {{ detaliicinemaData.phone }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.phone" />
+</p>
+
+<p>
+  <i *ngIf="!editMode">Email: {{ detaliicinemaData.email }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.email" />
+</p>
+
+<p>
+  <i *ngIf="!editMode">Website: {{ detaliicinemaData.website }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.website" />
+</p>
             </div>
             
             <div class="info-section">
                 <h2><i class="fas fa-clock"></i> Program</h2>
                 <ul>
                     
-                    <li>Luni - Vineri: <i>{{detaliicinemaData.programweek}}</i></li>
-                    <li>Sambata - Duminică: <i>{{detaliicinemaData.programweekend}}</i></li>
-                    <li>Sărbători legale: <i>{{detaliicinemaData.programsarbatori}}</i></li>
+                    <li>
+  Luni - Vineri:
+  <i *ngIf="!editMode">{{ detaliicinemaData.programweek }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweek" />
+</li>
+
+<li>
+  Sâmbătă - Duminică:
+  <i *ngIf="!editMode">{{ detaliicinemaData.programweekend }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweekend" />
+</li>
+
+<li>
+  Sărbători legale:
+  <i *ngIf="!editMode">{{ detaliicinemaData.programsarbatori }}</i>
+  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programsarbatori" />
+</li>
                 </ul>
             </div>
             

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule, RoutingComponent } from './app-routing-module';
 import { App } from './app';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
