@@ -59,5 +59,24 @@ namespace CinemaAPI.Controllers
                 return BadRequest(ex);
             }
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteScreeningRoom(int id)
+        {
+            try
+            {
+                var screeningRoom = screeningRoomDataOps.GetScreeningRoomById(id);
+                if (screeningRoom == null)
+                {
+                    return NotFound();
+                }
+                screeningRoomDataOps.DeleteScreeningRoom(screeningRoom);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

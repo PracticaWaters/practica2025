@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Models;
+using System.Numerics;
 
 namespace CinemaAPI.DataManagement
 {
@@ -45,5 +46,19 @@ namespace CinemaAPI.DataManagement
         {
             return dbContext.screeningRooms.Where(x => x.Id == id).FirstOrDefault();
         }
+
+        public void DeleteScreeningRoom(ScreeningRoom screeningRoom)
+        {
+            try
+            {
+                dbContext.screeningRooms.Remove(screeningRoom);
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception in DeletePlayer: {0}", ex.Message);
+            }
+        }
+
     }
 }
