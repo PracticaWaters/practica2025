@@ -1,0 +1,61 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalii Cinema</title>
+    <link rel="stylesheet" href="detalii-cinema.css">
+    <!-- Font Awesome pentru iconițe -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Font Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="cinema-container">
+        <!-- Partea stângă - Informații despre cinema -->
+        <div class="cinema-info">
+            <h1><i>{{detaliicinemaData.name}}</i></h1>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-info-circle"></i> Despre noi</h2>
+                <p><i>{{detaliicinemaData.aboutus}}</i></p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Locație</h2>
+                <p><i>{{detaliicinemaData.address}}</i></p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-phone"></i> Contact</h2>
+                <p><i>Numar telefon: {{detaliicinemaData.phone}}</i></p>
+                <p><i>Email: {{detaliicinemaData.email}}</i></p>
+                <p>Website: <i>{{detaliicinemaData.website}}</i></p>
+            </div>
+            
+            <div class="info-section">
+                <h2><i class="fas fa-clock"></i> Program</h2>
+                <ul>
+                    
+                    <li>Luni - Vineri: <i>{{detaliicinemaData.programweek}}</i></li>
+                    <li>Sambata - Duminică: <i>{{detaliicinemaData.programweekend}}</i></li>
+                    <li>Sărbători legale: <i>{{detaliicinemaData.programsarbatori}}</i></li>
+                </ul>
+            </div>
+            
+                  </div>
+        
+        <!-- Partea dreaptă - Google Maps -->
+        <div class="cinema-map">
+            <h2><i class="fas fa-map"></i> Cum ajungi la noi</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2650.258654599832!2d25.612731591460754!3d45.666537339298294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b8b524bcac9%3A0xb350aa0bf5ec0c51!2sWATERS%20ROM%C3%82NIA%20S.R.L.!5e1!3m2!1sro!2sro!4v1752477842062!5m2!1sro!2sro" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</body>
+

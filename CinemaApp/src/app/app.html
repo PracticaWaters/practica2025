@@ -1,5 +1,8 @@
 <nav class="flex items-center gap-16 md:justify-evenly justify-between px-6 py-4 h-[60px] bg-[#1A2130] text-white relative">
-  <a routerLink="/" class="text-xl font-bold text-[#83B4FF] md:hidden">MyCinema</a>
+  <div class="flex gap-4 items-center">
+    <a routerLink="/" class="text-xl font-bold text-[#83B4FF]">LiquidCinema</a>
+    <img src="logo-500.png" alt="" class="w-10">
+ </div>
 
   <button class="md:hidden text-white focus:outline-none cursor-pointer transition-transform duration-300" (click)="toggleMenu()">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -20,6 +23,7 @@
     <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Recomandari</a>
     <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Profil User</a>
     <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Suport</a>
+    <a routerLink="/detalii-cinema" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Detalii</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
@@ -43,6 +47,7 @@
     <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Recomandari</a>
     <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Profil User</a>
     <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Suport</a>
+    <a routerLink="/detalii-cinema" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Detalii</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
@@ -59,3 +64,6 @@
     </div>
   </div>
 </nav>
+
+<router-outlet/>
+
