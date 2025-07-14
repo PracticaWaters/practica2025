@@ -13,6 +13,7 @@ export class SupportForm {
   loading = false;
   successMsg = '';
   errorMsg = '';
+  ticketTrimis = false;
 
   constructor(private fb: FormBuilder, private supportService: SupportService) {
     this.formularContact = this.fb.group({
@@ -34,16 +35,25 @@ export class SupportForm {
       };
       this.supportService.sendTicket(payload).subscribe({
         next: () => {
-          // this.successMsg = 'ticket trimis';
+          this.ticketTrimis = true;
           this.formularContact.reset();
           this.loading = false;
         },
         error: (err) => {
           console.error('Error:', err);
-          // this.errorMsg = 'Eroare';
+          this.errorMsg = 'Eroare';
           this.loading = false;
         },
       });
+    } else {
+      this.formularContact.markAllAsTouched();
     }
+  }
+
+  get emailInvalid() {
+    const emailCtrl = this.formularContact.get('email');
+    return (
+      emailCtrl && emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)
+    );
   }
 }
