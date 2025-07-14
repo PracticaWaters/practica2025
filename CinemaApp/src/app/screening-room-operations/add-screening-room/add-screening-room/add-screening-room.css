@@ -1,0 +1,32 @@
+.form-div {
+  display: grid;
+  grid-template-columns: 140px 200px;
+  grid-template-areas: "theText theInput";
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.form-div-text {
+  grid-area: theText;
+}
+
+.form-div-input {
+  grid-area: theInput;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 10px;
+}
+
+.centered {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -350px;
+  margin-left: -350px;
+}

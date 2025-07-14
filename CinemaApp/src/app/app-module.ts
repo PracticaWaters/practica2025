@@ -10,7 +10,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { AddScreeningRoom } from './screening-room-operations/add-screening-room/add-screening-room/add-screening-room';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [App, RoutingComponent, ScreeningRoomList, AddScreeningRoom],
   imports: [
@@ -22,6 +27,12 @@ import { AddScreeningRoom } from './screening-room-operations/add-screening-room
     MatMenuModule,
     MatPaginatorModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatRadioModule,
   ],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
