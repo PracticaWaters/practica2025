@@ -12,28 +12,30 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       state('void', style({
         height: '0',
         opacity: '0',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transform: 'translateY(-10px)'
       })),
       state('*', style({
         height: '*',
         opacity: '1',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transform: 'translateY(0)'
       })),
       transition('void <=> *', [
-        animate('300ms ease-in-out')
+        animate('200ms ease-out')
       ])
     ]),
     trigger('fadeIn', [
       state('void', style({
         opacity: '0',
-        transform: 'translateY(20px)'
+        transform: 'translateY(10px)'
       })),
       state('*', style({
         opacity: '1',
         transform: 'translateY(0)'
       })),
       transition('void <=> *', [
-        animate('400ms ease-out')
+        animate('250ms ease-out')
       ])
     ])
   ]
