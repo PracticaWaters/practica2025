@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ScreeningRoomData } from '../app-logic/screening-room-data';
 import { Seat } from '../app-logic/seat';
@@ -21,17 +20,17 @@ interface DateOption {
   selector: 'app-screening-room',
   standalone: false,
   templateUrl: './screening-room.html',
-  styleUrl: './screening-room.css'
+  styleUrl: './screening-room.css',
 })
 export class ScreeningRoom implements OnInit {
   screeningRoom: ScreeningRoomData;
   seatsGrid: Seat[][] = [];
-  
+
   movieInfo: MovieInfo = {
-    title: "Avatar: The Way of Water",
-    duration: "192 min",
-    genre: "Sci-Fi, Adventure",
-    rating: "8.1"
+    title: 'Avatar: The Way of Water',
+    duration: '192 min',
+    genre: 'Sci-Fi, Adventure',
+    rating: '8.1',
   };
 
   dates: DateOption[] = [
@@ -39,7 +38,7 @@ export class ScreeningRoom implements OnInit {
     { date: '2025-07-12', day: 'Sâm', dayNum: '12' },
     { date: '2025-07-13', day: 'Dum', dayNum: '13' },
     { date: '2025-07-14', day: 'Lun', dayNum: '14' },
-    { date: '2025-07-15', day: 'Mar', dayNum: '15' }
+    { date: '2025-07-15', day: 'Mar', dayNum: '15' },
   ];
 
   times: string[] = ['15:30', '18:00', '19:00', '20:30', '22:00'];
@@ -52,7 +51,18 @@ export class ScreeningRoom implements OnInit {
       name: 'Sala Premium 1',
       noOfRows: 10,
       noOfSeatsOnRow: 16,
-      occupiedSeats: ['10-8', '10-9', '15-8', '15-9', '15-10', '15-11', '3-4', '3-5', '7-12', '7-13']
+      occupiedSeats: [
+        '10-8',
+        '10-9',
+        '15-8',
+        '15-9',
+        '15-10',
+        '15-11',
+        '3-4',
+        '3-5',
+        '7-12',
+        '7-13',
+      ],
     };
   }
 
@@ -64,7 +74,8 @@ export class ScreeningRoom implements OnInit {
     for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
       const rowSeats: Seat[] = [];
       for (let col = 1; col <= this.screeningRoom.noOfSeatsOnRow; col++) {
-        const isOccupied = this.screeningRoom.occupiedSeats?.includes(`${row}-${col}`) ?? false;
+        const isOccupied =
+          this.screeningRoom.occupiedSeats?.includes(`${row}-${col}`) ?? false;
         rowSeats.push(new Seat(row, col, isOccupied));
       }
       this.seatsGrid.push(rowSeats);
@@ -78,8 +89,8 @@ export class ScreeningRoom implements OnInit {
   get selectedSeats(): string[] {
     return this.seatsGrid
       .flat()
-      .filter(seat => seat.selected)
-      .map(seat => seat.id);
+      .filter((seat) => seat.selected)
+      .map((seat) => seat.id);
   }
 
   onDateSelect(date: string): void {
@@ -91,7 +102,7 @@ export class ScreeningRoom implements OnInit {
   }
 
   getFormatsText(): string {
-    return "2D, 3D, 4DX, IMAX"; 
+    return '2D, 3D, 4DX, IMAX';
   }
 
   getTotalPrice(): number {
@@ -103,7 +114,7 @@ export class ScreeningRoom implements OnInit {
       selectedSeats: this.selectedSeats,
       selectedDate: this.selectedDate,
       selectedTime: this.selectedTime,
-      totalPrice: this.getTotalPrice()
+      totalPrice: this.getTotalPrice(),
     });
   }
 

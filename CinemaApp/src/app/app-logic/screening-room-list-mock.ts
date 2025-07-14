@@ -35,11 +35,11 @@ export class ScreeningRoomListMock {
     );
   }
 
-  getItemById(id: number): Observable<ScreeningRoomData> {
+  getScreeningRoomById(id: number): Observable<ScreeningRoomData> {
     return this.httpClient.get<ScreeningRoomData>(`${this.apiUrl}/${id}`);
   }
 
-  updateItem(item: ScreeningRoomData): void {
+  updateScreeningRoom(item: ScreeningRoomData): void {
     this.httpClient
       .put<ScreeningRoomData>(this.apiUrl, item)
       .subscribe((data) => {
