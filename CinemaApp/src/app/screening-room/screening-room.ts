@@ -49,9 +49,9 @@ export class ScreeningRoom implements OnInit {
     this.screeningRoom = {
       id: 1,
       name: 'Sala Premium 1',
-      noOfRows: 10,
-      noOfSeatsOnRow: 16,
-      occupiedSeats: [
+      numOfRow: 10,
+      numOfSeatsPerRow: 16,
+      seatList: [
         '10-8',
         '10-9',
         '15-8',
@@ -71,11 +71,11 @@ export class ScreeningRoom implements OnInit {
   }
 
   generateSeats(): void {
-    for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
+    for (let row = 1; row <= this.screeningRoom.numOfRow; row++) {
       const rowSeats: Seat[] = [];
-      for (let col = 1; col <= this.screeningRoom.noOfSeatsOnRow; col++) {
+      for (let col = 1; col <= this.screeningRoom.numOfSeatsPerRow; col++) {
         const isOccupied =
-          this.screeningRoom.occupiedSeats?.includes(`${row}-${col}`) ?? false;
+          this.screeningRoom.seatList?.includes(`${row}-${col}`) ?? false;
         rowSeats.push(new Seat(row, col, isOccupied));
       }
       this.seatsGrid.push(rowSeats);

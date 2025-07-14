@@ -1,32 +1,32 @@
 <div class="row">
     <div class="column">
-<form [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()" >
 <p>
     <mat-form-field appearance="outline">
         <mat-label>Screening Room Name</mat-label>
-      <input matInput formControlName="name" placeholder="Enter room name" required/>
+      <input matInput formControlName="name" placeholder="Enter room name" required type="text"/>
       <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
     </mat-form-field>
 </p>
 <p>
     <mat-form-field appearance="outline">
         <mat-label>Number of Rows</mat-label>
-      <input matInput formControlName="numOfRows" placeholder="Enter number of rows" required/>
+      <input matInput formControlName="numOfRows" placeholder="Enter number of rows" required type="number"/>
       <mat-error *ngIf="hasError('numOfRows', 'required')">Number of rows is required</mat-error>
     </mat-form-field>
 </p>
 <p>
     <mat-form-field appearance="outline">
         <mat-label>Number of Seats Per Row</mat-label>
-      <input matInput formControlName="numOfSeatsPerRow" placeholder="Enter number of seats per row" required/>
+      <input matInput formControlName="numOfSeatsPerRow" placeholder="Enter number of seats per row" required type="number"/>
       <mat-error *ngIf="hasError('numOfSeatsPerRow', 'required')">Number of seats per row is required</mat-error>
     </mat-form-field>
 </p>
     
 <p>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="mat-form-field">
         <mat-label>Format</mat-label>
-      <input matInput formControlName="format" placeholder="Enter format" required/>
+      <input matInput formControlName="format" placeholder="Enter format" required type="text" class="mat-form-text"/>
       <mat-error *ngIf="hasError('format', 'required')">Format is required</mat-error>
     </mat-form-field>
 </p>

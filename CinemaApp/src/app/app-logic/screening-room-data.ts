@@ -1,10 +1,10 @@
 export class ScreeningRoomData {
   id!: number;
   name!: string;
-  noOfRows!: number;
-  noOfSeatsOnRow!: number;
-  supportedFormats?: string[];
-  occupiedSeats?: string[];
+  numOfRow!: number;
+  numOfSeatsPerRow!: number;
+  format?: string[];
+  seatList?: string[];
 
   constructor(screeningRoomData?: Partial<ScreeningRoomData>) {
     Object.assign(this, screeningRoomData);
