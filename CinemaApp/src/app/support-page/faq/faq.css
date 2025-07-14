@@ -1,0 +1,33 @@
+.faq-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  background-color: #759461;
+  font-weight: bold;
+}
+---.css---
+.faq-question {
+  font-size: 16px;
+}
+
+.faq-icon {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.faq-answer {
+  padding: 15px 20px;
+  background-color: rgb(186, 227, 215);
+  font-size: 15px;
+}

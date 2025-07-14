@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Faq } from './support-page/faq/faq';
 
 const routes: Routes = [
   // {path: "", component:HomePage},
@@ -11,6 +12,7 @@ const routes: Routes = [
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-sali", component:AdministrareSali},
   // {path: "administrare-promotii", component:AdministrarePromotii}
+  {path: "support/faq", component:Faq}
 ];
 
 @NgModule({
