@@ -5,11 +5,13 @@ import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { SupportPage } from './support-page/support-page';
+import { Faq } from './support-page/faq/faq';
 
 @NgModule({
   declarations: [
     App,
-    SupportPage
+    SupportPage,
+    Faq
   ],
   imports: [
     BrowserModule,
