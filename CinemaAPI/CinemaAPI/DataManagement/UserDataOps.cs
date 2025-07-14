@@ -1,4 +1,4 @@
-﻿using CinemaAPI.Models;
+using CinemaAPI.Models;
 using CinemaAPI.Utilities;
 
 namespace CinemaAPI.DataManagement
