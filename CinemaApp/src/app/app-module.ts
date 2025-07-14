@@ -23,11 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
-<<<<<<< HEAD
     ReactiveFormsModule
-=======
-    HttpClientModule
->>>>>>> fa317557be9fc80615365b5cf764b5c7f2d5533e
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
