@@ -19,7 +19,7 @@ namespace CinemaAPI.Controllers
         {
             _jwt = jwt;
         }
-
+        
         
         [HttpPost("register")]
         public IActionResult Register([FromBody] User user)
