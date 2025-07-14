@@ -8,12 +8,19 @@ namespace CinemaAPI.Models
         [Key]
         public int Id { get; set; }
 
-        public DateTime Date { get; set; }
-        public bool Active { get; set; }
-        public string Mesaj { get; set; }
+        [Required]
+        public string Message { get; set; }
 
-        [ForeignKey("User")] // Leagă proprietatea UserId de navigația User
-        public int UserId { get; set; }
+        [Required]
+        public string Name { get; set; }
 
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public bool Status { get; set; } // true = activ, false = inactiv
+
+        [Required]
+        public DateTime CreatedAt { get; set; }
     }
 }

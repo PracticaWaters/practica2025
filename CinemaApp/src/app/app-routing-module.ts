@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Faq } from './support-page/faq/faq';
-import { SupportForm } from './support-page/support-form/support-form';
-import { SupportPage } from './support-page/support-page';
+import { Faq } from './Support/faq/faq';
+import { SupportForm } from './Support/support-form/support-form';
+import { SupportPage } from './Support/support-page/support-page';
 
 const routes: Routes = [
   // {path: "", component:HomePage},
@@ -14,13 +14,13 @@ const routes: Routes = [
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-sali", component:AdministrareSali},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  {path: "support/faq", component:Faq},
-  {path: "support", component: SupportPage},
-  {path: "support/form",component:SupportForm}
+  { path: 'support/faq', component: Faq },
+  { path: 'support', component: SupportPage },
+  { path: 'support/form', component: SupportForm },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

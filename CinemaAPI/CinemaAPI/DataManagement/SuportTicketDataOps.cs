@@ -17,26 +17,22 @@ namespace CinemaAPI.DataManagement
             return dbContext.SuportTickets.ToArray();
         }
 
-        public void AddTicket(SuportTicket suportTicket)
+        public void AddTicket(SuportTicket ticket)
         {
-            
-                dbContext.SuportTickets.Add(suportTicket);
-                dbContext.SaveChanges();
-           
+            ticket.CreatedAt = DateTime.UtcNow;
+            ticket.Status = true; // activ la creare
+            dbContext.SuportTickets.Add(ticket);
+            dbContext.SaveChanges();
         }
 
         public SuportTicket GetSuportTicketById(int id) {
             return dbContext.SuportTickets.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public void ChangeSuportTicketStatus(SuportTicket suportTicket)
+        public void UpdateTicket(SuportTicket ticket)
         {
-            var ticket = GetSuportTicketById(suportTicket.Id);
-            if (ticket != null)
-            {
-                ticket.Active = !ticket.Active;
-                dbContext.SaveChanges();
-            }
+            dbContext.SuportTickets.Update(ticket);
+            dbContext.SaveChanges();
         }
     }
 }
