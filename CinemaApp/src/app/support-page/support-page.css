@@ -1,0 +1,8 @@
+.support-page {
+  /* background-image: url('../../assets/support/bg-pattern.png'), */
+   background-image: linear-gradient( #1A2130, #0f131c ) ;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
