@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CinemaAPI.Controllers
 {
     [ApiController]
-    [Route("api/cinema/film")]
+    [Route("api/cinema/ticketsupport")]
     public class SuportTicketControler : ControllerBase
     {
         private readonly SuportTicketDataOps suportTicketDataOps;
