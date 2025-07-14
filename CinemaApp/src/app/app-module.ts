@@ -9,7 +9,8 @@ import { SupportPage } from './support-page/support-page';
 import { Faq } from './support-page/faq/faq';
 import { SupportForm } from './support-page/support-form/support-form';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { SupportAdmin } from './support-page/support-admin/support-admin';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SupportPage,
     Faq,
     SupportForm,
+    SupportAdmin,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

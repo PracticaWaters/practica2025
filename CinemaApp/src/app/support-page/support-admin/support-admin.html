@@ -1,0 +1,84 @@
+<!-- FILTRU -->
+<div class="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4 overflow-hidden">
+  <div class="items-center pt-12 pb-8">
+    <h1 class="text-white text-xl sm:text-6xl font-bold mb-24 text-center ">
+      Admin Support Dashboard
+    </h1>
+   
+ 
+<div class=" flex justify-center items-center w-800px mx-auto my-8 px-4">
+  <input
+    type="text"
+    [(ngModel)]="filtru"
+    (input)="aplicaFiltrare()"
+    placeholder="Caută în tichete..."
+    class="w-400px md:w-96 p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all"
+  />
+</div>
+
+<!-- TABEL -->
+<div class=" mx-auto bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden border border-white/20 w-3/4">
+  <h2 class="text-white text-2xl font-bold p-6 border-b border-white/10">Tichete trimise</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-white text-left text-sm">
+      <thead class="bg-white/10 border-b border-white/20 text-gray-300">
+        <tr>
+          <th class="px-4 py-4">
+            <input type="checkbox" [checked]="selecteazaTot" (change)="toggleSelectToate()" />
+          </th>
+          <th class="px-4 py-4">Nume</th>
+          <th class="px-4 py-4">Email</th>
+          <th class="px-4 py-4">Mesaj</th>
+          <th class="px-4 py-4">Data</th>
+          <th class="pl-4 pr-8 py-4">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let ticket of paginare()"
+          class="hover:bg-white/5 transition"
+        >
+          <td class="px-4 py-4">
+            <input
+              type="checkbox"
+              [(ngModel)]="ticket.selectat"
+              (change)="toggleSelect(ticket)"
+            />
+          </td>
+          <td class="px-4 py-4">{{ ticket.nume }}</td>
+          <td class="px-4 py-4">{{ ticket.email }}</td>
+          <td class="px-4 py-4">{{ ticket.mesaj }}</td>
+          <td class="px-4 py-4">{{ ticket.data }}</td>
+          <td class="px-4 py-4">{{ticket.active}}</td>
+        </tr>
+        <tr *ngIf="ticketeFiltrate.length === 0">
+          <td colspan="5" class="text-center py-6 text-gray-400">Niciun ticket găsit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGINARE -->
+  <div class="flex justify-between items-center p-6 text-white">
+    <p class="text-sm">
+      Pagina {{ paginaCurenta }} din {{ totalPagini() }}
+    </p>
+    <div class="flex gap-2">
+      <button
+        (click)="paginaCurenta = paginaCurenta - 1"
+        [disabled]="paginaCurenta === 1"
+        class="px-4 py-2 bg-white/10 rounded-xl disabled:opacity-50"
+      >
+        ◀ Anterior
+      </button>
+      <button
+        (click)="paginaCurenta = paginaCurenta + 1"
+        [disabled]="paginaCurenta === totalPagini()"
+        class="px-4 py-2 bg-white/10 rounded-xl disabled:opacity-50"
+      >
+        Următor ▶
+      </button>
+    </div>
+  </div>
+</div>
+ </div>
