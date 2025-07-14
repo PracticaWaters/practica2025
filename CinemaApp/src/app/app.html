@@ -23,6 +23,7 @@
     <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Recomandari</a>
     <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Profil User</a>
     <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Suport</a>
+    <a routerLink="/detalii-cinema" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Detalii</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
@@ -46,6 +47,7 @@
     <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Recomandari</a>
     <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Profil User</a>
     <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Suport</a>
+    <a routerLink="/detalii-cinema" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Detalii</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
@@ -62,4 +64,6 @@
     </div>
   </div>
 </nav>
+
+<router-outlet/>
 
