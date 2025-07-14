@@ -1,5 +1,5 @@
 ﻿using CinemaAPI.Models;
-using System.Linq.Expressions;
+using CinemaAPI.Utilities;
 
 namespace CinemaAPI.DataManagement
 {
@@ -20,9 +20,12 @@ namespace CinemaAPI.DataManagement
            
             try
             {
+                user.Password = PasswordHasher.HashPassword(user.Password);
+                user.CreatedAt = DateTime.Now;
+                user.ModifiedAt = DateTime.Now;
+                
                 dbContext.Add(user);
                 dbContext.SaveChanges();
-
             }
             catch (Exception ex)
             {
@@ -30,18 +33,16 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        // get 
-
-        public User[] GetUsers ()
+        // get
+        public User[] GetUsers()
         {
             return dbContext.users.Where(u => u.IsDeleted == false).ToArray();
         }
 
-        public User? GetUserById (int id)
+        public User? GetUserById(int id)
         {
-            return dbContext.users.Where(u => u.IsDeleted==false && u.Id == id).FirstOrDefault();
+            return dbContext.users.Where(u => u.IsDeleted == false && u.Id == id).FirstOrDefault();
         }
-
 
         public User? GetUserByEmail(string email)
         {
@@ -49,11 +50,19 @@ namespace CinemaAPI.DataManagement
                 .Where(u => u.IsDeleted == false && u.Email == email)
                 .FirstOrDefault();
         }
-        public User? GetUserByEmailAndPassword (string email, string password)
+
+        public User? GetUserByEmailAndPassword(string email, string password)
         {
-            return dbContext.users
-                .Where(u => u.IsDeleted == false && u.Email == email && u.Password == password)
+            var user = dbContext.users
+                .Where(u => u.IsDeleted == false && u.Email == email)
                 .FirstOrDefault();
+            
+            if (user != null && PasswordHasher.VerifyPassword(password, user.Password))
+            {
+                return user;
+            }
+            
+            return null;
         }
 
         // update
@@ -61,10 +70,22 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
+                var existingUser = GetUserById(user.Id);
+                if (existingUser == null)
+                    throw new Exception("User not found");
+
+                if (!string.IsNullOrEmpty(user.Password) && user.Password != existingUser.Password)
+                {
+                    user.Password = PasswordHasher.HashPassword(user.Password);
+                }
+                else if (string.IsNullOrEmpty(user.Password))
+                {
+                    user.Password = existingUser.Password;
+                }
+
                 user.ModifiedAt = DateTime.Now;
                 dbContext.Update(user);
                 dbContext.SaveChanges();
-
             }
             catch (Exception ex)
             {
@@ -78,9 +99,9 @@ namespace CinemaAPI.DataManagement
             try
             {
                 user.IsDeleted = true;
+                user.ModifiedAt = DateTime.Now;
                 dbContext.Update(user);
                 dbContext.SaveChanges();
-
             }
             catch (Exception ex)
             {
