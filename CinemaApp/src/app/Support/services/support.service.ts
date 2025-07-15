@@ -12,7 +12,7 @@ export interface SuportTicket {
   providedIn: 'root',
 })
 export class SupportService {
-  private apiUrl = 'https://localhost:25856/api/cinema/ticketsupport';
+  private apiUrl = 'https://localhost:25867/api/cinema/ticketsupport';
 
   constructor(private http: HttpClient) {}
 
