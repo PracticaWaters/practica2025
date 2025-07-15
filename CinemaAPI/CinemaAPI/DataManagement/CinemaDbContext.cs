@@ -1,5 +1,6 @@
 ﻿using CinemaAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace CinemaAPI.DataManagement
 {
