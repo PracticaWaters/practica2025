@@ -13,6 +13,9 @@ import { SupportForm } from './Support/support-form/support-form';
 import { SupportPage } from './Support/support-page/support-page';
 
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { Movies } from './Home/movies/movies';
+import { Carousel } from './Home/carousel/carousel';
+import { HomePage } from './Home/home-page/home-page';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
     Faq,
     SupportForm,
     SupportAdmin,
+    Movies,
+    Carousel,
+    HomePage,
   ],
   imports: [
     BrowserModule,
