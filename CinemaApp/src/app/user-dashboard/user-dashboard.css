@@ -21,17 +21,16 @@
   min-height: 400px;
 }
 
-/* Meniu lateral */
 .dashboard-menu {
-  width: 250px;
+  width: 280px;
   background-color: white;
-  color: black;
-  padding: 20px;
-    display: flex;
+  padding: 30px 20px;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  border-right: 2px solid rgba(90, 114, 160, 0.2);
 }
+
 
 .dashboard-menu ul {
   list-style: none;
@@ -60,6 +59,7 @@
   background-color: white;
   color: #333;
   overflow-y: auto;
+  border-right: 1px solid rgba(90, 114, 160, 0.2);
 }
 
 .card {

@@ -1,33 +1,26 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
 <div class="dashboard-wrapper">
   <div class="user-dashboard-container">
     <div class="user-dashboard-box">
       <div class="dashboard-menu">
         <ul>
-            
-          <li>
-            <mat-icon>home</mat-icon>   
-            <a href="#">
-            Meniu principal</a></li>
-          <li>
-            <mat-icon>stars</mat-icon>
-            <a href="#">Wishlist</a></li>
-          <li>
-            <mat-icon>receipt</mat-icon>
-            <a href="#">Bilete</a></li>
-          <li>
-            <mat-icon>thumbs_up_down</mat-icon>
-            <a href="#">Review-uri</a></li>
-          <li>
-            <mat-icon>person</mat-icon>
-            <a href="#">
-            Detalii personale</a></li>
+          <li><mat-icon>home</mat-icon><a href="#">Meniu principal</a></li>
+          <li><mat-icon>stars</mat-icon><a href="#">Wishlist</a></li>
+          <li><mat-icon>receipt</mat-icon><a href="#">Bilete</a></li>
+          <li><mat-icon>thumbs_up_down</mat-icon><a href="#">Review-uri</a></li>
+          <li><mat-icon>person</mat-icon><a href="#">Detalii personale</a></li>
         </ul>
+
+        <!-- separator vizual între meniu și logout -->
+        <div class="menu-separator"></div>
+
         <div class="logoutbottom">
           <mat-icon>meeting_room</mat-icon>
           <a href="#">Logout</a>
         </div>
       </div>
+
       <div class="dashboard-content">
         <div class="card" *ngFor="let card of cards">
           <h3>{{ card.titlu }}</h3>
