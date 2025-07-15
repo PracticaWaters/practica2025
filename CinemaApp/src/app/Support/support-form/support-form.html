@@ -1,0 +1,71 @@
+<!-- FORMULAR -->
+<div class="w-full">
+  <ng-container *ngIf="!ticketTrimis; else succesMsg">
+    <form
+      [formGroup]="formularContact"
+      (ngSubmit)="onSubmit()"
+      class="space-y-4 sm:space-y-6"
+    >
+      <!-- NUME -->
+      <div class="space-y-2">
+        <label class="text-white block text-sm font-medium">Name</label>
+        <input
+          type="text"
+          formControlName="nume"
+          placeholder="Your name..."
+          required
+          class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 text-sm sm:text-base"
+        />
+      </div>
+
+      <!-- EMAIL -->
+      <div class="space-y-2">
+        <label class="text-white block text-sm font-medium">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="example@email.com"
+          required
+          [ngClass]="{ 'border-red-500': emailInvalid }"
+          class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 text-sm sm:text-base"
+        />
+        <div *ngIf="emailInvalid" class="text-red-400 text-xs pt-1">
+          Email invalid
+        </div>
+      </div>
+
+      <!-- MESAJ -->
+      <div class="space-y-2">
+        <label class="text-white block text-sm font-medium">Message</label>
+        <textarea
+          formControlName="mesaj"
+          rows="4"
+          placeholder="Tell us your problem here..."
+          required
+          class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 resize-none text-sm sm:text-base"
+        ></textarea>
+      </div>
+
+      <!-- BUTON -->
+      <div class="pt-4 flex justify-center">
+        <button
+          type="submit"
+          class="lg:w-110 sm:w-full md:w-full self-center bg-gradient-to-r to-gray hover:from-gray bg-transparent border-white/20 border-1 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-101 hover:bg-white hover:bg-opacity-30 hover:text-gray-900"
+        >
+          Send ticket
+        </button>
+      </div>
+    </form>
+  </ng-container>
+  <ng-template #succesMsg>
+    <div class="flex flex-col items-center justify-center py-10 lg:h-110">
+      <div class="text-5xl mb-4">✅</div>
+      <div class="text-white text-xl font-semibold mb-2">
+        Ticket sent succeesfully!
+      </div>
+      <div class="text-gray-400 text-base">
+        Thank you for your message, we'll get back to you as soon as possible!
+      </div>
+    </div>
+  </ng-template>
+</div>

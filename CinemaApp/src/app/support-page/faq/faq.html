@@ -1,9 +1,0 @@
-<div *ngFor="let faq of faqs" class="faq-container" [class.expanded]="faq.expanded">
-  <div class="faq-header" (click)="toggle(faq)">
-    <span class="faq-question">{{ faq.question }}</span>
-    <span class="faq-icon">{{ faq.expanded ? '−' : '+' }}</span>
-  </div>
-  <div *ngIf="faq.expanded" class="faq-answer">
-    {{ faq.answer }}
-  </div>
-</div>

@@ -15,8 +15,7 @@ body{
   --color-accent: #83B4FF;
   --color-light: #FDFFE2;
 }
-/* În fișierul tău .css */
-
+  
 .arrow {
   transition: transform 0.5s ease-in-out !important;
   display: inline-block !important;

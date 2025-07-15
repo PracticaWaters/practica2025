@@ -1,37 +1,34 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatMenuModule} from '@angular/material/menu'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { SupportPage } from './support-page/support-page';
-import { Faq } from './support-page/faq/faq';
-import { SupportForm } from './support-page/support-form/support-form';
+import { SupportPage } from './Support/support-page/support-page';
+import { Faq } from './Support/faq/faq';
+import { SupportForm } from './Support/support-form/support-form';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SupportAdmin } from './support-page/support-admin/support-admin';
+import { SupportAdmin } from './Support/support-admin/support-admin';
 import { FormsModule } from '@angular/forms'; 
+import { NgModel } from '@angular/forms';
+
 
 @NgModule({
-  declarations: [
-    App,
-    SupportPage,
-    Faq,
-    SupportForm,
-    SupportAdmin,
-  ],
+
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgModule
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
-  ],
-  bootstrap: [App]
+  providers: [provideBrowserGlobalErrorListeners()],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}
