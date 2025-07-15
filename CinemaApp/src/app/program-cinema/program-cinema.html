@@ -33,13 +33,13 @@
         <div class="flex gap-3">
           <a href="/vizualizare-film">
             <button
-              class="text-sm px-4 py-1 bg-[#5A72A0] text-white rounded hover:bg-[#1A2130]"
+              class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)]  hover:bg-[var(--light)] transition-all duration-300 rounded "
             >
               Vezi detalii
             </button>
           </a>
           <button
-            class="text-sm px-4 py-1 bg-amber-500 text-white rounded hover:bg-amber-600"
+           class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
           >
             Rezervă acum
           </button>
@@ -126,7 +126,7 @@
       <!-- Buton Resetare -->
       <button
         (click)="resetFiltre()"
-        class="px-4 py-2 bg-gray-200 text-[#1A2130] rounded hover:bg-gray-300"
+        class="text-sm font-normal px-4 py-2 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
       >
         Resetează filtrele
       </button>
@@ -178,7 +178,7 @@
 
             <a href="/vizualizare-film">
               <button
-                class="py-2 px-4 bg-amber-500 rounded-md cursor-pointer hover:bg-[#FDFFE2]"
+                class="py-2 px-4 bg-[var(--button-cta)] text-[var(--dark)] rounded-md cursor-pointer hover:bg-[var(--light)] transition-all duration-300"
               >
                 Vezi Detalii
               </button>
