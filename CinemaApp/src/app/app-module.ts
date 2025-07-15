@@ -26,6 +26,8 @@ import { SupportAdmin } from './Support/support-admin/support-admin';
     SupportAdmin,
   ],
   imports: [
+    VizualizareFilm,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
