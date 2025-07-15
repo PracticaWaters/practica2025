@@ -13,6 +13,7 @@ import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { CommonModule } from '@angular/common';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 
 
 // Import CoreUI modules and directives:
@@ -42,7 +43,8 @@ import { ProgramCinema } from './program-cinema/program-cinema';
 @NgModule({
   declarations: [
     App,
-    VizualizareFilm
+    VizualizareFilm,
+    DetaliiCinema,
   ],
   imports: [
     FormsModule,
@@ -50,6 +52,8 @@ import { ProgramCinema } from './program-cinema/program-cinema';
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
+    FormsModule,
+    BrowserModule,
     MatExpansionModule,
     CommonModule,
     // CoreUI modules:

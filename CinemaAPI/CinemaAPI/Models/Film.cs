@@ -20,6 +20,7 @@ namespace CinemaAPI.Models {
         //public List<Reservations> Reservations { get; set; }
         public DateTime StartRunningDate { get; set; }
         public DateTime EndRunningDate { get; set; }
+        public List<Rezervare> Rezervari { get; set;}
 
     }
 }
