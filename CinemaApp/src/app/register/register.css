@@ -1,14 +1,131 @@
-form {
-  max-width: 500px;
-  margin: 40px auto;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #5A72A0;
+  height: 97.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+  grid-template-areas: "theText theInput";
+  display: grid;
+}
+
+.register-box {
+  display: flex;
+  width: 100%;
+  background-color: #83b4ff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+}
+.register-left h2{
+  margin-top: 10px;
+}
+.register-left {
+  grid-area: theText;
+  flex: 1;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
+  justify-content: center;
+
+  max-height: 90vh;         /* previne depășirea pe ecran */
+  overflow-y: auto;         /* activează scrollul vertical */
+  scrollbar-width: thin;    /* stil pentru Firefox */
+  -ms-overflow-style: none; /* stil pentru Internet Explorer și Edge */
+  &::-webkit-scrollbar {
+    width: 8px;             /* lățimea scrollbarului */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* culoarea scrollbarului */
+    border-radius: 4px;     /* colțuri rotunjite */
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent; /* fundalul track-ului scrollbarului */
+  }
+}
+
+.register-left h2 {
+  margin-bottom: 20px;
+  color: #1a1a1a;
 }
 
 .full-width {
   width: 100%;
+  margin-bottom: 16px;
+}
+
+.register-left button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1772d2;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.register-left button:hover {
+  background-color: #0056b3;
+}
+
+.register-left button:disabled {
+  background-color: #aac8e6;
+  cursor: not-allowed;
+}
+
+.register-right {
+  grid-area: theInput;
+  flex: 1;
+  background-color: #fdffe2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.register-right img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.register-link a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+input {
+  padding-left: 10px;
+}
+mat-label {
+  padding-left: 10px
 }

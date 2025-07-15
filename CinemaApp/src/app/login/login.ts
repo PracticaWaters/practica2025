@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -7,19 +9,21 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class Login implements OnInit {
+  loginForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  get f() {
-    return this.loginForm.controls;
+  hasError(controlName: string, errorName: string): boolean {
+    return this.loginForm.get(controlName)?.hasError(errorName) ?? false;
   }
 
   onSubmit(): void {
@@ -30,7 +34,10 @@ export class LoginComponent {
     }
 
     const { email, password } = this.loginForm.value;
-    console.log('Login:', { email, password });
-    // TODO: Apelează serviciul de autentificare aici, ex: this.authService.login(email, password)
+
+    this.http.post('/api/auth/login', { email, password }).subscribe({
+      next: () => this.router.navigate(['/dashboard']), // Înlocuiește cu ruta ta reală
+      error: err => console.error('Login failed', err)
+    });
   }
 }
