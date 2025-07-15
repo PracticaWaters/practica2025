@@ -17,14 +17,7 @@ import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 
 @NgModule({
-  declarations: [
-    App,
-    VizualizareFilm,
-    SupportPage,
-    Faq,
-    SupportForm,
-    SupportAdmin,
-  ],
+  declarations: [App, SupportPage, Faq, SupportForm, SupportAdmin],
   imports: [
     VizualizareFilm,
     FormsModule,
