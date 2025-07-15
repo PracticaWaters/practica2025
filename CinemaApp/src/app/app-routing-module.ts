@@ -12,11 +12,12 @@ const routes: Routes = [
   // {path: "suport", component:Suport},
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
-  // {path: "administrare-sali", component:AdministrareSali},
   // {path: "administrare-promotii", component:AdministrarePromotii}
   { path: 'screening-room', component: ScreeningRoom },
   { path: 'screening-room-list', component: ScreeningRoomList },
-  { path: 'add-screening-room', component: AddScreeningRoom },
+  { path: 'add-screening-room/:id', component: AddScreeningRoom },
+    { path: 'add-screening-room', component: AddScreeningRoom },
+
 ];
 
 @NgModule({

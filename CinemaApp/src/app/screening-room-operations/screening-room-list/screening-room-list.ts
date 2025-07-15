@@ -26,6 +26,7 @@ export class ScreeningRoomList implements OnInit {
     'numOfSeatsPerRow',
     'format',
     'seatList',
+    'actions',
   ];
 
   constructor(private screeningRoomListMock: ScreeningRoomListMock) {}
