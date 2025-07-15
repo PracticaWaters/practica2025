@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DTO;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,13 +7,13 @@ namespace CinemaAPI.Controllers
 {
     [ApiController]
     [Route("api/cinema/actor")]
-    public class ActorController : Controller
+    public class ActorController : ControllerBase
     {
-        private readonly ActorDataOps actorDataOps;
+        private readonly ActorDataOps ActorDataOps;
 
-        public ActorController()
+        public ActorController(CinemaDbContext dbContext)
         {
-            actorDataOps = new ActorDataOps();
+            ActorDataOps = new ActorDataOps(dbContext);
         }
 
         [HttpGet]
@@ -20,47 +21,12 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var actors = actorDataOps.GetActors();
+                var actors = ActorDataOps.GetActors();
                 return Ok(actors);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
-            }
-        }
-
-        [HttpPost]
-        public ActionResult AddActor(Actor actor)
-        {
-            actorDataOps.AddActor(actor);
-            return Ok();
-        }
-
-        [HttpPut]
-        public ActionResult UpdateActor(Actor actor)
-        {
-            try
-            {
-                actorDataOps.UpdateActor(actor);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpDelete]
-        public ActionResult DeleteActor(Actor actor)
-        {
-            try
-            {
-                actorDataOps.DeleteActor(actor);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
+                return BadRequest("Failed to retrieve actors.");
             }
         }
 
@@ -69,12 +35,72 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var actor = actorDataOps.GetActorById(id);
+                var actor = ActorDataOps.GetActorById(id);
+                if (actor == null)
+                    return NotFound($"Actor with ID {id} not found.");
+
                 return Ok(actor);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to retrieve actor.");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddActor([FromBody] ActorDTO actorDTO)
+        {
+            try
+            {
+                var actor = new Actor
+                {
+                    Name = actorDTO.Name,
+                };
+                ActorDataOps.AddActor(actor);
+                return Ok("Actor added successfully.");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to add actor.");
+            }
+        }
+
+        [HttpPut]
+        public ActionResult UpdateActor(ActorDTO actorDTO)
+        {
+            try
+            {
+                var actor = new Actor
+                {
+                    Name = actorDTO.Name,
+                };
+                actor.Id = actorDTO.Id;
+                ActorDataOps.UpdateActor(actor);
+                return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(ex);
+            }
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteActor(int id)
+        {
+            try
+            {
+                ActorDataOps.DeleteActor(id);
+                return Ok("Actor deleted successfully.");
+            }
+            catch (ArgumentException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Failed to delete actor.");
             }
         }
     }

@@ -1,69 +1,49 @@
-﻿using CinemaAPI.Models;
+﻿
+using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
     public class ActorDataOps
     {
-        private CinemaDbContext dbContext;
+        private readonly CinemaDbContext dbContext;
 
-        public ActorDataOps()
+        public ActorDataOps(CinemaDbContext context)
         {
-            dbContext = new CinemaDbContext();
+            dbContext = context;
         }
 
         public Actor[] GetActors()
         {
-            return dbContext.actors.ToArray();
-        }
-
-        public void AddActor(Actor actor)
-        {
-            try
-            {
-                dbContext.actors.Add(actor);
-                dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void UpdateActor(Actor actor)
-        {
-            try
-            {
-                dbContext.actors.Update(actor);
-                dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public void DeleteActor(Actor actor)
-        {
-            try
-            {
-                if (actor != null)
-                {
-                    dbContext.actors.Remove(actor);
-                    dbContext.SaveChanges();
-                }
-                else
-                {
-                    throw new ArgumentNullException(nameof(actor), "Film cannot be null.");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return dbContext.actors.Include(x => x.FilmActors).ToArray();
         }
 
         public Actor? GetActorById(int id)
         {
-            return dbContext.actors.Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.actors.Include(x=>x.FilmActors).Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public void AddActor(Actor actor)
+        {
+            dbContext.actors.Add(actor);
+            dbContext.SaveChanges();
+        }
+
+
+        public void UpdateActor(Actor actor)
+        {
+            dbContext.actors.Update(actor);
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteActor(int actorId)
+        {
+            var actor = dbContext.actors.FirstOrDefault(a => a.Id == actorId);
+            if (actor == null)
+                throw new ArgumentException($"Actor with id {actorId} not found.");
+
+            dbContext.actors.Remove(actor);
+            dbContext.SaveChanges();
         }
     }
 }
