@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SupportService, SuportTicket } from '../services/support.service';
+import { SupportService } from '../services/support.service';
+import { SupportTicket } from '../services/support-ticket';
 
 @Component({
   selector: 'app-support-form',
@@ -28,10 +29,13 @@ export class SupportForm {
     this.errorMsg = '';
     if (this.formularContact.valid) {
       this.loading = true;
-      const payload: SuportTicket = {
-        name: this.formularContact.value.nume,
+      const payload: SupportTicket = {
+        nume: this.formularContact.value.nume,
         email: this.formularContact.value.email,
-        message: this.formularContact.value.mesaj,
+        mesaj: this.formularContact.value.mesaj,
+        data: new Date().toLocaleDateString(),
+        selectat: false,
+        active: true,
       };
       this.supportService.sendTicket(payload).subscribe({
         next: () => {

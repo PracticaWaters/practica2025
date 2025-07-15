@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface SuportTicket {
-  name: string;
-  email: string;
-  message: string;
-}
+import { SupportTicket } from './support-ticket';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +11,7 @@ export class SupportService {
 
   constructor(private http: HttpClient) {}
 
-  sendTicket(ticket: SuportTicket): Observable<any> {
+  sendTicket(ticket: SupportTicket): Observable<any> {
     return this.http.post<any>(this.apiUrl, ticket);
   }
 }

@@ -1,18 +1,20 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { App } from './app';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from './app-routing-module';
-import { SupportAdmin } from './Support/support-admin/support-admin';
+import { App } from './app';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { SupportPage } from './Support/support-page/support-page';
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
-import { SupportPage } from './Support/support-page/support-page';
-
-import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { SupportAdmin } from './Support/support-admin/support-admin';
 
 @NgModule({
   declarations: [
@@ -25,15 +27,15 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
-    ReactiveFormsModule,
+    MatExpansionModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [provideAnimations()],
   bootstrap: [App],
 })
 export class AppModule {}
