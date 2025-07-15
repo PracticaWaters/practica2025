@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f5f5f5; /* fundal deschis */
+  background-color:#5a72a0; 
 }
 
 .user-dashboard-container {
@@ -39,7 +39,30 @@
 }
 
 .dashboard-menu li {
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  background-color: white; 
+  border-radius: 12px;      
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-menu li mat-icon {
+  margin-right: 12px;
+  color: #5a72a0;
+}
+
+.dashboard-menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+}
+
+.dashboard-menu li:hover {
+  background-color: #d7e7fa;
 }
 
 .dashboard-menu a {
@@ -52,7 +75,6 @@
   text-decoration: underline;
 }
 
-/* Zona de conținut */
 .dashboard-content {
   flex: 1;
   padding: 30px;
@@ -71,8 +93,8 @@
 }
 
 .card:hover {
-    background-color: #edeced;
-    cursor: pointer;
+  background-color: #d7e7fa;
+  cursor: pointer;
 }
 
 .card h3 {
