@@ -15,5 +15,14 @@ namespace CinemaAPI.DataManagement
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(s => s.SeatList)
+                .WithOne(sc => sc.ScreeningRoom);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

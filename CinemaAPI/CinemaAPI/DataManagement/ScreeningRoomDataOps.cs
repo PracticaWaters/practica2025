@@ -21,6 +21,19 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
+                List<Seat> seats = new List<Seat>();
+                for (int i = 1; i <= room.NumOfRow; ++i)
+                {
+                    for (int j = 1; j <= room.NumOfSeatsPerRow; ++j)
+                    {
+                        Seat seat = new Seat();
+                        seat.Row = i;
+                        seat.Number = j;
+                        seat.IsReserved = false;
+                        seats.Add(seat);
+                    }
+                }
+                room.SeatList = seats;
                 dbContext.screeningRooms.Add(room);
                 dbContext.SaveChanges();
             }

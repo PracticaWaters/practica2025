@@ -25,7 +25,6 @@ export class ScreeningRoomList implements OnInit {
     'numOfRows',
     'numOfSeatsPerRow',
     'format',
-    'seatList',
     'actions',
   ];
 
