@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 @NgModule({
   declarations: [
     App,
     ScreeningRoomList,
     AddScreeningRoom,
-    ScreeningRoom
+    ScreeningRoom,
+    VizualizareFilm,
   ],
   imports: [
     BrowserModule,

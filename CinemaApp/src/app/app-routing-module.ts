@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ScreeningRoom } from './screening-room/screening-room/screening-room';
 import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
 import { AddScreeningRoom } from './screening-room-operations/add-screening-room/add-screening-room/add-screening-room';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 const routes: Routes = [
   // {path: "", component:HomePage},
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'screening-room', component: ScreeningRoom},
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room', component: AddScreeningRoom },
+  {path: "vizualizare-film", component:VizualizareFilm}
+
 ];
 
 @NgModule({
