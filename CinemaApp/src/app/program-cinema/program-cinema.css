@@ -2,19 +2,25 @@
     background-color: white;
 }
 
-.cdk-overlay-pane{
+#mat-select-1-panel{
     background-color: white;
     z-index: 9999;
 } 
 
+#mat-select-0-panel{
+    background-color: white;
+    z-index: 9999;
+} 
+
+
 span.mat-calendar-body-cell-content.mat-focus-indicator:hover{
-    background-color: #60A5FA !important;
+    background-color: #2C3650 !important;
     color: white;
     border-radius: 50%;
 }
 
 .mat-mdc-option:hover{
-background-color: #60A5FA !important;
+background-color: #2C3650 !important;
  color: white;
 }
 
