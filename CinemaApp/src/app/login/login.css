@@ -26,6 +26,14 @@
   align-items: center;
 }
 
+input {
+  padding-left: 10px;
+}
+
+mat-label {
+  padding-left: 10px;
+}
+
 .login-container {
   width: 100%;
   max-width: 1100px;
@@ -36,32 +44,19 @@
   max-width: 1100px;
   padding: 30px;
 }
-
+  
 .login-box {
   display: flex;
   width: 100%;
-  background-color: #f5faff;
-  border-radius: 16px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-}
-.login-box {
-  display: flex;
-  width: 100%;
-  background-color: #f5faff;
+  background-color: #83b4ff;
   border-radius: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
+
 .login-left {
-  flex: 1;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.login-left {
+  background-color: #83b4ff;
   flex: 1;
   padding: 60px;
   display: flex;
