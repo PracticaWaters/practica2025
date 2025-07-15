@@ -10,6 +10,9 @@ namespace CinemaAPI.Controllers
     public class RezervareController : Controller
     {
         private readonly RezervareDataOps rezervareDataOps;
+        private readonly FilmDataOps filmDataOps;
+        private readonly UserDataOps userDataOps;
+
         public RezervareController()
         {
             rezervareDataOps = new RezervareDataOps();
@@ -30,8 +33,13 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRezervare(Rezervare rezervare)
+        public ActionResult AddRezervare(RezervareDto rezervareDto)
         {
+            Rezervare rezervare = new Rezervare();
+            rezervare.NrPersoane = rezervareDto.NrPersoane;
+            rezervare.Pret = rezervareDto.Pret;
+            rezervare.Film = filmDataOps.GetFilmById(rezervareDto.FilmId);
+            rezervare.User = userDataOps.GetUserById(rezervareDto.UserId);
             rezervareDataOps.AddRezervare(rezervare);
             return Ok();
         }

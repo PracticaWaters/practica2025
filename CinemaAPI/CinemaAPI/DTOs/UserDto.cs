@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CinemaAPI.Models
 {
-    public class User
+    public class UserDto
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)] 
+        [StringLength(100)]
         public string Name { get; set; }
 
         [Required]
@@ -33,16 +33,16 @@ namespace CinemaAPI.Models
         public string AvatarUrl { get; set; }
 
         [Required]
-        [StringLength(255)] 
+        [StringLength(255)]
         public string Password { get; set; }
 
         [Required]
         [ForeignKey("Role")]
         public Role Role { get; set; }
 
-        public List<Rezervare>? Rezervari { get; set; }
+        public List<int>? RezervariId { get; set; }
 
-        public List<Review> Reviews { get; set; }
+        public List<int>? ReviewsId { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }

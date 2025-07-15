@@ -7,7 +7,8 @@
 		public int NrPersoane { get; set; }
 
 		//De modificat cand e adaugat TimeSlot
-		//public TimeSlot TimeSlot { get; set; }
+		//public int TimeSlotId { get; set; }
+
 		//public List<Tuple<int, int>> Locuri { get; set; }
         //public List<int> Locuri { get; set; }
 
