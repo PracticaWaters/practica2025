@@ -71,6 +71,23 @@ mat-label {
   text-align: center;
 }
 
+.login-left button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1772d2;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.login-left button:hover {
+  background-color: #0056b3;
+}
+
 .full-width {
   width: 100%;
   margin-bottom: 20px;
