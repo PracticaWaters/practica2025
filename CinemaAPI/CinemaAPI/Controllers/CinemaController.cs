@@ -1,5 +1,6 @@
 ﻿using CinemaAPI.DataManagement;
 using CinemaAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaAPI.Controllers
@@ -36,6 +37,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddCinema(Cinema cinema)
         {
             _cinemaDataOps.AddCinema(cinema);
@@ -43,6 +45,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize (Roles = "Admin")]
         public ActionResult UpdateCinema(Cinema cinema)
         {
             try
@@ -73,6 +76,21 @@ namespace CinemaAPI.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteCinema(Cinema cinema)
+        {
+            try
+            {
+                _cinemaDataOps.DeleteCinema(cinema);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -12,14 +12,14 @@ namespace CinemaAPI.DataManagement
 
         public Cinema[] GetCinemas()
         { 
-            return dbContext.cinemas.ToArray();        
+            return dbContext.cinema.ToArray();        
         }
 
         public void AddCinema(Cinema cinema)
         {
             try
             {
-                dbContext.cinemas.Add(cinema);
+                dbContext.cinema.Add(cinema);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -32,7 +32,7 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                dbContext.cinemas.Update(cinema);
+                dbContext.cinema.Update(cinema);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -41,9 +41,29 @@ namespace CinemaAPI.DataManagement
             }
         }
 
+
+        public void DeleteCinema(Cinema cinema)
+        {
+            try
+            {
+                if (cinema != null)
+                {
+                    dbContext.cinema.Remove(cinema);
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(cinema), "Cinema cannot be null.");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public Cinema? GetCinema(int id)
         {
-            return dbContext.cinemas.Where(x=> x.Id==id).FirstOrDefault();
+            return dbContext.cinema.Where(x=> x.Id==id).FirstOrDefault();
         }
 
     }

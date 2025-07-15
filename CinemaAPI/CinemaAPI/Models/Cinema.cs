@@ -11,5 +11,11 @@
 
         public string Email { get; set; }
 
+        public string Description { get; set; }
+
+        public string WeekdaysProgram { get; set; }
+        public string WeekendProgram { get; set; }
+        public string HolidayProgram { get; set; }
+
     }
 }
