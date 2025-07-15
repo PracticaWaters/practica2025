@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ScreeningRoomListMock } from '../../../app-logic/screening-room-list-mock';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Seat } from '../../../app-logic/seat';
   standalone: false,
   templateUrl: './add-screening-room.html',
   styleUrl: './add-screening-room.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class AddScreeningRoom implements OnInit {
   addScreeningRoomForm: FormGroup;

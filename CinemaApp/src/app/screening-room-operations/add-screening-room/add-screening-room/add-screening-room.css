@@ -30,6 +30,12 @@
   margin-top: -300px;
   margin-left: -350px;
 }
-.full-width {
-  width: 100%;
+.label-input{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+mat-label{
+  width: 200px;
+  transform: translateY(10px);
 }
