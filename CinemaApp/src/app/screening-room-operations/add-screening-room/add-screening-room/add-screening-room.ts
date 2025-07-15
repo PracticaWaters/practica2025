@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ScreeningRoomListMock } from '../../../app-logic/screening-room-list-mock';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,6 @@ import { Seat } from '../../../app-logic/seat';
   standalone: false,
   templateUrl: './add-screening-room.html',
   styleUrl: './add-screening-room.css',
-  encapsulation: ViewEncapsulation.None
 })
 export class AddScreeningRoom implements OnInit {
   addScreeningRoomForm: FormGroup;
@@ -40,7 +39,8 @@ export class AddScreeningRoom implements OnInit {
       seatList: [],
     });
   }
-  ngOnInit(): void {
+  
+ ngOnInit(): void {
     if (this.screeningRoomId == 0) {
       this.screeningRoom = new ScreeningRoomData();
 
@@ -58,12 +58,13 @@ export class AddScreeningRoom implements OnInit {
           this.screeningRoom = data;
 
           this.addScreeningRoomForm = this.formBuilder.group({
-            name: ['', Validators.required],
-            numOfRows: ['', Validators.required],
-            numOfSeatsPerRow: ['', Validators.required],
-            format: ['', Validators.required],
-            seatList: [],
-          });
+  name: [data.name, Validators.required],
+  numOfRows: [data.noOfRows, Validators.required],
+  numOfSeatsPerRow: [data.noOfSeatsOnRow, Validators.required],
+  format: [Array.isArray(data.supportedFormats) ? data.supportedFormats.join(', ') : data.supportedFormats, Validators.required],
+  seatList: [data.occupiedSeats],
+});
+
         });
     }
   }
@@ -74,9 +75,9 @@ export class AddScreeningRoom implements OnInit {
 
       this.screeningRoom.name = this.addScreeningRoomForm.value.name;
       this.screeningRoom.noOfRows = this.addScreeningRoomForm.value.numOfRows;
-      this.screeningRoom.noOfSeatsOnRow=
+      this.screeningRoom.noOfSeatsOnRow =
         this.addScreeningRoomForm.value.numOfSeatsPerRow;
-      this.screeningRoom.occupiedSeats = this.addScreeningRoomForm.value.occupiedSeats;
+      this.screeningRoom.supportedFormats = this.addScreeningRoomForm.value.seatList;
 
       const formatString: string = this.addScreeningRoomForm.value.format;
       this.screeningRoom.supportedFormats = formatString
@@ -98,7 +99,7 @@ export class AddScreeningRoom implements OnInit {
         .split(',')
         .map((f: string) => f.trim());
 
-      this.screeningRoom.occupiedSeats= new Array<string>();
+      this.screeningRoom.occupiedSeats = new Array<string>();
 
       this.screeningRoomListMock.updateScreeningRoom(this.screeningRoom);
     }

@@ -38,17 +38,22 @@
       <td mat-cell *matCellDef="let element">{{ element.seatList }}</td>
     </ng-container>
 
-    <!-- Column actions
+     <!-- Column actions-->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
-        <a routerLink="/edit/{{ element.id }}">Edit</a>
+        <button mat-button color="primary" [routerLink]="['/add-screening-room', element.id]">Edit</button>
       </td>
-    </ng-container> -->
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
   </table>
+
+  <div class="actions-bar" style="margin-bottom: 10px;">
+      <button mat-raised-button color="primary" [routerLink]= "['/add-screening-room', 0]" >Add Screening Room</button>
+  </div>
+  
   <mat-paginator
     [pageSizeOptions]="[3, 6, 10]"
     showFirstLastButtons

@@ -17,6 +17,7 @@ const routes: Routes = [
   // {path: "administrare-promotii", component:AdministrarePromotii}
   { path: 'screening-room', component: ScreeningRoom},
   { path: 'screening-room-list', component: ScreeningRoomList },
+  { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
   {path: "vizualizare-film", component:VizualizareFilm}
 
