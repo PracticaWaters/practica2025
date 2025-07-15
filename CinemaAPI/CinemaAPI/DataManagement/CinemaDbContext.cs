@@ -18,27 +18,18 @@ namespace CinemaAPI.DataManagement
         //UNSURE IF FUNCTIONAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Rezervare>()
-                .HasOne(r => r.Film)
-                .WithOne()
+            modelBuilder.Entity<Film>()
+                .HasMany(r => r.Rezervari)
+                .WithOne(g => g.Film)
                 .IsRequired();
+
+            modelBuilder.Entity<User>()
+                .HasMany(r => r.Rezervari)
+                .WithOne(g => g.User)
+                .IsRequired();
+
+
         }
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Rezervare>()
-                .HasOne(r => r.Promo)
-                .WithOne()
-                .IsRequired();
-        }*/
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Rezervare>()
-                .HasOne(r => r.TimeSlot)
-                .WithOne()
-                .IsRequired();
-        }
-        */
+        
     }
 }

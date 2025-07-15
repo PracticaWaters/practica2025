@@ -22,13 +22,15 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
+                dbContext.films.Attach(rezervare.Film);
+                dbContext.users.Attach(rezervare.User);
                 dbContext.rezervari.Add(rezervare);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw ex
+                throw ex;
             }
         }
 

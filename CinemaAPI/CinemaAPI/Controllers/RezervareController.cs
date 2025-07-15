@@ -7,16 +7,16 @@ namespace CinemaAPI.Controllers
 {
     [ApiController]
     [Route("api/cinema/rezervare")]
-    public class RezervariController: Controller
+    public class RezervareController : Controller
     {
         private readonly RezervareDataOps rezervareDataOps;
-        public RezervariController()
+        public RezervareController()
         {
             rezervareDataOps = new RezervareDataOps();
         }
 
         [HttpGet]
-        public ActionResult<Rezervare> GetRezervari()
+        public ActionResult<List<Rezervare>> GetRezervari()
         {
             try
             {

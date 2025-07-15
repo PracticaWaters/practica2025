@@ -16,7 +16,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Film> GetFilms()
+        public ActionResult<List<Film>> GetFilms()
         {
             try
             {
