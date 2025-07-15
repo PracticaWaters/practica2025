@@ -55,10 +55,10 @@ export class SupportAdmin implements OnInit {
     console.log('Sending ticketId:', ticket.id, 'Current status:', ticket.status);
     
     this.supportService.updateTicketStatus(ticket.id).subscribe({
-      next: (response) => {
-        console.log('Success response:', response);
-        // Update local ticket status
-        ticket.status = !ticket.status;
+      next: (updatedTicket) => {
+        console.log('Success response:', updatedTicket);
+        // Update local ticket with the returned data
+        ticket.status = updatedTicket.status;
         console.log('Updated local status to:', ticket.status);
       },
       error: (err) => {

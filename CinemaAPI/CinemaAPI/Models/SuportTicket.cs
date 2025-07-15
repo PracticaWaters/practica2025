@@ -18,9 +18,21 @@ namespace CinemaAPI.Models
         public string Email { get; set; }
 
         [Required]
-        public bool Status { get; set; } // true = activ, false = inactiv
+        public bool Status { get; set; } 
 
         [Required]
         public DateTime CreatedAt { get; set; }
+    }
+
+    public class CreateSuportTicketDto
+    {
+        [Required]
+        public string Message { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Email { get; set; }
     }
 }

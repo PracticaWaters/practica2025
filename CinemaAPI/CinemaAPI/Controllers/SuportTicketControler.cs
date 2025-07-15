@@ -33,39 +33,47 @@ namespace CinemaAPI.Controllers
 
         [HttpPost]
         //[Authorize] // va fi activat cand autentificarea e gata
-        public ActionResult AddTicket([FromBody] SuportTicket ticket)
+        public ActionResult<SuportTicket> AddTicket([FromBody] CreateSuportTicketDto ticketDto)
         {
             try
             {
-                ticket.CreatedAt = DateTime.UtcNow;
-                ticket.Status = true; // activ
+                var ticket = new SuportTicket
+                {
+                    Message = ticketDto.Message,
+                    Name = ticketDto.Name,
+                    Email = ticketDto.Email,
+                    CreatedAt = DateTime.UtcNow,
+                    Status = true // activ
+                };
+                
                 suportTicketDataOps.AddTicket(ticket);
-                return Ok();
+                return Ok(ticket);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] {ex.Message}");
-                return BadRequest();
+                return BadRequest($"{ex.Message}");
             }
         }
 
         [HttpPut]
         //[Authorize] // va fi activat cand autentificarea e gata
-        public ActionResult ChangeStatus([FromBody] int ticketId)
+        public ActionResult<SuportTicket> ChangeStatus([FromBody] int ticketId)
         {
             try
             {
-                // TODO: validare user (doar owner/admin poate schimba statusul)
+                // TODO: validare user (doar admin poate schimba stat)
                 var ticket = suportTicketDataOps.GetSuportTicketById(ticketId);
                 if (ticket == null)
-                    return NotFound();
+                    return NotFound($"Ticket with ID {ticketId} not found");
+                
                 ticket.Status = !ticket.Status;
                 suportTicketDataOps.UpdateTicket(ticket);
-                return Ok();
+                
+                return Ok(ticket);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest($"{ex.Message}");
             }
         }
     }

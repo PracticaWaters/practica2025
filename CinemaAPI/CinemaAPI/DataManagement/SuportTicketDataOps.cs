@@ -31,8 +31,12 @@ namespace CinemaAPI.DataManagement
 
         public void UpdateTicket(SuportTicket ticket)
         {
-            dbContext.SuportTickets.Update(ticket);
-            dbContext.SaveChanges();
+            var existingTicket = dbContext.SuportTickets.Find(ticket.Id);
+            if (existingTicket != null)
+            {
+                existingTicket.Status = ticket.Status;
+                dbContext.SaveChanges();
+            }
         }
     }
 }

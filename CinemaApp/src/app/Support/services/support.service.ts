@@ -11,7 +11,7 @@ export class SupportService {
 
   constructor(private http: HttpClient) {}
 
-  sendTicket(ticket: SupportTicket): Observable<any> {
+  sendTicket(ticket: { name: string; email: string; message: string }): Observable<any> {
     return this.http.post<any>(this.apiUrl, ticket);
   }
 
@@ -19,8 +19,8 @@ export class SupportService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  updateTicketStatus(ticketId: number): Observable<any> {
+  updateTicketStatus(ticketId: number): Observable<SupportTicket> {
     console.log('Service: Sending PUT request with ticketId:', ticketId);
-    return this.http.put<any>(this.apiUrl, ticketId);
+    return this.http.put<SupportTicket>(this.apiUrl, ticketId);
   }
 }

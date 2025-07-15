@@ -29,14 +29,10 @@ export class SupportForm {
     this.errorMsg = '';
     if (this.formularContact.valid) {
       this.loading = true;
-      const payload: SupportTicket = {
-        id: 0,
+      const payload = {
         name: this.formularContact.value.name,
         email: this.formularContact.value.email,
         message: this.formularContact.value.message,
-        status: true,
-        createdAt: new Date().toISOString(),
-        selectat: false,
       };
       this.supportService.sendTicket(payload).subscribe({
         next: () => {
