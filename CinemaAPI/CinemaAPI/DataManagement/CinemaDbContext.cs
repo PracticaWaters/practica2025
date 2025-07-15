@@ -1,5 +1,6 @@
 ﻿using CinemaAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace CinemaAPI.DataManagement
 {
@@ -10,6 +11,8 @@ namespace CinemaAPI.DataManagement
         public DbSet<Film> films { get; set; }
         public DbSet<Review> reviews { get; set; }
         public DbSet<Wishlist> wishlists { get; set; }
+        public DbSet<Format> formats { get; set; }
+        public DbSet<Actor> actors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,8 +36,13 @@ namespace CinemaAPI.DataManagement
                 .HasMany(w => w.Wishlists)
                 .WithOne(f => f.Film);
 
+            modelBuilder.Entity<Film>()
+                .HasMany(f => f.FilmActors)
+                .WithMany(a => a.FilmActors)
+                .UsingEntity(j => j.ToTable("FilmActor"));
 
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

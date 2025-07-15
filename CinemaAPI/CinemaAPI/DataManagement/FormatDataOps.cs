@@ -3,26 +3,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
-    public class FilmDataOps
+    public class FormatDataOps
     {
         private readonly CinemaDbContext dbContext;
-
-        public FilmDataOps(CinemaDbContext context)
+        
+        public FormatDataOps(CinemaDbContext context)
         {
             dbContext = context;
         }
 
-        public Film[] GetFilms()
+        public Format[] GetFormats()
         {
-            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).ToArray();
- 
+            return dbContext.formats.ToArray();
         }
 
-        public void AddFilm(Film film)
+        public void AddFormat(Format format)
         {
             try
             {
-                dbContext.films.Add(film);
+                dbContext.formats.Add(format);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -31,11 +30,11 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void UpdateFilm(Film film)
+        public void UpdateFormat(Format format)
         {
             try
             {
-                dbContext.films.Update(film);
+                dbContext.formats.Update(format);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -44,18 +43,18 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void DeleteFilm(Film film)
+        public void DeleteFormat(Format format)
         {
             try
             {
-                if (film != null)
+                if (format != null)
                 {
-                    dbContext.films.Remove(film);
+                    dbContext.formats.Remove(format);
                     dbContext.SaveChanges();
                 }
                 else
                 {
-                    throw new ArgumentNullException(nameof(film), "Film cannot be null.");
+                    throw new ArgumentNullException(nameof(format), "Format cannot be null.");
                 }
             }
             catch (Exception ex)
@@ -64,11 +63,9 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public Film? GetFilmById(int id)
+        public Format? GetFormatById(int id)
         {
-            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.formats.Where(x => x.Id == id).FirstOrDefault();
         }
-
-
     }
 }
