@@ -11,9 +11,9 @@ namespace CinemaAPI.Controllers
     {
         private readonly FilmDataOps filmDataOps;
 
-        public FilmController(CinemaDbContext dbContext)
+        public FilmController()
         {
-            filmDataOps = new FilmDataOps(dbContext);
+            filmDataOps = new FilmDataOps();
         }
 
         [HttpGet]
