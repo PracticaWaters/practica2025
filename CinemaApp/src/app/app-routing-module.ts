@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './support-page/support-admin/support-admin';
+import { SupportPage } from './Support/support-page/support-page';
 
 
 
@@ -20,8 +21,8 @@ const routes: Routes = [
 
   {path: "support/faq", component:Faq},
   {path: "support/form",component:SupportForm},
-  {path: "support/admin",component:SupportAdmin}
-
+  {path: "support/admin",component:SupportAdmin},
+  {path: "support",component:SupportPage}
 
 ];
 
