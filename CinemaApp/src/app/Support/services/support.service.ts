@@ -12,11 +12,11 @@ export interface SuportTicket {
   providedIn: 'root',
 })
 export class SupportService {
-  private apiUrl = 'https://localhost:7022/api/cinema/ticketsupport';
+  private apiUrl = 'https://localhost:25856/api/cinema/ticketsupport';
 
   constructor(private http: HttpClient) {}
 
   sendTicket(ticket: SuportTicket): Observable<any> {
     return this.http.post<any>(this.apiUrl, ticket);
   }
-} 
+}

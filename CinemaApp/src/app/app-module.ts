@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
-import { SupportAdmin } from './support-page/support-admin/support-admin';
+import { SupportAdmin } from './Support/support-admin/support-admin';
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportPage } from './Support/support-page/support-page';
@@ -22,7 +22,7 @@ import { SupportPage } from './Support/support-page/support-page';
     MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

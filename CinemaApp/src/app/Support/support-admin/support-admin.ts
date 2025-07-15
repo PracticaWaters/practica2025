@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SupportTicket } from '../support-ticket';
+import { SupportTicket } from '../services/support-ticket';
 
 @Component({
   selector: 'app-support-admin',
   standalone: false,
   templateUrl: './support-admin.html',
-  styleUrl: './support-admin.css'
+  styleUrl: './support-admin.css',
 })
-
-
 export class SupportAdmin {
   tickete: SupportTicket[] = []; // inițial gol, poți adăuga mock data
   ticketeFiltrate: SupportTicket[] = [];
@@ -29,7 +27,7 @@ export class SupportAdmin {
         mesaj: `Mesaj testgldfgjdklfgjkdflgjkldfgjkldfgjkldfgjdflgjldfggjdf gkljdflgjgkldfjgkdlfgjdf kdfjgkljgldfjlgdjgkldf gjdfglkdjgkldfjgkldfgj gkdfjgjdgdkfljgldf ${i}`,
         data: new Date().toLocaleDateString(),
         selectat: false,
-        active:true,
+        active: true,
       });
     }
     this.aplicaFiltrare();
@@ -37,8 +35,8 @@ export class SupportAdmin {
 
   aplicaFiltrare() {
     const filtruLower = this.filtru.toLowerCase();
-    this.ticketeFiltrate = this.tickete.filter(ticket =>
-      Object.values(ticket).some(val =>
+    this.ticketeFiltrate = this.tickete.filter((ticket) =>
+      Object.values(ticket).some((val) =>
         String(val).toLowerCase().includes(filtruLower)
       )
     );
@@ -58,12 +56,12 @@ export class SupportAdmin {
   toggleSelectToate() {
     const vizibile = this.paginare();
     this.selecteazaTot = !this.selecteazaTot;
-    vizibile.forEach(t => (t.selectat = this.selecteazaTot));
+    vizibile.forEach((t) => (t.selectat = this.selecteazaTot));
   }
 
   toggleSelect(ticket: SupportTicket) {
     ticket.selectat = !ticket.selectat;
     const vizibile = this.paginare();
-    this.selecteazaTot = vizibile.every(t => t.selectat);
+    this.selecteazaTot = vizibile.every((t) => t.selectat);
   }
 }
