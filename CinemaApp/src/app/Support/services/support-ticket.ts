@@ -1,12 +1,9 @@
 export interface SupportTicket {
-
-  nume: string;
+  id: number;
+  message: string;
+  name: string;
   email: string;
-  mesaj: string;
-  data: string;
+  status: boolean;
+  createdAt: string;
   selectat?: boolean;
-  active:boolean;
-
-
-
 }

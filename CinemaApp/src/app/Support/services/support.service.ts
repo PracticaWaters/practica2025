@@ -14,4 +14,13 @@ export class SupportService {
   sendTicket(ticket: SupportTicket): Observable<any> {
     return this.http.post<any>(this.apiUrl, ticket);
   }
+
+  getAllTickets(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  updateTicketStatus(ticketId: number): Observable<any> {
+    console.log('Service: Sending PUT request with ticketId:', ticketId);
+    return this.http.put<any>(this.apiUrl, ticketId);
+  }
 }

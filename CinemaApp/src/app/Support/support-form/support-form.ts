@@ -18,9 +18,9 @@ export class SupportForm {
 
   constructor(private fb: FormBuilder, private supportService: SupportService) {
     this.formularContact = this.fb.group({
-      nume: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mesaj: ['', Validators.required],
+      message: ['', Validators.required],
     });
   }
 
@@ -30,12 +30,13 @@ export class SupportForm {
     if (this.formularContact.valid) {
       this.loading = true;
       const payload: SupportTicket = {
-        nume: this.formularContact.value.nume,
+        id: 0,
+        name: this.formularContact.value.name,
         email: this.formularContact.value.email,
-        mesaj: this.formularContact.value.mesaj,
-        data: new Date().toLocaleDateString(),
+        message: this.formularContact.value.message,
+        status: true,
+        createdAt: new Date().toISOString(),
         selectat: false,
-        active: true,
       };
       this.supportService.sendTicket(payload).subscribe({
         next: () => {
