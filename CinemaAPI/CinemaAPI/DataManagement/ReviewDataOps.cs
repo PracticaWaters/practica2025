@@ -3,25 +3,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
-    public class FilmDataOps
+    public class ReviewDataOps
     {
         private readonly CinemaDbContext dbContext;
 
-        public FilmDataOps(CinemaDbContext context)
+        public ReviewDataOps(CinemaDbContext context)
         {
             dbContext = context;
         }
 
-        public Film[] GetFilms()
+        public Review[] GetReviews()
         {
-            return dbContext.films.Include(x => x.Reviews).ToArray();
+            return dbContext.reviews.Include(x => x.Film).ToArray();
         }
 
-        public void AddFilm(Film film)
+        public void AddReview(Review review)
         {
             try
             {
-                dbContext.films.Add(film);
+                dbContext.Attach(review.Film);
+                dbContext.Entry(review).Property("FilmId").CurrentValue = review.Film.Id;
+                dbContext.reviews.Add(review);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -30,11 +32,11 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void UpdateFilm(Film film)
+        public void UpdateReview(Review review)
         {
             try
             {
-                dbContext.films.Update(film);
+                dbContext.reviews.Update(review);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -43,18 +45,18 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void DeleteFilm(Film film)
+        public void DeleteReview(Review review)
         {
             try
             {
-                if (film != null)
+                if (review != null)
                 {
-                    dbContext.films.Remove(film);
+                    dbContext.reviews.Remove(review);
                     dbContext.SaveChanges();
                 }
                 else
                 {
-                    throw new ArgumentNullException(nameof(film), "Film cannot be null.");
+                    throw new ArgumentNullException(nameof(review), "Review cannot be null.");
                 }
             }
             catch (Exception ex)
@@ -63,11 +65,9 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public Film? GetFilmById(int id)
+        public Review? GetReviewById(int id)
         {
-            return dbContext.films.Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.reviews.Include(x => x.Film).Where(x =>  x.Id == id).FirstOrDefault();
         }
-
-
     }
 }
