@@ -12,6 +12,7 @@ namespace CinemaAPI.DataManagement
 
         public DbSet<Film> films { get; set; }
         public DbSet<Review> reviews { get; set; }
+        public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
