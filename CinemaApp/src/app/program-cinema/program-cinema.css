@@ -1,0 +1,29 @@
+.mat-calendar{
+    background-color: white;
+}
+
+.cdk-overlay-pane{
+    background-color: white;
+    z-index: 9999;
+} 
+
+span.mat-calendar-body-cell-content.mat-focus-indicator:hover{
+    background-color: #60A5FA !important;
+    color: white;
+    border-radius: 50%;
+}
+
+.mat-mdc-option:hover{
+background-color: #60A5FA !important;
+ color: white;
+}
+
+/* 🔒 Stil pentru zile dezactivate în calendar */
+.mat-calendar-body-disabled {
+  color: #c0c0c0 !important; /* gri pal */
+  pointer-events: none; /* dezactivează click-ul */
+  background-color: transparent !important;
+  opacity: 0.6;
+}
+
+
