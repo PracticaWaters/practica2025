@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ScreeningRoom } from '../screening-room/screening-room';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ScreeningRoomData } from './screening-room-data';
@@ -45,5 +44,14 @@ export class ScreeningRoomListMock {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  delete(item: ScreeningRoomData): void{
+    const url = `${this.apiUrl}/${item.id}`;
+    this.httpClient
+    .delete(url)
+    .subscribe(() =>{
+      console.log(`Deleted item with id:${item.id}`);
+    })
   }
 }

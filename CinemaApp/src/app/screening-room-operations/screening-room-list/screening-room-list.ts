@@ -25,7 +25,8 @@ export class ScreeningRoomList implements OnInit {
     'numOfRows',
     'numOfSeatsPerRow',
     'format',
-    'actions',
+    'edit',
+    'delete'
   ];
 
   constructor(private screeningRoomListMock: ScreeningRoomListMock) {}
@@ -40,5 +41,9 @@ export class ScreeningRoomList implements OnInit {
         this.screeningRoomList.sort = this.sort;
       }
     });
+  }
+
+  delete(item: ScreeningRoomData): void{
+    this.screeningRoomListMock.delete(item);
   }
 }

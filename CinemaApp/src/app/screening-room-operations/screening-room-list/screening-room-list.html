@@ -3,7 +3,7 @@
     mat-table
     [dataSource]="screeningRoomList"
     matSort
-    class="mat-elevation-z8"
+    
   >
     <!-- Column id-->
     <ng-container matColumnDef="id">
@@ -32,22 +32,43 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Format</th>
       <td mat-cell *matCellDef="let element">{{ element.format }}</td>
     </ng-container>
-    
 
-    <!-- Column actions-->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <!-- Column edit-->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" [routerLink]="['/add-screening-room', element.id]">Edit</button>
+        <button
+          mat-button
+          color="primary"
+          [routerLink]="['/add-screening-room', element.id]"
+        >
+          Edit
+        </button>
       </td>
-    </ng-container> 
+    </ng-container>
+
+    <!-- Column delete-->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="delete(element)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
   </table>
 
-  <div class="actions-bar" style="margin-bottom: 10px;">
-      <button mat-raised-button color="primary" [routerLink]= "['/add-screening-room', 0]" >Add Screening Room</button>
+  <div class="actions-bar" style="margin-bottom: 10px">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/add-screening-room', 0]"
+    >
+      Add Screening Room
+    </button>
   </div>
 
   <mat-paginator
