@@ -1,19 +1,20 @@
 ﻿using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
     public class FilmDataOps
     {
-        private CinemaDbContext dbContext;
+        private readonly CinemaDbContext dbContext;
 
-        public FilmDataOps()
+        public FilmDataOps(CinemaDbContext context)
         {
-            dbContext = new CinemaDbContext();
+            dbContext = context;
         }
 
         public Film[] GetFilms()
         {
-            return dbContext.films.ToArray();
+            return dbContext.films.Include(x => x.Reviews).ToArray();
         }
 
         public void AddFilm(Film film)
@@ -64,7 +65,7 @@ namespace CinemaAPI.DataManagement
 
         public Film? GetFilmById(int id)
         {
-            return dbContext.films.Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.films.Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefault();
         }
 
 

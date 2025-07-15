@@ -1,6 +1,8 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DTOs;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.Controllers
 {
@@ -9,10 +11,12 @@ namespace CinemaAPI.Controllers
     public class ReviewController : Controller
     {
         private readonly ReviewDataOps reviewDataOps;
+        private readonly FilmDataOps filmDataOps;
 
-        public ReviewController()
+        public ReviewController(CinemaDbContext dbContext)
         {
-            reviewDataOps = new ReviewDataOps();
+            reviewDataOps = new ReviewDataOps(dbContext);
+            filmDataOps = new FilmDataOps(dbContext);
         }
 
         [HttpGet]
@@ -30,8 +34,15 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddReview(Review review)
+        public ActionResult AddReview(ReviewDto reviewDto)
         {
+            Review review = new Review();
+            review.Rating = reviewDto.Rating;
+            review.Date = reviewDto.Date;
+            review.Comment = reviewDto.Comment;
+            review.Film = filmDataOps.GetFilmById(reviewDto.FilmId);
+
+
             reviewDataOps.AddReview(review);
             return Ok();
         }

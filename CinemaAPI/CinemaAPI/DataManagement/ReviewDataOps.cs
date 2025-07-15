@@ -1,25 +1,28 @@
 ﻿using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
     public class ReviewDataOps
     {
-        private CinemaDbContext dbContext;
+        private readonly CinemaDbContext dbContext;
 
-        public ReviewDataOps()
+        public ReviewDataOps(CinemaDbContext context)
         {
-            dbContext = new CinemaDbContext();
+            dbContext = context;
         }
 
         public Review[] GetReviews()
         {
-            return dbContext.reviews.ToArray();
+            return dbContext.reviews.Include(x => x.Film).ToArray();
         }
 
         public void AddReview(Review review)
         {
             try
             {
+                dbContext.Attach(review.Film);
+                dbContext.Entry(review).Property("FilmId").CurrentValue = review.Film.Id;
                 dbContext.reviews.Add(review);
                 dbContext.SaveChanges();
             }
@@ -64,7 +67,7 @@ namespace CinemaAPI.DataManagement
 
         public Review? GetReviewById(int id)
         {
-            return dbContext.reviews.Where(x =>  x.Id == id).FirstOrDefault();
+            return dbContext.reviews.Include(x => x.Film).Where(x =>  x.Id == id).FirstOrDefault();
         }
     }
 }
