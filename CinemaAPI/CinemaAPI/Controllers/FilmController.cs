@@ -2,6 +2,7 @@
 using CinemaAPI.DataManagement;
 using CinemaAPI.DTO;
 using CinemaAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaAPI.Controllers
@@ -12,11 +13,13 @@ namespace CinemaAPI.Controllers
     {
         private readonly FilmDataOps FilmDataOps;
         private readonly ActorDataOps ActorDataOps;
+        private readonly ReviewDataOps ReviewDataOps;
 
         public FilmController(CinemaDbContext dbContext)
         {
             FilmDataOps = new FilmDataOps(dbContext);
             ActorDataOps = new ActorDataOps(dbContext);
+            ReviewDataOps = new ReviewDataOps(dbContext);
         }
 
         [HttpGet]
@@ -30,6 +33,22 @@ namespace CinemaAPI.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"Error retrieving films: {ex.Message}");
+            }
+        }
+
+
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeleteFilm(Film film)
+        {
+            try
+            {
+                FilmDataOps.DeleteFilm(film);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
             }
         }
 
@@ -50,6 +69,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public ActionResult AddFilm([FromBody] FilmDTO dto)
         {
             try
@@ -65,13 +85,15 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPut]
+        //[Authorize(Roles = "Admin")]
+
         public ActionResult UpdateFilm([FromBody] FilmDTO dto)
         {
             try
             {
                 var film = MapDtoToFilm(dto);
                 film.Id = dto.Id;
-                FilmDataOps.UpdateFilm( film);
+                FilmDataOps.UpdateFilm(film);
                 return Ok();
             }
             catch (Exception ex)
@@ -110,7 +132,8 @@ namespace CinemaAPI.Controllers
                 Duration = dto.Duration,
                 StartRunningDate = dto.StartRunningDate,
                 EndRunningDate = dto.EndRunningDate,
-                FilmActors = new List<Actor>()
+                FilmActors = new List<Actor>(),
+                Reviews = new List<Review>(),
             };
 
             foreach (var actorId in dto.ActorIds)
@@ -118,6 +141,12 @@ namespace CinemaAPI.Controllers
                 var actor = ActorDataOps.GetActorById(actorId)
                           ?? throw new ArgumentException($"Actor with Id {actorId} not found.");
                 film.FilmActors.Add(actor);
+            }
+            foreach (var reviewId in dto.RewiesIds)
+            {
+                var review = ReviewDataOps.GetReviewById(reviewId)
+                          ?? throw new ArgumentException($"Review with Id {reviewId} not found.");
+                film.Reviews.Add(review);
             }
 
             return film;

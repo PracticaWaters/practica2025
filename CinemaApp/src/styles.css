@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+
+body{
+    padding:0;
+    margin:0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.shadow-light {
+  box-shadow: 0 2px 10px var(--light);
+}
+
+:root {
+  --dark: #1A2130;
+  --primary: #5A72A0;
+  --accent: #83B4FF;
+  --light: #FDFFE2;
+  --button-cta: oklch(76.9% 0.188 70.08);
+}
+/* În fișierul tău .css */
+
+.arrow {
+  transition: transform 0.5s ease-in-out !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.cdk-overlay-pane {
+  background-color: var(--dark);
+}
+
+.mat-mdc-menu-item-text{
+  color: var(--light);
+}
+
+.mat-mdc-menu-item-text:hover{
+  color: var(--primary);
+}
+
+.mat-expansion-indicator{
+  fill: white;
+}
+
+
+ 
