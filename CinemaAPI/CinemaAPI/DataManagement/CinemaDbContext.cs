@@ -18,7 +18,6 @@ namespace CinemaAPI.DataManagement
         public DbSet<Cinema> cinemas { get; set; }
 
         public DbSet<Film> films { get; set; }
-        public DbSet<Review> reviews { get; set; }
         
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
