@@ -1,5 +1,6 @@
 ﻿using CinemaAPI.DataManagement;
 using CinemaAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaAPI.Controllers
@@ -10,9 +11,9 @@ namespace CinemaAPI.Controllers
     {
         private readonly FilmDataOps filmDataOps;
 
-        public FilmController()
+        public FilmController(CinemaDbContext dbContext)
         {
-            filmDataOps = new FilmDataOps();
+            filmDataOps = new FilmDataOps(dbContext);
         }
 
         [HttpGet]
@@ -30,6 +31,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public ActionResult AddFilm(Film film)
         {
             filmDataOps.AddFilm(film);
@@ -37,6 +39,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles="Admin")]
         public ActionResult UpdateFilm(Film film)
         {
             try
@@ -51,6 +54,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles="Admin")]
         public ActionResult DeleteFilm(Film film)
         {
             try

@@ -6,8 +6,11 @@ namespace CinemaAPI.DataManagement
     public class CinemaDbContext : DbContext
     {
         public DbSet<User> users { get; set; }
+
         public DbSet<Cinema> cinemas { get; set; }
+
         public DbSet<Film> films { get; set; }
+        public DbSet<Review> reviews { get; set; }
         public DbSet<Rezervare> rezervari { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -15,9 +18,14 @@ namespace CinemaAPI.DataManagement
 
         }
 
-        //UNSURE IF FUNCTIONAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.Film)
+                .WithMany(f => f.Reviews)
+                .HasForeignKey("FilmId")
+                .IsRequired();
+
             modelBuilder.Entity<Film>()
                 .HasMany(r => r.Rezervari)
                 .WithOne(g => g.Film)
@@ -27,6 +35,8 @@ namespace CinemaAPI.DataManagement
                 .HasMany(r => r.Rezervari)
                 .WithOne(g => g.User)
                 .IsRequired();
+
+            base.OnModelCreating(modelBuilder);
 
 
         }

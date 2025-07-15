@@ -1,25 +1,21 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import {MatMenuModule} from '@angular/material/menu'
 import { MatInputModule } from '@angular/material/input';
-
-import { AppRoutingModule, RoutingComponent } from './app-routing-module';
+import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
-import { FormsModule } from '@angular/forms';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 @NgModule({
   declarations: [
     App,
-    RoutingComponent,
+    VizualizareFilm
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
-    MatMenuModule,
-    FormsModule,
+    MatMenuModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
