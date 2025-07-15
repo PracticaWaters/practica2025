@@ -15,7 +15,7 @@ namespace CinemaAPI.Models {
         public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string AgeRating { get; set; }
-        //public List<Review> Reviews{get;set;}
+        public List<Review> Reviews{get;set;} = new List<Review>();
         public TimeSpan Duration { get; set; }
         //public List<Reservations> Reservations { get; set; }
         public DateTime StartRunningDate { get; set; }
