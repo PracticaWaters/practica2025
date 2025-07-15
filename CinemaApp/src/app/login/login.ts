@@ -9,19 +9,28 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
+  get f() {
+    return this.loginForm.controls;
+  }
+
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      console.log('Login attempt:', { email, password });
-      // Aici ai putea apela AuthService.login(email, password)
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
     }
+
+    const { email, password } = this.loginForm.value;
+    console.log('Login:', { email, password });
+    // TODO: Apelează serviciul de autentificare aici, ex: this.authService.login(email, password)
   }
 }
