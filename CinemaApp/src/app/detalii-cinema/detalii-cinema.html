@@ -21,76 +21,86 @@
     </button>
 
     <h1>
-  <i *ngIf="!editMode">{{ detaliicinemaData.name }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.name" />
-</h1>
+      <span *ngIf="!editMode">{{ detaliicinemaData.name }}</span>
+      <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.name" />
+    </h1>
 
     <div class="info-section">
-      <h2 class="fas fa-info-circle"> Despre noi</h2>
-
-
-     <p>
-  <i *ngIf="!editMode">{{ detaliicinemaData.aboutus }}</i>
-  <textarea *ngIf="editMode" [(ngModel)]="detaliicinemaData.aboutus"></textarea>
-</p>
-    </div>
-
-    <div class="info-section">
-      <h2 class="fas fa-map-marker-alt"> Locație</h2>
-      <p>
-  <i *ngIf="!editMode">{{ detaliicinemaData.address }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.address" />
-</p>
-
-    </div>
-
-    <div class="info-section">
-      <h2 class="fas fa-phone"> Contact</h2>
+      <h2><i class="fas fa-info-circle"></i>Despre noi</h2>
 
       <p>
-  <i *ngIf="!editMode">Numar telefon: {{ detaliicinemaData.phone }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.phone" />
-</p>
-
-<p>
-  <i *ngIf="!editMode">Email: {{ detaliicinemaData.email }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.email" />
-</p>
-
-<p>
-  <i *ngIf="!editMode">Website: {{ detaliicinemaData.website }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.website" />
-</p>
+        <span *ngIf="!editMode">{{ detaliicinemaData.aboutus }}</span>
+        <textarea
+          *ngIf="editMode"
+          [(ngModel)]="detaliicinemaData.aboutus"
+        ></textarea>
+      </p>
     </div>
 
     <div class="info-section">
-      <h2 class="fas fa-clock"> Program</h2>
+      <h2><i class="fas fa-map-marker-alt"></i>Locație</h2>
+      <p>
+        <span *ngIf="!editMode">{{ detaliicinemaData.address }}</span>
+        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.address" />
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2><i class="fas fa-phone"></i>Contact</h2>
+
+      <p>
+        <span *ngIf="!editMode"
+          >Numar telefon: {{ detaliicinemaData.phone }}</span
+        >
+        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.phone" />
+      </p>
+
+      <p>
+        <span *ngIf="!editMode">Email: {{ detaliicinemaData.email }}</span>
+        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.email" />
+      </p>
+
+      <p>
+        <span *ngIf="!editMode">Website: {{ detaliicinemaData.website }}</span>
+        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.website" />
+      </p>
+    </div>
+
+    <div class="info-section">
+      <h2><i class="fas fa-clock"></i>Program</h2>
       <ul>
         <li>
-  Luni - Vineri:
-  <i *ngIf="!editMode">{{ detaliicinemaData.programweek }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweek" />
-</li>
+          Luni - Vineri:
+          <span *ngIf="!editMode">{{ detaliicinemaData.programweek }}</span>
+          <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweek" />
+        </li>
 
-<li>
-  Sâmbătă - Duminică:
-  <i *ngIf="!editMode">{{ detaliicinemaData.programweekend }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweekend" />
-</li>
+        <li>
+          Sâmbătă - Duminică:
+          <span *ngIf="!editMode">{{ detaliicinemaData.programweekend }}</span>
+          <input
+            *ngIf="editMode"
+            [(ngModel)]="detaliicinemaData.programweekend"
+          />
+        </li>
 
-<li>
-  Sărbători legale:
-  <i *ngIf="!editMode">{{ detaliicinemaData.programsarbatori }}</i>
-  <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programsarbatori" />
-</li>
-
+        <li>
+          Sărbători legale:
+          <span *ngIf="!editMode">{{
+            detaliicinemaData.programsarbatori
+          }}</span>
+          <input
+            *ngIf="editMode"
+            [(ngModel)]="detaliicinemaData.programsarbatori"
+          />
+        </li>
       </ul>
     </div>
   </div>
 
   <!-- Partea dreaptă - Google Maps -->
   <div class="cinema-map">
-    <h2 class="fas fa-map"> Cum ajungi la noi</h2>
+    <h2><i class="fas fa-map"></i>Cum ajungi la noi</h2>
     <div class="map-container">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2650.258654599832!2d25.612731591460754!3d45.666537339298294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b8b524bcac9%3A0xb350aa0bf5ec0c51!2sWATERS%20ROM%C3%82NIA%20S.R.L.!5e1!3m2!1sro!2sro!4v1752477842062!5m2!1sro!2sro"
@@ -101,4 +111,3 @@
     </div>
   </div>
 </div>
-
