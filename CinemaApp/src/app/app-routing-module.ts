@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
+import { SupportAdmin } from './support-page/support-admin/support-admin';
 
-import { SupportAdmin } from './Support/support-admin/support-admin';
 
 
 const routes: Routes = [
