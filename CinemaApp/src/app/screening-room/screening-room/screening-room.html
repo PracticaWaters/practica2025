@@ -105,7 +105,7 @@
             *ngFor="let seat of row; let seatIndex = index" 
             (click)="onSeatClick(seat)"
             [disabled]="seat.occupied"
-            [class]="getSeatClass(seat)"
+            [class]="getSeatClass(seat)"  
             [class.middle-gap]="seatIndex === row.length/2 -1">
             {{ seat.number }}
           </button>

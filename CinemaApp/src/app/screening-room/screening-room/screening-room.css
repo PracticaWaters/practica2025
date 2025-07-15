@@ -99,11 +99,12 @@ body {
   border-radius: var(--border-radius);
   border: 1px solid var(--medium-blue);
   transition: var(--transition);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .detail-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: scale(1.03);
+  box-shadow: var(--shadow-lg);
 }
 
 .movie-stats {
@@ -190,6 +191,16 @@ body {
   letter-spacing: 1px;
 }
 
+.button {
+  border-radius: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--light-blue);
+  transform: scale(1.05);
+}
+
 .date-buttons,
 .time-buttons {
   display: flex;
@@ -214,8 +225,9 @@ body {
 
 .date-btn:hover,
 .time-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--light-blue);
 }
 
 .date-btn.selected,
@@ -263,9 +275,9 @@ body {
 }
 
 .screen {
-  width: 80%;
-  height: 20px;
-  background-color: var(--light-blue);
+  width: 70%;
+  height: 30px;
+  background-color: #e0e0e0;
   margin: 0 auto 1.5rem auto;
   border-radius: 4px;
   position: relative;
@@ -291,14 +303,14 @@ body {
 
 .screen-label {
   position: absolute;
-  top: 25px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  color: var(--light-blue);
-  font-size: 0.9rem;
+  transform: translate(-50%, -50%);
   font-weight: bold;
+  color: #333;
+  font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .seats-container {
@@ -385,6 +397,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  padding: 0.4rem;
 }
 
 .legend-color {
@@ -392,7 +405,7 @@ body {
   height: 18px;
   border-radius: 4px;
   border: 1px solid var(--dark-blue);
-  transition: var(--transition);
+  transition: transform 0.2s;
 }
 
 .legend-color:hover {
@@ -421,6 +434,8 @@ body {
   border: 2px solid var(--light-blue);
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--card-bg), var(--dark-blue));
 }
 
 .booking-summary::before {
