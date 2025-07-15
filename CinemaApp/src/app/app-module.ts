@@ -10,6 +10,8 @@ import { ScreeningRoom } from './screening-room/screening-room/screening-room';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatPaginatorModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

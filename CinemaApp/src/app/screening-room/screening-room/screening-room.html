@@ -45,7 +45,7 @@
         </div>
         
         <div class="warning-card">
-          <strong>⚠️ Atenție! : </strong> Filmul conține mai multe efecte și secvențe cu 
+          <strong>⚠ Atenție! : </strong> Filmul conține mai multe efecte și secvențe cu 
           lumini intermitente care pot afecta persoanele care suferă de 
           epilepsie fotosensibilă sau au alte fotosensibilități.
         </div>
@@ -89,7 +89,7 @@
       <h2>{{ screeningRoom.name }}</h2>
 
       <div class="hall-info">
-        {{ screeningRoom.noOfRows }} rânduri × {{ screeningRoom.noOfSeatsOnRow }} locuri per rând + 1 rând VIP
+        {{ screeningRoom.noOfRows }} rânduri × {{ screeningRoom.noOfSeatsOnRow }} locuri per rând
       </div>
 
       <div class="screen">
@@ -107,7 +107,7 @@
             (click)="onSeatClick(seat)"
             [disabled]="seat.occupied"
             [class]="getSeatClass(seat)"
-            [class.middle-gap]="(rowIndex === seatsGrid.length - 1 && seatIndex === 5) || (rowIndex < seatsGrid.length - 1 && seatIndex === 7)">
+            [class.middle-gap]="seatIndex === row.length/2 -1">
             {{ seat.number }}
           </button>
         </div>

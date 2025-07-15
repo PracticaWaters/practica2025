@@ -1,1 +1,40 @@
-<p>add-screening-room works!</p>
+<div class="form-container">
+  <form [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Screening Room Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter room name" required />
+      <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Number of Rows</mat-label>
+      <input matInput formControlName="numOfRows" placeholder="Enter number of rows" required type="number" />
+      <mat-error *ngIf="hasError('numOfRows', 'required')">Number of rows is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Number of Seats Per Row</mat-label>
+      <input matInput formControlName="numOfSeatsPerRow" placeholder="Enter number of seats per row" required type="number" />
+      <mat-error *ngIf="hasError('numOfSeatsPerRow', 'required')">Number of seats per row is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Format</mat-label>
+      <input matInput formControlName="format" placeholder="Enter format" required />
+      <mat-error *ngIf="hasError('format', 'required')">Format is required</mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addScreeningRoomForm.valid">
+        Submit
+      </button>
+    </div>
+    <mat-form-field>
+  <mat-label>Test</mat-label>
+  <input matInput placeholder="Test">
+</mat-form-field>
+
+  </form>
+
+  
+</div>
