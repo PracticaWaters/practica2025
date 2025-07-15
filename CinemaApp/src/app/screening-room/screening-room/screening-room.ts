@@ -71,20 +71,16 @@ export class ScreeningRoom implements OnInit {
   }
 
   generateSeats(): void {
-  for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
-    const rowLetter = String.fromCharCode(64 + row);
-    const rowSeats: Seat[] = [];
-
-    const seatsInThisRow = row === this.screeningRoom.noOfRows ? 15 : this.screeningRoom.noOfSeatsOnRow;
-
-    for (let col = 1; col <= seatsInThisRow; col++) {
-      const isOccupied = this.screeningRoom.occupiedSeats?.includes(`${rowLetter}-${col}`) ?? false;
-      rowSeats.push(new Seat(rowLetter, col, isOccupied));
+    for (let row = 1; row <= this.screeningRoom.noOfRows; row++) {
+      const rowLetter = String.fromCharCode(64 + row);
+      const rowSeats: Seat[] = [];
+      for (let col = 1; col <= this.screeningRoom.noOfSeatsOnRow; col++) {
+        const isOccupied = this.screeningRoom.occupiedSeats?.includes(`${rowLetter}-${col}`) ?? false;
+        rowSeats.push(new Seat(rowLetter, col, isOccupied));
+      }
+      this.seatsGrid.push(rowSeats);
+      }
     }
-
-    this.seatsGrid.push(rowSeats);
-  }
-}
 
 
   toggle(seat: Seat): void {

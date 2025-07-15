@@ -98,8 +98,7 @@
 
       <div class="seats-container">
         <div *ngFor="let row of seatsGrid; let rowIndex = index" 
-            class="seat-row" 
-            [class.vip-row]="rowIndex === seatsGrid.length - 1">
+            class="seat-row">
           <div class="row-number">{{ getRowLetter(rowIndex + 1) }}</div>
           
           <button 
