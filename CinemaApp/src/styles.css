@@ -10,10 +10,10 @@ body{
 }
 
 :root {
-  --color-dark: #1A2130;
-  --color-primary: #5A72A0;
-  --color-accent: #83B4FF;
-  --color-light: #FDFFE2;
+  --dark: #1A2130;
+  --primary: #5A72A0;
+  --accent: #83B4FF;
+  --light: #FDFFE2;
 }
   
 .arrow {

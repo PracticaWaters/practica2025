@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'support/form', component: SupportForm },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
+  { path: 'vizualizare-film', component: VizualizareFilm },
 ];
 
 @NgModule({

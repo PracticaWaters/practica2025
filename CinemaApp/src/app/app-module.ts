@@ -12,8 +12,17 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportPage } from './Support/support-page/support-page';
 
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+
 @NgModule({
-  declarations: [App, SupportPage, Faq, SupportForm, SupportAdmin],
+  declarations: [
+    App,
+    VizualizareFilm,
+    SupportPage,
+    Faq,
+    SupportForm,
+    SupportAdmin,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

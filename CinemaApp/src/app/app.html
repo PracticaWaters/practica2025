@@ -1,8 +1,8 @@
 
 <nav class="flex items-center gap-16 md:justify-evenly justify-between px-6 py-4 h-[60px] bg-[#1A2130] text-white relative">
   <div class="flex gap-4 items-center">
-    <a routerLink="/" class="text-xl font-bold text-[#83B4FF]">LiquidCinema</a>
-    <img src="logo-500.png" alt="" class="w-10">
+    <a routerLink="/" class="text-xl font-bold text-[var(--light)]">LiquidCinema</a>
+    <img src="logo-500.png" alt="" class="w-15">
  </div>
 
   <button class="md:hidden text-white focus:outline-none cursor-pointer transition-transform duration-300" (click)="toggleMenu()">
@@ -19,46 +19,46 @@
     }"
     class="transition-all duration-300 ease-in-out flex flex-col md:hidden absolute top-[60px] left-0 w-full p-4 bg-[#1A2130] z-50">
     
-    <a routerLink="/" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Home</a>
-    <a routerLink="/inventory" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Program Cinema</a>
-    <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Recomandari</a>
-    <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Profil User</a>
-    <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Suport</a>
+    <a routerLink="/" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Home</a>
+    <a routerLink="/inventory" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Program Cinema</a>
+    <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Recomandari</a>
+    <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Profil User</a>
+    <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Suport</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
-        class="px-3 py-2 cursor-pointer select-none text-[#83B4FF] hover:text-[#FDFFE2] w-full text-left">
+        class="px-3 py-2 cursor-pointer select-none text-[var(--light)] hover:text-[var(--primary)] w-full text-left">
         Administrare
         <span class="text-xs transition-transform duration-300 arrow" [ngClass]="{ '-rotate-180': menuTrigger.menuOpen }">▼</span>
       </button>
 
       <mat-menu #adminMenu="matMenu" class="mt-2">
-        <button mat-menu-item routerLink="/" class="cursor-pointer py-2 text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Administrare filme</button>
-        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Administrare sali</button>
-        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[#83B4FF] hover:text-[#FDFFE2]" (click)="closeMenu()">Administrare promotii</button>
+        <button mat-menu-item routerLink="/" class="cursor-pointer py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Administrare filme</button>
+        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Administrare sali</button>
+        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 v" (click)="closeMenu()">Administrare promotii</button>
       </mat-menu>
     </div>
   </div>
 
   <!-- DESKTOP MENU (always visible, no animation) -->
   <div class="hidden md:flex md:flex-row md:items-center md:space-x-6 md:static md:w-auto md:bg-transparent md:p-0">
-    <a routerLink="/" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Home</a>
-    <a routerLink="/inventory" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Program Cinema</a>
-    <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Recomandari</a>
-    <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Profil User</a>
-    <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[#83B4FF] hover:text-[#FDFFE2]">Suport</a>
+    <a routerLink="/" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]">Home</a>
+    <a routerLink="/inventory" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]">Program Cinema</a>
+    <a routerLink="/scan" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]">Recomandari</a>
+    <a routerLink="/add-item" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]">Profil User</a>
+    <a routerLink="/contact" class="px-3 py-2 cursor-pointer text-[var(--light)] hover:text-[var(--primary)]">Suport</a>
 
     <div>
       <button mat-button [matMenuTriggerFor]="adminMenu" #menuTrigger="matMenuTrigger"
-        class="px-3 py-2 cursor-pointer select-none text-[#83B4FF] hover:text-[#FDFFE2] w-full text-center">
+        class="px-3 py-2 cursor-pointer select-none text-[var(--light)] hover:text-[var(--primary)] w-full text-center">
         Administrare
         <span class="text-xs transition-transform duration-300 arrow" [ngClass]="{ '-rotate-180': menuTrigger.menuOpen }">▼</span>
       </button>
 
       <mat-menu #adminMenu="matMenu" class="mt-2">
-        <button mat-menu-item routerLink="/" class="cursor-pointer py-2  text-[#83B4FF] hover:text-[#FDFFE2]">Administrare filme</button>
-        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[#83B4FF] hover:text-[#FDFFE2]">Administrare sali</button>
-        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[#83B4FF] hover:text-[#FDFFE2]">Administrare promotii</button>
+        <button mat-menu-item routerLink="/" class="cursor-pointer py-2  text-[var(--light)] hover:text-[var(--primary)]">Administrare filme</button>
+        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[var(--light)] hover:text-[var(--primary)]">Administrare sali</button>
+        <button mat-menu-item routerLink="/contact" class="cursor-pointer py-2 text-[var(--light)] hover:text-[var(--primary)]">Administrare promotii</button>
       </mat-menu>
     </div>
   </div>
