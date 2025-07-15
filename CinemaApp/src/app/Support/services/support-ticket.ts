@@ -4,7 +4,7 @@ export interface SupportTicket {
   email: string;
   mesaj: string;
   data: string;
-  selectat: boolean;
+  selectat?: boolean;
   active:boolean;
 
 
