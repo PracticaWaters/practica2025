@@ -5,8 +5,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
+import { CommonModule } from '@angular/common';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { FormsModule } from '@angular/forms';
 
 // Import CoreUI modules and directives:
 import {
@@ -31,15 +33,18 @@ import {
 @NgModule({
   declarations: [
     App,
-    VizualizareFilm
+    
+
   ],
   imports: [
+    VizualizareFilm,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
     MatExpansionModule,
-
+    CommonModule,
     // CoreUI modules:
     NavbarModule,
     DropdownModule,
