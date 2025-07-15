@@ -1,0 +1,107 @@
+.dashboard-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f5f5; /* fundal deschis */
+}
+
+.user-dashboard-container {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.user-dashboard-box {
+  display: flex;
+  border-radius: 12px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  height: 90vh;
+  min-height: 400px;
+}
+
+/* Meniu lateral */
+.dashboard-menu {
+  width: 250px;
+  background-color: white;
+  color: black;
+  padding: 20px;
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.dashboard-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-menu li {
+  margin-bottom: 15px;
+}
+
+.dashboard-menu a {
+  color: #5a72a0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dashboard-menu a:hover {
+  text-decoration: underline;
+}
+
+/* Zona de conținut */
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  background-color: white;
+  color: #333;
+  overflow-y: auto;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  width: 95%;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card:hover {
+    background-color: #edeced;
+    cursor: pointer;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #5a72a0;
+}
+
+.card p {
+  color: #666;
+  font-size: 14px;
+}
+
+.logoutbottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
+.logoutbottom a {
+   text-decoration: none;
+  font-weight: bold;
+}
+
+mat-icon {
+    color: #5a72a0; 
+    margin-right: 10px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}

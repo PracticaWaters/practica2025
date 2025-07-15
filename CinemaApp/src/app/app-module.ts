@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
-
+import {MatIconModule} from '@angular/material/icon'
 // Import CoreUI modules and directives:
 import {
   NavbarModule,
@@ -27,11 +27,13 @@ import {
   DropdownItemDirective,
   
 } from '@coreui/angular';
+import { UserDashboard } from './user-dashboard/user-dashboard';
 
 @NgModule({
   declarations: [
     App,
-    VizualizareFilm
+    VizualizareFilm,
+    UserDashboard
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatExpansionModule,
+    MatIconModule,
 
     // CoreUI modules:
     NavbarModule,
