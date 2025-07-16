@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Login } from './login/login';
+import { Register } from './register/register';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { ProgramCinema } from './program-cinema/program-cinema';
 
 const routes: Routes = [
-  {path: "", component:VizualizareFilm},
+  {path: "", redirectTo: "/login", pathMatch: "full"},
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},
@@ -21,11 +23,6 @@ const routes: Routes = [
   {path: "program-cinema", component:ProgramCinema},
 
 ];
-import { Login } from './login/login';
-import { Register } from './register/register';
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

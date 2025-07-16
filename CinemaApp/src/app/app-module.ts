@@ -1,25 +1,21 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
-import { Login } from './login/login';
-import { Register } from './register/register';
-
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
-import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 
 // Import CoreUI modules and directives:
+import { HttpClientModule } from '@angular/common/http';
 import {
   CollapseDirective,
   CollapseModule,
@@ -37,6 +33,9 @@ import {
   NavItemComponent,
   NavLinkDirective,
 } from '@coreui/angular';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { Login } from './login/login';
+import { Register } from './register/register';
 
 
 
@@ -52,11 +51,14 @@ import {
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
     MatInputModule,
     MatMenuModule,
-    FormsModule,
-    BrowserModule,
-    MatExpansionModule,
+    HttpClientModule,
     CommonModule,
     // CoreUI modules:
     NavbarModule,
@@ -79,13 +81,7 @@ import {
     MatExpansionModule,
     MatInputModule,
     MatMenuModule,
-    CommonModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
+    CommonModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
