@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-meniu-principal',
@@ -7,10 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './meniu-principal.css'
 })
 export class MeniuPrincipal {
+  constructor(public route: ActivatedRoute) {};
+
   cards = [
-    { titlu: 'Detalii personale', descriere: 'Adaugă sau modifică informațiile personale ' },
-    { titlu: 'Bilete', descriere: 'Vizualizează și gestionează biletele tale' },
-    { titlu: 'Wishlist', descriere: 'Păstrează filmele preferate într-un singur loc' },
-    { titlu: 'Review-uri', descriere: 'Lasă-ți amprenta în comunitatea cinefilă' }
+    { titlu: 'Detalii personale', descriere: 'Adaugă sau modifică informațiile personale ', link:'detalii'},
+    { titlu: 'Bilete', descriere: 'Vizualizează și gestionează biletele tale', link: 'bilete'},
+    { titlu: 'Wishlist', descriere: 'Păstrează filmele preferate într-un singur loc', link: 'wishlist' },
+    { titlu: 'Review-uri', descriere: 'Lasă-ți amprenta în comunitatea cinefilă', link: 'review-uri' }
   ];
 }
