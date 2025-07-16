@@ -46,11 +46,13 @@ import {
   DropdownMenuDirective,
   DropdownItemDirective,
 } from '@coreui/angular';
+import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
 import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { RouterModule } from '@angular/router';
     MatPaginatorModule,
     MatInputModule,
     MatMenuModule,
+    CommonModule,
+    MatIconModule,
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,

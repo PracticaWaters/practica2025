@@ -9,11 +9,11 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/format")]
     public class FormatController : Controller
     {
-        private readonly FormatDataOps formatDataOps;
+        private readonly FormatDataOps _formatDataOps;
 
         public FormatController(CinemaDbContext dbContext)
         {
-            formatDataOps = new FormatDataOps(dbContext);
+            _formatDataOps = new FormatDataOps(dbContext);
         }
 
         [HttpGet]
@@ -21,7 +21,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var formats = formatDataOps.GetFormats();
+                var formats = _formatDataOps.GetFormats();
                 return Ok(formats);
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ namespace CinemaAPI.Controllers
         [HttpPost]
         public ActionResult AddFormat(Format format)
         {
-            formatDataOps.AddFormat(format);
+            _formatDataOps.AddFormat(format);
             return Ok();
         }
 
@@ -42,7 +42,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                formatDataOps.UpdateFormat(format);
+                _formatDataOps.UpdateFormat(format);
                 return Ok();
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                formatDataOps.DeleteFormat(format);
+                _formatDataOps.DeleteFormat(format);
                 return Ok();
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var format = formatDataOps.GetFormatById(id);
+                var format = _formatDataOps.GetFormatById(id);
                 return Ok(format);
             }
             catch (Exception ex)

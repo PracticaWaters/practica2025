@@ -17,6 +17,8 @@ namespace CinemaAPI.DataManagement
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
         public DbSet<Rezervation> rezervari { get; set; }
+        
+        public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +34,8 @@ namespace CinemaAPI.DataManagement
 
             base.OnModelCreating(modelBuilder);
 
+
+            // existing relationship configs
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Film)
                 .WithMany(f => f.Reviews)
@@ -48,8 +52,7 @@ namespace CinemaAPI.DataManagement
 
             modelBuilder.Entity<Film>()
                 .HasMany(f => f.FilmActors)
-                .WithMany(a => a.FilmActors)
-                .UsingEntity(j => j.ToTable("FilmActor"));
+                .WithMany(a => a.FilmActors);
 
             modelBuilder.Entity<Film>()
                 .HasMany(r => r.Reservations)
@@ -62,9 +65,6 @@ namespace CinemaAPI.DataManagement
                 .IsRequired();
 
             base.OnModelCreating(modelBuilder);
-
-        
         }
-        
     }
 }
