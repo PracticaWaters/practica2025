@@ -49,13 +49,23 @@ export class AuthService {
         tap((response: LoginResponse) => {
           localStorage.setItem('currentUser', JSON.stringify(response.user));
           localStorage.setItem('token', response.token);
-
-          // Emiterea userului în fluxul aplicației
           this.user.next(response.user);
           console.log('User logged in:', response.user);
         }),
-        // Emitem doar user-ul către subscribe (nu întregul LoginResponse)
-        map((response: LoginResponse) => response.user)
+        map((response: LoginResponse) => response.user),
+        catchError((error: HttpErrorResponse) => {
+          let errorMsg = 'A apărut o eroare la autentificare.';
+
+          if (error.status === 0) {
+            errorMsg = 'Nu se poate conecta la server.';
+          } else if (error.status === 401) {
+            errorMsg = 'Email sau parolă incorecte.';
+          } else if (error.status >= 500) {
+            errorMsg = 'Eroare de server. Încearcă mai târziu.';
+          }
+
+          return throwError(() => new Error(errorMsg));
+        })
       );
   }
 
