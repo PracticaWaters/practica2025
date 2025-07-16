@@ -1,28 +1,27 @@
 ﻿using CinemaAPI.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
     public class FilmDataOps
     {
-        private readonly CinemaDbContext dbContext;
+        private CinemaDbContext dbContext;
 
-        public FilmDataOps(CinemaDbContext context)
+        public FilmDataOps()
         {
-            dbContext = context;
+            dbContext = new CinemaDbContext();
         }
 
         public Film[] GetFilms()
         {
             return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).ToArray();
- 
+
         }
 
         public void AddFilm(Film film)
         {
             try
             {
-                foreach(Rezervare r in film.Rezervari)
+                foreach (Rezervare r in film.Rezervari)
                 {
                     dbContext.rezervari.Attach(r);
 
