@@ -52,16 +52,21 @@ export class ScreeningRoom implements OnInit {
       noOfRows: 10,
       noOfSeatsOnRow: 16,
       occupiedSeats: [
-        '10-8',
-        '10-9',
-        '15-8',
-        '15-9',
-        '15-10',
-        '15-11',
-        '3-4',
-        '3-5',
-        '7-12',
-        '7-13',
+        'J-8',
+        'J-9',
+        'H-9',
+        'H-10',
+        'H-11',
+        'C-4',
+        'C-5',
+        'G-12',
+        'G-13',
+        'F-3',
+        'F-4',
+        'F-5',
+        'F-6',
+        'F-7',
+        'F-8',
       ],
     };
   }
@@ -79,8 +84,8 @@ export class ScreeningRoom implements OnInit {
         rowSeats.push(new Seat(rowLetter, col, isOccupied));
       }
       this.seatsGrid.push(rowSeats);
-      }
     }
+  }
 
 
   toggle(seat: Seat): void {
@@ -128,7 +133,7 @@ export class ScreeningRoom implements OnInit {
   }
 
   onSeatClick(seat: Seat): void {
-    this.toggle(seat);
+    seat.toggleSelection();
   }
 
    getRowLetter(rowNumber: number): string {
