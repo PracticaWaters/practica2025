@@ -16,6 +16,8 @@ namespace CinemaAPI.Controllers
         public RezervareController()
         {
             rezervareDataOps = new RezervareDataOps();
+            filmDataOps = new FilmDataOps(new CinemaDbContext());
+            userDataOps = new UserDataOps();
         }
 
         [HttpGet]
@@ -28,7 +30,7 @@ namespace CinemaAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest($"Error retrieving reservations: {ex.Message}");
             }
         }
 
@@ -36,8 +38,8 @@ namespace CinemaAPI.Controllers
         public ActionResult AddRezervare(RezervareDto rezervareDto)
         {
             Rezervation rezervation = new Rezervation();
-            rezervation.NrOfPersons = rezervareDto.NrPersoane;
-            rezervation.Price = rezervareDto.Pret;
+            rezervation.NrOfPersons = rezervareDto.NrOfPersons;
+            rezervation.Price = rezervareDto.Price;
             rezervation.Film = filmDataOps.GetFilmById(rezervareDto.FilmId);
             rezervation.User = userDataOps.GetUserById(rezervareDto.UserId);
             rezervareDataOps.AddRezervare(rezervation);
