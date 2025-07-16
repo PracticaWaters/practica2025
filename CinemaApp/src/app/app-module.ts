@@ -35,6 +35,7 @@ import { Review } from './user-dashboard/pages/review/review';
 import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detalii-personale';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
+    MatSortModule,
 
     // CoreUI modules:
     NavbarModule,

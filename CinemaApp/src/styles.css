@@ -44,5 +44,9 @@ body{
   fill: white;
 }
 
+.mdc-notched-outline__notch
+{
+  border-right: none;
+}
 
  
