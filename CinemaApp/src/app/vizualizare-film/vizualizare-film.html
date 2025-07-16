@@ -1,2 +1,254 @@
-<h1>Titlu film</h1>
-<button class = "bg-[var(--color-dark)]">Cumpara bilete</button>
+<section
+  class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-[var(--light)] px-10 md:px-30 py-10"
+>
+  <!-- Titlu + Buton -->
+  <div
+    class="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto text-center sm:text-left"
+  >
+    <h1 class="text-3xl font-bold">Titlu film</h1>
+    <button
+      class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 uppercase"
+    >
+      Cumpara bilete
+    </button>
+  </div>
+
+  <!-- DOAR pe mobil: Expansion Panel -->
+  <div class="mt-10 flex flex-col gap-6 sm:hidden">
+    <mat-expansion-panel
+      class="!bg-[var(--dark)] !text-[var(--light)] rounded-md shadow-lg"
+    >
+      <mat-expansion-panel-header
+        class="bg-[var(--dark)] text-[var(--light)] rounded-md border border-[var(--light)]"
+      >
+        <mat-panel-title class="font-bold text-lg uppercase">
+          Detalii film
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="py-6 space-y-6 px-4">
+        <p class="leading-relaxed text-justify">
+          Când o amenințare străveche îi pune în pericol atât pe vikingi, cât și
+          pe dragoni pe insula Berk, prietenia dintre Hiccup, un tânăr viking
+          inventiv, și Toothless, un dragon Night Fury, devine cheia pentru ca
+          ambele specii să își clădească un nou viitor împreună.
+        </p>
+        <table class="w-full border-collapse border-y border-gray-700 text-sm">
+          <tbody>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                style="border-top:none"
+              >
+                Titlu Original
+              </th>
+              <td class="border-y border-gray-600 p-3" style="border-top:none">
+                How to Train Your Dragon 2D Dub
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Genul Filmului
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Acțiune, Aventură, Comedie, Dramă, Familie, Fantastic
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Distribuție
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
+                Gabriel Howell
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Formatul Proiecției
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                IMAX, IMAX 3D, 4DX, Dolby Atmos, 3D, 2D
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Data Publicare
+              </th>
+              <td class="border-y border-gray-600 p-3">2025</td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating Vârstă
+              </th>
+              <td class="border-y border-gray-600 p-3">13+</td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating User
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                <div class="flex items-center gap-1">
+                  <span class="text-yellow-400">★★★★☆</span>
+                  <span class="text-sm text-gray-300">(4.5 / 5)</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-expansion-panel>
+    <img src="test.jpg" alt="" class="w-90 mx-auto rounded-md shadow-2xl" />
+  </div>
+
+  <!-- DOAR pe desktop/tablet: Informații statice -->
+  <div class="mt-10 hidden sm:block max-w-7xl mx-auto">
+    <h2
+      class="font-bold text-lg uppercase border-b border-[var(--light)] pb-2 mb-6"
+    >
+      Detalii film
+    </h2>
+    <div class="space-y-6 px-4 sm:px-6">
+      <p class="max-w-4xl mx-auto leading-relaxed text-justify sm:text-left">
+        Când o amenințare străveche îi pune în pericol atât pe vikingi, cât și
+        pe dragoni pe insula Berk, prietenia dintre Hiccup, un tânăr viking
+        inventiv, și Toothless, un dragon Night Fury, devine cheia pentru ca
+        ambele specii să își clădească un nou viitor împreună.
+      </p>
+      <div class ="flex justify-between">
+        <table
+          class="max-w-5xl border-collapse border-y border-gray-700 text-sm"
+        >
+          <tbody>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                style="border-top:none"
+              >
+                Titlu Original
+              </th>
+              <td class="border-y border-gray-600 p-3" style="border-top:none">
+                How to Train Your Dragon 2D Dub
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Genul Filmului
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Acțiune, Aventură, Comedie, Dramă, Familie, Fantastic
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Distribuție
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
+                Gabriel Howell
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Formatul Proiecției
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                IMAX, IMAX 3D, 4DX, Dolby Atmos, 3D, 2D
+              </td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Data Publicare
+              </th>
+              <td class="border-y border-gray-600 p-3">2025</td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating Vârstă
+              </th>
+              <td class="border-y border-gray-600 p-3">13+</td>
+            </tr>
+            <tr>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating User
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                <div class="flex items-center gap-1">
+                  <span class="text-yellow-400">★★★★☆</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <img src="test.jpg" alt="" class="w-80" />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-12 max-w-4xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-xl">
+  <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
+
+  <!-- Star Rating -->
+  <div class="flex items-center gap-2 mb-4 text-2xl text-[var(--button-cta)] cursor-pointer">
+    <span
+      *ngFor="let star of displayedStars; let i = index"
+      (mouseenter)="onStarEnter(i)"
+      (mouseleave)="onStarLeave()"
+      (click)="onStarClick(i)"
+    >
+      {{ star }}
+    </span>
+  </div>
+
+  <!-- Textarea -->
+  <textarea
+    [value]="reviewText"
+    (input)="onTextChange($any($event.target).value)"
+    rows="4"
+    placeholder="Scrie părerea ta aici..."
+    class="w-full bg-gray-700 text-white p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
+  ></textarea>
+
+  <!-- Submit Button -->
+  <button
+    (click)="submitReview()"
+    class="bg-[var(--button-cta)] text-black px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-white transition-all duration-300"
+  >
+    Trimite review
+  </button>
+
+  <!-- Success Message -->
+  <p *ngIf="reviewSubmitted" class="text-[var(--light)] font-medium mt-4">
+    Mulțumim pentru review!
+  </p>
+</div>
+
+
+
+
+</section>
+

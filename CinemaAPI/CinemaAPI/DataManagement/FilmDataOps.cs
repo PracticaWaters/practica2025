@@ -14,7 +14,8 @@ namespace CinemaAPI.DataManagement
 
         public Film[] GetFilms()
         {
-            return dbContext.films.Include(x => x.Reviews).ToArray();
+            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).ToArray();
+ 
         }
 
         public void AddFilm(Film film)
@@ -70,7 +71,7 @@ namespace CinemaAPI.DataManagement
 
         public Film? GetFilmById(int id)
         {
-            return dbContext.films.Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Where(x => x.Id == id).FirstOrDefault();
         }
 
 
