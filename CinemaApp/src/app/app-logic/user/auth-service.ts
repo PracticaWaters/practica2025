@@ -19,27 +19,30 @@ export class AuthService {
     }
   }
 
-  register(userData: Partial<User>): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/register`, userData).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Registration failed:', error);
-
-        let errorMsg = 'An unknown error occurred.';
-
-        if (error.status === 0) {
-          errorMsg = 'Cannot connect to server.';
-        } else if (error.status === 400) {
-          errorMsg = 'Invalid data. Please check your form.';
-        } else if (error.status === 409) {
-          errorMsg = 'Email already registered.';
-        } else if (error.status >= 500) {
-          errorMsg = 'Server error. Please try again later.';
-        }
-
-        // Throw formatted error to component
-        return throwError(() => new Error(errorMsg));
+  register(userData: Partial<User>): Observable<string> {
+    return this.http
+      .post(`${this.apiUrl}/register`, userData, {
+        responseType: 'text',
       })
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Registration failed:', error);
+
+          let errorMsg = 'An unknown error occurred.';
+
+          if (error.status === 0) {
+            errorMsg = 'Cannot connect to server.';
+          } else if (error.status === 400) {
+            errorMsg = 'Invalid data. Please check your form.';
+          } else if (error.status === 409) {
+            errorMsg = 'Email already registered.';
+          } else if (error.status >= 500) {
+            errorMsg = 'Server error. Please try again later.';
+          }
+
+          return throwError(() => new Error(errorMsg));
+        })
+      );
   }
 
   login(credentials: { email: string; password: string }): Observable<User> {
