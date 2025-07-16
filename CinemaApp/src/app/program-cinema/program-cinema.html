@@ -1,6 +1,6 @@
 <!-- 🎞️ Carusel 3D de filme -->
 <div
-  class="relative w-full h-[540px] flex items-center justify-center overflow-hidden mb-10 bg-[#1A2130]"
+  class="relative w-full h-[540px] flex items-center justify-center overflow-hidden  bg-[#1A2130]"
 >
   <!-- ◀️ Buton stânga -->
   <button
@@ -58,8 +58,8 @@
   </button>
 </div>
 
-<div class="p-4 flex flex-col items-center bg-white gap-8 text-center">
-  <h2 class="text-xl font-bold mb-4">PROGRAM CINEMA</h2>
+<div class="py-6 flex flex-col items-center bg-white gap-8 text-center">
+  <h2 class="text-xl font-bold pt-8">PROGRAM CINEMA</h2>
 
   <!-- Linia principală: zile + calendar + dropdown -->
   <div class="flex items-center justify-center flex-wrap gap-x-2 gap-y-4 mb-1">
@@ -69,7 +69,7 @@
         (click)="selecteazaZi(zi.date)"
         class="px-2 py-1 rounded hover:bg-gray-200"
         [ngClass]="{
-          'text-orange-500 font-semibold': esteAzi(zi.date),
+          'text-[var(--button-cta)] font-semibold': esteAzi(zi.date),
           'bg-blue-100 font-bold':
             ziSelectata.toDateString() === zi.date.toDateString()
         }"
