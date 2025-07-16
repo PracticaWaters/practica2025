@@ -28,6 +28,7 @@
     "@angular/material": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.0.0",
+    "@coreui/angular": "^5.5.5",
     "@tailwindcss/postcss": "^4.1.11",
     "coreui": "^0.4.2-alpha2",
     "postcss": "^8.5.6",

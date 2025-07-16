@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Register implements OnInit {
   registerForm!: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private http: HttpClient) {}
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -16,7 +16,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { App } from './app';
-import { AppRoutingModule } from './app-routing-module';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 // Import CoreUI modules and directives:
@@ -69,7 +68,6 @@ import { SupportPage } from './Support/support-page/support-page';
     CommonModule,
     MatInputModule,
     MatMenuModule,
-    HttpClientModule,
     CommonModule,
     // CoreUI modules:
     NavbarModule,

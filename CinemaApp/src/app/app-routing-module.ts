@@ -12,21 +12,16 @@ import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
 
 const routes: Routes = [
-  {path: "", redirectTo: "/login", pathMatch: "full"},
-  // {path: "program-cinema", component:ProgramCinema},
-  // {path: "recomandari", component:Recomandari},
-  // {path: "profil-user", component:ProfilUser},
-  // {path: "suport", component:Suport},
-  // {path: "administrare", component:Administrare},
-  // {path: "administrare-filme", component:AdministrareFilme},
-  // {path: "administrare-sali", component:AdministrareSali},
-  // {path: "administrare-promotii", component:AdministrarePromotii}
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "login", component: Login },
+  { path: "register", component: Register },
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
