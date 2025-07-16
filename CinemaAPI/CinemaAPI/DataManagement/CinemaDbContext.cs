@@ -6,6 +6,7 @@ namespace CinemaAPI.DataManagement
 {
     public class CinemaDbContext : DbContext
     {
+        public DbSet<SuportTicket> suporttickets { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Cinema> cinemas { get; set; }
         public DbSet<Film> films { get; set; }
