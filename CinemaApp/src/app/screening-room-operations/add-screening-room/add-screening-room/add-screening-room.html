@@ -1,75 +1,154 @@
-<div class="row">
-  <div class="column">
-    <form class="form-style" [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()" >
-      <div class="label-input">
-        <mat-label>Screening Room Name:</mat-label>
-        <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="name"
-            required
-            type="text"
-          />
-          <mat-error *ngIf="hasError('name', 'required')"
-            >Name is required</mat-error
-          >
-        </mat-form-field>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening Room Form</title>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+    
+    <div class="container">
+        <div class="form-card">
+            <h2 class="form-title">Add Screening Room</h2>
+            
+            <form id="addScreeningRoomForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <div class="label-input">
+                        <label class="form-label">Screening Room Name</label>
+                        <div class="form-field">
+                            <input
+                                class="form-input"
+                                name="name"
+                                required
+                                type="text"
+                                placeholder="Enter room name"
+                            />
+                            <span class="input-icon">🎬</span>
+                        </div>
+                        <div class="error-message" id="name-error" style="display: none;">
+                            ⚠️ Name is required
+                        </div>
+                    </div>
+                </div>
 
-      <div class="label-input">
-        <mat-label>Number of Rows:</mat-label>
-        <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="numOfRows"
-            required
-            type="number"
-          />
-          <mat-error *ngIf="hasError('numOfRows', 'required')"
-            >Number of rows is required</mat-error
-          >
-        </mat-form-field>
-      </div>
+                <div class="form-group">
+                    <div class="label-input">
+                        <label class="form-label">Number of Rows</label>
+                        <div class="form-field">
+                            <input
+                                class="form-input"
+                                name="numOfRows"
+                                required
+                                type="number"
+                                min="1"
+                                placeholder="Enter number of rows"
+                            />
+                            <span class="input-icon">📊</span>
+                        </div>
+                        <div class="error-message" id="rows-error" style="display: none;">
+                            ⚠️ Number of rows is required
+                        </div>
+                    </div>
+                </div>
 
-      <div class="label-input">
-        <mat-label>Number of Seats Per Row:</mat-label>
-        <mat-form-field appearance="outline" class="field-style">
-          <input
-            matInput
-            formControlName="numOfSeatsPerRow"
-            required
-            type="number"
-          />
-          <mat-error *ngIf="hasError('numOfSeatsPerRow', 'required')"
-            >Number of seats per row is required</mat-error
-          >
-        </mat-form-field>
-      </div>
+                <div class="form-group">
+                    <div class="label-input">
+                        <label class="form-label">Number of Seats Per Row</label>
+                        <div class="form-field">
+                            <input
+                                class="form-input"
+                                name="numOfSeatsPerRow"
+                                required
+                                type="number"
+                                min="1"
+                                placeholder="Enter seats per row"
+                            />
+                            <span class="input-icon">🪑</span>
+                        </div>
+                        <div class="error-message" id="seats-error" style="display: none;">
+                            ⚠️ Number of seats per row is required
+                        </div>
+                    </div>
+                </div>
 
-      <div class="label-input">
-        <mat-label>Format</mat-label>
-        <mat-form-field appearance="outline">
-          <input
-            matInput
-            formControlName="format"
-            required
-            type="text"
-            class="mat-form-text"
-          />
-          <mat-error *ngIf="hasError('format', 'required')"
-            >Format is required</mat-error
-          >
-        </mat-form-field>
-      </div>
+                <div class="form-group">
+                    <div class="label-input">
+                        <label class="form-label">Format</label>
+                        <div class="form-field">
+                            <input
+                                class="form-input"
+                                name="format"
+                                required
+                                type="text"
+                                placeholder="e.g., IMAX, 4DX, Standard"
+                            />
+                            <span class="input-icon">📺</span>
+                        </div>
+                        <div class="error-message" id="format-error" style="display: none;">
+                            ⚠️ Format is required
+                        </div>
+                    </div>
+                </div>
 
-      <button
-       class="button-style"
-        mat-raised-button
-        type="submit"
-        [disabled]="!addScreeningRoomForm.valid"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
-</div>
+                <button
+                    class="submit-button"
+                    type="submit"
+                    id="submitBtn"
+                >
+                    Create Screening Room
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            let isValid = true;
+            const fields = ['name', 'numOfRows', 'numOfSeatsPerRow', 'format'];
+            
+            fields.forEach(field => {
+                const input = document.querySelector(`[name="${field}"]`);
+                const errorElement = document.getElementById(`${field === 'numOfRows' ? 'rows' : field === 'numOfSeatsPerRow' ? 'seats' : field}-error`);
+                
+                if (!input.value.trim()) {
+                    errorElement.style.display = 'flex';
+                    input.style.borderColor = '#ff6b6b';
+                    isValid = false;
+                } else {
+                    errorElement.style.display = 'none';
+                    input.style.borderColor = 'var(--medium-blue)';
+                }
+            });
+            
+            if (isValid) {
+                console.log('Form submitted:', data);
+                alert('Screening room created successfully!');
+                // Here you would typically send the data to your server
+            }
+        }
+        
+        // Add real-time validation
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', function() {
+                const errorElement = document.getElementById(`${this.name === 'numOfRows' ? 'rows' : this.name === 'numOfSeatsPerRow' ? 'seats' : this.name}-error`);
+                
+                if (this.value.trim()) {
+                    errorElement.style.display = 'none';
+                    this.style.borderColor = 'var(--medium-blue)';
+                } else {
+                    errorElement.style.display = 'flex';
+                    this.style.borderColor = '#ff6b6b';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
