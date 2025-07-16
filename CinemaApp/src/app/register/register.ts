@@ -17,8 +17,6 @@ import { AuthService } from '../app-logic/user/auth-service';
 })
 export class Register {
   registerForm: FormGroup;
-  user!: User;
-  userId!: number;
 
   errorMessage: string | null = null;
 
@@ -65,9 +63,9 @@ export class Register {
 
       console.log('Registering user:', userData);
       this.authService.register(userData).subscribe(
-        (response: User) => {
-          this.user = response;
-          console.log('User registered successfully:', this.user);
+        (response: string) => {
+          console.log('User registered successfully');
+          this.errorMessage = 'Succesfull'; // Reset error message on success
         },
         (error) => {
           console.error('❌ Registration error:', error);
