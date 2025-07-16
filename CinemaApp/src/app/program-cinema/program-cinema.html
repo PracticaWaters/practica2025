@@ -33,13 +33,13 @@
         <div class="flex gap-3">
           <a href="/vizualizare-film">
             <button
-              class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)]  hover:bg-[var(--light)] transition-all duration-300 rounded "
+              class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)] hover:bg-[var(--light)] transition-all duration-300 rounded"
             >
               Vezi detalii
             </button>
           </a>
           <button
-           class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
+            class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
           >
             Rezervă acum
           </button>
@@ -58,7 +58,7 @@
   </button>
 </div>
 
-<div class="p-4 flex flex-col items-center gap-8 text-center">
+<div class="p-4 flex flex-col items-center bg-white gap-8 text-center">
   <h2 class="text-xl font-bold mb-4">PROGRAM CINEMA</h2>
 
   <!-- Linia principală: zile + calendar + dropdown -->
@@ -154,12 +154,12 @@
 
           <!-- Detalii film -->
           <div
-            class="w-full p-4 flex flex-col items-center  text-center h-full justify-between"
+            class="w-full p-4 flex flex-col items-center text-center h-full justify-between"
           >
             <h3 class="text-lg font-bold text-[#1A2130] mb-1 py-4">
               {{ film.titlu }}
             </h3>
-            <p class="text-sm text-gray-600 mb-1 py-2 ">Gen: {{ film.gen }}</p>
+            <p class="text-sm text-gray-600 mb-1 py-2">Gen: {{ film.gen }}</p>
             <div *ngIf="film.program" class="py-2">
               <p
                 *ngFor="let format of objectKeys(film.program)"

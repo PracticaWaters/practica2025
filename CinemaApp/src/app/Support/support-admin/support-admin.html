@@ -1,0 +1,112 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4 overflow-hidden"
+>
+  <div class="items-center pt-12 pb-8">
+    <h1 class="text-white text-xl sm:text-6xl font-bold mb-24 text-center">
+      Panou Admin Suport
+    </h1>
+
+    <div
+      class="flex justify-center items-center w-800px mx-auto my-8 px-4 mb-12"
+    >
+      <input
+        type="text"
+        [(ngModel)]="filtru"
+        (input)="aplicaFiltrare()"
+        placeholder="Caută în tichete..."
+        class="w-400px md:w-96 p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all"
+      />
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex justify-center items-center py-8">
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-white"
+      ></div>
+      <span class="text-white ml-4">Se încarcă tichetele...</span>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="flex justify-center items-center py-8">
+      <div class="bg-red-500 text-white px-6 py-3 rounded-lg">
+        {{ error }}
+      </div>
+    </div>
+
+    <!-- TABEL -->
+    <div
+      *ngIf="!loading && !error"
+      class="mx-auto bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden border border-white/20 w-3/4"
+    >
+      <h2 class="text-white text-2xl font-bold p-6 border-b border-white/10">
+        Tichete primite
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-white text-left text-sm">
+          <thead class="bg-white/10 border-b border-white/20 text-gray-300">
+            <tr>
+              <th class="px-4 py-4">Nume</th>
+              <th class="px-4 py-4">Email</th>
+              <th class="px-4 py-4">Mesaj</th>
+              <th class="px-4 py-4">Data</th>
+              <th class="px-4 py-4">Status</th>
+              <th class="px-4 py-4">Acțiuni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let ticket of paginare()"
+              class="hover:bg-white/5 transition"
+            >
+              <td class="px-4 py-4">{{ ticket.name }}</td>
+              <td class="px-4 py-4">{{ ticket.email }}</td>
+              <td class="px-4 py-4 max-w-xs truncate" [title]="ticket.message">
+                {{ ticket.message }}
+              </td>
+              <td class="px-4 py-4">{{ formatDate(ticket.createdAt) }}</td>
+              <td class="px-4 py-4">
+                <span [class]="getStatusClass(ticket.status)">
+                  {{ getStatusText(ticket.status) }}
+                </span>
+              </td>
+              <td class="px-4 py-4">
+                <button
+                  (click)="toggleTicketStatus(ticket)"
+                  class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors"
+                >
+                  Schimbă Status
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="ticketeFiltrate.length === 0">
+              <td colspan="7" class="text-center py-6 text-gray-400">
+                Nu s-au găsit tichete
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PAGINARE -->
+      <div class="flex justify-between items-center p-6 text-white">
+        <p class="text-sm">Pagina {{ paginaCurenta }} / {{ totalPagini() }}</p>
+        <div class="flex gap-2">
+          <button
+            (click)="paginaCurenta = paginaCurenta - 1"
+            [disabled]="paginaCurenta === 1"
+            class="px-4 py-2 bg-white/10 rounded-xl disabled:opacity-50 hover:bg-white/20 transition-colors"
+          >
+            ◀
+          </button>
+          <button
+            (click)="paginaCurenta = paginaCurenta + 1"
+            [disabled]="paginaCurenta === totalPagini()"
+            class="px-4 py-2 bg-white/10 rounded-xl disabled:opacity-50 hover:bg-white/20 transition-colors"
+          >
+            ▶
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

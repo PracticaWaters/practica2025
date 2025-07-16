@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  standalone : false,
+  standalone: false,
   selector: 'app-vizualizare-film',
   templateUrl: './vizualizare-film.html',
   styleUrls: ['./vizualizare-film.css'],
@@ -13,7 +13,6 @@ export class VizualizareFilm {
   reviewText: string = '';
   reviewSubmitted: boolean = false;
 
-  // Pentru a afișa stelele: pline sau goale în funcție de hover sau rating
   get displayedStars(): string[] {
     return Array.from({ length: 5 }, (_, i) => {
       if (this.hoverRating > 0) return i < this.hoverRating ? '★' : '☆';
