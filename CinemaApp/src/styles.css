@@ -9,11 +9,16 @@ body{
     font-style: normal;
 }
 
+.shadow-light {
+  box-shadow: 0 2px 10px var(--light);
+}
+
 :root {
-  --color-dark: #1A2130;
-  --color-primary: #5A72A0;
-  --color-accent: #83B4FF;
-  --color-light: #FDFFE2;
+  --dark: #1A2130;
+  --primary: #5A72A0;
+  --accent: #83B4FF;
+  --light: #FDFFE2;
+  --button-cta: oklch(76.9% 0.188 70.08);
 }
 /* În fișierul tău .css */
 
@@ -22,3 +27,24 @@ body{
   display: inline-block !important;
   vertical-align: middle !important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cdk-overlay-pane {
+  background-color: var(--dark);
+}
+
+.mat-mdc-menu-item-text{
+  color: var(--light);
+}
+
+.mat-mdc-menu-item-text:hover{
+  color: var(--primary);
+}
+
+.mat-expansion-indicator{
+  fill: white;
+}
+
+
+ 

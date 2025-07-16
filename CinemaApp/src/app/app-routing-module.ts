@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { ProgramCinema } from './program-cinema/program-cinema';
 import { ScreeningRoom } from './screening-room/screening-room';
 import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
 import { AddScreeningRoom } from './screening-room-operations/add-screening-room/add-screening-room/add-screening-room';
 
 const routes: Routes = [
-  // {path: "", component:HomePage},
+  {path: "", component:VizualizareFilm},
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},
@@ -13,6 +16,9 @@ const routes: Routes = [
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
+  {path: "vizualizare-film", component:VizualizareFilm},
+  {path: "detalii-cinema", component:DetaliiCinema},
+  {path: "program-cinema", component:ProgramCinema},
   { path: 'screening-room', component: ScreeningRoom },
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },

@@ -9,7 +9,7 @@ import { ScreeningRoomData } from './screening-room-data';
 export class ScreeningRoomListMock {
   data: Array<ScreeningRoomData> = [];
 
-  private apiUrl = 'https://localhost:7022/api/cinema/screeningRoom';
+  private apiUrl = 'https://localhost:25867/api/cinema/screeningRoom';
 
   constructor(private httpClient: HttpClient) {}
 

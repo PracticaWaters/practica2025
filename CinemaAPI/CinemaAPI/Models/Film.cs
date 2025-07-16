@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/*using System.ComponentModel.DataAnnotations;
 
 namespace CinemaAPI.Models { 
 
@@ -7,7 +7,7 @@ namespace CinemaAPI.Models {
         public int Id {  get; set; }
         public string Name { get; set; }
         //public Gen Gen { get; set; }
-        //public List<string> Distributtion { get; set; }
+        public List<FilmActor>? FilmActors{ get; set; } 
         public string Image { get; set; }
         [Url(ErrorMessage ="Url is not valid")]
         public string Trailer { get; set; }
@@ -15,11 +15,45 @@ namespace CinemaAPI.Models {
         public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string AgeRating { get; set; }
-        //public List<Review> Reviews{get;set;}
+        public List<Review> Reviews{get;set;} = new List<Review>();
         public TimeSpan Duration { get; set; }
         //public List<Reservations> Reservations { get; set; }
         public DateTime StartRunningDate { get; set; }
         public DateTime EndRunningDate { get; set; }
+        
+        public ICollection<Wishlist> Wishlists { get; set; }
+        public List<Rezervare> Rezervari { get; set;}
+
+    }
+}
+*/
+
+
+using System.ComponentModel.DataAnnotations;
+
+namespace CinemaAPI.Models
+{
+
+    public class Film
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        //public Gen Gen { get; set; }
+        public List<Actor>? FilmActors { get; set; }
+        public string Image { get; set; }
+        [Url(ErrorMessage = "Url is not valid")]
+        public string Trailer { get; set; }
+        //public List<TimeSlot> Program {  get; set; }   
+        public string Description { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public string AgeRating { get; set; }
+        public List<Review>? Reviews{get;set;}
+        public TimeSpan Duration { get; set; }
+        public List<Rezervare> Rezervari { get; set; }
+        public DateTime StartRunningDate { get; set; }
+        public DateTime EndRunningDate { get; set; }
+      
+        public ICollection<Wishlist> Wishlists { get; set; }
 
     }
 }
