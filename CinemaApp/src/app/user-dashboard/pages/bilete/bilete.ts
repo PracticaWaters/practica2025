@@ -14,6 +14,7 @@ interface Bilet {
   selector: 'app-bilete',
   standalone: false,
   templateUrl: './bilete.html',
+  styleUrl: './bilete.css',
 })
 export class Bilete implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
