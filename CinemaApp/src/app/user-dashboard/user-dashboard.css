@@ -23,7 +23,6 @@
 
 .dashboard-menu {
   width: 280px;
-  background-color: white;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
@@ -70,6 +69,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  
 }
 
 .dashboard-menu a:hover {
