@@ -1,19 +1,11 @@
-
-using Microsoft.EntityFrameworkCore;
-using CinemaAPI.Models;
-
-using CinemaAPI.Models;
+﻿using CinemaAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-
 
 namespace CinemaAPI.DataManagement
 {
     public class CinemaDbContext : DbContext
     {
-
-        public DbSet<SuportTicket> SuportTickets { get; set; }
-
         public DbSet<User> users { get; set; }
         public DbSet<Cinema> cinemas { get; set; }
         public DbSet<Film> films { get; set; }
@@ -21,7 +13,7 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-        public DbSet<Rezervare> rezervari { get; set; }
+        public DbSet<Rezervation> rezervari { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,7 +42,8 @@ namespace CinemaAPI.DataManagement
                 .WithMany(a => a.FilmActors)
                 .UsingEntity(j => j.ToTable("FilmActor"));
 
-                .HasMany(r => r.Rezervari)
+            modelBuilder.Entity<Film>()
+                .HasMany(r => r.Reservations)
                 .WithOne(g => g.Film)
                 .IsRequired();
 
@@ -63,6 +56,6 @@ namespace CinemaAPI.DataManagement
 
 
         }
-
+        
     }
 }

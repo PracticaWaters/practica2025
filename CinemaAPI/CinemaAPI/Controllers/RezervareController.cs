@@ -19,7 +19,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Rezervare>> GetRezervari()
+        public ActionResult<List<Rezervation>> GetRezervari()
         {
             try
             {
@@ -35,21 +35,21 @@ namespace CinemaAPI.Controllers
         [HttpPost]
         public ActionResult AddRezervare(RezervareDto rezervareDto)
         {
-            Rezervare rezervare = new Rezervare();
-            rezervare.NrPersoane = rezervareDto.NrPersoane;
-            rezervare.Pret = rezervareDto.Pret;
-            rezervare.Film = filmDataOps.GetFilmById(rezervareDto.FilmId);
-            rezervare.User = userDataOps.GetUserById(rezervareDto.UserId);
-            rezervareDataOps.AddRezervare(rezervare);
+            Rezervation rezervation = new Rezervation();
+            rezervation.NrOfPersons = rezervareDto.NrPersoane;
+            rezervation.Price = rezervareDto.Pret;
+            rezervation.Film = filmDataOps.GetFilmById(rezervareDto.FilmId);
+            rezervation.User = userDataOps.GetUserById(rezervareDto.UserId);
+            rezervareDataOps.AddRezervare(rezervation);
             return Ok();
         }
 
         [HttpPut]
-        public ActionResult UpdateRezervare(Rezervare rezervare)
+        public ActionResult UpdateRezervare(Rezervation rezervation)
         {
             try
             {
-                rezervareDataOps.UpdateRezervare(rezervare);
+                rezervareDataOps.UpdateRezervare(rezervation);
                 return Ok();
             }
             catch (Exception ex)
@@ -59,11 +59,11 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpDelete]
-        public ActionResult DeleteRezervare(Rezervare rezervare)
+        public ActionResult DeleteRezervare(Rezervation rezervation)
         {
             try
             {
-                rezervareDataOps.DeleteRezervare(rezervare);
+                rezervareDataOps.DeleteRezervare(rezervation);
                 return Ok();
             }
             catch (Exception ex)
@@ -73,7 +73,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Rezervare> GetRezervareById(int id)
+        public ActionResult<Rezervation> GetRezervareById(int id)
         {
             try
             {
