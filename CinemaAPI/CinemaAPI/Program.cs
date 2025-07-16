@@ -4,6 +4,9 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using CinemaAPI.Services;
 
+using CinemaAPI.DataManagement;
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

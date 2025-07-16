@@ -198,7 +198,7 @@
               </th>
               <td class="border-y border-gray-600 p-3">
                 <div class="flex items-center gap-1">
-                  <span class="text-yellow-400">★★★★☆</span>
+                  <span class="text-[var(--button-cta)]">★★★★☆</span>
                 </div>
               </td>
             </tr>
@@ -209,8 +209,34 @@
     </div>
   </div>
 
-  <div
-    class="mt-12 max-w-4xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-xl"
+  <div class="mt-12 max-w-4xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-xl">
+  <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
+
+  <!-- Star Rating -->
+  <div class="flex items-center gap-2 mb-4 text-2xl text-[var(--button-cta)] cursor-pointer">
+    <span
+      *ngFor="let star of displayedStars; let i = index"
+      (mouseenter)="onStarEnter(i)"
+      (mouseleave)="onStarLeave()"
+      (click)="onStarClick(i)"
+    >
+      {{ star }}
+    </span>
+  </div>
+
+  <!-- Textarea -->
+  <textarea
+    [value]="reviewText"
+    (input)="onTextChange($any($event.target).value)"
+    rows="4"
+    placeholder="Scrie părerea ta aici..."
+    class="w-full bg-gray-700 text-[var(--light)] p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
+  ></textarea>
+
+  <!-- Submit Button -->
+  <button
+    (click)="submitReview()"
+    class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-[var(--light)] transition-all duration-300"
   >
     <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
 
