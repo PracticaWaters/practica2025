@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
@@ -39,6 +40,8 @@ import { Faq } from './Support/faq/faq';
     CommonModule,
     MatInputModule,
     MatMenuModule,
+    CommonModule,
+    MatIconModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
