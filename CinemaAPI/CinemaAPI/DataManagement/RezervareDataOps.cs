@@ -12,19 +12,19 @@ namespace CinemaAPI.DataManagement
             dbContext = new CinemaDbContext();
         }
 
-        public Rezervare[] GetRezervari()
+        public Rezervation[] GetRezervari()
         {
             return dbContext.rezervari.ToArray();
         }
 
         //Idk daca e bine
-        public void AddRezervare(Rezervare rezervare)
+        public void AddRezervare(Rezervation rezervation)
         {
             try
             {
-                dbContext.films.Attach(rezervare.Film);
-                dbContext.users.Attach(rezervare.User);
-                dbContext.rezervari.Add(rezervare);
+                dbContext.films.Attach(rezervation.Film);
+                dbContext.users.Attach(rezervation.User);
+                dbContext.rezervari.Add(rezervation);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -34,11 +34,11 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void UpdateRezervare(Rezervare rezervare)
+        public void UpdateRezervare(Rezervation rezervation)
         {
             try
             {
-                dbContext.rezervari.Update(rezervare);
+                dbContext.rezervari.Update(rezervation);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -47,18 +47,18 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void DeleteRezervare(Rezervare rezervare)
+        public void DeleteRezervare(Rezervation rezervation)
         {
             try
             {
-                if (rezervare != null)
+                if (rezervation != null)
                 {
-                    dbContext.rezervari.Remove(rezervare);
+                    dbContext.rezervari.Remove(rezervation);
                     dbContext.SaveChanges();
                 }
                 else
                 {
-                    throw new ArgumentNullException(nameof(rezervare), "Rezervare cannot be null.");
+                    throw new ArgumentNullException(nameof(rezervation), "Rezervation cannot be null.");
                 }
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public Rezervare? GetRezervareById(int id)
+        public Rezervation? GetRezervareById(int id)
         {
             return dbContext.rezervari.Where(x => x.Id == id).FirstOrDefault();
         }

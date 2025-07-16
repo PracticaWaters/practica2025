@@ -8,11 +8,11 @@
     >
       <!-- NUME -->
       <div class="space-y-2">
-        <label class="text-white block text-sm font-medium">Name</label>
+        <label class="text-white block text-sm font-medium">Nume</label>
         <input
           type="text"
           formControlName="name"
-          placeholder="Your name..."
+          placeholder="Numele tău..."
           required
           class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 text-sm sm:text-base"
         />
@@ -24,7 +24,7 @@
         <input
           type="email"
           formControlName="email"
-          placeholder="example@email.com"
+          placeholder="exemplu@email.com"
           required
           [ngClass]="{ 'border-red-500': emailInvalid }"
           class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 text-sm sm:text-base"
@@ -36,11 +36,11 @@
 
       <!-- MESAJ -->
       <div class="space-y-2">
-        <label class="text-white block text-sm font-medium">Message</label>
+        <label class="text-white block text-sm font-medium">Mesaj</label>
         <textarea
           formControlName="message"
           rows="4"
-          placeholder="Tell us your problem here..."
+          placeholder="Spune-ne problema ta aici..."
           required
           class="w-full p-3 sm:p-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300 resize-none text-sm sm:text-base"
         ></textarea>
@@ -52,7 +52,7 @@
           type="submit"
           class="lg:w-110 sm:w-full md:w-full self-center bg-gradient-to-r to-gray hover:from-gray bg-transparent border-white/20 border-1 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-101 hover:bg-white hover:bg-opacity-30 hover:text-gray-900"
         >
-          Send ticket
+          Trimite tichet
         </button>
       </div>
     </form>
@@ -61,10 +61,10 @@
     <div class="flex flex-col items-center justify-center py-10 lg:h-110">
       <div class="text-5xl mb-4">✅</div>
       <div class="text-white text-xl font-semibold mb-2">
-        Ticket sent succeesfully!
+        Tichet trimis cu succes!
       </div>
       <div class="text-gray-400 text-base">
-        Thank you for your message, we'll get back to you as soon as possible!
+        Mulțumim pentru mesajul tău, te vom contacta cât mai curând posibil!
       </div>
     </div>
   </ng-template>

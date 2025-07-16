@@ -15,7 +15,7 @@ namespace CinemaAPI.Controllers
         private readonly ActorDataOps ActorDataOps;
         private readonly ReviewDataOps ReviewDataOps;
 
-        public FilmController()
+        public FilmController(CinemaDbContext dbContext)
         {
             FilmDataOps = new FilmDataOps(dbContext);
             ActorDataOps = new ActorDataOps(dbContext);

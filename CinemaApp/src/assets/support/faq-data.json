@@ -1,42 +1,42 @@
 [
   {
-    "question": "Are the tickets with reserved seats?",
-    "answer": "Yes. Please note the seat number on the ticket. Online or phone reservations lose validity 30 minutes before the show starts.",
+    "question": "Biletele sunt cu locuri rezervate?",
+    "answer": "Da. Te rugăm să notezi numărul locului de pe bilet. Rezervările online sau telefonice își pierd valabilitatea 30 de minute înainte de începerea spectacolului.",
     "expanded": true
   },
   {
-    "question": "How early should I arrive before the show?",
-    "answer": "It is recommended to arrive at least 15–20 minutes in advance.",
+    "question": "Cât timp înainte de spectacol ar trebui să ajung?",
+    "answer": "Se recomandă să ajungi cu cel puțin 15–20 de minute în avans.",
     "expanded": false
   },
   {
-    "question": "Why is my account blocked and I can't book anymore?",
-    "answer": "Your account may be blocked due to repeated no-shows or cancellation policy violations.",
+    "question": "De ce este blocat contul meu și nu mai pot face rezervări?",
+    "answer": "Contul tău poate fi blocat din cauza absențelor repetate sau încălcărilor politicii de anulare.",
     "expanded": false
   },
   {
-    "question": "Why do Romanian movie titles differ from the English ones?",
-    "answer": "Titles are localized for better audience understanding or marketing reasons.",
+    "question": "De ce diferă titlurile filmelor românești de cele în engleză?",
+    "answer": "Titlurile sunt localizate pentru o mai bună înțelegere a publicului sau din motive de marketing.",
     "expanded": false
   },
   {
-    "question": "What does \"Live Transmission\" mean?",
-    "answer": "It refers to a live broadcast of an event happening in real time.",
+    "question": "Ce înseamnă \"Transmisie Live\"?",
+    "answer": "Se referă la o transmisie live a unui eveniment care se întâmplă în timp real.",
     "expanded": false
   },
   {
-    "question": "How do I know if the movie is dubbed or subtitled?",
-    "answer": "Check the language and subtitle info next to the movie listing.",
+    "question": "Cum știu dacă filmul este dublat sau cu subtitrare?",
+    "answer": "Verifică informațiile despre limbă și subtitrare lângă listarea filmului.",
     "expanded": false
   },
   {
-    "question": "When is the new movie schedule published?",
-    "answer": "Usually on Wednesdays for the upcoming weekend.",
+    "question": "Când se publică programul nou de filme?",
+    "answer": "De obicei miercuri pentru weekend-ul următor.",
     "expanded": false
   },
   {
-    "question": "Where can I find ticket prices?",
-    "answer": "Ticket prices are available in the ticket section or at the cinema.",
+    "question": "Unde pot găsi prețurile biletelor?",
+    "answer": "Prețurile biletelor sunt disponibile în secțiunea de bilete sau la cinema.",
     "expanded": false
   }
 ] 
