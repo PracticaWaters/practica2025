@@ -1,23 +1,22 @@
-.form-div {
-  display: grid;
-  grid-template-columns: 120px 200px;
-  grid-template-areas: "theText theInput";
-  padding-bottom: 30px;
-  padding-left: 20px;
+.form-style{
+  color: oklch(76.9% 0.188 70.08);
+}
+button-style {
+  background-color: oklch(76.9% 0.188 70.08);
+  transition: color 0.3s ease;
 }
 
-.form-div-text {
-  grid-area: theText;
+.button-style:hover {
+  background-color: oklch(56.9% 0.188 70.08); 
 }
 
-.form-div-input {
-  grid-area: theInput;
+.button-style:active {
+  background-color: oklch(46.9% 0.188 70.08); 
 }
 
 .row {
   display: flex;
 }
-
 .column {
   flex: 50%;
   padding: 40px;

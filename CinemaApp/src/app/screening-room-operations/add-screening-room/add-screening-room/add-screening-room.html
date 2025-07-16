@@ -1,6 +1,6 @@
 <div class="row">
   <div class="column">
-    <form [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()">
+    <form class="form-style" [formGroup]="addScreeningRoomForm" (ngSubmit)="onSubmit()" >
       <div class="label-input">
         <mat-label>Screening Room Name:</mat-label>
         <mat-form-field appearance="outline">
@@ -33,7 +33,7 @@
 
       <div class="label-input">
         <mat-label>Number of Seats Per Row:</mat-label>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="field-style">
           <input
             matInput
             formControlName="numOfSeatsPerRow"
@@ -48,7 +48,7 @@
 
       <div class="label-input">
         <mat-label>Format</mat-label>
-        <mat-form-field appearance="outline" class="mat-form-field">
+        <mat-form-field appearance="outline">
           <input
             matInput
             formControlName="format"
@@ -63,8 +63,8 @@
       </div>
 
       <button
+       class="button-style"
         mat-raised-button
-        color="primary"
         type="submit"
         [disabled]="!addScreeningRoomForm.valid"
       >

@@ -1,9 +1,10 @@
+import { Time } from "@angular/common";
 import { ScreeningRoomData } from "./screening-room-data";
 
-export class timeslot{
+export class Timeslot{
     id!: number;
-    startTime!: timeslot;
-    endTime!: timeslot;
+    startTime!: Time;
+    endTime!: Time;
     screeningRoom!: ScreeningRoomData;
-    //movie!: 
+    //format:
 }

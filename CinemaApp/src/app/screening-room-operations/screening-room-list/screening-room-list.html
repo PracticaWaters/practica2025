@@ -1,10 +1,5 @@
 <div>
-  <table
-    mat-table
-    [dataSource]="screeningRoomList"
-    matSort
-    
-  >
+  <table mat-table [dataSource]="screeningRoomList" matSort>
     <!-- Column id-->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -39,19 +34,18 @@
       <td mat-cell *matCellDef="let element">
         <button
           mat-button
-          color="primary"
+          class="action-button"
           [routerLink]="['/add-screening-room', element.id]"
         >
           Edit
         </button>
       </td>
     </ng-container>
-
     <!-- Column delete-->
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button color="primary" (click)="delete(element)">
+        <button mat-button class="action-button" (click)="delete(element)">
           Delete
         </button>
       </td>
@@ -61,8 +55,14 @@
     <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
   </table>
 
-  <div class="actions-bar" style="margin-bottom: 10px">
+  <mat-paginator
+    [pageSizeOptions]="[3, 6, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+
+  <div class="actions-bar" class="button-row">
     <button
+      class="add-button"
       mat-raised-button
       color="primary"
       [routerLink]="['/add-screening-room', 0]"
@@ -70,9 +70,4 @@
       Add Screening Room
     </button>
   </div>
-
-  <mat-paginator
-    [pageSizeOptions]="[3, 6, 10]"
-    showFirstLastButtons
-  ></mat-paginator>
 </div>
