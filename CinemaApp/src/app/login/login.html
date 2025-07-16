@@ -1,24 +1,39 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="login-left">
+      <h2>Autentificare</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Introduceți emailul"
+          required
+        />
 
-  <div class="login-container">
-    <div class="login-box">
-      <div class="login-left">
-        <h2>Autentificare</h2>
-        <form>
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Introduceți emailul" required>
+        <label for="password">Parolă</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Introduceți parola"
+          required
+        />
 
-          <label for="password">Parolă</label>
-          <input type="password" id="password" placeholder="Introduceți parola" required>
+        <div class="error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
 
-          <button type="submit">Login</button>
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
 
-          <p class="register-link">
-            Nu ai cont? <a routerLink="/register">Înregistrează-te</a>
-          </p>
-        </form>
-      </div>
-      <div class="login-right">
-        <img src="logo-500.png" alt="Logo" />
-      </div>
+        <p class="register-link">
+          Nu ai cont? <a routerLink="/register">Înregistrează-te</a>
+        </p>
+      </form>
+    </div>
+    <div class="login-right">
+      <img src="logo-500.png" alt="Logo" />
     </div>
   </div>
+</div>
