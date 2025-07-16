@@ -5,11 +5,11 @@
     <div class="user-dashboard-box">
       <div class="dashboard-menu">
         <ul>
-          <li><mat-icon>home</mat-icon><a href="#">Meniu principal</a></li>
-          <li><mat-icon>stars</mat-icon><a href="#">Wishlist</a></li>
-          <li><mat-icon>receipt</mat-icon><a href="#">Bilete</a></li>
-          <li><mat-icon>thumbs_up_down</mat-icon><a href="#">Review-uri</a></li>
-          <li><mat-icon>person</mat-icon><a href="#">Detalii personale</a></li>
+          <li><mat-icon>home</mat-icon><a routerLink="meniu-principal">Meniu principal</a></li>
+          <li><mat-icon>stars</mat-icon><a routerLink="wishlist">Wishlist</a></li>
+          <li><mat-icon>receipt</mat-icon><a routerLink="bilete">Bilete</a></li>
+          <li><mat-icon>thumbs_up_down</mat-icon><a routerLink="review-uri">Review-uri</a></li>
+          <li><mat-icon>person</mat-icon><a routerLink="detalii">Detalii personale</a></li>
         </ul>
 
         <!-- separator vizual între meniu și logout -->
@@ -22,10 +22,7 @@
       </div>
 
       <div class="dashboard-content">
-        <div class="card" *ngFor="let card of cards">
-          <h3>{{ card.titlu }}</h3>
-          <p>{{ card.descriere }}</p>
-        </div>
+        <router-outlet> </router-outlet>
       </div>
     </div>
   </div>
