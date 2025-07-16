@@ -1,7 +1,8 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
+import { provideRouter } from '@angular/router';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { AppRoot } from './app-root';
@@ -18,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners()],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(withFetch())  // ✅ Activează Fetch API
+  ],
   bootstrap: [App],
 })
 export class AppModule {}
