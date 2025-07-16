@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color:#5a72a0; 
+  /* background-color:#5a72a0;  */
 }
 
 .user-dashboard-container {
@@ -42,15 +42,15 @@
   align-items: center;
   padding: 12px 16px;
   margin-bottom: 10px;
-  background-color: white; 
-  border-radius: 12px;      
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-menu li mat-icon {
   margin-right: 12px;
-  color: #5a72a0;
+  color: white;
 }
 
 .dashboard-menu li a {
@@ -59,12 +59,12 @@
   flex: 1;
 }
 
-.dashboard-menu li:hover {
+/* .dashboard-menu li:hover {
   background-color: #d7e7fa;
-}
+} */
 
 .dashboard-menu a {
-  color: #5a72a0;
+  color: white;
   text-decoration: none;
   font-weight: bold;
   display: flex;
@@ -79,7 +79,6 @@
 .dashboard-content {
   flex: 1;
   padding: 30px;
-  background-color: white;
   color: #333;
   overflow-y: auto;
   border-right: 1px solid rgba(90, 114, 160, 0.2);
@@ -93,7 +92,9 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   padding: 12px 16px;
-  background-color: white; 
+  /* background-color: white;  */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logoutbottom a {
@@ -101,12 +102,12 @@
   font-weight: bold;
 }
 
-.logoutbottom:hover {
+/* .logoutbottom:hover {
     background-color: #d7e7fa;
-}
+} */
 
-mat-icon {
-    color: #5a72a0; 
+.logoutbottom mat-icon {
+    color: white; 
     margin-right: 10px;
 }
 
