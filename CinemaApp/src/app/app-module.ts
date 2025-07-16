@@ -46,6 +46,10 @@ import {
   DropdownMenuDirective,
   DropdownItemDirective,
 } from '@coreui/angular';
+import { SupportPage } from './Support/support-page/support-page';
+import { SupportAdmin } from './Support/support-admin/support-admin';
+import { SupportForm } from './Support/support-form/support-form';
+import { Faq } from './Support/faq/faq';
 
 @NgModule({
   declarations: [
@@ -55,6 +59,10 @@ import {
     ScreeningRoomList,
     AddScreeningRoom,
     ScreeningRoom,
+    SupportPage,
+    SupportAdmin,
+    SupportForm,
+    Faq,
   ],
   imports: [
     BrowserModule,
