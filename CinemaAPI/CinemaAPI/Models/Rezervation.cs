@@ -1,10 +1,10 @@
 ﻿namespace CinemaAPI.Models
-{	public class Rezervare
+{	public class Rezervation
 	{
 		public int Id { get; set; }
 		public User User { get; set; }
 		public Film Film { get; set; }
-		public int NrPersoane { get; set; }
+		public int NrOfPersons { get; set; }
 
 		//De modificat cand e adaugat TimeSlot
 		//public int TimeSlotId { get; set; }
@@ -14,6 +14,6 @@
 
         //De modificat cand e adaugat Promo
         //public Promo Promo { get; set; }
-        public String Pret { get; set; }
+        public String Price { get; set; }
 	}
 }

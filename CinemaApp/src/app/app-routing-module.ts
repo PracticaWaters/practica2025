@@ -6,6 +6,11 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { ProgramCinema } from './program-cinema/program-cinema';
 
+import { Faq } from './Support/faq/faq';
+import { SupportForm } from './Support/support-form/support-form';
+import { SupportAdmin } from './Support/support-admin/support-admin';
+import { SupportPage } from './Support/support-page/support-page';
+
 const routes: Routes = [
   {path: "", redirectTo: "/login", pathMatch: "full"},
   // {path: "program-cinema", component:ProgramCinema},
@@ -16,16 +21,15 @@ const routes: Routes = [
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-sali", component:AdministrareSali},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  {path: "login", component: Login},
-  {path: "register", component: Register},
-  {path: "vizualizare-film", component:VizualizareFilm},
-  {path: "detalii-cinema", component:DetaliiCinema},
-  {path: "program-cinema", component:ProgramCinema},
-
+  { path: 'detalii-cinema', component: DetaliiCinema },
+  { path: 'program-cinema', component: ProgramCinema },
+  { path: 'support/admin', component: SupportAdmin },
+  { path: 'support', component: SupportPage },
+  { path: 'vizualizare-film', component: VizualizareFilm },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

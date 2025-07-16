@@ -38,11 +38,11 @@
             <tr>
               <th
                 class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
-                style="border-top:none"
+                style="border-top: none"
               >
                 Titlu Original
               </th>
-              <td class="border-y border-gray-600 p-3" style="border-top:none">
+              <td class="border-y border-gray-600 p-3" style="border-top: none">
                 How to Train Your Dragon 2D Dub
               </td>
             </tr>
@@ -127,7 +127,7 @@
         inventiv, și Toothless, un dragon Night Fury, devine cheia pentru ca
         ambele specii să își clădească un nou viitor împreună.
       </p>
-      <div class ="flex justify-between">
+      <div class="flex justify-between">
         <table
           class="max-w-5xl border-collapse border-y border-gray-700 text-sm"
         >
@@ -135,11 +135,11 @@
             <tr>
               <th
                 class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
-                style="border-top:none"
+                style="border-top: none"
               >
                 Titlu Original
               </th>
-              <td class="border-y border-gray-600 p-3" style="border-top:none">
+              <td class="border-y border-gray-600 p-3" style="border-top: none">
                 How to Train Your Dragon 2D Dub
               </td>
             </tr>
@@ -209,46 +209,46 @@
     </div>
   </div>
 
-  <div class="mt-12 max-w-4xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-xl">
-  <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
-
-  <!-- Star Rating -->
-  <div class="flex items-center gap-2 mb-4 text-2xl text-[var(--button-cta)] cursor-pointer">
-    <span
-      *ngFor="let star of displayedStars; let i = index"
-      (mouseenter)="onStarEnter(i)"
-      (mouseleave)="onStarLeave()"
-      (click)="onStarClick(i)"
-    >
-      {{ star }}
-    </span>
-  </div>
-
-  <!-- Textarea -->
-  <textarea
-    [value]="reviewText"
-    (input)="onTextChange($any($event.target).value)"
-    rows="4"
-    placeholder="Scrie părerea ta aici..."
-    class="w-full bg-gray-700 text-[var(--light)] p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
-  ></textarea>
-
-  <!-- Submit Button -->
-  <button
-    (click)="submitReview()"
-    class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-[var(--light)] transition-all duration-300"
+  <!-- Review Section -->
+  <div
+    class="mt-12 max-w-4xl mx-auto bg-gray-800 text-white p-6 rounded-lg shadow-xl"
   >
-    Trimite review
-  </button>
+    <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
 
-  <!-- Success Message -->
-  <p *ngIf="reviewSubmitted" class="text-[var(--light)] font-medium mt-4">
-    Mulțumim pentru review!
-  </p>
-</div>
+    <!-- Star Rating -->
+    <div
+      class="flex items-center gap-2 mb-4 text-2xl text-[var(--button-cta)] cursor-pointer"
+    >
+      <span
+        *ngFor="let star of displayedStars; let i = index"
+        (mouseenter)="onStarEnter(i)"
+        (mouseleave)="onStarLeave()"
+        (click)="onStarClick(i)"
+      >
+        {{ star }}
+      </span>
+    </div>
 
+    <!-- Textarea -->
+    <textarea
+      [value]="reviewText"
+      (input)="onTextChange($any($event.target).value)"
+      rows="4"
+      placeholder="Scrie părerea ta aici..."
+      class="w-full bg-gray-700 text-[var(--light)] p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
+    ></textarea>
 
+    <!-- Submit Button -->
+    <button
+      (click)="submitReview()"
+      class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-[var(--light)] transition-all duration-300"
+    >
+      Trimite review
+    </button>
 
-
+    <!-- Success Message -->
+    <p *ngIf="reviewSubmitted" class="text-[var(--light)] font-medium mt-4">
+      Mulțumim pentru review!
+    </p>
+  </div>
 </section>
-
