@@ -1,4 +1,6 @@
 <div class="card" *ngFor="let card of cards">
-  <h3>{{ card.titlu }}</h3>
-  <p>{{ card.descriere }}</p>
+  <a [routerLink]="['../', card.link]" [relativeTo]="route">
+    <h3>{{ card.titlu }}</h3>
+    <p>{{ card.descriere }}</p>
+  </a>
 </div>
