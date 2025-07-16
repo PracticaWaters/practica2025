@@ -19,7 +19,7 @@ import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
-import { Footer } from './footer/footer';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +30,6 @@ import { Footer } from './footer/footer';
     SupportForm,
     Faq,
     DetaliiCinema,
-    Footer,
   ],
   imports: [
     FormsModule,
