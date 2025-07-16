@@ -31,13 +31,13 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
   private animationPath: THREE.Vector3[] = [
     new THREE.Vector3(0, 2, 3), // Start position - inside the cinema
-    new THREE.Vector3(-2, 1.5, 2), // Left side
-    new THREE.Vector3(-3, 1, 0), // Back left
-    new THREE.Vector3(-2, 0.5, -2), // Back
-    new THREE.Vector3(0, 1, -3), // Back center
-    new THREE.Vector3(2, 0.5, -2), // Back right
-    new THREE.Vector3(3, 1, 0), // Right side
-    new THREE.Vector3(2, 1.5, 2), // Front right
+    new THREE.Vector3(-2, 2, 2), // Left side - higher position
+    new THREE.Vector3(-3, 2, 0), // Back left - higher position
+    new THREE.Vector3(-2, 1.5, -2), // Back - higher position
+    new THREE.Vector3(0, 1.5, -3), // Back center - higher position
+    new THREE.Vector3(2, 1.5, -2), // Back right - higher position
+    new THREE.Vector3(3, 2, 0), // Right side - higher position
+    new THREE.Vector3(2, 2, 2), // Front right - higher position
     new THREE.Vector3(0, 2, 3), // Return to start
   ];
 
@@ -77,7 +77,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
       0.1,
       1000
     );
-    this.camera.position.set(0, 2, 3); // Start closer to the model
+    this.camera.position.set(0, 2.5, 3); // Start at a safe height
 
     // Renderer setup - high quality
     this.renderer = new THREE.WebGLRenderer({
@@ -97,16 +97,16 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     // Add renderer to DOM
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    // Controls setup - adjusted for closer viewing
+    // Controls setup - rotation only, no zoom
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
-    this.controls.enableZoom = true;
+    this.controls.enableZoom = false; // Disable zoom
     this.controls.enablePan = false;
     this.controls.autoRotate = false;
-    this.controls.minDistance = 0.5; // Allow very close zoom
-    this.controls.maxDistance = 20; // Limit maximum distance
-    this.controls.maxPolarAngle = Math.PI * 0.8; // Limit vertical rotation
+    // Limit vertical rotation to prevent looking under the object
+    this.controls.minPolarAngle = Math.PI * 0.1; // Prevent looking too far down
+    this.controls.maxPolarAngle = Math.PI * 0.7; // Prevent looking too far up
 
     // Lighting
     this.setupLighting();
@@ -351,15 +351,19 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
               )
             );
 
-            // Map scroll progress to animation path
-            this.targetPathIndex = Math.floor(
-              this.scrollProgress * (this.animationPath.length - 1)
-            );
+            // Map scroll progress to animation path with smoother transitions
+            const targetIndex = this.scrollProgress * (this.animationPath.length - 1);
+            this.targetPathIndex = Math.floor(targetIndex);
+            
+            // Add smooth interpolation for sub-index positions
+            if (targetIndex - Math.floor(targetIndex) > 0.1) {
+              this.animationProgress = targetIndex - Math.floor(targetIndex);
+            }
           }
         });
       },
       {
-        threshold: [0, 0.25, 0.5, 0.75, 1],
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
         rootMargin: '-50px 0px -50px 0px',
       }
     );
@@ -367,10 +371,10 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     observer.observe(this.rendererContainer.nativeElement);
   }
 
-  private updateCameraAnimation(): void {
+    private updateCameraAnimation(): void {
     if (this.currentPathIndex !== this.targetPathIndex) {
-      this.animationProgress += 0.02; // Animation speed
-
+      this.animationProgress += 0.015; // Slower, smoother animation
+      
       if (this.animationProgress >= 1) {
         this.currentPathIndex = this.targetPathIndex;
         this.animationProgress = 0;
@@ -388,9 +392,22 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
           this.animationProgress
         );
 
-        // Look at the center of the model
+        // Ensure camera doesn't go too low
+        if (this.camera.position.y < 1.0) {
+          this.camera.position.y = 1.0;
+        }
+
+        // Smooth rotation around the model based on scroll progress
         if (this.model) {
-          this.camera.lookAt(this.model.position);
+          const targetLookAt = new THREE.Vector3();
+          targetLookAt.copy(this.model.position);
+          
+          // Add some offset based on scroll progress for dynamic viewing
+          const scrollOffset = this.scrollProgress * Math.PI * 2;
+          targetLookAt.x += Math.sin(scrollOffset) * 0.5;
+          targetLookAt.z += Math.cos(scrollOffset) * 0.5;
+          
+          this.camera.lookAt(targetLookAt);
         }
       }
     }
