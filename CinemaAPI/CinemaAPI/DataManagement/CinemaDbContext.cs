@@ -15,7 +15,9 @@ namespace CinemaAPI.DataManagement
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
         public DbSet<Rezervation> rezervari { get; set; }
-        
+
+        public DbSet<Promotions> promotions { get; set; }
+
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
