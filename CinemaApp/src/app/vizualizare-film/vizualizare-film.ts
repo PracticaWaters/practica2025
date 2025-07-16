@@ -1,19 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatInputModule } from '@angular/material/input';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { CommonModule } from '@angular/common';
+
 @Component({
+  standalone : false,
   selector: 'app-vizualizare-film',
   templateUrl: './vizualizare-film.html',
   styleUrls: ['./vizualizare-film.css'],
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    MatExpansionModule,
-    MatInputModule,
-    MatMenuModule,
-    CommonModule
-  ]
 })
 export class VizualizareFilm {
   selectedRating: number = 0;

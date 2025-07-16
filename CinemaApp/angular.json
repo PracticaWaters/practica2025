@@ -38,7 +38,10 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.css"
+            ],"styles": ["src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -89,6 +92,10 @@
                 "glob": "**/*",
                 "input": "public"
               }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.css"
             ],
             "styles": ["src/styles.css"]
           }

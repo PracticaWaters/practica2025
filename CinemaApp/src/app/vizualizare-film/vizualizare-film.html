@@ -198,7 +198,7 @@
               </th>
               <td class="border-y border-gray-600 p-3">
                 <div class="flex items-center gap-1">
-                  <span class="text-yellow-400">★★★★☆</span>
+                  <span class="text-[var(--button-cta)]">★★★★☆</span>
                 </div>
               </td>
             </tr>
@@ -230,13 +230,13 @@
     (input)="onTextChange($any($event.target).value)"
     rows="4"
     placeholder="Scrie părerea ta aici..."
-    class="w-full bg-gray-700 text-white p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
+    class="w-full bg-gray-700 text-[var(--light)] p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
   ></textarea>
 
   <!-- Submit Button -->
   <button
     (click)="submitReview()"
-    class="bg-[var(--button-cta)] text-black px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-white transition-all duration-300"
+    class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-2 text-sm cursor-pointer rounded-md font-bold uppercase hover:bg-[var(--light)] transition-all duration-300"
   >
     Trimite review
   </button>

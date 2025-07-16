@@ -3,12 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { CommonModule } from '@angular/common';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
-import { FormsModule } from '@angular/forms';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+
 
 // Import CoreUI modules and directives:
 import {
@@ -28,21 +34,26 @@ import {
   DropdownMenuDirective,
   DropdownItemDirective,
   
+  
 } from '@coreui/angular';
+
+import { ProgramCinema } from './program-cinema/program-cinema';
+
 
 @NgModule({
   declarations: [
     App,
-    
-
+    VizualizareFilm,
+    DetaliiCinema,
   ],
   imports: [
-    VizualizareFilm,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     MatInputModule,
     MatMenuModule,
+    FormsModule,
+    BrowserModule,
     MatExpansionModule,
     CommonModule,
     // CoreUI modules:
@@ -62,7 +73,11 @@ import {
     DropdownToggleDirective,
     NavLinkDirective,
     DropdownMenuDirective,
-    DropdownItemDirective
+    DropdownItemDirective,
+    MatExpansionModule,
+    MatInputModule,
+    MatMenuModule,
+    CommonModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
