@@ -19,7 +19,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CinemaDbContext>();
 builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-
 // Add CORS
 builder.Services.AddCors(options =>
 {
