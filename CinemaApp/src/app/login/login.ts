@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../app-logic/user/auth-service';
-import { Router } from '@angular/router';
 import { User } from '../app-logic/user/user.model';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,29 +11,34 @@ import { User } from '../app-logic/user/user.model';
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+
+export class Login implements OnInit {
+  loginForm!: FormGroup;
+  submitted = false;
   errorMessage: string | null = null;
   user: User | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.user = this.authService.getUser();
-
-      this.loginForm = this.fb.group({
-        email: [this.user?.email, [Validators.required, Validators.email]],
-        password: [this.user?.password, Validators.required],
-      });
-    } else {
-      this.loginForm = this.fb.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-      });
+      
+          this.loginForm = this.fb.group({
+      email: [this.user?.email, [Validators.required, Validators.email]],
+      password: [this.user?.password, [Validators.required, Validators.minLength(6)]]
     }
+  else
+                                         {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+  }
+
+  hasError(controlName: string, errorName: string): boolean {
+    return this.loginForm.get(controlName)?.hasError(errorName) ?? false;
   }
 
   onSubmit(): void {
@@ -43,6 +49,7 @@ export class LoginComponent {
         next: (user: User) => {
           console.log('✅ Login reușit:', user);
           this.router.navigate(['/register']);
+          this.submitted = true;
         },
         error: (error: Error) => {
           this.errorMessage = error.message; // De ex. „Email sau parolă incorecte.”

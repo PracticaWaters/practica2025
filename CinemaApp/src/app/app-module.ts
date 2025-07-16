@@ -1,27 +1,64 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { provideRouter } from '@angular/router';
 import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
-import { AppRoot } from './app-root';
-import { LoginComponent } from './login/login';
-import { Register } from './register/register';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { App } from './app';
+import { AppRoutingModule } from './app-routing-module';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { Login } from './login/login';
+import { Register } from './register/register';
+import { Faq } from './Support/faq/faq';
+import { SupportAdmin } from './Support/support-admin/support-admin';
+import { SupportForm } from './Support/support-form/support-form';
+import { SupportPage } from './Support/support-page/support-page';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [App, Register, LoginComponent],
+  declarations: [
+    App,
+    Register,
+    Login,
+    VizualizareFilm,
+    SupportPage,
+    SupportAdmin,
+    SupportForm,
+    Faq,
+    DetaliiCinema,
+  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
+    BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
+
+    CommonModule,
+    MatInputModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
   providers: [
+          provideAnimations(),
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch())  // ✅ Activează Fetch API
+    provideHttpClient(withFetch()),  // ✅ Activează Fetch API
   ],
   bootstrap: [App],
 })

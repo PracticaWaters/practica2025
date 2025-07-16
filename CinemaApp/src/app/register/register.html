@@ -1,71 +1,61 @@
-<div class="login-container">
-  <div class="login-box">
-    <div class="login-left">
+<div class="register-container">
+  <div class="register-box">
+    <div class="register-left">
       <h2>Înregistrare</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <label for="name">Nume complet</label>
-        <input
-          type="text"
-          id="name"
-          formControlName="name"
-          placeholder="Introduceți numele complet"
-          required
-        />
 
-        <label for="phone">Telefon</label>
-        <input
-          type="tel"
-          id="phone"
-          formControlName="phone"
-          placeholder="Introduceți numărul de telefon"
-          required
-        />
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nume complet</mat-label>
+          <input matInput formControlName="name" placeholder="Introduceți numele complet" />
+          <mat-error *ngIf="hasError('name', 'required')">Numele este obligatoriu</mat-error>
+        </mat-form-field>
 
-        <label for="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          placeholder="Introduceți emailul"
-          required
-        />
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Telefon</mat-label>
+          <input matInput formControlName="phone" placeholder="Introduceți numărul de telefon" />
+          <mat-error *ngIf="hasError('phone', 'required')">Telefonul este obligatoriu</mat-error>
+          <mat-error *ngIf="hasError('phone', 'pattern')">Format invalid pentru telefon</mat-error>
+        </mat-form-field>
 
-        <label for="birthDate">Data nașterii</label>
-        <input
-          type="date"
-          id="birthDate"
-          formControlName="birthDate"
-          required
-        />
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Introduceți emailul" />
+          <mat-error *ngIf="hasError('email', 'required')">Emailul este obligatoriu</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">Email invalid</mat-error>
+        </mat-form-field>
 
-        <label for="password">Parolă</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Introduceți parola"
-          formControlName="password"
-          required
-        />
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data nașterii</mat-label>
+          <input matInput type="date" formControlName="birthDate" />
+          <mat-error *ngIf="hasError('birthDate', 'required')">Data nașterii este obligatorie</mat-error>
+        </mat-form-field>
 
-        <label for="confirm-password">Confirmă parola</label>
-        <input
-          type="password"
-          id="confirm-password"
-          formControlName="confirmPassword"
-          placeholder="Confirmați parola"
-          required
-        />
-        <button type="submit">Înregistrează-te</button>
-        <div *ngIf="errorMessage" class="error-message">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Parolă</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Introduceți parola" />
+          <mat-error *ngIf="hasError('password', 'required')">Parola este obligatorie</mat-error>
+          <mat-error *ngIf="hasError('password', 'minlength')">Minim 6 caractere</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirmă parolă</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirmați parola" />
+          <mat-error *ngIf="hasError('confirmPassword', 'required')">Confirmarea este obligatorie</mat-error>
+          <mat-error *ngIf="registerForm.errors?.['passwordsMismatch']">Parolele nu se potrivesc</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid"> Înregistrează-te </button>
+      
+      <!-- <div *ngIf="errorMessage" class="error-message">
           <p style="color: red">{{ errorMessage }}</p>
-        </div>
+        </div> -->
 
         <p class="register-link">
           Ai deja un cont? <a routerLink="/login">Autentifică-te</a>
         </p>
       </form>
     </div>
-    <div class="login-right">
+    <div class="register-right">
       <img src="logo-500.png" alt="Logo" />
     </div>
   </div>

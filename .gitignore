@@ -353,3 +353,4 @@ CinemaApp/src/translations/template.*
 Thumbs.db
 
 CinemaApp/.angular
+/CinemaAPI/CinemaAPI/Migrations

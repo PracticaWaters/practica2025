@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
+  styleUrls: ['./app.css'],
   standalone: false,
-  styleUrl: './app.css'
+  encapsulation: ViewEncapsulation.None,
 })
 export class App {
-  protected title = 'CinemaApp';
+  isMenuOpen: boolean = false;
+  adminExpanded: boolean = false;
+
+  protected title = 'Liquid Cinema';
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
 }
