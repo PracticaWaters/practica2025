@@ -17,6 +17,7 @@ export class Register implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
+      gender: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{7,15}$/)]],
       email: ['', [Validators.required, Validators.email]],
       birthdate: ['', Validators.required],

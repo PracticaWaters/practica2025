@@ -12,7 +12,8 @@ import { provideAnimations } from '@angular/platform-browser/animations'; // <--
 import { App } from './app';
 import { AppRoutingModule } from './app-routing-module';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatOption, MatOptionModule } from '@angular/material/core';
 
 // Import CoreUI modules and directives:
 import { HttpClientModule } from '@angular/common/http';
@@ -64,6 +65,8 @@ import { Register } from './register/register';
     NavbarModule,
     DropdownModule,
     CollapseModule,
+    MatSelectModule,
+    MatOptionModule,
 
     // CoreUI components and directives:
     NavbarComponent,

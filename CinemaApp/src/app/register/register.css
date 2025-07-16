@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -11,9 +12,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
+/* Container și structură principală */
 .register-container {
   width: 100%;
   max-width: 900px;
@@ -28,18 +30,21 @@
   height: 100%;
   background-color: #83b4ff;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
+/* Stânga - formular */
 .register-left {
   flex: 1;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: visible;
+  position: relative;
   min-height: 0;
   max-height: 100%;
+  z-index: 1;
 }
 
 .register-left h2 {
@@ -49,7 +54,7 @@
 
 .full-width {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .register-left button {
@@ -74,6 +79,7 @@
   cursor: not-allowed;
 }
 
+/* Dreapta - imagine */
 .register-right {
   flex: 1;
   background-color: #fdffe2;
@@ -89,6 +95,7 @@
   object-fit: contain;
 }
 
+/* Link login */
 .register-link {
   margin-top: 15px;
   text-align: center;
@@ -106,15 +113,18 @@
   text-decoration: underline;
 }
 
-input {
+/* Stilizare input și dropdown */
+input,
+mat-select {
   padding-left: 10px;
 }
 
-mat-label {
+mat-form-field .mat-select-trigger {
   padding-left: 10px;
+  padding-right: 30px;
 }
 
-/* Scrollbar styling */
+/* Scrollbar doar pe formular */
 .register-left::-webkit-scrollbar {
   width: 6px;
 }
@@ -128,7 +138,7 @@ mat-label {
   background: transparent;
 }
 
-/* Responsive layout */
+/* Responsivitate */
 @media (max-width: 768px) {
   .register-box {
     flex-direction: column;
@@ -137,16 +147,19 @@ mat-label {
   .register-left,
   .register-right {
     flex: none;
-    height: 50%;
+    height: auto;
     padding: 20px;
   }
 
   .register-left {
-    max-height: 50%;
+    max-height: none;
   }
 
-  .register-right {
-    justify-content: center;
-    align-items: center;
+  mat-form-field.mat-form-field {
+    padding-right: 10px;
+  }
+
+  .mat-form-field-wrapper {
+    padding-right: 36px;
   }
 }

@@ -10,6 +10,16 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Gen</mat-label>
+          <mat-select formControlName="gender" placeholder="Selectați genul">
+          <mat-option value="male">Bărbat</mat-option>
+          <mat-option value="female">Femeie</mat-option>
+          <mat-option value="other">Alt ceva</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('gender', 'required')">Genul este obligatoriu.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Telefon</mat-label>
           <input matInput formControlName="phone" placeholder="Introduceți numărul de telefon" />
           <mat-error *ngIf="hasError('phone', 'required')">Telefonul este obligatoriu</mat-error>
