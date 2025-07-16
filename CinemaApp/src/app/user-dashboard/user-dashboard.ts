@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
 })
 export class UserDashboard {
   cards = [
-    { titlu: 'Casetă 1', descriere: 'Aceasta este prima casetă.' },
-    { titlu: 'Casetă 2', descriere: 'Aceasta este a doua casetă.' },
-    { titlu: 'Casetă 3', descriere: 'Aceasta este a treia casetă.' }
+    { titlu: 'Detalii personale', descriere: 'Adaugă sau modifică informațiile personale ' },
+    { titlu: 'Bilete', descriere: 'Vizualizează și gestionează biletele tale' },
+    { titlu: 'Wishlist', descriere: 'Păstrează filmele preferate într-un singur loc' },
+    { titlu: 'Review-uri', descriere: 'Lasă-ți amprenta în comunitatea cinefilă' }
   ];
 }
