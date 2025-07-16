@@ -22,7 +22,7 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                foreach(Rezervare r in film.Rezervari)
+                foreach(Rezervation r in film.Reservations)
                 {
                     dbContext.rezervari.Attach(r);
 

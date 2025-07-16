@@ -22,8 +22,4 @@
     <None Include="Controllers\CinemaController.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

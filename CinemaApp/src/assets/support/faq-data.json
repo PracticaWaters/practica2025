@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Biletele sunt cu locuri rezervate?",
+    "answer": "Da. Te rugăm să notezi numărul locului de pe bilet. Rezervările online sau telefonice își pierd valabilitatea 30 de minute înainte de începerea spectacolului.",
+    "expanded": true
+  },
+  {
+    "question": "Cât timp înainte de spectacol ar trebui să ajung?",
+    "answer": "Se recomandă să ajungi cu cel puțin 15–20 de minute în avans.",
+    "expanded": false
+  },
+  {
+    "question": "De ce este blocat contul meu și nu mai pot face rezervări?",
+    "answer": "Contul tău poate fi blocat din cauza absențelor repetate sau încălcărilor politicii de anulare.",
+    "expanded": false
+  },
+  {
+    "question": "De ce diferă titlurile filmelor românești de cele în engleză?",
+    "answer": "Titlurile sunt localizate pentru o mai bună înțelegere a publicului sau din motive de marketing.",
+    "expanded": false
+  },
+  {
+    "question": "Ce înseamnă \"Transmisie Live\"?",
+    "answer": "Se referă la o transmisie live a unui eveniment care se întâmplă în timp real.",
+    "expanded": false
+  },
+  {
+    "question": "Cum știu dacă filmul este dublat sau cu subtitrare?",
+    "answer": "Verifică informațiile despre limbă și subtitrare lângă listarea filmului.",
+    "expanded": false
+  },
+  {
+    "question": "Când se publică programul nou de filme?",
+    "answer": "De obicei miercuri pentru weekend-ul următor.",
+    "expanded": false
+  },
+  {
+    "question": "Unde pot găsi prețurile biletelor?",
+    "answer": "Prețurile biletelor sunt disponibile în secțiunea de bilete sau la cinema.",
+    "expanded": false
+  }
+] 
