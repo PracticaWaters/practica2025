@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { User } from '../app-logic/user/user.model';
 import { AuthService } from '../app-logic/user/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,11 @@ export class Register {
 
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group(
       {
         name: ['', Validators.required],
@@ -62,12 +67,14 @@ export class Register {
       userData.isDeleted = false;
 
       console.log('Registering user:', userData);
-      this.authService.register(userData).subscribe(
-        (response: string) => {
+      this.authService.register(userData).subscribe({
+        next: (response: string) => {
           console.log('User registered successfully');
-          this.errorMessage = 'Succesfull'; // Reset error message on success
+          this.errorMessage = null;
+
+          this.router.navigate(['/login']);
         },
-        (error) => {
+        error: (error) => {
           console.error('❌ Registration error:', error);
 
           if (error.status === 0) {
@@ -79,8 +86,8 @@ export class Register {
           } else {
             this.errorMessage = `Eroare server (${error.status}): ${error.message}`;
           }
-        }
-      );
+        },
+      });
     }
   }
 }
