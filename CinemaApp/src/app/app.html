@@ -1,6 +1,10 @@
-<nav class="flex items-center justify-between gap-16 px-10 md:px-30 py-4 h-[60px] bg-[var(--dark)] text-white relative shadow-light z-2">
+<nav
+  class="flex items-center justify-between gap-16 px-10 md:px-30 py-4 h-[60px] bg-[var(--dark)] text-white relative shadow-light z-2"
+>
   <div class="flex gap-4 items-center">
-    <a routerLink="/" class="text-xl font-bold text-[var(--light)]">LiquidCinema</a>
+    <a routerLink="/" class="text-xl font-bold text-[var(--light)]"
+      >LiquidCinema</a
+    >
     <img src="logo-500.png" alt="Logo" class="w-15" />
   </div>
 
@@ -9,7 +13,7 @@
     class="md:hidden w-10 h-10 text-[var(--light)] flex items-center justify-center focus:outline-none cursor-pointer transition-all duration-300"
     (click)="toggleMenu()"
   >
-    <mat-icon class="text-3xl"> {{ isMenuOpen ? 'close' : 'menu' }} </mat-icon>
+    <mat-icon class="text-3xl"> {{ isMenuOpen ? "close" : "menu" }} </mat-icon>
   </button>
 
   <!-- MOBILE MENU -->
@@ -20,14 +24,33 @@
     }"
     class="transition-all duration-300 ease-in-out flex flex-col md:hidden absolute top-[60px] left-0 w-full p-4 bg-[#1A2130] z-50"
   >
-    <a routerLink="/" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Home</a>
-    <a routerLink="/program-cinema" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Program Cinema</a>
-    <a routerLink="/scan" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Recomandari</a>
-    <a routerLink="/add-item" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Profil User</a>
-    <a routerLink="/support" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Suport</a>
-    <a routerLink="/detalii-cinema" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Detalii</a>
+    <a
+      routerLink="/"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      (click)="closeMenu()"
+      >Home</a
+    >
+    <a
+      routerLink="/program-cinema"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      (click)="closeMenu()"
+      >Program Cinema</a
+    >
+    <!-- <a routerLink="/add-item" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]" (click)="closeMenu()">Profil User</a> -->
+    <a
+      routerLink="/support"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      (click)="closeMenu()"
+      >Suport</a
+    >
+    <a
+      routerLink="/detalii-cinema"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      (click)="closeMenu()"
+      >Detalii</a
+    >
 
-    <div>
+    <!-- <div>
       <button
         mat-button
         [matMenuTriggerFor]="adminMenu"
@@ -42,19 +65,42 @@
         <button mat-menu-item routerLink="/administrare-sali" (click)="closeMenu()">Administrare sali</button>
         <button mat-menu-item routerLink="/administrare-promotii" (click)="closeMenu()">Administrare promotii</button>
       </mat-menu>
-    </div>
+    </div> -->
+
+    <!--Logare-->
+    <a
+      routerLink="/login"
+      class="flex items-center gap-2 px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+    >
+      <span>Autentificare</span>
+    </a>
   </div>
 
   <!-- DESKTOP MENU -->
   <div class="hidden md:flex md:flex-row md:items-center md:space-x-6">
-    <a routerLink="/" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Home</a>
-    <a routerLink="/program-cinema" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Program Cinema</a>
-    <a routerLink="/scan" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Recomandari</a>
-    <a routerLink="/add-item" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Profil User</a>
-    <a routerLink="/support" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Suport</a>
-    <a routerLink="/detalii-cinema" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Detalii</a>
+    <a
+      routerLink="/"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      >Home</a
+    >
+    <a
+      routerLink="/program-cinema"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      >Program Cinema</a
+    >
+    <!-- <a routerLink="/add-item" class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]">Profil User</a> -->
+    <a
+      routerLink="/support"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      >Suport</a
+    >
+    <a
+      routerLink="/detalii-cinema"
+      class="px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      >Detalii</a
+    >
 
-    <div>
+    <!-- <div>
       <button
         mat-button
         [matMenuTriggerFor]="adminMenu"
@@ -69,11 +115,22 @@
         <button mat-menu-item routerLink="/administrare-sali">Administrare sali</button>
         <button mat-menu-item routerLink="/administrare-promotii">Administrare promotii</button>
       </mat-menu>
-    </div>
+    </div> -->
+
+    <!--Logare cu icon-->
+    <a
+      routerLink="/login"
+      class="flex items-center gap-2 px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+    >
+      <mat-icon>account_circle</mat-icon>
+      <span>Autentificare</span>
+    </a>
   </div>
 </nav>
 
 <!-- Background + Router -->
-<div class="app-background min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+<div
+  class="app-background min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+>
   <router-outlet></router-outlet>
 </div>
