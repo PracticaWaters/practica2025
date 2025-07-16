@@ -51,5 +51,7 @@ namespace CinemaAPI.Models
         public DateTime ModifiedAt { get; set; }
 
         public bool IsDeleted { get; set; }
+        
+        public ICollection<Wishlist> Wishlists { get; set; }
     }
 }
