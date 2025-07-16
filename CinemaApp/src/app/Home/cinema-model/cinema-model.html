@@ -1,41 +1,11 @@
 <div class="cinema-model-container">
-  <div class="cinema-model-header">
-    <h1>Explorează Sala de Cinema</h1>
-    <p>Fă scroll pentru a explora sala de cinema în 3D</p>
-  </div>
-  
   <div class="cinema-model-viewer">
     <div #rendererContainer class="renderer-container"></div>
-    
+
     <div class="cinema-model-overlay">
       <div class="loading-indicator" *ngIf="!model">
         <div class="spinner"></div>
-        <p>Se încarcă modelul 3D...</p>
-      </div>
-      
-      <div class="controls-info">
-        <p>🎬 Sala de Cinema cu Iluminat Cinematografic!</p>
-        <p>Scroll pentru rotație smooth • Click + drag pentru control manual</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="cinema-model-description">
-    <h2>Despre Sala Noastră</h2>
-    <p>Descoperă sala de cinema în toate detaliile sale. Această experiență interactivă îți permite să explorezi fiecare colț al sălii noastre moderne, cu tehnologie de ultimă generație și design elegant.</p>
-    
-    <div class="features">
-      <div class="feature">
-        <h3>🎬 Ecran IMAX</h3>
-        <p>Tehnologie de proiecție de ultimă generație</p>
-      </div>
-      <div class="feature">
-        <h3>🎵 Sistem Audio Dolby</h3>
-        <p>Sunet surround de înaltă calitate</p>
-      </div>
-      <div class="feature">
-        <h3>🪑 Scaune Premium</h3>
-        <p>Confort maxim pentru experiența ta</p>
+        <p>Loading 3D MODEL...</p>
       </div>
     </div>
   </div>
