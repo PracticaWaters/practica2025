@@ -28,12 +28,24 @@ import {
   
 } from '@coreui/angular';
 import { UserDashboard } from './user-dashboard/user-dashboard';
+import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
+import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
+import { Bilete } from './user-dashboard/pages/bilete/bilete';
+import { Review } from './user-dashboard/pages/review/review';
+import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detalii-personale';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     App,
     VizualizareFilm,
-    UserDashboard
+    UserDashboard,
+    MeniuPrincipal,
+    Wishlist,
+    Bilete,
+    Review,
+    DetaliiPersonale
   ],
   imports: [
     BrowserModule,
@@ -42,6 +54,8 @@ import { UserDashboard } from './user-dashboard/user-dashboard';
     MatMenuModule,
     MatExpansionModule,
     MatIconModule,
+    MatPaginatorModule,
+    MatTableModule,
 
     // CoreUI modules:
     NavbarModule,
