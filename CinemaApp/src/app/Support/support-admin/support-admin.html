@@ -3,7 +3,7 @@
 >
   <div class="items-center pt-12 pb-8">
     <h1 class="text-white text-xl sm:text-6xl font-bold mb-24 text-center">
-      Admin Support Dashboard
+      Panou Admin Suport
     </h1>
 
     <div
@@ -13,7 +13,7 @@
         type="text"
         [(ngModel)]="filtru"
         (input)="aplicaFiltrare()"
-        placeholder="Search in tickets..."
+        placeholder="Caută în tichete..."
         class="w-400px md:w-96 p-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white transition-all"
       />
     </div>
@@ -23,7 +23,7 @@
       <div
         class="animate-spin rounded-full h-12 w-12 border-b-2 border-white"
       ></div>
-      <span class="text-white ml-4">Loading tickets...</span>
+      <span class="text-white ml-4">Se încarcă tichetele...</span>
     </div>
 
     <!-- Error State -->
@@ -39,18 +39,18 @@
       class="mx-auto bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl overflow-hidden border border-white/20 w-3/4"
     >
       <h2 class="text-white text-2xl font-bold p-6 border-b border-white/10">
-        Received tickets
+        Tichete primite
       </h2>
       <div class="overflow-x-auto">
         <table class="min-w-full text-white text-left text-sm">
           <thead class="bg-white/10 border-b border-white/20 text-gray-300">
             <tr>
-              <th class="px-4 py-4">Name</th>
+              <th class="px-4 py-4">Nume</th>
               <th class="px-4 py-4">Email</th>
-              <th class="px-4 py-4">Message</th>
-              <th class="px-4 py-4">Date</th>
+              <th class="px-4 py-4">Mesaj</th>
+              <th class="px-4 py-4">Data</th>
               <th class="px-4 py-4">Status</th>
-              <th class="px-4 py-4">Actions</th>
+              <th class="px-4 py-4">Acțiuni</th>
             </tr>
           </thead>
           <tbody>
@@ -74,13 +74,13 @@
                   (click)="toggleTicketStatus(ticket)"
                   class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors"
                 >
-                  Change Status
+                  Schimbă Status
                 </button>
               </td>
             </tr>
             <tr *ngIf="ticketeFiltrate.length === 0">
               <td colspan="7" class="text-center py-6 text-gray-400">
-                No tickets found
+                Nu s-au găsit tichete
               </td>
             </tr>
           </tbody>
@@ -89,7 +89,7 @@
 
       <!-- PAGINARE -->
       <div class="flex justify-between items-center p-6 text-white">
-        <p class="text-sm">Page {{ paginaCurenta }} / {{ totalPagini() }}</p>
+        <p class="text-sm">Pagina {{ paginaCurenta }} / {{ totalPagini() }}</p>
         <div class="flex gap-2">
           <button
             (click)="paginaCurenta = paginaCurenta - 1"
