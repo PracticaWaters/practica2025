@@ -27,6 +27,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddDbContext<CinemaDbContext>(); // DO NOT REMOVE THIS 
 
 builder.Services.AddSwaggerGen(options =>
 {

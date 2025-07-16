@@ -5,28 +5,28 @@ namespace CinemaAPI.DataManagement;
 
 public class WishlistDataOps
 {
-    private readonly CinemaDbContext dbContext;
+    private readonly CinemaDbContext _dbContext;
 
-    public WishlistDataOps()
+    public WishlistDataOps(CinemaDbContext dbContext)
     {
-        dbContext = new CinemaDbContext();
+        this._dbContext = dbContext;
     }
     
     public Wishlist[] GetWishlists()
     {
-        return dbContext.wishlists.Include(x => x.User).Include(x => x.Film).ToArray();
+        return _dbContext.wishlists.Include(x => x.User).Include(x => x.Film).ToArray();
     }
     
     public void Add(Wishlist wishlist)
     {
         try
         {
-            dbContext.Attach(wishlist.User);
-            dbContext.Attach(wishlist.Film);
-            dbContext.Entry(wishlist).Property("UserId").CurrentValue = wishlist.User.Id;
-            dbContext.Entry(wishlist).Property("FilmId").CurrentValue = wishlist.Film.Id;
-            dbContext.wishlists.Add(wishlist);
-            dbContext.SaveChanges();
+            _dbContext.Attach(wishlist.User);
+            _dbContext.Attach(wishlist.Film);
+            _dbContext.Entry(wishlist).Property("UserId").CurrentValue = wishlist.User.Id;
+            _dbContext.Entry(wishlist).Property("FilmId").CurrentValue = wishlist.Film.Id;
+            _dbContext.wishlists.Add(wishlist);
+            _dbContext.SaveChanges();
         }
         catch (Exception ex)
         {
@@ -38,8 +38,8 @@ public class WishlistDataOps
     {
         try
         {
-            dbContext.wishlists.Update(wishlist);
-            dbContext.SaveChanges();
+            _dbContext.wishlists.Update(wishlist);
+            _dbContext.SaveChanges();
         }
         catch (Exception ex)
         {
@@ -53,8 +53,8 @@ public class WishlistDataOps
         {
             if (wishlist != null)
             {
-                dbContext.wishlists.Remove(wishlist);
-                dbContext.SaveChanges();
+                _dbContext.wishlists.Remove(wishlist);
+                _dbContext.SaveChanges();
             }
             else
             {
@@ -69,7 +69,7 @@ public class WishlistDataOps
     
     public Wishlist[] GetByUser(int userId)
     {
-        return dbContext.wishlists
+        return _dbContext.wishlists
             .Include(x => x.User)
             .Include(x => x.Film)
             .Where(w => w.User.Id == userId)
@@ -78,7 +78,7 @@ public class WishlistDataOps
     
     public Wishlist? GetByUserAndFilmId(int userId, int filmId)
     {
-        return dbContext.wishlists
+        return _dbContext.wishlists
             .Include(x => x.User)
             .Include(x => x.Film)
             .FirstOrDefault(w => w.User.Id == userId && w.Film.Id == filmId);

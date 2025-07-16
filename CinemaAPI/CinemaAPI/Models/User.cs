@@ -52,6 +52,6 @@ namespace CinemaAPI.Models
 
         public bool IsDeleted { get; set; }
         
-        public ICollection<Wishlist> Wishlists { get; set; }
+        public List<Wishlist> Wishlists { get; set; }
     }
 }
