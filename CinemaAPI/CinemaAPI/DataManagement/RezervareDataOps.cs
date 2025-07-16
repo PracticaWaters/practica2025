@@ -7,9 +7,9 @@ namespace CinemaAPI.DataManagement
     {
         private CinemaDbContext dbContext;
 
-        public RezervareDataOps()
+        public RezervareDataOps(CinemaDbContext context)
         {
-            dbContext = new CinemaDbContext();
+            dbContext = context;
         }
 
         public Rezervation[] GetRezervari()

@@ -13,9 +13,9 @@ namespace CinemaAPI.Controllers
         private readonly FilmDataOps filmDataOps;
         private readonly UserDataOps userDataOps;
 
-        public RezervareController()
+        public RezervareController(CinemaDbContext dbContext)
         {
-            rezervareDataOps = new RezervareDataOps();
+            rezervareDataOps = new RezervareDataOps(dbContext);
         }
 
         [HttpGet]
