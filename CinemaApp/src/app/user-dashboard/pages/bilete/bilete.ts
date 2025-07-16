@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,6 +15,7 @@ interface Bilet {
   standalone: false,
   templateUrl: './bilete.html',
   styleUrl: './bilete.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Bilete implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
