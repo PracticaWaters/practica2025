@@ -1,4 +1,4 @@
-<div>
+<div class="shadow-lg rounded-xl">
   <mat-form-field appearance="fill" style="width: 100%">
     <mat-label>Caută</mat-label>
     <input
@@ -37,7 +37,10 @@
   </table>
 
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+  class="custom-paginator"
+  [length]="100"
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons>
+</mat-paginator>
+
 </div>

@@ -1,5 +1,5 @@
 .vezi-bilet {
-    background-color: #5a72a0;
+  background-color: #5a72a0;
   color: white;          /* change text color */
   font-weight: bold;   /* make text bold */
   padding: 5px;
@@ -10,3 +10,8 @@
 .vezi-bilet:hover {
     background-color: #323c50;
 }
+
+*{
+  color: white;
+}
+
