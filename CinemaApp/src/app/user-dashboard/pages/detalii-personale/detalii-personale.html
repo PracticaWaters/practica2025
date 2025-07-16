@@ -1,1 +1,35 @@
-<p>detalii-personale works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- Nume (pe un rând) -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nume</mat-label>
+    <input matInput formControlName="nume" />
+  </mat-form-field>
+
+  <!-- Email și Telefon pe același rând -->
+  <div class="row">
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Telefon</mat-label>
+      <input matInput formControlName="telefon" type="tel" />
+    </mat-form-field>
+  </div>
+
+  <!-- Butoane -->
+  <div class="buttons">
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="confirmAndSubmit()"
+    >
+      Salvează
+    </button>
+    <button mat-stroked-button color="warn" type="button" (click)="onCancel()">
+      Anulează
+    </button>
+  </div>
+</form>

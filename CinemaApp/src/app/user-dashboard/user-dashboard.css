@@ -79,7 +79,6 @@
 .dashboard-content {
   flex: 1;
   padding: 30px;
-  color: #333;
   overflow-y: auto;
   border-right: 1px solid rgba(90, 114, 160, 0.2);
 }
@@ -107,11 +106,14 @@
 } */
 
 .logoutbottom mat-icon {
-    color: white; 
     margin-right: 10px;
 }
 
 li {
     display: flex;
     align-items: center;
+}
+
+* {
+  color: white;
 }

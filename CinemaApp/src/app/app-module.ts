@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 // Import CoreUI modules and directives:
 import {
   NavbarModule,
@@ -36,6 +37,8 @@ import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detal
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/prompt-parola-component/prompt-parola-component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { MatSortModule } from '@angular/material/sort';
     Wishlist,
     Bilete,
     Review,
-    DetaliiPersonale
+    DetaliiPersonale,
+    PromptParolaComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
 
     // CoreUI modules:
     NavbarModule,
