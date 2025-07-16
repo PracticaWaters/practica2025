@@ -10,7 +10,7 @@ export class FilmDtoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  addReview(filmDTO: FilmDTO): void {
+  addFilm(filmDTO: FilmDTO): void {
     this.httpClient
       .post<FilmDTO>(this.apiUrl, filmDTO)
       .subscribe((data) => {
