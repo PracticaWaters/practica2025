@@ -1,54 +1,43 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
 
-import { MatMenuModule } from '@angular/material/menu';
-import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms'
-import { AppRoutingModule } from './app-routing-module';
+import { MatMenuModule } from '@angular/material/menu';
 import { App } from './app';
-import { AppRoot } from './app-root';
+import { AppRoutingModule } from './app-routing-module';
 import { Login } from './login/login';
 import { Register } from './register/register';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { CommonModule } from '@angular/common';
-import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 
 // Import CoreUI modules and directives:
 import {
-  NavbarModule,
-  DropdownModule,
-  CollapseModule,
-  NavbarComponent,
-  ContainerComponent,
-  NavbarBrandDirective,
-  NavbarTogglerDirective,
   CollapseDirective,
-  NavbarNavComponent,
-  NavItemComponent,
+  CollapseModule,
+  ContainerComponent,
   DropdownComponent,
-  DropdownToggleDirective,
-  NavLinkDirective,
-  DropdownMenuDirective,
   DropdownItemDirective,
-  
-  
+  DropdownMenuDirective,
+  DropdownModule,
+  DropdownToggleDirective,
+  NavbarBrandDirective,
+  NavbarComponent,
+  NavbarModule,
+  NavbarNavComponent,
+  NavbarTogglerDirective,
+  NavItemComponent,
+  NavLinkDirective,
 } from '@coreui/angular';
 
-import { ProgramCinema } from './program-cinema/program-cinema';
 
 
 @NgModule({
@@ -90,7 +79,7 @@ import { ProgramCinema } from './program-cinema/program-cinema';
     MatExpansionModule,
     MatInputModule,
     MatMenuModule,
-    CommonModule
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatFormFieldModule,

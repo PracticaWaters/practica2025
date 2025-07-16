@@ -14,6 +14,8 @@ const routes: Routes = [
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-sali", component:AdministrareSali},
   // {path: "administrare-promotii", component:AdministrarePromotii}
+  {path: "login", component: Login},
+  {path: "register", component: Register},
   {path: "vizualizare-film", component:VizualizareFilm},
   {path: "detalii-cinema", component:DetaliiCinema},
   {path: "program-cinema", component:ProgramCinema},
@@ -23,12 +25,7 @@ import { Login } from './login/login';
 import { Register } from './register/register';
 
 
-const routes: Routes = [
-  // adaugă rutele tale
-  {path: "login", component: Login},
-  {path: "register", component: Register},
-  {path: "", redirectTo: "/login", pathMatch: "full"},
-];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
