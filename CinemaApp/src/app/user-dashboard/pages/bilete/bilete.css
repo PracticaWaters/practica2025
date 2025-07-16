@@ -1,25 +1,12 @@
-mat-paginator {
-  background-color: #842121;
-  padding: 10px;
-}
-
-.mat-paginator-range-label {
-  color: #333;
-  font-weight: bold;
-}
-
-.mat-paginator-icon-button {
-  color: #ffffff;
-}
-
-.mat-paginator-page-size {
-  font-size: 14px;
-  color: #555;
-}
-
 .vezi-bilet {
-  color: red !important;          /* change text color */
+    background-color: #5a72a0;
+  color: white;          /* change text color */
   font-weight: bold;   /* make text bold */
-  text-decoration: none; /* remove underline */
+  padding: 5px;
+  border-radius: 15px;
   /* add any other styles you want */
+}
+
+.vezi-bilet:hover {
+    background-color: #323c50;
 }
