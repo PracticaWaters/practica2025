@@ -14,6 +14,7 @@ namespace CinemaAPI.Controllers
         private readonly FilmDataOps FilmDataOps;
         private readonly ActorDataOps ActorDataOps;
         private readonly ReviewDataOps ReviewDataOps;
+        private readonly RezervareDataOps RezervareDataOps;
 
         public FilmController(CinemaDbContext dbContext)
         {
@@ -134,6 +135,7 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
+                Rezervari = new List<Rezervare>()
             };
 
             foreach (var actorId in dto.ActorIds)
@@ -147,6 +149,12 @@ namespace CinemaAPI.Controllers
                 var review = ReviewDataOps.GetReviewById(reviewId)
                           ?? throw new ArgumentException($"Review with Id {reviewId} not found.");
                 film.Reviews.Add(review);
+            }
+            foreach (var rezervareId in dto.RezervariId)
+            {
+                var rezervare = RezervareDataOps.GetRezervareById(rezervareId)
+                          ?? throw new ArgumentException($"Rezervare with Id {rezervareId} not found.");
+                film.Rezervari.Add(rezervare);
             }
 
             return film;

@@ -46,6 +46,7 @@ namespace CinemaAPI.Models
         public DateTime ReleaseDate { get; set; }
         public string AgeRating { get; set; }
         public List<Review>? Reviews{get;set;}
+        public List<Rezervare>? Rezervari { get; set; }
         public TimeSpan Duration { get; set; }
         //public List<Reservations> Reservations { get; set; }
         public DateTime StartRunningDate { get; set; }

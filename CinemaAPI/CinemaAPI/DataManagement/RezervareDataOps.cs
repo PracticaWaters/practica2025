@@ -21,9 +21,10 @@ namespace CinemaAPI.DataManagement
         public void AddRezervare(Rezervare rezervare)
         {
             try
-            {
+            {/*
                 dbContext.films.Attach(rezervare.Film);
                 dbContext.users.Attach(rezervare.User);
+                */
                 dbContext.rezervari.Add(rezervare);
                 dbContext.SaveChanges();
             }

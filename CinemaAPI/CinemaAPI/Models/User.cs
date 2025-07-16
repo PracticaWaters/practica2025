@@ -42,7 +42,7 @@ namespace CinemaAPI.Models
 
         public List<Rezervare>? Rezervari { get; set; }
 
-        public List<Review> Reviews { get; set; }
+        public List<Review>? Reviews { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }

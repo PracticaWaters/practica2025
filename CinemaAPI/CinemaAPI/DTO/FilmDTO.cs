@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public List<int> ActorIds { get; set; } = new();
+
+        public List<int> RezervariId { get; set; } = new();
         public List<int> RewiesIds { get; set; } = new();
         public string Image { get; set; }
         public string Trailer { get; set; }
