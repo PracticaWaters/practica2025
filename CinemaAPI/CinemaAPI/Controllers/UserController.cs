@@ -8,11 +8,11 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/user/")]
     public class UserController : Controller
     {
-        private readonly UserDataOps userDataOps;
+        private readonly UserDataOps _userDataOps;
        
-        public UserController()
+        public UserController(CinemaDbContext cinemaDbContext)
         {
-            userDataOps = new UserDataOps();
+            _userDataOps = new UserDataOps(cinemaDbContext);
         }
 
 
@@ -21,7 +21,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                userDataOps.AddUser(user);
+                _userDataOps.AddUser(user);
                 return Ok();
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                userDataOps.UpdateUser(user);
+                _userDataOps.UpdateUser(user);
                 return Ok();
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                userDataOps.DeleteUser(user);
+                _userDataOps.DeleteUser(user);
                 return Ok();
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var user = userDataOps.GetUsers();
+                var user = _userDataOps.GetUsers();
                 return Ok(user);
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var user = userDataOps.GetUserById(id);
+                var user = _userDataOps.GetUserById(id);
                 if (user == null)
                     return NotFound($"User with ID {id} was not found.");
                 return Ok(user);
@@ -97,7 +97,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var user = userDataOps.GetUserByEmail(email);
+                var user = _userDataOps.GetUserByEmail(email);
                 if (user == null)
                     return NotFound($"User with email {email} was not found.");
                 return Ok(user);
@@ -114,7 +114,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var user = userDataOps.GetUserByEmailAndPassword(email, password);
+                var user = _userDataOps.GetUserByEmailAndPassword(email, password);
                 if (user == null)
                     return NotFound($"User was not found.");
                 return Ok(user);
