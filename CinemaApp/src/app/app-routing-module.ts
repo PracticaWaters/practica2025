@@ -8,6 +8,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { CinemaModel } from './Home/cinema-model/cinema-model';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -21,6 +22,7 @@ const routes: Routes = [
   // {path: "administrare-promotii", component:AdministrarePromotii}
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
+  { path: 'cinema-model', component: CinemaModel },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
