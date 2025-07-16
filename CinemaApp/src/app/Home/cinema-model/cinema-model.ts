@@ -30,21 +30,24 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
   private animationId!: number;
 
   private animationPath: THREE.Vector3[] = [
-    new THREE.Vector3(0, 2, 3), // Start position - inside the cinema
-    new THREE.Vector3(-2, 2, 2), // Left side - higher position
-    new THREE.Vector3(-3, 2, 0), // Back left - higher position
-    new THREE.Vector3(-2, 1.5, -2), // Back - higher position
-    new THREE.Vector3(0, 1.5, -3), // Back center - higher position
-    new THREE.Vector3(2, 1.5, -2), // Back right - higher position
-    new THREE.Vector3(3, 2, 0), // Right side - higher position
-    new THREE.Vector3(2, 2, 2), // Front right - higher position
-    new THREE.Vector3(0, 2, 3), // Return to start
+    new THREE.Vector3(0, 1.8, 2), // Start position - horizontal view
+    new THREE.Vector3(-1.5, 1.8, 1.5), // Left side - horizontal
+    new THREE.Vector3(-2, 1.8, 0), // Back left - horizontal
+    new THREE.Vector3(-1.5, 1.5, -1.5), // Back - slightly lower
+    new THREE.Vector3(0, 1.5, -2), // Back center - slightly lower
+    new THREE.Vector3(1.5, 1.5, -1.5), // Back right - slightly lower
+    new THREE.Vector3(2, 1.8, 0), // Right side - horizontal
+    new THREE.Vector3(1.5, 1.8, 1.5), // Front right - horizontal
+    new THREE.Vector3(0, 1.8, 2), // Return to start
   ];
 
   private currentPathIndex = 0;
   private targetPathIndex = 0;
   private animationProgress = 0;
   private scrollProgress = 0;
+  private scrollHandler: (() => void) | null = null;
+  private initialCameraAngle = 0; // Store initial camera angle
+  private isScrollStarted = false; // Track if scroll animation has started
 
   ngOnInit(): void {
     this.initThreeJS();
@@ -63,6 +66,9 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     if (this.renderer) {
       this.renderer.dispose();
     }
+    if (this.scrollHandler) {
+      window.removeEventListener('scroll', this.scrollHandler);
+    }
   }
 
   private initThreeJS(): void {
@@ -77,7 +83,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
       0.1,
       1000
     );
-    this.camera.position.set(0, 2.5, 3); // Start at a safe height
+    this.camera.position.set(0, 1.8, 2); // Start at lower height for horizontal view
 
     // Renderer setup - high quality
     this.renderer = new THREE.WebGLRenderer({
@@ -330,87 +336,76 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupScrollAnimation(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const rect = entry.boundingClientRect;
-            const scrollTop =
-              window.pageYOffset || document.documentElement.scrollTop;
-            const elementTop = rect.top + scrollTop;
-            const elementHeight = rect.height;
-            const windowHeight = window.innerHeight;
+    // Use scroll event instead of IntersectionObserver for smoother control
+    this.scrollHandler = () => {
+      const element = this.rendererContainer.nativeElement;
+      const rect = element.getBoundingClientRect();
+      const elementTop = rect.top;
+      const elementHeight = rect.height;
+      const windowHeight = window.innerHeight;
 
-            // Calculate scroll progress (0 to 1)
-            this.scrollProgress = Math.max(
-              0,
-              Math.min(
-                1,
-                (scrollTop + windowHeight - elementTop) /
-                  (elementHeight + windowHeight)
-              )
-            );
+      // Calculate how much of the element is visible
+      const visibleHeight = Math.min(elementHeight, windowHeight);
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (windowHeight - elementTop) / (visibleHeight + windowHeight)
+      ));
 
-            // Map scroll progress to animation path with smoother transitions
-            const targetIndex = this.scrollProgress * (this.animationPath.length - 1);
-            this.targetPathIndex = Math.floor(targetIndex);
-            
-            // Add smooth interpolation for sub-index positions
-            if (targetIndex - Math.floor(targetIndex) > 0.1) {
-              this.animationProgress = targetIndex - Math.floor(targetIndex);
-            }
-          }
-        });
-      },
-      {
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-        rootMargin: '-50px 0px -50px 0px',
+      this.scrollProgress = scrollProgress;
+      
+      // If this is the first time scrolling, capture the current camera angle
+      if (!this.isScrollStarted && scrollProgress > 0.01) {
+        this.captureInitialCameraAngle();
+        this.isScrollStarted = true;
       }
-    );
+      
+      // Reset if user scrolls back to top
+      if (this.isScrollStarted && scrollProgress < 0.01) {
+        this.isScrollStarted = false;
+      }
+      
+      // Map scroll progress to camera rotation starting from initial position
+      const rotationAngle = this.initialCameraAngle + (scrollProgress * Math.PI * 2);
+      
+      // Update camera position based on rotation
+      if (this.model) {
+        const radius = 2; // Closer distance from model center
+        const height = 1.8; // Lower camera height for more horizontal view
+        
+        this.camera.position.x = Math.sin(rotationAngle) * radius;
+        this.camera.position.z = Math.cos(rotationAngle) * radius;
+        this.camera.position.y = height;
+        
+        // Look at a point slightly above the model center for more horizontal view
+        const lookAtTarget = this.model.position.clone();
+        lookAtTarget.y += 2; // Look slightly above the model center
+        
+        this.camera.lookAt(lookAtTarget);
+      }
+    };
 
-    observer.observe(this.rendererContainer.nativeElement);
+    window.addEventListener('scroll', this.scrollHandler);
+  }
+
+  private captureInitialCameraAngle(): void {
+    if (this.model) {
+      // Calculate current camera angle based on its position relative to model center
+      const modelCenter = this.model.position;
+      const cameraToModel = new THREE.Vector3();
+      cameraToModel.subVectors(this.camera.position, modelCenter);
+      
+      // Calculate angle in XZ plane (horizontal rotation)
+      this.initialCameraAngle = Math.atan2(cameraToModel.x, cameraToModel.z);
+      
+      // Ensure angle is positive (0 to 2π)
+      if (this.initialCameraAngle < 0) {
+        this.initialCameraAngle += Math.PI * 2;
+      }
+    }
   }
 
     private updateCameraAnimation(): void {
-    if (this.currentPathIndex !== this.targetPathIndex) {
-      this.animationProgress += 0.015; // Slower, smoother animation
-      
-      if (this.animationProgress >= 1) {
-        this.currentPathIndex = this.targetPathIndex;
-        this.animationProgress = 0;
-      } else {
-        // Smooth interpolation between path points
-        const currentPos = this.animationPath[this.currentPathIndex];
-        const nextPos =
-          this.animationPath[
-            Math.min(this.currentPathIndex + 1, this.animationPath.length - 1)
-          ];
-
-        this.camera.position.lerpVectors(
-          currentPos,
-          nextPos,
-          this.animationProgress
-        );
-
-        // Ensure camera doesn't go too low
-        if (this.camera.position.y < 1.0) {
-          this.camera.position.y = 1.0;
-        }
-
-        // Smooth rotation around the model based on scroll progress
-        if (this.model) {
-          const targetLookAt = new THREE.Vector3();
-          targetLookAt.copy(this.model.position);
-          
-          // Add some offset based on scroll progress for dynamic viewing
-          const scrollOffset = this.scrollProgress * Math.PI * 2;
-          targetLookAt.x += Math.sin(scrollOffset) * 0.5;
-          targetLookAt.z += Math.cos(scrollOffset) * 0.5;
-          
-          this.camera.lookAt(targetLookAt);
-        }
-      }
-    }
+    // Only handle manual controls, scroll animation is handled separately
+    // This function is now simplified to avoid conflicts with scroll animation
   }
 
   private onWindowResize(): void {
