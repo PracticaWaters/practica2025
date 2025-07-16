@@ -1,22 +1,24 @@
 .card {
-  background-color: white;
   padding: 20px;
   width: 95%;
   margin-bottom: 20px;
-  transition: background-color 0.3s ease-in-out;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
-  background-color: #d7e7fa;
+  /* background-color: #d7e7fa; */
   cursor: pointer;
 }
 
-.card h3 {
+.card h2 {
   margin-top: 0;
-  color: #5a72a0;
+  /* color: #5a72a0; */
+  color: white;
 }
 
 .card p {
-  color: #666;
+  color: rgb(225, 225, 225);
   font-size: 14px;
 }
