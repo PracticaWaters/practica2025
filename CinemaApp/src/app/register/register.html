@@ -3,6 +3,7 @@
     <div class="register-left">
       <h2>Înregistrare</h2>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nume complet</mat-label>
           <input matInput formControlName="name" placeholder="Introduceți numele complet" />
@@ -35,8 +36,8 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Data nașterii</mat-label>
-          <input matInput type="date" formControlName="birthdate" />
-          <mat-error *ngIf="hasError('birthdate', 'required')">Data nașterii este obligatorie</mat-error>
+          <input matInput type="date" formControlName="birthDate" />
+          <mat-error *ngIf="hasError('birthDate', 'required')">Data nașterii este obligatorie</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
@@ -54,6 +55,10 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid"> Înregistrează-te </button>
+      
+      <!-- <div *ngIf="errorMessage" class="error-message">
+          <p style="color: red">{{ errorMessage }}</p>
+        </div> -->
 
         <p class="register-link">
           Ai deja un cont? <a routerLink="/login">Autentifică-te</a>

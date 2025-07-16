@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from '../app-logic/user/auth-service';
+import { User } from '../app-logic/user/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,19 +9,32 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.css'],
 })
+
 export class Login implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
+  errorMessage: string | null = null;
+  user: User | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.user = this.authService.getUser();
+      
+          this.loginForm = this.fb.group({
+      email: [this.user?.email, [Validators.required, Validators.email]],
+      password: [this.user?.password, [Validators.required, Validators.minLength(6)]]
+    }
+  else
+                                         {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
   }
 
   hasError(controlName: string, errorName: string): boolean {
@@ -27,17 +42,21 @@ export class Login implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
+    if (this.loginForm.valid) {
+      const credentials = this.loginForm.value;
 
-    if (this.loginForm.invalid) {
-      return;
+      this.authService.login(credentials).subscribe({
+        next: (user: User) => {
+          console.log('✅ Login reușit:', user);
+          this.router.navigate(['/register']);
+          this.submitted = true;
+        },
+        error: (error: Error) => {
+          this.errorMessage = error.message; // De ex. „Email sau parolă incorecte.”
+        },
+      });
+    } else {
+      this.errorMessage = 'Formular invalid. Verifică emailul și parola.';
     }
-
-    const { email, password } = this.loginForm.value;
-
-    this.http.post('/api/auth/login', { email, password }).subscribe({
-      next: () => this.router.navigate(['/dashboard']), // Înlocuiește cu ruta ta reală
-      error: err => console.error('Login failed', err)
-    });
   }
 }

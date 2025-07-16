@@ -1,3 +1,5 @@
+import { User } from '../app-logic/user/user.model';
+import { AuthService } from '../app-logic/user/auth-service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class Register implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -38,10 +40,37 @@ export class Register implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const { confirmPassword, ...payload } = this.registerForm.value;
-      this.http.post('/api/auth/register', payload).subscribe({
-        next: () => this.router.navigate(['/login']),
-        error: err => console.error('Registration failed', err)
+      console.log('Form valid');
+
+      const userData: User = new User(this.registerForm.value);
+      userData.avatarUrl = 'https://example.com/default-avatar.png'; // Set default avatar URL
+      userData.gender = 'feminin';
+      userData.role = 0;
+      userData.createdAt = new Date();
+      userData.modifiedAt = new Date();
+      userData.isDeleted = false;
+
+      console.log('Registering user:', userData);
+      this.authService.register(userData).subscribe({
+        next: (response: string) => {
+          console.log('User registered successfully');
+          this.errorMessage = null;
+
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('❌ Registration error:', error);
+
+          if (error.status === 0) {
+            this.errorMessage = 'Nu se poate conecta la server.';
+          } else if (error.status === 400) {
+            this.errorMessage = 'Date invalide. Verificați formularul.';
+          } else if (error.status === 409) {
+            this.errorMessage = 'Emailul este deja înregistrat.';
+          } else {
+            this.errorMessage = `Eroare server (${error.status}): ${error.message}`;
+          }
+        },
       });
     }
   }

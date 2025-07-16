@@ -1,5 +1,4 @@
 ﻿using CinemaAPI.DataManagement;
-using CinemaAPI.DTO;
 using CinemaAPI.DTOs;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;

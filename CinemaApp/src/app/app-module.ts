@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
+import { provideRouter } from '@angular/router';
+import { AppRoutingModule } from './app-routing-module';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -61,6 +65,7 @@ import { SupportPage } from './Support/support-page/support-page';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+
     CommonModule,
     MatInputModule,
     MatMenuModule,
@@ -92,7 +97,11 @@ import { SupportPage } from './Support/support-page/support-page';
     MatNativeDateModule,
     MatSelectModule,
   ],
-  providers: [provideAnimations()],
+  providers: [
+          provideAnimations(),
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient(withFetch()),  // ✅ Activează Fetch API
+  ],
   bootstrap: [App],
 })
 export class AppModule {}
