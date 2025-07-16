@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from './user.model';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse } from './login-response';
 
 @Injectable({
@@ -20,7 +20,26 @@ export class AuthService {
   }
 
   register(userData: Partial<User>): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/register`, userData);
+    return this.http.post<User>(`${this.apiUrl}/register`, userData).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Registration failed:', error);
+
+        let errorMsg = 'An unknown error occurred.';
+
+        if (error.status === 0) {
+          errorMsg = 'Cannot connect to server.';
+        } else if (error.status === 400) {
+          errorMsg = 'Invalid data. Please check your form.';
+        } else if (error.status === 409) {
+          errorMsg = 'Email already registered.';
+        } else if (error.status >= 500) {
+          errorMsg = 'Server error. Please try again later.';
+        }
+
+        // Throw formatted error to component
+        return throwError(() => new Error(errorMsg));
+      })
+    );
   }
 
   login(credentials: { email: string; password: string }): Observable<User> {
@@ -33,6 +52,7 @@ export class AuthService {
 
           // Emiterea userului în fluxul aplicației
           this.user.next(response.user);
+          console.log('User logged in:', response.user);
         }),
         // Emitem doar user-ul către subscribe (nu întregul LoginResponse)
         map((response: LoginResponse) => response.user)

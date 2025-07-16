@@ -37,7 +37,7 @@ namespace CinemaAPI.Controllers
             }
             catch
             {
-                return StatusCode(500, "Error registering user.");
+                return BadRequest("Error registering user.");
             }
         }
 

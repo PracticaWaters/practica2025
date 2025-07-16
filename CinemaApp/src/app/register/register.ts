@@ -20,6 +20,8 @@ export class Register {
   user!: User;
   userId!: number;
 
+  errorMessage: string | null = null;
+
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group(
       {
@@ -32,7 +34,7 @@ export class Register {
           ],
         ],
         email: ['', [Validators.required, Validators.email]],
-        birthdate: ['', Validators.required],
+        birthDate: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
       },
@@ -51,15 +53,34 @@ export class Register {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const userData: User = this.registerForm.value;
+      console.log('Form valid');
+
+      const userData: User = new User(this.registerForm.value);
+      userData.avatarUrl = 'https://example.com/default-avatar.png'; // Set default avatar URL
+      userData.gender = 'feminin';
+      userData.role = 0;
+      userData.createdAt = new Date();
+      userData.modifiedAt = new Date();
+      userData.isDeleted = false;
+
+      console.log('Registering user:', userData);
       this.authService.register(userData).subscribe(
         (response: User) => {
           this.user = response;
-          this.userId = response.id;
           console.log('User registered successfully:', this.user);
         },
         (error) => {
-          console.error('Registration failed:', error);
+          console.error('❌ Registration error:', error);
+
+          if (error.status === 0) {
+            this.errorMessage = 'Nu se poate conecta la server.';
+          } else if (error.status === 400) {
+            this.errorMessage = 'Date invalide. Verificați formularul.';
+          } else if (error.status === 409) {
+            this.errorMessage = 'Emailul este deja înregistrat.';
+          } else {
+            this.errorMessage = `Eroare server (${error.status}): ${error.message}`;
+          }
         }
       );
     }
