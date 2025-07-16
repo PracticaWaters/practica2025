@@ -12,10 +12,13 @@ export class AuthService {
   private apiUrl = 'https://localhost:25867/api/cinema';
   private user = new BehaviorSubject<User | null>(null);
 
+  private readonly USER_KEY = 'user';
+  private readonly TOKEN_KEY = 'token';
+
   constructor(private http: HttpClient) {
-    const storedUser = localStorage.getItem('currentUser');
+    const storedUser = this.getUser();
     if (storedUser) {
-      this.user.next(JSON.parse(storedUser));
+      this.user.next(storedUser);
     }
   }
 
@@ -25,6 +28,9 @@ export class AuthService {
         responseType: 'text',
       })
       .pipe(
+        tap(() => {
+          localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
+        }),
         catchError((error: HttpErrorResponse) => {
           console.error('Registration failed:', error);
 
@@ -50,8 +56,8 @@ export class AuthService {
       .post<LoginResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
         tap((response: LoginResponse) => {
-          localStorage.setItem('currentUser', JSON.stringify(response.user));
-          localStorage.setItem('token', response.token);
+          this.saveAuthData(response.user, response.token);
+
           this.user.next(response.user);
           console.log('User logged in:', response.user);
         }),
@@ -72,14 +78,26 @@ export class AuthService {
       );
   }
 
-  logout(): void {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('token');
-    this.user.next(null);
+  saveAuthData(user: User, token: string): void {
+    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
-  // read-only observable for the current user
-  get currentUser$(): Observable<User | null> {
-    return this.user.asObservable();
+  getUser(): User | null {
+    const data = localStorage.getItem(this.USER_KEY);
+    return data ? (JSON.parse(data) as User) : null;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  clearAuthData(): void {
+    localStorage.removeItem(this.USER_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  isLoggedIn(): boolean {
+    return this.getUser() !== null && this.getToken() !== null;
   }
 }
