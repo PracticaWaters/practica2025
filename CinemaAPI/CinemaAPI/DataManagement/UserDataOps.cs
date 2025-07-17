@@ -59,6 +59,7 @@ namespace CinemaAPI.DataManagement
                 .Where(u => u.IsDeleted == false && u.Email == email)
                 .FirstOrDefault();
 
+
             if (user != null && PasswordHasher.VerifyPassword(password, user.Password))
             {
                 return user;
