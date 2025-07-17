@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Login } from './login/login';
+import { Register } from './register/register';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { UserDashboard } from './user-dashboard/user-dashboard';
 import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
@@ -47,7 +49,11 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
-  {path: 'timeslot-list', component: TimeslotList},
+
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "login", component: Login },
+  { path: "register", component: Register },
+  { path: 'timeslot-list', component: TimeslotList},
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'support/admin', component: SupportAdmin },
@@ -55,8 +61,9 @@ const routes: Routes = [
   { path: 'vizualizare-film', component: VizualizareFilm },
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
