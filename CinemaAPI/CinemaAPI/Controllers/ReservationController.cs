@@ -6,20 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace CinemaAPI.Controllers
 {
     [ApiController]
-    [Route("api/cinema/rezevation")]
-    public class RezervationController : Controller
+    [Route("api/cinema/reservation")]
+    public class ReservationController : Controller
     {
-        private readonly RezervareDataOps _reservationDatOps;
+        private readonly ReservationDataOps _reservationDatOps;
         private readonly FilmDataOps _filmDataOps;
         private readonly UserDataOps _userDataOps;
 
-        public RezervationController(CinemaDbContext dbContext)
+        public ReservationController(CinemaDbContext dbContext)
         {
-            _reservationDatOps = new RezervareDataOps(dbContext);
+            _reservationDatOps = new ReservationDataOps(dbContext);
         }
 
         [HttpGet]
-        public ActionResult<List<Rezervation>> GetReservation()
+        public ActionResult<List<Reservation>> GetReservation()
         {
             try
             {
@@ -37,12 +37,12 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                Rezervation rezervation = new Rezervation();
-                rezervation.NrOfPersons = rezervareDto.NrPersoane;
-                rezervation.Price = rezervareDto.Pret;
-                rezervation.Film = _filmDataOps.GetFilmById(rezervareDto.FilmId);
-                rezervation.User = _userDataOps.GetUserById(rezervareDto.UserId);
-                _reservationDatOps.AddRezervare(rezervation);
+                Reservation reservation = new Reservation();
+                reservation.NrOfPersons = rezervareDto.NrPersoane;
+                reservation.Price = rezervareDto.Pret;
+                reservation.Film = _filmDataOps.GetFilmById(rezervareDto.FilmId);
+                reservation.User = _userDataOps.GetUserById(rezervareDto.UserId);
+                _reservationDatOps.AddReservation(reservation);
                 return Ok();
             }
             catch (Exception ex)
@@ -52,11 +52,11 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(Rezervation rezervation)
+        public ActionResult Update(Reservation reservation)
         {
             try
             {
-                _reservationDatOps.Update(rezervation);
+                _reservationDatOps.Update(reservation);
                 return Ok();
             }
             catch (Exception ex)
@@ -66,11 +66,11 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete(Rezervation rezervation)
+        public ActionResult Delete(Reservation reservation)
         {
             try
             {
-                _reservationDatOps.DeleteRezervare(rezervation);
+                _reservationDatOps.DeleteReservation(reservation);
                 return Ok();
             }
             catch (Exception ex)
@@ -80,12 +80,12 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Rezervation> GetReservationById(int id)
+        public ActionResult<Reservation> GetReservationById(int id)
         {
             try
             {
-                var rezervare = _reservationDatOps.GetRezervareById(id);
-                return Ok(rezervare);
+                var reservation = _reservationDatOps.GetReservationById(id);
+                return Ok(reservation);
             }
             catch (Exception ex)
             {
