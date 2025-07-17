@@ -9,7 +9,7 @@ import { LoginResponse } from './login-response';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:25867/api/cinema';
+  private apiUrl = 'https://localhost:25867/api/cinema/auth';
   private user = new BehaviorSubject<User | null>(null);
 
   private readonly USER_KEY = 'user';

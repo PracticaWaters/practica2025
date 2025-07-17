@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CinemaAPI.DataManagement;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -51,5 +52,52 @@ namespace CinemaAPI.Models
         public DateTime ModifiedAt { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public User ToUser (ReservationDataOps reservareDataOps, ReviewDataOps reviewDataOps)
+        {
+
+            User user = new User
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Email = this.Email,
+                Phone = this.Phone,
+                BirthDate = this.BirthDate,
+                Role = this.Role,
+                AvatarUrl = this.AvatarUrl,
+                Gender = this.Gender,
+                Password = this.Password,
+                CreatedAt = this.CreatedAt,
+                ModifiedAt = this.ModifiedAt,
+                IsDeleted = this.IsDeleted,
+                Reservations = new List<Reservation>(),
+                Reviews = new List<Review>(),
+            };
+
+
+            if (this.RezervationId != null)
+            {
+                foreach (int id in this.RezervationId)
+                {
+                    var rezervation = reservareDataOps.GetReservationById(id)
+                        ?? throw new ArgumentException($"Rezervation with Id {id} not found.");
+                    user.Reservations.Add(rezervation);
+                }
+            }
+
+            if (this.ReviewsId != null)
+            {
+                foreach (int id in this.ReviewsId)
+                {
+                    var review = reviewDataOps.GetReviewById(id)
+                        ?? throw new ArgumentException($"Review with Id {id} not found.");
+                    user.Reviews.Add(review);
+                }
+            }
+
+            return user;
+        }
     }
+
+
 }

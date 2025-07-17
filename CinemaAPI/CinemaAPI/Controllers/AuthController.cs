@@ -14,11 +14,17 @@ namespace CinemaAPI.Controllers
     {
         private readonly JwtService _jwt;
         private readonly UserDataOps _userOps;
+        public readonly ReviewDataOps _reviewDataOps;
+        public readonly ReservationDataOps _reservationDataOps;
 
         public AuthController(JwtService jwt, CinemaDbContext dbContext)
         {
             _userOps = new UserDataOps(dbContext);
+            _reviewDataOps = new ReviewDataOps(dbContext);
+            _reservationDataOps = new ReservationDataOps(dbContext);
             _jwt = jwt;
+
+
         }
 
 
@@ -30,7 +36,8 @@ namespace CinemaAPI.Controllers
 
             try
             {
-                _userOps.AddUser(MapDtoToUser(userDto));
+                var user = userDto.ToUser(_reservationDataOps, _reviewDataOps);
+                _userOps.AddUser(user);
                 return Ok("User registered successfully.");
             }
             catch(Exception ex)
@@ -128,49 +135,7 @@ namespace CinemaAPI.Controllers
             return Ok("User logged out – refresh tokens revoked.");
         }
 
-        public static User MapDtoToUser(UserDto userDto)
-        {
-            User user = new User
-            {
-                Id = userDto.Id,
-                Name = userDto.Name,
-                Email = userDto.Email,
-                Phone = userDto.Phone,
-                BirthDate = userDto.BirthDate,
-                Role = userDto.Role,
-                AvatarUrl = userDto.AvatarUrl,
-                Gender = userDto.Gender,
-                Password = userDto.Password,
-                CreatedAt = userDto.CreatedAt,
-                ModifiedAt = userDto.ModifiedAt,
-                IsDeleted = userDto.IsDeleted,
-                Rezervations = [],
-                Reviews = [],
-            };
-
-
-            if (userDto.RezervationId != null)
-            {
-                foreach (int id in userDto.RezervationId)
-                {
-                    var rezervation = new Rezervation()
-                        ?? throw new ArgumentException($"Rezervation with Id {id} not found.");
-                    user.Rezervations.Add(rezervation);
-                }
-            }
-
-            if (userDto.ReviewsId != null)
-            {
-                foreach (int id in userDto.ReviewsId)
-                {
-                    var review = new Review()
-                        ?? throw new ArgumentException($"Review with Id {id} not found.");
-                    user.Reviews.Add(review);
-                }
-            }
-
-            return user;
-        }
+      
 
     }
 }

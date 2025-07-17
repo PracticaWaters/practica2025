@@ -6,8 +6,8 @@
 }
 
 :host {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #5a72a0;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -40,7 +40,8 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  overflow-y: auto;
+
   position: relative;
   min-height: 0;
   max-height: 100%;
