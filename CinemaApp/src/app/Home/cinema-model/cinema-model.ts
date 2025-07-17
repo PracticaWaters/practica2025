@@ -108,10 +108,10 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupLighting(): void {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.0); // Increased from 1.2 to 2.0
     this.scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 2.5);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 4.0); // Increased from 2.5 to 4.0
     mainLight.position.set(0, 8, 5);
     mainLight.castShadow = true;
     mainLight.shadow.mapSize.width = 4096;
@@ -128,7 +128,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const screenLight = new THREE.SpotLight(
       0xffffff,
-      4.0,
+      6.0, // Increased from 4.0 to 6.0
       15,
       Math.PI / 6,
       0.5,
@@ -144,7 +144,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const spotLight1 = new THREE.SpotLight(
       0xffffff,
-      3.0,
+      5.0, // Increased from 3.0 to 5.0
       10,
       Math.PI / 8,
       0.3,
@@ -158,7 +158,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const spotLight2 = new THREE.SpotLight(
       0xffffff,
-      3.0,
+      5.0, // Increased from 3.0 to 5.0
       10,
       Math.PI / 8,
       0.3,
@@ -172,7 +172,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const spotLight3 = new THREE.SpotLight(
       0xffffff,
-      3.0,
+      5.0, // Increased from 3.0 to 5.0
       10,
       Math.PI / 8,
       0.3,
@@ -186,7 +186,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const aisleLight1 = new THREE.SpotLight(
       0xffffff,
-      2.5,
+      4.0, // Increased from 2.5 to 4.0
       8,
       Math.PI / 12,
       0.2,
@@ -199,7 +199,7 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const aisleLight2 = new THREE.SpotLight(
       0xffffff,
-      2.5,
+      4.0, // Increased from 2.5 to 4.0
       8,
       Math.PI / 12,
       0.2,
@@ -210,43 +210,43 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     this.scene.add(aisleLight2);
     this.scene.add(aisleLight2.target);
 
-    const emergencyLight1 = new THREE.PointLight(0xff3333, 1.0, 6);
+    const emergencyLight1 = new THREE.PointLight(0xff3333, 2.0, 6); // Increased from 1.0 to 2.0
     emergencyLight1.position.set(-4, 1.5, -4);
     this.scene.add(emergencyLight1);
 
-    const emergencyLight2 = new THREE.PointLight(0xff3333, 1.0, 6);
+    const emergencyLight2 = new THREE.PointLight(0xff3333, 2.0, 6); // Increased from 1.0 to 2.0
     emergencyLight2.position.set(4, 1.5, -4);
     this.scene.add(emergencyLight2);
 
-    const accentLight1 = new THREE.PointLight(0xffaa44, 1.5, 6);
+    const accentLight1 = new THREE.PointLight(0xffaa44, 3.0, 6); // Increased from 1.5 to 3.0
     accentLight1.position.set(-2, 2, 2);
     this.scene.add(accentLight1);
 
-    const accentLight2 = new THREE.PointLight(0xffaa44, 1.5, 6);
+    const accentLight2 = new THREE.PointLight(0xffaa44, 3.0, 6); // Increased from 1.5 to 3.0
     accentLight2.position.set(2, 2, 2);
     this.scene.add(accentLight2);
 
-    const floorLight1 = new THREE.PointLight(0xffffff, 1.0, 4);
+    const floorLight1 = new THREE.PointLight(0xffffff, 2.0, 4); // Increased from 1.0 to 2.0
     floorLight1.position.set(-2, 0.1, 0);
     this.scene.add(floorLight1);
 
-    const floorLight2 = new THREE.PointLight(0xffffff, 1.0, 4);
+    const floorLight2 = new THREE.PointLight(0xffffff, 2.0, 4); // Increased from 1.0 to 2.0
     floorLight2.position.set(2, 0.1, 0);
     this.scene.add(floorLight2);
 
-    const reflectionLight = new THREE.PointLight(0xffffff, 1.5, 6);
+    const reflectionLight = new THREE.PointLight(0xffffff, 3.0, 6); // Increased from 1.5 to 3.0
     reflectionLight.position.set(0, 1, 1);
     this.scene.add(reflectionLight);
 
-    const extraLight1 = new THREE.PointLight(0xffffff, 2.0, 8);
+    const extraLight1 = new THREE.PointLight(0xffffff, 4.0, 8); // Increased from 2.0 to 4.0
     extraLight1.position.set(0, 4, 0);
     this.scene.add(extraLight1);
 
-    const extraLight2 = new THREE.PointLight(0xffffff, 2.0, 8);
+    const extraLight2 = new THREE.PointLight(0xffffff, 4.0, 8); // Increased from 2.0 to 4.0
     extraLight2.position.set(-3, 3, 0);
     this.scene.add(extraLight2);
 
-    const extraLight3 = new THREE.PointLight(0xffffff, 2.0, 8);
+    const extraLight3 = new THREE.PointLight(0xffffff, 4.0, 8); // Increased from 2.0 to 4.0
     extraLight3.position.set(3, 3, 0);
     this.scene.add(extraLight3);
   }
