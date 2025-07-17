@@ -13,9 +13,9 @@ namespace CinemaAPI.DataManagement
             this.dbContext = dbContext;
         }
 
-        public Rezervation[] GetReservations()
+        public Rezervation[] GetRezervari()
         {
-            return dbContext.rezervari.Include(x => x.Film).Include(x => x.User).ToArray();
+            return dbContext.rezervari.Include(x => x.User).ToArray();
         }
 
         //Idk daca e bine
@@ -23,7 +23,6 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                dbContext.films.Attach(rezervation.Film);
                 dbContext.users.Attach(rezervation.User);
                 dbContext.rezervari.Add(rezervation);
                 dbContext.SaveChanges();
@@ -35,7 +34,7 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void Update(Rezervation rezervation)
+        public void UpdateRezervare(Rezervation rezervation)
         {
             try
             {

@@ -55,7 +55,7 @@ builder.Services.AddSwaggerGen(options =>
                     }
                 });
 });
-
+builder.Services.AddMvc().AddJsonOptions(options=> options.JsonSerializerOptions.ReferenceHandler =ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddAuthentication(options =>
 {

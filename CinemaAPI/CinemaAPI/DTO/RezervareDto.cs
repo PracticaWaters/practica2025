@@ -4,7 +4,6 @@
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int FilmId { get; set; }
         public int NrOfPersons { get; set; }
 
         //De modificat cand e adaugat TimeSlot

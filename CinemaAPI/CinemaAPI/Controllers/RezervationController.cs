@@ -10,12 +10,12 @@ namespace CinemaAPI.Controllers
     public class RezervationController : Controller
     {
         private readonly RezervareDataOps _reservationDatOps;
-        private readonly FilmDataOps _filmDataOps;
         private readonly UserDataOps _userDataOps;
 
         public RezervationController(CinemaDbContext dbContext)
         {
             _reservationDatOps = new RezervareDataOps(dbContext);
+            _userDataOps = new UserDataOps(dbContext);
         }
 
         [HttpGet]
@@ -23,12 +23,12 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var rezervari = _reservationDatOps.GetReservations();
+                var rezervari = _reservationDatOps.GetRezervari();
                 return Ok(rezervari);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest($"Error retrieving reservations: {ex.Message}");
             }
         }
 
@@ -38,9 +38,8 @@ namespace CinemaAPI.Controllers
             try
             {
                 Rezervation rezervation = new Rezervation();
-                rezervation.NrOfPersons = rezervareDto.NrPersoane;
-                rezervation.Price = rezervareDto.Pret;
-                rezervation.Film = _filmDataOps.GetFilmById(rezervareDto.FilmId);
+                rezervation.NrOfPersons = rezervareDto.NrOfPersons;
+                rezervation.Price = rezervareDto.Price;
                 rezervation.User = _userDataOps.GetUserById(rezervareDto.UserId);
                 _reservationDatOps.AddRezervare(rezervation);
                 return Ok();
@@ -56,7 +55,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                _reservationDatOps.Update(rezervation);
+                _reservationDatOps.UpdateRezervare(rezervation);
                 return Ok();
             }
             catch (Exception ex)
