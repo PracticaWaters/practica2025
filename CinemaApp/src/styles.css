@@ -31,3 +31,19 @@ body{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+.cdk-overlay-pane {
+  background-color: var(--dark);
+}
+
+.mat-mdc-menu-item-text{
+  color: var(--light);
+}
+
+.mat-mdc-menu-item-text:hover{
+  color: var(--primary);
+}
+
+.mat-expansion-indicator{
+  fill: white;
+}

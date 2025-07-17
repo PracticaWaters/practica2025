@@ -17,6 +17,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
+  {path: 'timeslot-list', component: TimeslotList},
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'support/admin', component: SupportAdmin },

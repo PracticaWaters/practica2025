@@ -62,6 +62,7 @@ import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
 import { RouterModule } from '@angular/router';
+import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { RouterModule } from '@angular/router';
     SupportAdmin,
     SupportForm,
     Faq,
+    TimeslotList,
   ],
   imports: [
     BrowserModule,
@@ -117,22 +119,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatRadioModule,
 
-    // CoreUI
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
+   
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
