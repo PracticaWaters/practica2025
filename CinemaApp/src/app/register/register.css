@@ -184,3 +184,7 @@ mat-select {
   padding-bottom: 50px;
   margin-bottom: 12px;
 } */
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border-color: #1A2130;
+}
