@@ -16,7 +16,7 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-        public DbSet<Rezervation> rezervari { get; set; }
+        public DbSet<Reservation> rezervari { get; set; }
         
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
@@ -28,14 +28,15 @@ namespace CinemaAPI.DataManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
                 .WithOne(sc => sc.ScreeningRoom);
 
             base.OnModelCreating(modelBuilder);
 
-
-            // existing relationship configs
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Film)
                 .WithMany(f => f.Reviews)
@@ -60,7 +61,7 @@ namespace CinemaAPI.DataManagement
                 .IsRequired();
 
             modelBuilder.Entity<User>()
-                .HasMany(r => r.Rezervari)
+                .HasMany(r => r.Reservations)
                 .WithOne(g => g.User)
                 .IsRequired();
 

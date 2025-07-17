@@ -2,60 +2,58 @@
 <div
   class="relative w-full h-[540px] flex items-center justify-center overflow-hidden  bg-[#1A2130]"
 >
-  <!-- ◀️ Buton stânga -->
   <button
-    (click)="moveLeft()"
-    [disabled]="currentIndex <= 1"
-    class="absolute left-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl disabled:opacity-40 disabled:cursor-not-allowed"
-  >
-    ‹
-  </button>
+  (click)="moveLeft()"
+  class="absolute left-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
+>
+  ‹
+</button>
 
-  <!-- Postere -->
+<!-- Postere -->
+<div
+  class="relative w-[800px] h-[400px] transition-transform duration-500 ease-in-out"
+  style="perspective: 1200px"
+>
   <div
-    class="flex transition-transform duration-500 ease-in-out"
-    style="perspective: 1200px"
+    *ngFor="let film of filmeCarousel; let i = index"
+    class="absolute top-0 left-1/2 w-80 h-[400px] transform -translate-x-1/2 transition-transform duration-500 ease-in-out"
+    [ngStyle]="getStyleForIndex(i)"
   >
+    <img
+      [src]="film.poster"
+      [alt]="film.titlu"
+      class="w-full h-full object-cover rounded-xl shadow-2xl ring-2 ring-offset-2 ring-white"
+    />
     <div
-      *ngFor="let film of getVisibleFilme(); let i = index"
-      class="w-80 h-[400px] transform transition-transform duration-500 ease-in-out relative"
-      [ngStyle]="getStyleForIndex(i + currentIndex - 1)"
+      class="absolute bottom-0 left-0 right-0 bg-white/90 text-center p-3 rounded-b-xl shadow-md flex flex-col items-center gap-2"
     >
-      <img
-        [src]="film.poster"
-        [alt]="film.titlu"
-        class="w-full h-full object-cover rounded-xl shadow-2xl ring-2 ring-offset-2 ring-white"
-      />
-      <div
-        class="absolute bottom-0 left-0 right-0 bg-white/90 text-center p-3 rounded-b-xl shadow-md flex flex-col items-center gap-2"
-      >
-        <p class="text-base font-semibold text-[#1A2130]">{{ film.titlu }}</p>
-        <div class="flex gap-3">
-          <a href="/vizualizare-film">
-            <button
-              class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)] hover:bg-[var(--light)] transition-all duration-300 rounded"
-            >
-              Vezi detalii
-            </button>
-          </a>
+      <p class="text-base font-semibold text-[#1A2130]">{{ film.titlu }}</p>
+      <div class="flex gap-3">
+        <a href="/vizualizare-film">
           <button
-            class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
+            class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)] hover:bg-[var(--light)] transition-all duration-300 rounded"
           >
-            Rezervă acum
+            Vezi detalii
           </button>
-        </div>
+        </a>
+        <button
+          class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
+        >
+          Rezervă acum
+        </button>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- ▶️ Buton dreapta -->
   <button
-    (click)="moveRight()"
-    [disabled]="currentIndex >= filmeCarousel.length - 2"
-    class="absolute right-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl disabled:opacity-40 disabled:cursor-not-allowed"
-  >
-    ›
-  </button>
+  (click)="moveRight()"
+  class="absolute right-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
+>
+  ›
+</button>
 </div>
 
 <div class="py-10 flex flex-col items-center bg-white gap-8 text-center">

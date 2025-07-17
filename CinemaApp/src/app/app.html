@@ -1,5 +1,5 @@
 <nav
-  class="flex items-center justify-between gap-16 px-10 md:px-30 py-4 h-[60px] bg-[var(--dark)] text-white relative shadow-light z-2"
+  class="flex items-center justify-between gap-16 px-10 md:px-30 py-4 h-[60px] bg-[var(--dark)] text-[var(--light)] relative shadow-light z-2"
 >
   <div class="flex gap-4 items-center">
     <a routerLink="/" class="text-xl font-bold text-[var(--light)]"
@@ -135,36 +135,81 @@
   <router-outlet></router-outlet>
 </div>
 
-<footer class="bg-[var(--dark)] text-[var(--light)]  pt-[40px] shadow-inner shadow-light">
-  <div class=" w-full grid grid-cols-1 md:grid-cols-3 gap-8 text-sm justify-between px-6">
+<footer
+  class="bg-[var(--dark)] text-[var(--light)] pt-[40px] shadow-inner shadow-light"
+>
+  <div
+    class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 text-sm justify-between px-6"
+  >
     <!-- Despre -->
-    <div class="lg:flex lg:flex-col lg:items-center lg:text-center  ">
-      <h3 class="text-lg font-semibold mb-6 text-[var(--primary)]">Despre LiquidCinema</h3>
-      <p class="text-gray-400 ">
-        LiquidCinema este platforma ideală pentru pasionații de filme. Află cele mai noi premiere, recomandări
-        personalizate și programe actualizate pentru cinematografele tale preferate.
+    <div class="lg:flex lg:flex-col lg:items-center lg:text-center">
+      <h3 class="text-lg font-semibold mb-6 text-[var(--primary)]">
+        Despre LiquidCinema
+      </h3>
+      <p class="text-gray-400">
+        LiquidCinema este platforma ideală pentru pasionații de filme. Află cele
+        mai noi premiere, recomandări personalizate și programe actualizate
+        pentru cinematografele tale preferate.
       </p>
     </div>
 
     <!-- Linkuri utile -->
-    <div class="md:flex md:flex-col md:items-center md:border-r md:border-l border-gray-700 md:border-t-0 md:border-b-0 border-t-1 border-b-1 py-5 md:py-0 md:px-6 ">
-      <h3 class="text-lg font-semibold mb-6 text-[var(--primary)] ">Linkuri utile</h3>
+    <div
+      class="md:flex md:flex-col md:items-center md:border-r md:border-l border-gray-700 md:border-t-0 md:border-b-0 border-t-1 border-b-1 py-5 md:py-0 md:px-6"
+    >
+      <h3 class="text-lg font-semibold mb-6 text-[var(--primary)]">
+        Linkuri utile
+      </h3>
       <ul class="space-y-2 lg:justify-center lg:items-center flex gap-20">
         <div class="lg:flex lg:flex-col">
-        <li><a routerLink="/" class="text-gray-400 hover:text-[var(--primary)]">Home</a></li>
-        <li><a routerLink="/program-cinema" class="text-gray-400 hover:text-[var(--primary)]">Program Cinema</a></li>
-        <li><a routerLink="/scan" class="text-gray-400 hover:text-[var(--primary)]">Recomandări</a></li>
+          <li>
+            <a routerLink="/" class="text-gray-400 hover:text-[var(--primary)]"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/program-cinema"
+              class="text-gray-400 hover:text-[var(--primary)]"
+              >Program Cinema</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/scan"
+              class="text-gray-400 hover:text-[var(--primary)]"
+              >Recomandări</a
+            >
+          </li>
         </div>
-        <div class="lg:flex lg:flex-col ">
-        <li><a routerLink="/add-item" class="text-gray-400 hover:text-[var(--primary)]">Profil User</a></li>
-        <li><a routerLink="/support" class="text-gray-400 hover:text-[var(--primary)]">Suport</a></li>
-        <li><a routerLink="/detalii-cinema" class="text-gray-400 hover:text-[var(--primary)]">Detalii Cinema</a></li>
+        <div class="lg:flex lg:flex-col">
+          <li>
+            <a
+              routerLink="/add-item"
+              class="text-gray-400 hover:text-[var(--primary)]"
+              >Profil User</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/support"
+              class="text-gray-400 hover:text-[var(--primary)]"
+              >Suport</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/detalii-cinema"
+              class="text-gray-400 hover:text-[var(--primary)]"
+              >Detalii Cinema</a
+            >
+          </li>
         </div>
       </ul>
     </div>
 
     <!-- Contact / Social -->
-    <div class="lg:flex lg:flex-col lg:items-center  ">
+    <div class="lg:flex lg:flex-col lg:items-center">
       <h3 class="text-lg font-semibold mb-6 text-[var(--primary)]">Contact</h3>
       <p class="text-gray-400">Email: contactliquid&#64;cinema.ro</p>
       <p class="text-gray-400">Telefon: +40 712 345 678</p>
@@ -183,7 +228,9 @@
     </div>
   </div>
 
-  <div class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-xs pb-4">
+  <div
+    class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-xs pb-4"
+  >
     2025 LiquidCinema. Toate drepturile rezervate.
   </div>
 </footer>

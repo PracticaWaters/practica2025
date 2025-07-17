@@ -17,18 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
-import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
-import { AppRoutingModule } from './app-routing-module';
-import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
-import { MatRadioModule } from '@angular/material/radio';
-
-// CoreUI modules and directives
+import {MatIconModule} from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+// Import CoreUI modules and directives:
 import {
   NavbarModule,
   DropdownModule,
@@ -45,19 +36,47 @@ import {
   NavLinkDirective,
   DropdownMenuDirective,
   DropdownItemDirective,
+  
 } from '@coreui/angular';
+import { UserDashboard } from './user-dashboard/user-dashboard';
+import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
+import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
+import { Bilete } from './user-dashboard/pages/bilete/bilete';
+import { Review } from './user-dashboard/pages/review/review';
+import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detalii-personale';
+import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/prompt-parola-component/prompt-parola-component';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+
+import { AppRoutingModule } from './app-routing-module';
+import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+
 import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
 import { RouterModule } from '@angular/router';
+import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 
 @NgModule({
   declarations: [
     App,
     VizualizareFilm,
+    UserDashboard,
+    MeniuPrincipal,
+    Wishlist,
+    Bilete,
+    Review,
+    DetaliiPersonale,
+    PromptParolaComponent,
     DetaliiCinema,
     ScreeningRoomList,
     AddScreeningRoom,
@@ -66,6 +85,7 @@ import { RouterModule } from '@angular/router';
     SupportAdmin,
     SupportForm,
     Faq,
+    TimeslotList,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +104,14 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatIconModule,
     MatExpansionModule,
+    MatDialogModule,
+
+    // CoreUI modules:
+    NavbarModule,
+    DropdownModule,
+    CollapseModule,
+
+    // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
@@ -92,22 +120,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatRadioModule,
 
-    // CoreUI
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
+   
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
