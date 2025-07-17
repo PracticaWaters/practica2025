@@ -20,16 +20,12 @@ body{
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
 }
-/* În fișierul tău .css */
 
 .arrow {
   transition: transform 0.5s ease-in-out !important;
   display: inline-block !important;
   vertical-align: middle !important;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .cdk-overlay-pane {
@@ -44,6 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: var(--primary);
 }
 
-.mat-expansion-indicator{
-  fill: white;
+.mat-expansion-indicator svg path{
+  fill: var(--light);
 }
+
+
+ 
