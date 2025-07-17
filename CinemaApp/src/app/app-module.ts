@@ -97,6 +97,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     Faq,
     DetaliiCinema,
     CinemaModel,
+    TimeslotList,
   ],
   imports: [
     BrowserModule,
