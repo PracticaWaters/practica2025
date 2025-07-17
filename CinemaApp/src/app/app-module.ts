@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+﻿import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -44,7 +44,7 @@ import {
 } from '@coreui/angular';
 
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 // Import CoreUI modules and directives:
 import { UserDashboard } from './user-dashboard/user-dashboard';
@@ -69,6 +69,8 @@ import { Register } from './register/register';
 import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
+import { CinemaModel } from './Home/cinema-model/cinema-model';
+
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
@@ -93,6 +95,8 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     SupportAdmin,
     SupportForm,
     Faq,
+    DetaliiCinema,
+    CinemaModel,
     TimeslotList,
   ],
   imports: [
