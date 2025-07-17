@@ -20,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 export class Register implements OnInit {
   registerForm!: FormGroup;
   errorMessage: string | null = null;
+  isSubmitting: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +60,8 @@ export class Register implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid && !this.isSubmitting) {
+      this.isSubmitting = true;
       console.log('Form valid');
 
       const userData: User = new User();
@@ -71,7 +73,7 @@ export class Register implements OnInit {
       userData.email = this.registerForm.value.email;
       userData.avatarUrl = 'https://example.com/default-avatar.png'; // Set default avatar URL
       userData.password = this.registerForm.value.password;
-      userData.role = 0;
+      userData.role = 1;
       userData.createdAt = new Date();
       userData.modifiedAt = new Date();
       userData.isDeleted = false;
@@ -95,6 +97,9 @@ export class Register implements OnInit {
           } else {
             this.errorMessage = `Eroare server (${error.status}): ${error.message}`;
           }
+        },
+        complete: () => {
+          this.isSubmitting = false;
         },
       });
     }
