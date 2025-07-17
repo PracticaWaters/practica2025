@@ -1,10 +1,10 @@
 export class Seat{
-    row:number;
+    row:string;
     number:number;
     occupied:boolean;
     selected:boolean;
 
-    constructor(row:number,number:number,occupied:boolean=false){
+    constructor(row:string,number:number,occupied:boolean=false){
         this.row=row;
         this.number=number;
         this.occupied=occupied;
