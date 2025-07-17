@@ -1,5 +1,6 @@
 ﻿using System;
 using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
@@ -14,7 +15,7 @@ namespace CinemaAPI.DataManagement
 
         public Rezervation[] GetReservations()
         {
-            return dbContext.rezervari.ToArray();
+            return dbContext.rezervari.Include(x => x.Film).Include(x => x.User).ToArray();
         }
 
         //Idk daca e bine
