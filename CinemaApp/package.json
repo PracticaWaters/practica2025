@@ -30,10 +30,12 @@
     "@angular/router": "^20.0.0",
     "@coreui/angular": "^5.5.5",
     "@tailwindcss/postcss": "^4.1.11",
-    "coreui": "^0.1.0",
+    "@types/three": "^0.178.1",
+    "coreui": "^0.4.2-alpha2",
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.1.11",
+    "three": "^0.178.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

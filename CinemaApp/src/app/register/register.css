@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 @import "tailwindcss";
 
+=======
+/* Reset */
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 * {
   margin: 0;
   padding: 0;
@@ -7,14 +11,22 @@
 }
 
 :host {
+<<<<<<< HEAD
   font-family: 'Segoe UI', sans-serif;
   background-color: #1A2130;
+=======
+  font-family: "Segoe UI", sans-serif;
+  background-color: #5a72a0;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: visible;
+<<<<<<< HEAD
   overflow: visible;
+=======
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 /* Container și structură principală */
@@ -23,7 +35,10 @@
   max-width: 900px;
   height: 100%;
   padding: 20px;
+<<<<<<< HEAD
   border-radius: 10px;
+=======
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 .register-box {
@@ -31,6 +46,7 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
   background-color: #5A72A0;
   border-radius: 12px;
   overflow: visible;
@@ -38,6 +54,12 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   z-index: 1;
   border-radius: 10px;
+=======
+  background-color: #83b4ff;
+  border-radius: 12px;
+  overflow: visible;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 /* Stânga - formular */
@@ -45,14 +67,21 @@
   flex: 1;
   padding: 40px;
   display: flex;
+<<<<<<< HEAD
   background-color: #5A72A0;
+=======
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   flex-direction: column;
   overflow-y: auto;
 
   position: relative;
   min-height: 0;
   max-height: 100%;
+<<<<<<< HEAD
   border-radius: 10px;
+=======
+  z-index: 1;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 .register-left h2 {
@@ -68,7 +97,11 @@
 .register-left button {
   width: 100%;
   padding: 12px;
+<<<<<<< HEAD
   background-color: #0056b3;
+=======
+  background-color: #1772d2;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   border: none;
   color: white;
   border-radius: 6px;
@@ -79,7 +112,11 @@
 }
 
 .register-left button:hover {
+<<<<<<< HEAD
   background-color: #83B4FF;
+=======
+  background-color: #0056b3;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 .register-left button:disabled {
@@ -90,12 +127,19 @@
 /* Dreapta - imagine */
 .register-right {
   flex: 1;
+<<<<<<< HEAD
   background-color: #FDFFE2;
+=======
+  background-color: #fdffe2;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
+<<<<<<< HEAD
   border-radius: 10px;
+=======
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 .register-right img {
@@ -128,11 +172,17 @@ mat-select {
   padding-left: 10px;
 }
 
+<<<<<<< HEAD
 
 mat-form-field .mat-select-trigger {
   padding-left: 10px;
   padding-right: 30px;
   color: #FDFFE2;
+=======
+mat-form-field .mat-select-trigger {
+  padding-left: 10px;
+  padding-right: 30px;
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 }
 
 /* Scrollbar doar pe formular */
@@ -163,6 +213,7 @@ mat-form-field .mat-select-trigger {
   }
 
   .register-left {
+<<<<<<< HEAD
     max-height: auto;
   }
 
@@ -188,3 +239,16 @@ mat-select {
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
   border-color: #1A2130;
 }
+=======
+    max-height: none;
+  }
+
+  mat-form-field.mat-form-field {
+    padding-right: 10px;
+  }
+
+  .mat-form-field-wrapper {
+    padding-right: 36px;
+  }
+}
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d

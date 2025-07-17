@@ -227,7 +227,11 @@ namespace CinemaAPI.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<int?>("UserId")
+=======
+                    b.Property<int>("UserId")
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -458,11 +462,23 @@ namespace CinemaAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.HasOne("CinemaAPI.Models.User", null)
                         .WithMany("Reviews")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Film");
+=======
+                    b.HasOne("CinemaAPI.Models.User", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("User");
+>>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.Seat", b =>

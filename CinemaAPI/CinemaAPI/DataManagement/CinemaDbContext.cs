@@ -16,8 +16,11 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
+
         public DbSet<Reservation> rezervari { get; set; }
-        
+
+        public DbSet<Promotions> promotions { get; set; }
+
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,6 +46,12 @@ namespace CinemaAPI.DataManagement
                 .HasForeignKey("FilmId")
                 .IsRequired();
 
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User)
+                .WithMany(f => f.Reviews)
+                .HasForeignKey("UserId")
+                .IsRequired();
+
             modelBuilder.Entity<User>()
                 .HasMany(w => w.Wishlists)
                 .WithOne(u => u.User);
@@ -64,6 +73,11 @@ namespace CinemaAPI.DataManagement
                 .HasMany(r => r.Reservations)
                 .WithOne(g => g.User)
                 .IsRequired();
+
+
+             modelBuilder.Entity<Promotions>()
+            .HasMany(p => p.Films)
+            .WithMany(f => f.Promotions);
 
             base.OnModelCreating(modelBuilder);
         }
