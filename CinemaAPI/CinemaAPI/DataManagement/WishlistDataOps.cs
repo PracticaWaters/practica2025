@@ -10,7 +10,7 @@ public class WishlistDataOps
 
     public WishlistDataOps(CinemaDbContext cinemaDbContext)
     {
-        dbContext = cinemaDbContext;
+        _dbContext = cinemaDbContext;
     }
     
     public Wishlist[] GetWishlists()
@@ -86,6 +86,6 @@ public class WishlistDataOps
     }
     public Wishlist? GetWishlistById(int id)
     {
-        return dbContext.wishlists.Where(x=>x.Id== id).FirstOrDefault();
+        return _dbContext.wishlists.Where(x=>x.Id== id).FirstOrDefault();
     }
 }

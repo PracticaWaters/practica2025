@@ -30,7 +30,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var films = _filmDataOps.GetFilms();
+                var films = FilmDataOps.GetFilms();
                 return Ok(films);
             }
             catch (Exception ex)
@@ -46,7 +46,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                _filmDataOps.DeleteFilm(film);
+                FilmDataOps.DeleteFilm(film);
                 return Ok();
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var film = _filmDataOps.GetFilmById(id);
+                var film = FilmDataOps.GetFilmById(id);
                 return film == null
                        ? NotFound($"Film with ID {id} was not found.")
                        : Ok(film);
@@ -78,7 +78,7 @@ namespace CinemaAPI.Controllers
             try
             {
                 var film = MapDtoToFilm(dto);
-                _filmDataOps.AddFilm(film);
+                FilmDataOps.AddFilm(film);
                 return Ok("Film added successfully.");
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace CinemaAPI.Controllers
             {
                 var film = MapDtoToFilm(dto);
                 film.Id = dto.Id;
-                _filmDataOps.UpdateFilm(film);
+                FilmDataOps.UpdateFilm(film);
                 return Ok();
             }
             catch (Exception ex)
@@ -110,10 +110,10 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var film = _filmDataOps.GetFilmById(id);
+                var film = FilmDataOps.GetFilmById(id);
                 if (film == null) return NotFound($"Film with ID {id} was not found.");
 
-                _filmDataOps.DeleteFilm(film);
+                FilmDataOps.DeleteFilm(film);
                 return Ok($"Film with ID {id} was deleted.");
             }
             catch (Exception ex)
@@ -143,13 +143,13 @@ namespace CinemaAPI.Controllers
 
             foreach (var actorId in dto.ActorIds)
             {
-                var actor = _actorDataOps.GetActorById(actorId)
+                var actor = ActorDataOps.GetActorById(actorId)
                           ?? throw new ArgumentException($"Actor with Id {actorId} not found.");
                 film.FilmActors.Add(actor);
             }
             foreach (var reviewId in dto.RewiesIds)
             {
-                var review = _reviewDataOps.GetReviewById(reviewId)
+                var review = ReviewDataOps.GetReviewById(reviewId)
                           ?? throw new ArgumentException($"Review with Id {reviewId} not found.");
                 film.Reviews.Add(review);
             }
