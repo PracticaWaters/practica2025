@@ -25,23 +25,6 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  CollapseDirective,
-  CollapseModule,
-  ContainerComponent,
-  DropdownComponent,
-  DropdownItemDirective,
-  DropdownMenuDirective,
-  DropdownModule,
-  DropdownToggleDirective,
-  NavbarBrandDirective,
-  NavbarComponent,
-  NavbarModule,
-  NavbarNavComponent,
-  NavbarTogglerDirective,
-  NavItemComponent,
-  NavLinkDirective,
-} from '@coreui/angular';
 
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { MatIconModule } from '@angular/material/icon';
@@ -121,11 +104,6 @@ import { TokenInterceptor } from './app-logic/token-interceptor';
     MatExpansionModule,
     MatDialogModule,
 
-    // CoreUI modules:
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
@@ -135,43 +113,11 @@ import { TokenInterceptor } from './app-logic/token-interceptor';
     MatButtonModule,
     MatRadioModule,
 
-    // CoreUI
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
     CommonModule,
-    // CoreUI modules:
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
+
     MatSelectModule,
     MatOptionModule,
 
-    // CoreUI components and directives:
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
