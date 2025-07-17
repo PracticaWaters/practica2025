@@ -1,0 +1,43 @@
+.row{
+    display: flex;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.column{
+    flex: 50%;
+    padding: 10px;
+}
+.label-style{
+    color: oklch(76.9% 0.188 70.08);
+}
+.input-style{
+    color: oklch(76.9% 0.188 70.08);
+    padding-left: 10px;
+}
+.form-row{
+    align-items: center;
+}
+.field{
+    padding-left: 8px;
+}
+.button-style{
+    
+    color: oklch(76.9% 0.188 70.08) !important;
+    background-color: black !important;
+}
+.button-style:hover{
+     color: white;
+     background-color: oklch(76.9% 0.188 70.08) !important;
+    
+}
+.button-div{
+    padding-top: 40px;
+}
+.select-movie-button{
+    color: oklch(76.9% 0.188 70.08);
+    padding-top: 20px;
+}
+.select-movie-button:Hover{
+    color:red;
+}

@@ -53,6 +53,7 @@ import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     SupportForm,
     Faq,
     TimeslotList,
+    AddTimeslot,
   ],
   imports: [
     BrowserModule,
