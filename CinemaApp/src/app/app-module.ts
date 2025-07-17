@@ -57,6 +57,9 @@ import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './app-logic/token-interceptor';
+
 @NgModule({
   declarations: [
     App,
@@ -125,7 +128,12 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
   providers: [
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch()), // ✅ Activează Fetch API
+    provideHttpClient(withFetch()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [App],
 })
