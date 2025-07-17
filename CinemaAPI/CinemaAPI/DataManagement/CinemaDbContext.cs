@@ -46,6 +46,12 @@ namespace CinemaAPI.DataManagement
                 .HasForeignKey("FilmId")
                 .IsRequired();
 
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User)
+                .WithMany(f => f.Reviews)
+                .HasForeignKey("UserId")
+                .IsRequired();
+
             modelBuilder.Entity<User>()
                 .HasMany(w => w.Wishlists)
                 .WithOne(u => u.User);
