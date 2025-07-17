@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-detalii-personale',
   standalone: false,
   templateUrl: './detalii-personale.html',
-  styleUrl: './detalii-personale.css'
+  styleUrl: './detalii-personale.css',
 })
 export class DetaliiPersonale {
   form: FormGroup;
@@ -16,7 +16,7 @@ export class DetaliiPersonale {
     this.form = this.fb.group({
       nume: [''],
       email: [''],
-      telefon: ['']
+      telefon: [''],
     });
   }
 
@@ -27,12 +27,12 @@ export class DetaliiPersonale {
   onCancel() {
     this.form.reset();
   }
-    confirmAndSubmit() {
+  confirmAndSubmit() {
     const dialogRef = this.dialog.open(PromptParolaComponent, {
-      width: '350px'
+      width: '350px',
     });
 
-    dialogRef.afterClosed().subscribe(password => {
+    dialogRef.afterClosed().subscribe((password) => {
       if (password) {
         // Aici poți verifica parola dacă vrei, ex:
         if (password === 'admin123') {
@@ -45,5 +45,21 @@ export class DetaliiPersonale {
         console.log('Salvarea a fost anulată.');
       }
     });
+  }
+
+  // pentru poza de profil
+  hover = false;
+  profileImageUrl: string | ArrayBuffer | null = null;
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.profileImageUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
