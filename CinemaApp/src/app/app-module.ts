@@ -1,4 +1,4 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+﻿import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -52,6 +52,8 @@ import { Register } from './register/register';
 import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
+import { CinemaModel } from './Home/cinema-model/cinema-model';
+
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
@@ -76,6 +78,8 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     SupportAdmin,
     SupportForm,
     Faq,
+    DetaliiCinema,
+    CinemaModel,
     TimeslotList,
   ],
   imports: [
