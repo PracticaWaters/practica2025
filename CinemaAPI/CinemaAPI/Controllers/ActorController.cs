@@ -9,11 +9,11 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/actor")]
     public class ActorController : ControllerBase
     {
-        private readonly ActorDataOps ActorDataOps;
+        private readonly ActorDataOps _actorDataOps;
 
         public ActorController(CinemaDbContext dbContext)
         {
-            ActorDataOps = new ActorDataOps(dbContext);
+            _actorDataOps = new ActorDataOps(dbContext);
         }
 
         [HttpGet]
@@ -21,7 +21,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var actors = ActorDataOps.GetActors();
+                var actors = _actorDataOps.GetActors();
                 return Ok(actors);
             }
             catch (Exception)
@@ -35,7 +35,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var actor = ActorDataOps.GetActorById(id);
+                var actor = _actorDataOps.GetActorById(id);
                 if (actor == null)
                     return NotFound($"Actor with ID {id} not found.");
 
@@ -56,7 +56,7 @@ namespace CinemaAPI.Controllers
                 {
                     Name = actorDTO.Name,
                 };
-                ActorDataOps.AddActor(actor);
+                _actorDataOps.AddActor(actor);
                 return Ok("Actor added successfully.");
             }
             catch (Exception)
@@ -75,7 +75,7 @@ namespace CinemaAPI.Controllers
                     Name = actorDTO.Name,
                 };
                 actor.Id = actorDTO.Id;
-                ActorDataOps.UpdateActor(actor);
+                _actorDataOps.UpdateActor(actor);
                 return Ok();
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                ActorDataOps.DeleteActor(id);
+                _actorDataOps.DeleteActor(id);
                 return Ok("Actor deleted successfully.");
             }
             catch (ArgumentException e)

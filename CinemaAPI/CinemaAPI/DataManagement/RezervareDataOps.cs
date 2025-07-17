@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using CinemaAPI.Models;
 
 namespace CinemaAPI.DataManagement
@@ -12,7 +12,7 @@ namespace CinemaAPI.DataManagement
             dbContext = context;
         }
 
-        public Rezervation[] GetRezervari()
+        public Rezervation[] GetReservations()
         {
             return dbContext.rezervari.ToArray();
         }
@@ -34,7 +34,7 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void UpdateRezervare(Rezervation rezervation)
+        public void Update(Rezervation rezervation)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace CinemaAPI.DataManagement
 
         public Rezervation? GetRezervareById(int id)
         {
-            return dbContext.rezervari.Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.rezervari.FirstOrDefault(x => x.Id == id);
         }
     }
 }
