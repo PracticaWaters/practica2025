@@ -11,6 +11,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { Promotii } from './promotii/promotii';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'promotii', component: Promotii}
 ];
 
 @NgModule({
