@@ -6,8 +6,9 @@
         public string Name { get; set; }
         public int NumOfRow { get; set; }
         public int NumOfSeatsPerRow { get; set; }
-        public List<string> Format { get; set; } //placeholder
+        public List<Format> Format { get; set; } 
         public List<Seat> SeatList {  get; set; }
+        public List<TimeSlot>? TimeSlots { get; set; } 
 
     }
 }

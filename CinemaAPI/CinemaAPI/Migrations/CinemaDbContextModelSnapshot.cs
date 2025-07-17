@@ -83,6 +83,67 @@ namespace CinemaAPI.Migrations
                     b.ToTable("cinemas");
                 });
 
+            modelBuilder.Entity("ActorFilm", b =>
+                {
+                    b.Property<int>("FilmActorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmActorsId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmActorsId", "FilmActorsId1");
+
+                    b.HasIndex("FilmActorsId1");
+
+                    b.ToTable("FilmActor", (string)null);
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("actors");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Cinema", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("cinemas");
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.Film", b =>
                 {
                     b.Property<int>("Id")
@@ -176,6 +237,62 @@ namespace CinemaAPI.Migrations
                     b.ToTable("AuthenticationRefreshTokens");
                 });
 
+            modelBuilder.Entity("CinemaAPI.Models.Format", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ScreeningRoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScreeningRoomId");
+
+                    b.ToTable("formats");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FilmId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("reviews");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Rezervare", b =>
             modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -247,9 +364,35 @@ namespace CinemaAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.PrimitiveCollection<string>("Format")
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NrPersoane")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Pret")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FilmId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("rezervari");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.ScreeningRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -293,7 +436,7 @@ namespace CinemaAPI.Migrations
                     b.ToTable("seats");
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.SuportTicket", b =>
+            modelBuilder.Entity("CinemaAPI.Models.TimeSlot", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -301,27 +444,30 @@ namespace CinemaAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FormatId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ScreeningRoomId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("suporttickets");
+                    b.HasIndex("FilmId");
+
+                    b.HasIndex("FormatId");
+
+                    b.HasIndex("ScreeningRoomId");
+
+                    b.ToTable("timeSlots");
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.User", b =>
@@ -420,34 +566,11 @@ namespace CinemaAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.RefreshToken", b =>
+            modelBuilder.Entity("CinemaAPI.Models.Format", b =>
                 {
-                    b.HasOne("CinemaAPI.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
-                {
-                    b.HasOne("CinemaAPI.Models.Film", "Film")
-                        .WithMany("Reservations")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CinemaAPI.Models.User", "User")
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Film");
-
-                    b.Navigation("User");
+                    b.HasOne("CinemaAPI.Models.ScreeningRoom", null)
+                        .WithMany("Format")
+                        .HasForeignKey("ScreeningRoomId");
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.Review", b =>
@@ -465,6 +588,25 @@ namespace CinemaAPI.Migrations
                     b.Navigation("Film");
                 });
 
+            modelBuilder.Entity("CinemaAPI.Models.Rezervare", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.Film", "Film")
+                        .WithMany("Rezervari")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.User", "User")
+                        .WithMany("Rezervari")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.Seat", b =>
                 {
                     b.HasOne("CinemaAPI.Models.ScreeningRoom", "ScreeningRoom")
@@ -472,6 +614,33 @@ namespace CinemaAPI.Migrations
                         .HasForeignKey("ScreeningRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ScreeningRoom");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.TimeSlot", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.Film", "Film")
+                        .WithMany("Program")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.Format", "Format")
+                        .WithMany("TimeSlots")
+                        .HasForeignKey("FormatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.ScreeningRoom", "ScreeningRoom")
+                        .WithMany("TimeSlots")
+                        .HasForeignKey("ScreeningRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("Format");
 
                     b.Navigation("ScreeningRoom");
                 });
@@ -497,16 +666,36 @@ namespace CinemaAPI.Migrations
 
             modelBuilder.Entity("CinemaAPI.Models.Film", b =>
                 {
-                    b.Navigation("Reservations");
+                    b.Navigation("Program");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("Rezervari");
 
                     b.Navigation("Wishlists");
                 });
 
+            modelBuilder.Entity("CinemaAPI.Models.Format", b =>
+                {
+                    b.Navigation("TimeSlots");
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.ScreeningRoom", b =>
                 {
+                    b.Navigation("Format");
+
                     b.Navigation("SeatList");
+
+                    b.Navigation("TimeSlots");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.User", b =>
+                {
+                    b.Navigation("Reviews");
+
+                    b.Navigation("Rezervari");
+
+                    b.Navigation("Wishlists");
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.User", b =>

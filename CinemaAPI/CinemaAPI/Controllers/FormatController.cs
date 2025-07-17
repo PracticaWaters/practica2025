@@ -1,7 +1,9 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DTO;
 using CinemaAPI.DTOs;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace CinemaAPI.Controllers
 {
@@ -9,11 +11,12 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/format")]
     public class FormatController : Controller
     {
-        private readonly FormatDataOps _formatDataOps;
-
+        private readonly FormatDataOps formatDataOps;
+        private readonly TimeSlotDataOps timeSlotDataOps;
         public FormatController(CinemaDbContext dbContext)
         {
-            _formatDataOps = new FormatDataOps(dbContext);
+            formatDataOps = new FormatDataOps(dbContext);
+            timeSlotDataOps = new TimeSlotDataOps(dbContext);
         }
 
         [HttpGet]
@@ -31,23 +34,33 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddFormat(Format format)
-        {
-            _formatDataOps.AddFormat(format);
-            return Ok();
-        }
-
-        [HttpPut]
-        public ActionResult UpdateFormat(Format format)
+        public ActionResult AddFormat([FromBody] FormatDTO formatDto)
         {
             try
             {
-                _formatDataOps.UpdateFormat(format);
+                var format = MapDtoToFormat(formatDto);
+                formatDataOps.AddFormat(format);
                 return Ok();
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpPut]
+        public ActionResult UpdateFormat([FromBody] FormatDTO formatDto)
+        {
+            try
+            {
+                var format = MapDtoToFormat(formatDto);
+                format.Id=formatDto.Id;
+                formatDataOps.UpdateFormat(format);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
             }
         }
 
@@ -77,6 +90,23 @@ namespace CinemaAPI.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        private Format MapDtoToFormat(FormatDTO formatDto)
+        {
+            var format = new Format
+            {
+                Id = formatDto.Id,
+                Name = formatDto.Name,
+                TimeSlots = new List<TimeSlot>(),
+            };
+            foreach(var timeSlotId in formatDto.TimeSlotsIds)
+            {
+                var timeSlot = timeSlotDataOps.GetTimeSlotById(timeSlotId)
+                    ??throw new ArgumentException($"TimeSlot with id {timeSlotId} not found");
+                format.TimeSlots.Add(timeSlot);
+            }
+            return format;
         }
     }
 }

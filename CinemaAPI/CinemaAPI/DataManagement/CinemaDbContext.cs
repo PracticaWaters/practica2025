@@ -16,6 +16,9 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
+        public DbSet<Rezervare> rezervari { get; set; }
+        public DbSet<TimeSlot> timeSlots { get; set; }
+
         public DbSet<Reservation> rezervari { get; set; }
         
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
@@ -65,6 +68,16 @@ namespace CinemaAPI.DataManagement
                 .WithOne(g => g.User)
                 .IsRequired();
 
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(sc => sc.TimeSlots)
+                .WithOne(sr => sr.ScreeningRoom)
+                .IsRequired();
+
+            modelBuilder.Entity<Format>()
+                .HasMany(f => f.TimeSlots)
+                .WithOne(ts => ts.Format);
+
+            base.OnModelCreating(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
     }
