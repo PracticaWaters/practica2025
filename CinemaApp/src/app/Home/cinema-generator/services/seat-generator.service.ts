@@ -36,52 +36,22 @@ export class SeatGeneratorService {
   private selectedSeats: Set<string> = new Set(); // Track selected seats by "row-seat" key
   private originalMaterials: Map<THREE.Group, THREE.Material[]> = new Map(); // Store original materials
 
-  async loadChairModel(renderer: THREE.WebGLRenderer, scale: number = 0.8): Promise<THREE.Group> {
-    if (this.chairModel) {
-      return this.chairModel.clone();
-    }
-
-    return new Promise((resolve, reject) => {
-      const loader = new GLTFLoader();
-      
-      loader.load(
-        '/assets/home/3d-models/chair.glb',
-        (gltf: any) => {
-          const chair = gltf.scene;
-          
-          // Enable shadows and improve material quality
-          chair.traverse((child: any) => {
-            if (child instanceof THREE.Mesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-              
-              if (child.material) {
-                child.material.needsUpdate = true;
-                if (child.material.map) {
-                  child.material.map.anisotropy = renderer.capabilities.getMaxAnisotropy();
-                }
-              }
-            }
-          });
-
-          // Scale chair model
-          chair.scale.setScalar(scale);
-          
-          this.chairModel = chair;
-          resolve(chair.clone());
-        },
-        (progress: any) => {
-          console.log('Loading chair progress:', (progress.loaded / progress.total * 100) + '%');
-        },
-        (error: any) => {
-          console.error('Error loading chair model:', error);
-          reject(error);
-        }
-      );
+  setChairModel(chairModel: THREE.Group): void {
+    this.chairModel = chairModel;
+    console.log('Chair model set in SeatGeneratorService');
+    console.log('Chair model details:', {
+      children: chairModel.children.length,
+      position: chairModel.position,
+      scale: chairModel.scale,
+      visible: chairModel.visible
     });
   }
 
   generateSeats(scene: THREE.Scene, config: SeatConfig): THREE.Group[] {
+    console.log('SeatGeneratorService: Starting seat generation');
+    console.log('SeatGeneratorService: Config:', config);
+    console.log('SeatGeneratorService: Chair model available:', !!this.chairModel);
+    
     // Clear existing seats
     this.clearSeats(scene);
 
@@ -138,11 +108,13 @@ export class SeatGeneratorService {
         // Add to scene and track
         scene.add(seatInstance);
         seats.push(seatInstance);
+        console.log(`Added seat ${row}-${seat} to scene at position:`, seatInstance.position);
       }
     }
 
     this.generatedSeats = seats;
     console.log(`Generated ${seats.length} seats`);
+    console.log('Scene children count after seat generation:', scene.children.length);
     return seats;
   }
 
