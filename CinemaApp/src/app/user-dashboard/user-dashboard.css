@@ -10,13 +10,12 @@
   width: 100%;
   padding: 0 20px;
 }
-
+  
 .user-dashboard-box {
   display: flex;
   border-radius: 12px;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   height: 90vh;
   min-height: 400px;
 }
