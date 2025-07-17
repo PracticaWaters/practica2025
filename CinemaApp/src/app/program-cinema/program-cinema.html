@@ -1,59 +1,57 @@
-<!-- 🎞️ Carusel 3D de filme -->
+<!-- Carusel 3D de filme -->
 <div
-  class="relative w-full h-[540px] flex items-center justify-center overflow-hidden  bg-[#1A2130]"
+  class="relative w-full h-[540px] flex items-center justify-center overflow-hidden bg-[#1A2130]"
 >
   <button
-  (click)="moveLeft()"
-  class="absolute left-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
->
-  ‹
-</button>
-
-<!-- Postere -->
-<div
-  class="relative w-[800px] h-[400px] transition-transform duration-500 ease-in-out"
-  style="perspective: 1200px"
->
-  <div
-    *ngFor="let film of filmeCarousel; let i = index"
-    class="absolute top-0 left-1/2 w-80 h-[400px] transform -translate-x-1/2 transition-transform duration-500 ease-in-out"
-    [ngStyle]="getStyleForIndex(i)"
+    (click)="moveLeft()"
+    class="absolute left-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
   >
-    <img
-      [src]="film.poster"
-      [alt]="film.titlu"
-      class="w-full h-full object-cover rounded-xl shadow-2xl ring-2 ring-offset-2 ring-white"
-    />
+    ‹
+  </button>
+
+  <!-- Postere -->
+  <div
+    class="relative w-[800px] h-[400px] transition-transform duration-500 ease-in-out"
+    style="perspective: 1200px"
+  >
     <div
-      class="absolute bottom-0 left-0 right-0 bg-white/90 text-center p-3 rounded-b-xl shadow-md flex flex-col items-center gap-2"
+      *ngFor="let film of filmeCarousel; let i = index"
+      class="absolute top-0 left-1/2 w-80 h-[400px] transform -translate-x-1/2 transition-transform duration-500 ease-in-out"
+      [ngStyle]="getStyleForIndex(i)"
     >
-      <p class="text-base font-semibold text-[#1A2130]">{{ film.titlu }}</p>
-      <div class="flex gap-3">
-        <a href="/vizualizare-film">
+      <img
+        [src]="film.image"
+        [alt]="film.name"
+        class="w-full h-full object-cover rounded-xl shadow-2xl ring-2 ring-offset-2 ring-white"
+      />
+      <div
+        class="absolute bottom-0 left-0 right-0 bg-white/90 text-center p-3 rounded-b-xl shadow-md flex flex-col items-center gap-2"
+      >
+        <p class="text-base font-semibold text-[#1A2130]">{{ film.name }}</p>
+        <div class="flex gap-3">
+          <a href="/vizualizare-film">
+            <button
+              class="bg-[var(--button-cta)] text-[var(--dark)] rounded px-4 py-2 transition-all duration-300 hover:opacity-90 hover:shadow-md"
+            >
+              Vezi Detalii
+            </button>
+          </a>
           <button
-            class="text-sm px-4 py-1 bg-[var(--button-cta)] text-[var(--dark)] hover:bg-[var(--light)] transition-all duration-300 rounded"
+            class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
           >
-            Vezi detalii
+            Rezervă acum
           </button>
-        </a>
-        <button
-          class="text-sm font-normal px-4 py-1 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
-        >
-          Rezervă acum
-        </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-
-  <!-- ▶️ Buton dreapta -->
   <button
-  (click)="moveRight()"
-  class="absolute right-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
->
-  ›
-</button>
+    (click)="moveRight()"
+    class="absolute right-4 z-20 text-[#FDFFE2] text-3xl bg-transparent transition-all p-3 rounded-full shadow-xl hover:scale-110"
+  >
+    ›
+  </button>
 </div>
 
 <div class="py-10 flex flex-col items-center bg-white gap-8 text-center">
@@ -61,22 +59,21 @@
 
   <!-- Linia principală: zile + calendar + dropdown -->
   <div class="flex items-center justify-center flex-wrap gap-x-2 gap-y-4 mb-1">
-    <!-- Zilele -->
     <ng-container *ngFor="let zi of zileSaptamana">
       <button
         (click)="selecteazaZi(zi.date)"
         class="px-2 py-1 rounded hover:bg-gray-200"
         [ngClass]="{
-          'text-[var(--button-cta)] font-semibold': esteAzi(zi.date),
+          'font-semibold': esteAzi(zi.date),
           'bg-blue-100 font-bold':
             ziSelectata.toDateString() === zi.date.toDateString()
         }"
+        [ngStyle]="esteAzi(zi.date) ? { color: 'var(--button-cta)' } : {}"
       >
         {{ zi.eticheta }}
       </button>
     </ng-container>
 
-    <!-- Calendar -->
     <button
       (click)="calendarOpen = true"
       class="border rounded p-2 hover:bg-gray-100"
@@ -85,7 +82,6 @@
       📅
     </button>
 
-    <!-- Datepicker -->
     <div>
       <mat-form-field *ngIf="calendarOpen" appearance="fill">
         <input
@@ -95,15 +91,12 @@
           (dateChange)="calendarOpen = false"
           [matDatepickerFilter]="filtruDateValide"
         />
-
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
 
-    <!-- Dropdownuri + resetare filtre -->
     <div class="flex items-center gap-4 flex-wrap">
-      <!-- Format -->
       <mat-form-field appearance="fill">
         <mat-label>Alege formatul</mat-label>
         <mat-select [(ngModel)]="formatSelectat">
@@ -111,7 +104,6 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Film -->
       <mat-form-field appearance="fill">
         <mat-label>Alege un film</mat-label>
         <mat-select [(ngModel)]="filmSelectat">
@@ -121,7 +113,6 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- Buton Resetare -->
       <button
         (click)="resetFiltre()"
         class="text-sm font-normal px-4 py-2 bg-[#2C3650] text-white rounded hover:bg-[#5A72A0]"
@@ -129,59 +120,48 @@
         Resetează filtrele
       </button>
     </div>
-    <!-- închiderea grupului de filtre -->
 
-    <!-- 🟡 Linie separată sub bara principală: afișarea datei -->
     <div class="w-full text-center mt-2 text-sm uppercase text-gray-700">
       {{ ziSelectata | date : "EEEE dd/MM/yyyy" | uppercase }}
     </div>
 
-    <div>
-      <!-- 🟢 Carduri filme -->
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-22">
-        <div
-          *ngFor="let film of getFilmeFiltrate()"
-          class="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col md:flex-row"
-        >
-          <!-- Poster -->
-          <img
-            [src]="film.poster"
-            alt="Poster {{ film.titlu }}"
-            class="w-full md:w-40 h-auto object-cover"
-          />
+    <!-- Carduri filme -->
+    <div
+      class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto px-10"
+    >
+      <div
+        *ngFor="let film of getFilmeFiltrate()"
+        class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row transition hover:scale-105"
+      >
+        <!-- Poster -->
+        <img
+          [src]="film.image"
+          [alt]="film.name"
+          class="w-full md:w-48 object-cover"
+        />
 
-          <!-- Detalii film -->
-          <div
-            class="w-full p-4 flex flex-col items-center text-center h-full justify-between"
-          >
-            <h3 class="text-lg font-bold text-[#1A2130] mb-1 py-4">
-              {{ film.titlu }}
+        <!-- Detalii film -->
+        <div class="flex flex-col justify-between p-4 md:p-6 w-full text-left">
+          <div>
+            <h3 class="text-lg md:text-xl font-bold mb-2 text-[#1A2130]">
+              {{ film.name }}
             </h3>
-            <p class="text-sm text-gray-600 mb-1 py-2">Gen: {{ film.gen }}</p>
-            <div *ngIf="film.program" class="py-2">
-              <p
-                *ngFor="let format of objectKeys(film.program)"
-                class="text-sm text-gray-600 mb-1"
-              >
-                <span class="font-medium"> {{ format }}</span> –
-                <span *ngFor="let ora of film.program[format]; let last = last">
-                  {{ ora }}<span *ngIf="!last">, </span>
-                </span>
-              </p>
-            </div>
-
-            <p class="text-sm text-gray-600 mb-3 py-2">
-              Durată: {{ film.durata }} min
+            <p class="text-sm text-gray-600 mb-1">
+              Data lansare: {{ film.releaseDate | date : "dd/MM/yyyy" }}
             </p>
-
-            <a href="/vizualizare-film">
-              <button
-                class="py-2 px-4 bg-[var(--button-cta)] text-[var(--dark)] rounded-md cursor-pointer hover:bg-[var(--light)] transition-all duration-300"
-              >
-                Vezi Detalii
-              </button>
-            </a>
+            <p class="text-sm text-gray-600 mb-1">
+              Durată: {{ film.duration }} min
+            </p>
           </div>
+
+          <a href="/vizualizare-film">
+            <button
+              class="mt-4 text-[var(--dark)] font-semibold px-4 py-2 rounded transition hover:opacity-90"
+              style="background-color: var(--button-cta)"
+            >
+              Vezi Detalii
+            </button>
+          </a>
         </div>
       </div>
     </div>
