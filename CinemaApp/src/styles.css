@@ -20,6 +20,7 @@ body{
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
 }
+/* În fișierul tău .css */
 
 .arrow {
   transition: transform 0.5s ease-in-out !important;
@@ -44,43 +45,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-expansion-indicator{
   fill: white;
 }
-
-.mat-sort-header-content{
-    color: white;
-}
-
-.mat-mdc-table tbody, 
-    .mat-mdc-table tfoot, 
-    .mat-mdc-table thead, 
-    .mat-mdc-cell, 
-    .mat-mdc-footer-cell, 
-    .mat-mdc-header-row, 
-    .mat-mdc-row, 
-    .mat-mdc-footer-row, 
-    .mat-mdc-table 
-    .mat-mdc-header-cell {
-    background-color: oklch(56.9% 0.188 70.08) !important;
-}
-
-.mat-mdc-paginator-container {
-  color: white;
-  background-color: oklch(56.9% 0.188 70.08);
-}
-
-.mat-mdc-cell {
-  color: white;
-}
-
-.mdc-text-field--outlined .mdc-notched-outline__leading{
-  border-color: oklch(56.9% 0.188 70.08) !important;
-}
-.mdc-text-field--outlined .mdc-notched-outline__trailing{
-  border-color: oklch(56.9% 0.188 70.08) !important;
-}
-.mat-mdc-form-field-infix{
-  border-color: oklch(56.9% 0.188 70.08) !important;
-}
-.mdc-text-field--outlined .mdc-text-field__input {
-  color: oklch(56.9% 0.188 70.08) !important;
-}
-
