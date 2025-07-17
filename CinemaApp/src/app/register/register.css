@@ -14,8 +14,10 @@
   justify-content: center;
   align-items: center;
   overflow: visible;
+  overflow: visible;
 }
 
+/* Container și structură principală */
 .register-container {
   width: 100%;
   max-width: 900px;
@@ -38,6 +40,7 @@
   border-radius: 10px;
 }
 
+/* Stânga - formular */
 .register-left {
   flex: 1;
   padding: 40px;
@@ -45,6 +48,8 @@
   background-color: #5A72A0;
   flex-direction: column;
   overflow-y: auto;
+
+  position: relative;
   min-height: 0;
   max-height: 100%;
   border-radius: 10px;
@@ -57,7 +62,7 @@
 
 .full-width {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .register-left button {
@@ -82,6 +87,7 @@
   cursor: not-allowed;
 }
 
+/* Dreapta - imagine */
 .register-right {
   flex: 1;
   background-color: #FDFFE2;
@@ -98,6 +104,7 @@
   object-fit: contain;
 }
 
+/* Link login */
 .register-link {
   margin-top: 15px;
   text-align: center;
@@ -115,7 +122,9 @@
   text-decoration: underline;
 }
 
-input {
+/* Stilizare input și dropdown */
+input,
+mat-select {
   padding-left: 10px;
 }
 
@@ -126,7 +135,7 @@ mat-form-field .mat-select-trigger {
   color: #FDFFE2;
 }
 
-/* Scrollbar styling */
+/* Scrollbar doar pe formular */
 .register-left::-webkit-scrollbar {
   width: 6px;
 }
@@ -140,7 +149,7 @@ mat-form-field .mat-select-trigger {
   background: transparent;
 }
 
-/* Responsive layout */
+/* Responsivitate */
 @media (max-width: 768px) {
   .register-box {
     flex-direction: column;
@@ -149,7 +158,7 @@ mat-form-field .mat-select-trigger {
   .register-left,
   .register-right {
     flex: none;
-    height: 50%;
+    height: auto;
     padding: 20px;
   }
 

@@ -1,115 +1,208 @@
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Detalii Cinema</title>
-<link rel="stylesheet" href="detalii-cinema.css" />
-<!-- Font Awesome pentru iconițe -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-/>
-<!-- Font Roboto -->
-<link
-  href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-  rel="stylesheet"
-/>
-
 <div
-  class="cinema-container bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+  class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-[var(--light)] px-10 md:px-30 py-10"
 >
-  <!-- Partea stângă - Informații despre cinema -->
-  <div class="cinema-info">
-    <button (click)="toggleEdit()" class="button_edit">
-      {{ editMode ? "Salvează" : "Editează" }}
-    </button>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Left Side: Cinema Info -->
+    <div class="space-y-6 pt-8">
+      <!-- New layout with flex -->
+      <div class="flex items-center justify-between gap-4 border-b-2 pb-2">
+        <h1 class="text-3xl font-bold flex-1">
+          <span *ngIf="!editMode">{{ detaliicinemaData.name }}</span>
+          <input
+            *ngIf="editMode"
+            [(ngModel)]="detaliicinemaData.name"
+            class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+          />
+        </h1>
 
-    <h1>
-      <span *ngIf="!editMode">{{ detaliicinemaData.name }}</span>
-      <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.name" />
-    </h1>
-
-    <div class="info-section">
-      <h2><i class="fas fa-info-circle"></i>Despre noi</h2>
-
-      <p>
-        <span *ngIf="!editMode">{{ detaliicinemaData.aboutus }}</span>
-        <textarea
-          *ngIf="editMode"
-          [(ngModel)]="detaliicinemaData.aboutus"
-        ></textarea>
-      </p>
-    </div>
-
-    <div class="info-section">
-      <h2><i class="fas fa-map-marker-alt"></i>Locație</h2>
-      <p>
-        <span *ngIf="!editMode">{{ detaliicinemaData.address }}</span>
-        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.address" />
-      </p>
-    </div>
-
-    <div class="info-section">
-      <h2><i class="fas fa-phone"></i>Contact</h2>
-
-      <p>
-        <span *ngIf="!editMode"
-          >Numar telefon: {{ detaliicinemaData.phone }}</span
+        <!--DE IMPLEMENTAT-->
+        <!-- <button
+          (click)="toggleEdit()"
+          class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-2 rounded-md font-semibold uppercase hover:bg-[var(--light)] transition-all duration-300 whitespace-nowrap"
         >
-        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.phone" />
-      </p>
+          {{ editMode ? "Salvează" : "Editează" }}
+        </button> -->
+      </div>
 
-      <p>
-        <span *ngIf="!editMode">Email: {{ detaliicinemaData.email }}</span>
-        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.email" />
-      </p>
+      <!-- About Us -->
+      <div class="space-y-2 mt-10">
+        <h2 class="text-xl font-bold flex items-center gap-2">DESPRE NOI</h2>
+        <p class="pl-3">
+          <span *ngIf="!editMode">{{ detaliicinemaData.aboutus }}</span>
+          <textarea
+            *ngIf="editMode"
+            [(ngModel)]="detaliicinemaData.aboutus"
+            rows="4"
+            class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+          ></textarea>
+        </p>
+      </div>
 
-      <p>
-        <span *ngIf="!editMode">Website: {{ detaliicinemaData.website }}</span>
-        <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.website" />
-      </p>
-    </div>
-
-    <div class="info-section">
-      <h2><i class="fas fa-clock"></i>Program</h2>
-      <ul>
-        <li>
-          Luni - Vineri:
-          <span *ngIf="!editMode">{{ detaliicinemaData.programweek }}</span>
-          <input *ngIf="editMode" [(ngModel)]="detaliicinemaData.programweek" />
-        </li>
-
-        <li>
-          Sâmbătă - Duminică:
-          <span *ngIf="!editMode">{{ detaliicinemaData.programweekend }}</span>
+      <!-- Location -->
+      <div class="space-y-2 mt-10">
+        <h2 class="text-xl font-bold flex items-center gap-2">LOCATIE</h2>
+        <p class="pl-3">
+          <span *ngIf="!editMode">{{ detaliicinemaData.address }}</span>
           <input
             *ngIf="editMode"
-            [(ngModel)]="detaliicinemaData.programweekend"
+            [(ngModel)]="detaliicinemaData.address"
+            class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
           />
-        </li>
+        </p>
+      </div>
 
-        <li>
-          Sărbători legale:
-          <span *ngIf="!editMode">{{
-            detaliicinemaData.programsarbatori
-          }}</span>
-          <input
-            *ngIf="editMode"
-            [(ngModel)]="detaliicinemaData.programsarbatori"
-          />
-        </li>
-      </ul>
+      <!-- Contact -->
+      <div class="space-y-2 mt-10">
+        <h2 class="text-xl font-bold flex items-center gap-2">CONTACT</h2>
+
+        <div class="flex justify-between flex-wrap gap-6">
+          <table
+            class="max-w-2xl border-collapse border-y border-gray-700 text-sm"
+          >
+            <tbody>
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                  style="border-top: none"
+                >
+                  Număr Telefon
+                </th>
+                <td
+                  class="border-y border-gray-600 p-3"
+                  style="border-top: none"
+                >
+                  <span *ngIf="!editMode">
+                    {{ detaliicinemaData.phone }}
+                  </span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.phone"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                >
+                  Email
+                </th>
+                <td class="border-y border-gray-600 p-3">
+                  <span *ngIf="!editMode">
+                    {{ detaliicinemaData.email }}
+                  </span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.email"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                >
+                  Website
+                </th>
+                <td class="border-y border-gray-600 p-3">
+                  <span *ngIf="!editMode">
+                    {{ detaliicinemaData.website }}
+                  </span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.website"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Program -->
+      <div class="space-y-2 mt-10">
+        <h2 class="text-xl font-bold flex items-center gap-2">PROGRAM</h2>
+        <div class="flex justify-between flex-wrap gap-6">
+          <table
+            class="max-w-2xl border-collapse border-y border-gray-700 text-sm"
+          >
+            <tbody>
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                  style="border-top: none"
+                >
+                  Luni - Vineri
+                </th>
+                <td
+                  class="border-y border-gray-600 p-3"
+                  style="border-top: none"
+                >
+                  <span *ngIf="!editMode">{{
+                    detaliicinemaData.programweek
+                  }}</span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.programweek"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                >
+                  Sâmbătă - Duminică
+                </th>
+                <td class="border-y border-gray-600 p-3">
+                  <span *ngIf="!editMode">{{
+                    detaliicinemaData.programweekend
+                  }}</span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.programweekend"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <th
+                  class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                >
+                  Sărbători legale
+                </th>
+                <td class="border-y border-gray-600 p-3">
+                  <span *ngIf="!editMode">{{
+                    detaliicinemaData.programsarbatori
+                  }}</span>
+                  <input
+                    *ngIf="editMode"
+                    [(ngModel)]="detaliicinemaData.programsarbatori"
+                    class="w-full bg-gray-700 text-white px-4 py-2 rounded-md focus:outline-none"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Partea dreaptă - Google Maps -->
-  <div class="cinema-map">
-    <h2><i class="fas fa-map"></i>Cum ajungi la noi</h2>
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2650.258654599832!2d25.612731591460754!3d45.666537339298294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b8b524bcac9%3A0xb350aa0bf5ec0c51!2sWATERS%20ROM%C3%82NIA%20S.R.L.!5e1!3m2!1sro!2sro!4v1752477842062!5m2!1sro!2sro"
-        allowfullscreen=""
-        loading="lazy"
-      >
-      </iframe>
+    <!-- Right Side: Google Maps -->
+    <div class="space-y-4 pt-20">
+      <div class="rounded-md overflow-hidden shadow-lg border border-gray-700">
+        <iframe
+          class="w-full h-[630px]"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2650.258654599832!2d25.612731591460754!3d45.666537339298294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b8b524bcac9%3A0xb350aa0bf5ec0c51!2sWATERS%20ROM%C3%82NIA%20S.R.L.!5e1!3m2!1sro!2sro!4v1752477842062!5m2!1sro!2sro"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </div>
 </div>

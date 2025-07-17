@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CinemaAPI.Models;
 using CinemaAPI.DataManagement;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.Controllers
 {
@@ -10,9 +11,9 @@ namespace CinemaAPI.Controllers
     {
         private readonly WishlistDataOps _wishlistOps;
 
-        public WishlistController()
+        public WishlistController(CinemaDbContext dbContext)
         {
-            _wishlistOps = new WishlistDataOps();
+            _wishlistOps = new WishlistDataOps(dbContext);
         }
 
         // GET /api/users/{userId}/wishlist

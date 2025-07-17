@@ -1,0 +1,6 @@
+<div class="card hover:bg-white/15" *ngFor="let card of cards">
+  <a [routerLink]="['../', card.link]" [relativeTo]="route">
+    <h2>{{ card.titlu }}</h2>
+    <p>{{ card.descriere }}</p>
+  </a>
+</div>

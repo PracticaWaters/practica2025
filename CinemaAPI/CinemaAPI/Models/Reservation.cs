@@ -1,5 +1,5 @@
 ﻿namespace CinemaAPI.Models
-{	public class Rezervation
+{	public class Reservation
 	{
 		public int Id { get; set; }
 		public User User { get; set; }

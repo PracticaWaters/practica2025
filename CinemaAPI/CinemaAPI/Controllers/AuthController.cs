@@ -9,37 +9,44 @@ using Microsoft.AspNetCore.Identity.Data;
 namespace CinemaAPI.Controllers
 {
     [ApiController]
-    [Route("api/cinema")]
+    [Route("api/cinema/auth")]
     public class AuthController : ControllerBase
     {
         private readonly JwtService _jwt;
-        private readonly UserDataOps _userOps = new();
+        private readonly UserDataOps _userOps;
+        public readonly ReviewDataOps _reviewDataOps;
+        public readonly ReservationDataOps _reservationDataOps;
 
-        public AuthController(JwtService jwt)
+        public AuthController(JwtService jwt, CinemaDbContext dbContext)
         {
+            _userOps = new UserDataOps(dbContext);
+            _reviewDataOps = new ReviewDataOps(dbContext);
+            _reservationDataOps = new ReservationDataOps(dbContext);
             _jwt = jwt;
-        }
-        
-        
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
-        {
-            if (_userOps.GetUserByEmail(user.Email) != null)
-                return Conflict("User already exists.");
 
-            user.CreatedAt = user.ModifiedAt = DateTime.UtcNow;
-            user.IsDeleted = false;
+
+        }
+
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserDto userDto)
+        {
+            if (_userOps.GetUserByEmail(userDto.Email) != null)
+                return Conflict("User already exists.");
 
             try
             {
+                var user = userDto.ToUser(_reservationDataOps, _reviewDataOps);
                 _userOps.AddUser(user);
                 return Ok("User registered successfully.");
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(500, "Error registering user.");
+                return BadRequest("Error registering user.Error:" + ex);
             }
         }
+
+
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest credentials)
@@ -48,11 +55,16 @@ namespace CinemaAPI.Controllers
             if (user == null)
                 return Unauthorized("Invalid email or password.");
 
-            var token = _jwt.GenerateToken(user.Id.ToString(), user.Role.ToString());
+            var accessToken = _jwt.GenerateToken(user.Id.ToString(), user.Role.ToString());
+            var refreshToken = _jwt.GenerateRefreshToken();
+
+            _userOps.SaveRefreshToken(user.Id, refreshToken, DateTime.UtcNow.AddMinutes(_jwt.RefreshTokenExpiryMinutes));
 
             return Ok(new
             {
-                token,
+                accessToken = accessToken,
+                refreshToken = refreshToken,
+
                 user = new
                 {
                     user.Id,
@@ -64,7 +76,30 @@ namespace CinemaAPI.Controllers
             });
         }
 
-        [Authorize(Roles="Admin")]
+        [HttpPost("refresh")]
+        public IActionResult Refresh([FromBody] RefreshRequest model)
+        {
+            var storedToken = _userOps.GetRefreshToken(model.RefreshToken);
+            if (storedToken is null || storedToken.IsRevoked || storedToken.ExpiryDate < DateTime.UtcNow)
+                return Unauthorized("Invalid or expired refresh token.");
+
+            var user = _userOps.GetUserById(storedToken.UserId);
+            if (user is null)
+                return Unauthorized("User no longer exists.");
+
+            var newAccessToken = _jwt.GenerateToken(user.Id.ToString(), user.Role.ToString());
+            var newRefreshToken = _jwt.GenerateRefreshToken();
+
+            _userOps.ReplaceRefreshToken(model.RefreshToken, newRefreshToken, DateTime.UtcNow.AddMinutes(_jwt.RefreshTokenExpiryMinutes));
+
+            return Ok(new
+            {
+                accessToken = newAccessToken,
+                refreshToken = newRefreshToken
+            });
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpGet("self")]
         public IActionResult GetProfile()
         {
@@ -87,5 +122,20 @@ namespace CinemaAPI.Controllers
 
             return Unauthorized();
         }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdString, out var userId))
+                return Unauthorized();
+
+            _userOps.DeleteRefreshTokens(userId);
+            return Ok("User logged out – refresh tokens revoked.");
+        }
+
+      
+
     }
 }

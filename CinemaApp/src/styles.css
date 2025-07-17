@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
-
-body{
-    padding:0;
-    margin:0;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+/* Fonturi și resetări */
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
-.shadow-light {
-  box-shadow: 0 2px 10px var(--light);
+html, body {
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 :root {
@@ -20,7 +21,10 @@ body{
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
 }
-/* În fișierul tău .css */
+
+.shadow-light {
+  box-shadow: 0 2px 10px var(--light);
+}
 
 .arrow {
   transition: transform 0.5s ease-in-out !important;
@@ -28,25 +32,95 @@ body{
   vertical-align: middle !important;
 }
 
+/* Dropdown Angular Material - mat-select */
+.mat-select-panel {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  color: #1a1a1a !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+  z-index: 2000 !important;
+}
+
+/* Suplimentar din branchul main */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 .cdk-overlay-pane {
   background-color: var(--dark);
 }
 
-.mat-mdc-menu-item-text{
-  color: var(--light);
+.mat-option {
+  color: #1a1a1a !important;
+  background-color: white !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #eee !important;
+  z-index: 2001 !important;
 }
 
-.mat-mdc-menu-item-text:hover{
-  color: var(--primary);
+.mat-option:last-child {
+  border-bottom: none !important;
 }
 
-.mat-expansion-indicator{
-  fill: white;
+.mat-option:hover {
+  background-color: #a0bde6 !important;
+  color: #000 !important;
 }
 
-.mdc-notched-outline__notch{
+/* Alte elemente din Material */
+.mat-mdc-menu-item-text {
+  color: #1a1a1a !important;
+}
+
+.mat-mdc-menu-item-text:hover {
+  color: var(--primary) !important;
+}
+
+.mat-sort-header-content{
+    color: white;
+}
+.mat-select-arrow {
+  padding-right: 12px !important;
+  right: 12px !important;
+  color: #1a1a1a !important;
+}
+
+.mat-mdc-table tbody, 
+    .mat-mdc-table tfoot, 
+    .mat-mdc-table thead, 
+    .mat-mdc-cell, 
+    .mat-mdc-footer-cell, 
+    .mat-mdc-header-row, 
+    .mat-mdc-row, 
+    .mat-mdc-footer-row, 
+    .mat-mdc-table 
+    .mat-mdc-header-cell {
+    background-color: oklch(56.9% 0.188 70.08) !important;
+}
+
+.mat-mdc-paginator-container {
+  color: white;
+  background-color: oklch(56.9% 0.188 70.08);
+}
+
+.mat-mdc-cell {
+  color: white;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline__leading{
+  border-color: oklch(56.9% 0.188 70.08) !important;
+}
+.mdc-text-field--outlined .mdc-notched-outline__trailing{
+  border-color: oklch(56.9% 0.188 70.08) !important;
+}
+.mat-mdc-form-field-infix{
+  border-color: oklch(56.9% 0.188 70.08) !important;
+}
+.mdc-text-field--outlined .mdc-text-field__input {
+  color: oklch(56.9% 0.188 70.08) !important;
+}
+
+.mdc-notched-outline__notch {
   border-right: none;
 }
  
