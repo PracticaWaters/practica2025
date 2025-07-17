@@ -17,6 +17,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CinemaDbContext>(); // DO NOT REMOVE THIS 
 
+builder.Services.AddDbContext<CinemaDbContext>();
+builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 // Add CORS
 builder.Services.AddCors(options =>
 {

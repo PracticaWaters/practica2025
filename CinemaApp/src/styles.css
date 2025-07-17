@@ -42,6 +42,14 @@ html, body {
   z-index: 2000 !important;
 }
 
+/* Suplimentar din branchul main */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-pane {
+  background-color: var(--dark);
+}
+
 .mat-option {
   color: #1a1a1a !important;
   background-color: white !important;

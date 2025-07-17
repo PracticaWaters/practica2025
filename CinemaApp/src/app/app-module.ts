@@ -44,6 +44,16 @@ import {
 } from '@coreui/angular';
 
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import {MatIconModule} from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+// Import CoreUI modules and directives:
+import { UserDashboard } from './user-dashboard/user-dashboard';
+import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
+import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
+import { Bilete } from './user-dashboard/pages/bilete/bilete';
+import { Review } from './user-dashboard/pages/review/review';
+import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detalii-personale';
+import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/prompt-parola-component/prompt-parola-component';
 import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -53,8 +63,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 
-// CoreUI modules and directives
-
 import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
@@ -63,6 +71,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { RouterModule } from '@angular/router';
+import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 @NgModule({
   declarations: [
@@ -70,6 +79,13 @@ import { RouterModule } from '@angular/router';
     Register,
     Login,
     VizualizareFilm,
+    UserDashboard,
+    MeniuPrincipal,
+    Wishlist,
+    Bilete,
+    Review,
+    DetaliiPersonale,
+    PromptParolaComponent,
     DetaliiCinema,
     ScreeningRoomList,
     AddScreeningRoom,
@@ -78,6 +94,7 @@ import { RouterModule } from '@angular/router';
     SupportAdmin,
     SupportForm,
     Faq,
+    TimeslotList,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +113,14 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
     MatIconModule,
     MatExpansionModule,
+    MatDialogModule,
+
+    // CoreUI modules:
+    NavbarModule,
+    DropdownModule,
+    CollapseModule,
+
+    // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,

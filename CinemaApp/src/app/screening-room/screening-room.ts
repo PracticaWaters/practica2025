@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ScreeningRoomData } from '../app-logic/screening-room-data';
 import { Seat } from '../app-logic/seat';
+import { ScreeningRoomData } from '../app-logic/screening-room-data';
 
 //Interfete utilizate pentru teste
 interface MovieInfo {
@@ -34,7 +34,7 @@ export class ScreeningRoom implements OnInit {
   };
 
   dates: DateOption[] = [
-    { date: '2025-07-11', day: 'Ven', dayNum: '11' },
+    { date: '2025-07-11', day: 'Vin', dayNum: '11' },
     { date: '2025-07-12', day: 'Sâm', dayNum: '12' },
     { date: '2025-07-13', day: 'Dum', dayNum: '13' },
     { date: '2025-07-14', day: 'Lun', dayNum: '14' },
@@ -52,16 +52,21 @@ export class ScreeningRoom implements OnInit {
       numOfRow: 10,
       numOfSeatsPerRow: 16,
       seatList: [
-        '10-8',
-        '10-9',
-        '15-8',
-        '15-9',
-        '15-10',
-        '15-11',
-        '3-4',
-        '3-5',
-        '7-12',
-        '7-13',
+        'J-8',
+        'J-9',
+        'H-9',
+        'H-10',
+        'H-11',
+        'C-4',
+        'C-5',
+        'G-12',
+        'G-13',
+        'F-3',
+        'F-4',
+        'F-5',
+        'F-6',
+        'F-7',
+        'F-8',
       ],
     };
   }
@@ -72,15 +77,16 @@ export class ScreeningRoom implements OnInit {
 
   generateSeats(): void {
     for (let row = 1; row <= this.screeningRoom.numOfRow; row++) {
+      const rowLetter = String.fromCharCode(64 + row);
       const rowSeats: Seat[] = [];
       for (let col = 1; col <= this.screeningRoom.numOfSeatsPerRow; col++) {
-        const isOccupied =
-          this.screeningRoom.seatList?.includes(`${row}-${col}`) ?? false;
-        rowSeats.push(new Seat(row, col, isOccupied));
+        const isOccupied = this.screeningRoom.seatList?.includes(`${rowLetter}-${col}`) ?? false;
+        rowSeats.push(new Seat(rowLetter, col, isOccupied));
       }
       this.seatsGrid.push(rowSeats);
     }
   }
+
 
   toggle(seat: Seat): void {
     seat.toggleSelection();
@@ -94,10 +100,12 @@ export class ScreeningRoom implements OnInit {
   }
 
   onDateSelect(date: string): void {
+    this.deselectAllSeats();
     this.selectedDate = date;
   }
 
   onTimeSelect(time: string): void {
+    this.deselectAllSeats();
     this.selectedTime = time;
   }
 
@@ -125,6 +133,19 @@ export class ScreeningRoom implements OnInit {
   }
 
   onSeatClick(seat: Seat): void {
-    this.toggle(seat);
+    seat.toggleSelection();
+  }
+
+   getRowLetter(rowNumber: number): string {
+    return String.fromCharCode(64 + rowNumber);
+}
+
+
+  deselectAllSeats(): void {
+    this.seatsGrid.forEach(row => {
+      row.forEach(seat => {
+        seat.selected = false;
+      });
+    });
   }
 }
