@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="login-left">
+      <h2>Autentificare</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Introduceți emailul" />
+          <mat-error *ngIf="hasError('email', 'required')">Emailul este obligatoriu.</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">Emailul nu este valid.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Parolă</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Introduceți parola" />
+          <mat-error *ngIf="hasError('password', 'required')">Parola este obligatorie.</mat-error>
+          <mat-error *ngIf="hasError('password', 'minlength')">Parola trebuie să aibă cel puțin 6 caractere.</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="login-button">
+          Login
+        </button>
+
+        <p class="register-link">
+          Nu ai cont? <a routerLink="/register">Înregistrează-te</a>
+        </p>
+      </form>
+    </div>
+    
+    <div class="login-right">
+      <img src="logo-500.png" alt="Logo" />
+    </div>
+  </div>
+</div>
