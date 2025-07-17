@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Timeslot } from '../../app-logic/timeslot';
 import { TimeslotData } from '../../app-logic/timeslot-data';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FilmModel } from '../../app-logic/film/film.model';
+import { Film } from '../../app-logic/film/film';
 
 @Component({
   selector: 'app-add-timeslot',
@@ -15,7 +15,7 @@ export class AddTimeslot implements OnInit {
   addTimeslotForm: FormGroup;
   item!: Timeslot;
   itemId!: number;
-  selectedMovie?: FilmModel;
+  selectedMovie?: Film;
 
   constructor(
     private formBuilder: FormBuilder,

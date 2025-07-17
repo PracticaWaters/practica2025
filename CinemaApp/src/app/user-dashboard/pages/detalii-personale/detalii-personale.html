@@ -1,0 +1,72 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- poza profil -->
+  <div
+    class="profile-picture-container"
+    (mouseenter)="hover = true"
+    (mouseleave)="hover = false"
+  >
+    <img
+      *ngIf="profileImageUrl; else defaultAvatar"
+      [src]="profileImageUrl"
+      alt="Poza de profil"
+      class="profile-picture"
+    />
+    <ng-template #defaultAvatar>
+       <mat-icon class="profile-picture default">account_circle</mat-icon>
+    </ng-template>
+
+    <input
+      type="file"
+      accept="image/*"
+      (change)="onFileSelected($event)"
+      hidden
+      #fileInput
+    />
+
+    <!-- Buton de modificare care apare doar la hover -->
+    <button
+      mat-mini-fab
+      color="primary"
+      type="button"
+      class="edit-button"
+      (click)="fileInput.click()"
+      [class.visible]="hover"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+
+  <!-- nume -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nume</mat-label>
+    <input matInput formControlName="nume" />
+  </mat-form-field>
+
+  <!-- email, telefon -->
+  <div class="row">
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="half-width">
+      <mat-label>Telefon</mat-label>
+      <input matInput formControlName="telefon" type="tel" />
+    </mat-form-field>
+  </div>
+
+  <!-- butoane -->
+  <div class="buttons">
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="confirmAndSubmit()"
+    >
+      Salvează
+    </button>
+    <button mat-stroked-button color="warn" type="button" (click)="onCancel()">
+      Anulează
+    </button>
+  </div>
+</form>

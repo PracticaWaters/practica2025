@@ -5,7 +5,20 @@
   <div
     class="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto text-center sm:text-left"
   >
-    <h1 class="text-3xl font-bold">Titlu film</h1>
+    <div class="flex items-center gap-4">
+  <h1 class="text-3xl font-bold">Titlu film</h1>
+
+  <!-- Buton Wishlist -->
+  <button
+    (click)="toggleWishlist()"
+    [ngClass]="{ 'text-[var(--button-cta)]': isWishlisted, 'text-gray-400': !isWishlisted }"
+    class="text-4xl hover:text-[var(--button-cta)] transition-colors duration-300 focus:outline-none cursor-pointer"
+    title="Adaugă la wishlist"
+  >
+    <mat-icon>{{ isWishlisted ? 'favorite' : 'favorite_border' }}</mat-icon>
+  </button>
+</div>
+
     <button
       class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 uppercase"
     >
@@ -19,9 +32,9 @@
       class="!bg-[var(--dark)] !text-[var(--light)] rounded-md shadow-lg"
     >
       <mat-expansion-panel-header
-        class="bg-[var(--dark)] text-[var(--light)] rounded-md border border-[var(--light)]"
+        class="bg-[var(--dark)] !text-[var(--light)] rounded-md border border-[var(--light)]"
       >
-        <mat-panel-title class="font-bold text-lg uppercase">
+        <mat-panel-title class="font-bold text-lg uppercase !text-[var(--light)]">
           Detalii film
         </mat-panel-title>
       </mat-expansion-panel-header>
