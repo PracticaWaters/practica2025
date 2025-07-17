@@ -1,0 +1,107 @@
+.wishlist-page {
+  color: white;
+}
+
+.wishlist-item {
+  transition: transform 0.2s ease;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist-item:hover {
+  transform: translateY(-2px);
+}
+
+.wishlist-item .mat-icon{
+  color: var(--accent);
+}
+
+.wishlist-item .mat-icon:hover{
+  color: var(--primary);
+}
+
+mat-icon {
+  transition: color;
+  align-self: start;
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--dark);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.undo-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.undo-btn:hover {
+  background-color: var(--accent);
+}
+
+.close-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.wishlist-item img {
+  width: 7rem;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.wishlist-item .info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wishlist-item .movie-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.wishlist-item .movie-details {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.wishlist-item .movie-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--accent);
+  margin-top: auto; /* Împinge linkul la baza containerului info */
+  display: inline-block;
+  padding-top: 0.5rem;
+}
+
+.wishlist-item .movie-link:hover {
+  color: var(--primary);
+}
