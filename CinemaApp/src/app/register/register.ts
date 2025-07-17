@@ -73,7 +73,7 @@ export class Register implements OnInit {
       userData.email = this.registerForm.value.email;
       userData.avatarUrl = 'https://example.com/default-avatar.png'; // Set default avatar URL
       userData.password = this.registerForm.value.password;
-      userData.role = 1;
+      userData.role = 0;
       userData.createdAt = new Date();
       userData.modifiedAt = new Date();
       userData.isDeleted = false;
