@@ -11,15 +11,11 @@
 
 :host {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
+  background-color: #1A2130;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-:host {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -48,7 +44,7 @@ mat-label {
 .login-box {
   display: flex;
   width: 100%;
-  background-color: #83b4ff;
+  background-color: #5A72A0;
   border-radius: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -56,12 +52,13 @@ mat-label {
 
 
 .login-left {
-  background-color: #83b4ff;
+  background-color: #5A72A0;
   flex: 1;
   padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .login-left h2 {
@@ -74,7 +71,7 @@ mat-label {
 .login-left button {
   width: 100%;
   padding: 12px;
-  background-color: #1772d2;
+  background-color: #5A72A0;
   border: none;
   color: white;
   border-radius: 6px;
@@ -84,8 +81,12 @@ mat-label {
   margin-top: 10px;
 }
 
-.login-left button:hover {
+.login-left button {
   background-color: #0056b3;
+}
+
+.login-left button:hover {
+  background-color: #83B4FF;
 }
 
 .full-width {
@@ -121,15 +122,16 @@ mat-label {
 
 .login-right {
   flex: 1;
-  background-color: #fdffe2;
+  background-color: #FDFFE2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 60px;
+  border-radius: 10px;
 }
 
 .login-right img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
-}
+} 

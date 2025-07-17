@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +8,12 @@
 
 :host {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
+  background-color: #1A2130;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .register-container {
@@ -19,6 +21,7 @@
   max-width: 900px;
   height: 100%;
   padding: 20px;
+  border-radius: 10px;
 }
 
 .register-box {
@@ -26,20 +29,25 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
-  background-color: #83b4ff;
+  background-color: #5A72A0;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 10px;
 }
 
 .register-left {
   flex: 1;
   padding: 40px;
   display: flex;
+  background-color: #5A72A0;
   flex-direction: column;
   overflow-y: auto;
   min-height: 0;
   max-height: 100%;
+  border-radius: 10px;
 }
 
 .register-left h2 {
@@ -55,7 +63,7 @@
 .register-left button {
   width: 100%;
   padding: 12px;
-  background-color: #1772d2;
+  background-color: #0056b3;
   border: none;
   color: white;
   border-radius: 6px;
@@ -66,7 +74,7 @@
 }
 
 .register-left button:hover {
-  background-color: #0056b3;
+  background-color: #83B4FF;
 }
 
 .register-left button:disabled {
@@ -76,11 +84,12 @@
 
 .register-right {
   flex: 1;
-  background-color: #fdffe2;
+  background-color: #FDFFE2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
+  border-radius: 10px;
 }
 
 .register-right img {
@@ -110,8 +119,11 @@ input {
   padding-left: 10px;
 }
 
-mat-label {
+
+mat-form-field .mat-select-trigger {
   padding-left: 10px;
+  padding-right: 30px;
+  color: #FDFFE2;
 }
 
 /* Scrollbar styling */
@@ -142,7 +154,7 @@ mat-label {
   }
 
   .register-left {
-    max-height: 50%;
+    max-height: auto;
   }
 
   .register-right {
@@ -150,3 +162,16 @@ mat-label {
     align-items: center;
   }
 }
+
+input,
+mat-select {
+  padding-left: 10px;
+} 
+
+/* .exception {
+  color: #FDFFE2;
+  font-size: 12px;
+  margin-top: 5px;
+  padding-bottom: 50px;
+  margin-bottom: 12px;
+} */

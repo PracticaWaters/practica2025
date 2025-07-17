@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,12 +17,36 @@ export class Register implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
+      gender: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{7,15}$/)]],
       email: ['', [Validators.required, Validators.email]],
       birthdate: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          this.passwordComplexityValidator()
+        ]
+      ],
       confirmPassword: ['', Validators.required],
     }, { validators: this.passwordsMatchValidator });
+  }
+
+    /** Validator care verifică cerințele de complexitate */
+  private passwordComplexityValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value: string = control.value || '';
+      if (!value) {
+        return null; // lasă Validators.required să semnaleze
+      }
+      const hasUpper = /[A-Z]/.test(value);
+      const hasLower = /[a-z]/.test(value);
+      const hasNumber = /[0-9]/.test(value);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+      const valid = hasUpper && hasLower && hasNumber && hasSpecial;
+      return valid ? null : { complexity: true };
+    };
   }
 
   private passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {

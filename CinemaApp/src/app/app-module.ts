@@ -20,8 +20,9 @@ import { SupportForm } from './Support/support-form/support-form';
 import { SupportPage } from './Support/support-page/support-page';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatOptionModule,
   ],
   providers: [provideAnimations()],
   bootstrap: [App],

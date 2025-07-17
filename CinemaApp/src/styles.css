@@ -50,3 +50,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-right: none;
 }
  
+.cdk-overlay-pane {
+  background-color: #7d9ddb;
+  color: #1A2130;
+  border-radius: 10px;
+}

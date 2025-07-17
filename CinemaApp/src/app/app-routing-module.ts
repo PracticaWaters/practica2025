@@ -26,6 +26,8 @@ const routes: Routes = [
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
 ];
 
 @NgModule({
