@@ -1,0 +1,155 @@
+<div class="screening-room-container">
+  <div class="movie-header">
+    <div class="movie-header-content">
+      <div class="movie-poster">
+        <div class="poster-placeholder">
+          Poster Film
+        </div>
+      </div>
+      
+      <div class="movie-info">
+        <h1 class="movie-title">{{ movieInfo.title }}</h1>
+        
+        <div class="movie-details">
+          <div class="detail-card">
+            <strong>Sală:</strong> {{ screeningRoom.name }}
+          </div>
+          <div class="detail-card">
+            <strong>Formate:</strong> {{ getFormatsText() }}
+          </div>
+        </div>
+        
+        <div class="movie-stats">
+          <div class="stat-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12,6 12,12 16,14"></polyline>
+            </svg>
+            <span>{{ movieInfo.duration }}</span>
+          </div>
+          <div class="stat-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+            </svg>
+            <span>{{ movieInfo.rating }}/10</span>
+          </div>
+          <div class="stat-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>{{ movieInfo.genre }}</span>
+          </div>
+        </div>
+        
+        <div class="warning-card">
+          <strong>Atenție!</strong> Filmul conține mai multe efecte și secvențe cu 
+          lumini intermitente care pot afecta persoanele care suferă de 
+          epilepsie fotosensibilă sau au alte fotosensibilități.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="datetime-selector">
+      <h2>Selectează Data și Ora</h2>
+      
+      <div class="date-section">
+        <h3>Data:</h3>
+        <div class="date-buttons">
+          <button 
+            *ngFor="let d of dates" 
+            (click)="onDateSelect(d.date)"
+            [class.selected]="selectedDate === d.date"
+            class="date-btn">
+            <div>{{ d.day }}</div>
+            <div class="day-num">{{ d.dayNum }}</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="time-section">
+        <h3>Ora:</h3>
+        <div class="time-buttons">
+          <button 
+            *ngFor="let time of times" 
+            (click)="onTimeSelect(time)"
+            [class.selected]="selectedTime === time"
+            class="time-btn">
+            {{ time }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cinema-hall">
+      <h2>{{ screeningRoom.name }}</h2>
+
+      <div class="hall-info">
+        {{ screeningRoom.numOfRow }} rânduri × {{ screeningRoom.numOfSeatsPerRow }} locuri per rând
+      </div>
+
+      <div class="screen">
+        <div class="screen-label">ECRAN</div>
+      </div>
+
+      <div class="seats-container">
+        <div *ngFor="let row of seatsGrid; let rowIndex = index" class="seat-row">
+          <div class="row-number">{{ rowIndex + 1 }}</div>
+          
+          <button 
+            *ngFor="let seat of row; let seatIndex = index" 
+            (click)="onSeatClick(seat)"
+            [disabled]="seat.occupied"
+            [class]="getSeatClass(seat)"
+            [class.middle-gap]="seatIndex === 7">
+            {{ seat.number }}
+          </button>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color available"></div>
+          <span>Disponibil</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color selected"></div>
+          <span>Selectat</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color occupied"></div>
+          <span>Ocupat</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedSeats.length > 0" class="booking-summary">
+      <h2>Sumar Rezervare</h2>
+      
+      <div class="summary-grid">
+        <div><strong>Film:</strong> {{ movieInfo.title }}</div>
+        <div><strong>Sală:</strong> {{ screeningRoom.name }}</div>
+        <div><strong>Data:</strong> {{ selectedDate }}</div>
+        <div><strong>Ora:</strong> {{ selectedTime }}</div>
+        <div><strong>Scaune:</strong> {{ selectedSeats.length }} bilete</div>
+      </div>
+      
+      <div class="selected-seats">
+        <strong>Scaune selectate:</strong> {{ selectedSeats.join(', ') }}
+      </div>
+      
+      <div class="summary-footer">
+        <div class="total-price">
+          <strong>Total: {{ getTotalPrice() }} RON</strong>
+        </div>
+        <button class="continue-btn" (click)="onContinueToPayment()">
+          Continuă către Plată
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
