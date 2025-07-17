@@ -63,7 +63,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 
-import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
 import { Register } from './register/register';
