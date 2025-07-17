@@ -14,7 +14,7 @@
 
 
 .start-content {
-  color: white;
+  color: #fdffe2 ;
   max-width: 600px;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .buy-btn {
-  background-color: #ea7c2e;
-  color: white;
+  background-color: #5A72A0;
+  color: white ;
   padding: 0.75rem 2rem;
   font-size: 1rem;
   font-weight: 500;
@@ -48,7 +48,11 @@
   background-color:#b24505;
 }
 .now-playing-custom {
-  background-color: #23266f;
+ background: linear-gradient(
+    to bottom,
+    #1a2848 0%,      /* albastru foarte închis (ex: slate-900) */
+    #5a72a0 100%     /* albastru foarte deschis (ex: blue-300) până jos */
+  );
   color: white;
   padding: 60px 40px;
   text-align: center;
@@ -97,11 +101,11 @@
 }
 
 .view-showtimes-btn {
-  margin-top: 30px;
-  background-color: #ea7c2e;
+  margin-top: 70px;
+  background-color: #1A2130;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 80px;
   font-weight: 500;
   border-radius: 4px;
   cursor: pointer;
@@ -144,9 +148,13 @@
 
 
 .trailers-section {
-  background-color: #1b1c59;
+  background: linear-gradient(
+    to bottom,
+     #5a72a0 0%,     /* albastru deschis sus */
+    #223462 100%    /* albastru închis jos */
+  );
   color: white;
-  padding: 60px 40px;
+  padding: 30px 40px;
 }
 
 .trailers-header {
