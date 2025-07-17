@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-start-page',
   standalone: false,
   templateUrl: './start-page.html',
-  styleUrls: ['./start-page.css']
+  styleUrls: ['./start-page.css'],
+
 })
 export class StartPageComponent {
   isMenuOpen = false;
