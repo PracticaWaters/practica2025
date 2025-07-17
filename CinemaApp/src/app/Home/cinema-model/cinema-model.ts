@@ -66,61 +66,51 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initThreeJS(): void {
-    // Scene setup
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x1a1a1a);
 
-    // Camera setup - closer to the model
     this.camera = new THREE.PerspectiveCamera(
-      60,
+      70,
       window.innerWidth / window.innerHeight,
       0.1,
       1000
     );
-    this.camera.position.set(0, 2.5, 3); // Start at a safe height
+    this.camera.position.set(0, 2.5, 2);
 
-    // Renderer setup - high quality
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
       powerPreference: 'high-performance',
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.shadowMap.autoUpdate = true;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 2.0; // Much brighter exposure
+    this.renderer.toneMappingExposure = 2.0;
 
-    // Add renderer to DOM
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    // Controls setup - rotation only, no zoom
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
-    this.controls.enableZoom = false; // Disable zoom
+    this.controls.enableZoom = false; // fara zoom
     this.controls.enablePan = false;
     this.controls.autoRotate = false;
-    // Limit vertical rotation to prevent looking under the object
-    this.controls.minPolarAngle = Math.PI * 0.1; // Prevent looking too far down
-    this.controls.maxPolarAngle = Math.PI * 0.7; // Prevent looking too far up
+    this.controls.minPolarAngle = Math.PI * 0.1; // fix pe jos
+    this.controls.maxPolarAngle = Math.PI * 0.7; // fix pe sus
 
-    // Lighting
     this.setupLighting();
 
-    // Handle window resize
     window.addEventListener('resize', this.onWindowResize.bind(this));
   }
 
   private setupLighting(): void {
-    // Bright ambient lighting for overall illumination
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     this.scene.add(ambientLight);
 
-    // Very bright main lighting
     const mainLight = new THREE.DirectionalLight(0xffffff, 2.5);
     mainLight.position.set(0, 8, 5);
     mainLight.castShadow = true;
@@ -136,7 +126,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     mainLight.shadow.normalBias = 0.02;
     this.scene.add(mainLight);
 
-    // Screen glow - very bright and focused
     const screenLight = new THREE.SpotLight(
       0xffffff,
       4.0,
@@ -153,7 +142,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     this.scene.add(screenLight);
     this.scene.add(screenLight.target);
 
-    // Cinema hall lighting - very bright spotlights
     const spotLight1 = new THREE.SpotLight(
       0xffffff,
       3.0,
@@ -196,7 +184,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     this.scene.add(spotLight3);
     this.scene.add(spotLight3.target);
 
-    // Aisle lighting - very bright focused on walkways
     const aisleLight1 = new THREE.SpotLight(
       0xffffff,
       2.5,
@@ -223,7 +210,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     this.scene.add(aisleLight2);
     this.scene.add(aisleLight2.target);
 
-    // Emergency exit lighting - bright red glow
     const emergencyLight1 = new THREE.PointLight(0xff3333, 1.0, 6);
     emergencyLight1.position.set(-4, 1.5, -4);
     this.scene.add(emergencyLight1);
@@ -232,7 +218,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     emergencyLight2.position.set(4, 1.5, -4);
     this.scene.add(emergencyLight2);
 
-    // Accent lighting - bright warm lights
     const accentLight1 = new THREE.PointLight(0xffaa44, 1.5, 6);
     accentLight1.position.set(-2, 2, 2);
     this.scene.add(accentLight1);
@@ -241,7 +226,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     accentLight2.position.set(2, 2, 2);
     this.scene.add(accentLight2);
 
-    // Floor lighting - bright glow from below
     const floorLight1 = new THREE.PointLight(0xffffff, 1.0, 4);
     floorLight1.position.set(-2, 0.1, 0);
     this.scene.add(floorLight1);
@@ -250,12 +234,10 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
     floorLight2.position.set(2, 0.1, 0);
     this.scene.add(floorLight2);
 
-    // Screen reflection lighting - bright
     const reflectionLight = new THREE.PointLight(0xffffff, 1.5, 6);
     reflectionLight.position.set(0, 1, 1);
     this.scene.add(reflectionLight);
 
-    // Additional bright lights for complete illumination
     const extraLight1 = new THREE.PointLight(0xffffff, 2.0, 8);
     extraLight1.position.set(0, 4, 0);
     this.scene.add(extraLight1);
@@ -277,13 +259,11 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
       (gltf: any) => {
         this.model = gltf.scene;
 
-        // Enable shadows and improve material quality for all meshes
         this.model.traverse((child: any) => {
           if (child instanceof THREE.Mesh) {
             child.castShadow = true;
             child.receiveShadow = true;
 
-            // Improve material quality
             if (child.material) {
               child.material.needsUpdate = true;
               if (child.material.map) {
@@ -294,22 +274,18 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
           }
         });
 
-        // Center and scale the model
         const box = new THREE.Box3().setFromObject(this.model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
 
-        // Scale model to be larger for better visibility
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 15 / maxDim; // Increased scale for better visibility
+        const scale = 15 / maxDim;
         this.model.scale.setScalar(scale);
 
-        // Center the model
         this.model.position.sub(center.multiplyScalar(scale));
 
         this.scene.add(this.model);
 
-        // Setup animations if any
         if (gltf.animations && gltf.animations.length > 0) {
           this.mixer = new THREE.AnimationMixer(this.model);
           gltf.animations.forEach((clip: any) => {
@@ -330,7 +306,6 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupScrollAnimation(): void {
-    // Use scroll event instead of IntersectionObserver for smoother control
     window.addEventListener('scroll', () => {
       const element = this.rendererContainer.nativeElement;
       const rect = element.getBoundingClientRect();
@@ -338,41 +313,40 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
       const elementHeight = rect.height;
       const windowHeight = window.innerHeight;
 
-      // Calculate how much of the element is visible
       const visibleHeight = Math.min(elementHeight, windowHeight);
-      const scrollProgress = Math.max(0, Math.min(1, 
-        (windowHeight - elementTop) / (visibleHeight + windowHeight)
-      ));
+      const scrollProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          (windowHeight - elementTop) / (visibleHeight + windowHeight)
+        )
+      );
 
       this.scrollProgress = scrollProgress;
-      
-      // Map scroll progress to camera rotation (0 to 2π)
+
       const rotationAngle = scrollProgress * Math.PI * 2;
-      
-      // Update camera position based on rotation
+
       if (this.model) {
-        const radius = 4; // Distance from model center
-        const height = 2.5; // Camera height
-        
+        const radius = 4;
+        const height = 2.5;
+
         this.camera.position.x = Math.sin(rotationAngle) * radius;
         this.camera.position.z = Math.cos(rotationAngle) * radius;
         this.camera.position.y = height;
-        
-        // Always look at the model center
+
         this.camera.lookAt(this.model.position);
       }
     });
   }
 
-    private updateCameraAnimation(): void {
+  private updateCameraAnimation(): void {
     if (this.currentPathIndex !== this.targetPathIndex) {
-      this.animationProgress += 0.015; // Slower, smoother animation
-      
+      this.animationProgress += 0.015;
+
       if (this.animationProgress >= 1) {
         this.currentPathIndex = this.targetPathIndex;
         this.animationProgress = 0;
       } else {
-        // Smooth interpolation between path points
         const currentPos = this.animationPath[this.currentPathIndex];
         const nextPos =
           this.animationPath[
@@ -385,21 +359,18 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
           this.animationProgress
         );
 
-        // Ensure camera doesn't go too low
         if (this.camera.position.y < 1.0) {
           this.camera.position.y = 1.0;
         }
 
-        // Smooth rotation around the model based on scroll progress
         if (this.model) {
           const targetLookAt = new THREE.Vector3();
           targetLookAt.copy(this.model.position);
-          
-          // Add some offset based on scroll progress for dynamic viewing
+
           const scrollOffset = this.scrollProgress * Math.PI * 2;
           targetLookAt.x += Math.sin(scrollOffset) * 0.5;
           targetLookAt.z += Math.cos(scrollOffset) * 0.5;
-          
+
           this.camera.lookAt(targetLookAt);
         }
       }
@@ -417,18 +388,14 @@ export class CinemaModel implements OnInit, OnDestroy, AfterViewInit {
 
     const delta = this.clock.getDelta();
 
-    // Update controls
     this.controls.update();
 
-    // Update camera animation
     this.updateCameraAnimation();
 
-    // Update model animations
     if (this.mixer) {
       this.mixer.update(delta);
     }
 
-    // Render scene
     this.renderer.render(this.scene, this.camera);
   }
 }
