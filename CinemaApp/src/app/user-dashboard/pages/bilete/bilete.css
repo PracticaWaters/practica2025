@@ -40,3 +40,7 @@
     .mat-mdc-header-cell {
     background-color: var(--dark) !important;
 }
+
+* {
+  color: white;
+}
