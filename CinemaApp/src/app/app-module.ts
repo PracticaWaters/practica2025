@@ -29,23 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 
 // CoreUI modules and directives
-import {
-  NavbarModule,
-  DropdownModule,
-  CollapseModule,
-  NavbarComponent,
-  ContainerComponent,
-  NavbarBrandDirective,
-  NavbarTogglerDirective,
-  CollapseDirective,
-  NavbarNavComponent,
-  NavItemComponent,
-  DropdownComponent,
-  DropdownToggleDirective,
-  NavLinkDirective,
-  DropdownMenuDirective,
-  DropdownItemDirective,
-} from '@coreui/angular';
+
 import { MatIconModule } from '@angular/material/icon';
 import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
@@ -92,22 +76,7 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatRadioModule,
 
-    // CoreUI
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
+   
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
