@@ -10,9 +10,6 @@
   background-color: #323c50;
 }
 
-* {
-  color: white;
-}
 
 .paginator .mat-paginator-range-label {
   display: none;

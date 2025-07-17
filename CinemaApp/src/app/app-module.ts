@@ -44,9 +44,6 @@ import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
 import { Bilete } from './user-dashboard/pages/bilete/bilete';
 import { Review } from './user-dashboard/pages/review/review';
 import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detalii-personale';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/prompt-parola-component/prompt-parola-component';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 
@@ -112,7 +109,6 @@ import { RouterModule } from '@angular/router';
     CollapseModule,
 
     // CoreUI components and directives:
-=======
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
