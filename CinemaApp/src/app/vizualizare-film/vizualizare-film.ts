@@ -11,14 +11,14 @@ import { ReviewService } from '../app-logic/review/review-service';
   styleUrls: ['./vizualizare-film.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VizualizareFilm implements OnInit{
+export class VizualizareFilm implements OnInit {
   // ⭐ Rating / Review
   selectedRating: number = 0;
   hoverRating: number = 0;
   reviewText: string = '';
   reviewSubmitted: boolean = false;
 
-  reviews:ReviewModel[] = [];
+  reviews: ReviewModel[] = [];
 
   // ❤️ Wishlist
   isWishlisted: boolean = false;
@@ -28,7 +28,10 @@ export class VizualizareFilm implements OnInit{
   filmId: number = 1;
   userId: number = 2;
 
-  constructor(private reviewDtoService: ReviewDtoService, private reviewService: ReviewService) {}
+  constructor(
+    private reviewDtoService: ReviewDtoService,
+    private reviewService: ReviewService
+  ) {}
 
   get displayedStars(): string[] {
     return Array.from({ length: 5 }, (_, i) => {
@@ -37,10 +40,8 @@ export class VizualizareFilm implements OnInit{
     });
   }
 
-  ngOnInit():void{
-    this.reviewService.getReviews().subscribe((data) => {
-      this.reviews = data;
-    })
+  ngOnInit(): void {
+    this.loadReviews();
   }
   // Stele hover
   onStarEnter(index: number): void {
@@ -82,6 +83,16 @@ export class VizualizareFilm implements OnInit{
     this.selectedRating = 0;
     this.reviewText = '';
     this.hoverRating = 0;
+
+    setTimeout(() => {
+      this.loadReviews();
+    }, 300);
+  }
+
+  loadReviews(): void {
+    this.reviewService.getReviews().subscribe((data) => {
+      this.reviews = data;
+    });
   }
 
   // 🔴❤️ Toggle Wishlist
