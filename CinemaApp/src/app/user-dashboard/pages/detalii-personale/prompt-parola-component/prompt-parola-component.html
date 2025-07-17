@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Confirmare salvare</h2>
+
+<mat-dialog-content>
+  <p>Introduceți parola pentru a confirma salvarea modificărilor:</p>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Parolă</mat-label>
+    <input matInput [(ngModel)]="password" type="password" autocomplete="off" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Anulează</button>
+  <button mat-flat-button color="primary" [disabled]="!password" (click)="onConfirm()">Confirmă</button>
+</mat-dialog-actions>

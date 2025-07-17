@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CinemaAPI.Models;
 using CinemaAPI.DataManagement;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.Controllers
 {

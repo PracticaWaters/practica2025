@@ -1,5 +1,6 @@
 ﻿using CinemaAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CinemaAPI.DataManagement;
 
@@ -7,9 +8,9 @@ public class WishlistDataOps
 {
     private readonly CinemaDbContext _dbContext;
 
-    public WishlistDataOps(CinemaDbContext dbContext)
+    public WishlistDataOps(CinemaDbContext cinemaDbContext)
     {
-        this._dbContext = dbContext;
+        _dbContext = cinemaDbContext;
     }
     
     public Wishlist[] GetWishlists()
@@ -82,5 +83,9 @@ public class WishlistDataOps
             .Include(x => x.User)
             .Include(x => x.Film)
             .FirstOrDefault(w => w.User.Id == userId && w.Film.Id == filmId);
+    }
+    public Wishlist? GetWishlistById(int id)
+    {
+        return _dbContext.wishlists.Where(x=>x.Id== id).FirstOrDefault();
     }
 }
