@@ -10,9 +10,9 @@ namespace CinemaAPI.Controllers
     {
         private readonly WishlistDataOps _wishlistOps;
 
-        public WishlistController()
+        public WishlistController(CinemaDbContext dbContext)
         {
-            _wishlistOps = new WishlistDataOps();
+            _wishlistOps = new WishlistDataOps(dbContext);
         }
 
         // GET /api/users/{userId}/wishlist
