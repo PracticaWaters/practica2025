@@ -28,14 +28,15 @@ namespace CinemaAPI.DataManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
+            // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
                 .WithOne(sc => sc.ScreeningRoom);
 
             base.OnModelCreating(modelBuilder);
 
-
-            // existing relationship configs
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Film)
                 .WithMany(f => f.Reviews)
