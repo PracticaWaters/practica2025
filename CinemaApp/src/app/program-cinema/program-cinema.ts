@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,12 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { Film } from '../film';
-import { FilmService } from '../app-logic/film/film-service';
-
-
-
-
 
 @Component({
   standalone: true, // ✅ definește componenta ca standalone
@@ -29,18 +23,9 @@ import { FilmService } from '../app-logic/film/film-service';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class ProgramCinema implements OnInit{
+export class ProgramCinema {
 
-  filmeAfisate:Film = [];
-
-  constructor(private filmService: FilmService) {}
-
-  ngOnInit(): void {
-    this.filmService.getFilms().subscribe((data: Film[]) => {
-      this.filmeAfisate = data;
-    });
-  }
-
+  
   ziSelectata: Date = new Date();
   calendarOpen: boolean = false;
 
@@ -84,13 +69,74 @@ export class ProgramCinema implements OnInit{
     return azi.toDateString() === date.toDateString();
   }
 
-
+filmeAfisate = [
+  {
+    titlu: 'Dune: Part II',
+    gen: 'SF / Acțiune',
+    format: '2D',
+    durata: 165,
+    poster: 'dune2.jpg',
+    program: {
+      '2D': ['19:30', '21:00', '14:30']
+    }as ProgramPerFormat
+  },
+  {
+    titlu: 'Inside Out 2',
+    gen: 'Animație / Familie',
+    format: '3D',
+    durata: 100,
+    poster: 'insideout2.jpg',
+    program: {
+      '3D': ['14:30', '19:30', '21:00']
+    }as ProgramPerFormat
+  },
+  {
+    titlu: 'Despicable Me 4',
+    gen: 'Animație / Comedie',
+    format: '2D',
+    durata: 95,
+    poster: 'despicable4.jpg',
+    program: {
+      '2D': ['21:00', '17:00', '14:30']
+    }as ProgramPerFormat
+  },
+  {
+    titlu: 'Despicable Me 4',
+    gen: 'Animație / Comedie',
+    format: '2D',
+    durata: 95,
+    poster: 'despicable4.jpg',
+    program: {
+      '2D': ['21:00', '17:00', '14:30']
+    }as ProgramPerFormat
+  },
+  {
+    titlu: 'Despicable Me 4',
+    gen: 'Animație / Comedie',
+    format: '2D',
+    durata: 95,
+    poster: 'despicable4.jpg',
+    program: {
+      '2D': ['21:00', '17:00', '14:30']
+    }as ProgramPerFormat
+  },
+  {
+    titlu: 'Despicable Me 4',
+    gen: 'Animație / Comedie',
+    format: '2D',
+    durata: 95,
+    poster: 'despicable4.jpg',
+    program: {
+      '2D': ['21:00', '17:00', '14:30']
+    }as ProgramPerFormat
+  }
+];
 objectKeys = Object.keys;
 
 
 
 getFilmeFiltrate() {
-  return this.filmeAfisate['filter']((film: { format: string; titlu: string; }) => {
+  return this.filmeAfisate.filter(film => {
     const potrivesteFormat = this.formatSelectat ? film.format === this.formatSelectat : true;
     const potrivesteTitlu = this.filmSelectat ? film.titlu === this.filmSelectat : true;
     return potrivesteFormat && potrivesteTitlu;
