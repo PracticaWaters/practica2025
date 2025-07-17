@@ -4,4 +4,5 @@ export interface ReviewDto {
   date: Date;
   comment: string;
   filmId: number;
+  userId: number;
 }

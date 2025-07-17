@@ -19,6 +19,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 
@@ -31,7 +32,7 @@ const routes: Routes = [
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  {path: "vizualizare-film", component:VizualizareFilm},
+  { path: 'vizualizare-film', component: VizualizareFilm },
   {
     path: 'userdashboard',
     component: UserDashboard,
@@ -41,11 +42,11 @@ const routes: Routes = [
       { path: 'wishlist', component: Wishlist },
       { path: 'bilete', component: Bilete },
       { path: 'review-uri', component: Review },
-      { path: 'detalii', component: DetaliiPersonale }
-    ]
+      { path: 'detalii', component: DetaliiPersonale },
+    ],
   },
-  {path: "detalii-cinema", component:DetaliiCinema},
-  {path: "program-cinema", component:ProgramCinema},
+  { path: 'detalii-cinema', component: DetaliiCinema },
+  { path: 'program-cinema', component: ProgramCinema },
   { path: 'screening-room', component: ScreeningRoom },
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
@@ -54,20 +55,20 @@ const routes: Routes = [
   {path: 'add-timeslot',component: AddTimeslot},
   {path: 'add-timeslot/:id',component: AddTimeslot},
 
-  { path: "", redirectTo: "/login", pathMatch: "full" },
-  { path: "login", component: Login },
-  { path: "register", component: Register },
-  { path: 'timeslot-list', component: TimeslotList},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'timeslot-list', component: TimeslotList },
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
+  { path: 'cinema-model', component: CinemaModel },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
