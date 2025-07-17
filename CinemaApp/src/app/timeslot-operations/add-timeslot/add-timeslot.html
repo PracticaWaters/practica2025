@@ -4,7 +4,7 @@
     <form [formGroup]="addTimeslotForm" (ngSubmit)="onSubmit()">
       <div>
         <mat-label class="label-style">Start Time:</mat-label>
-        <mat-form-field appearance="outline" class="">
+        <mat-form-field appearance="outline" class="field">
           <input
             class="input-style"
             matInput
@@ -35,8 +35,12 @@
         </mat-form-field>
       </div>
       <div>
-        <button class="select-movie-button">Select movie</button>
-        <<span>{{ selectedMovie }}</span>
+        <button class="select-movie-button" routerLink="select-movie">Select movie</button>
+        <span class="selected-text">{{ selectedMovie || 'No Movie selected'}}</span>
+      </div>
+      <div>
+        <button class="select-movie-button" routerLink="/select-screening-room">Select screening room</button>
+        <span class="selected-text">{{ selectedScreeningRoom?.name || 'No Screening Room Selected'}}</span>
       </div>
       <div class="button-div">
         <button

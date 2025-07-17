@@ -57,6 +57,8 @@ import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
     CinemaModel,
     TimeslotList,
     AddTimeslot,
+    SelectMovie,
+    SelectScreeningRoom,
   ],
   imports: [
     BrowserModule,

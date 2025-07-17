@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Timeslot } from '../../app-logic/timeslot';
 import { TimeslotData } from '../../app-logic/timeslot-data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Film } from '../../app-logic/film/film';
+import { AddTimeslotTransfer } from '../../app-logic/add-timeslot-transfer';
+import { ScreeningRoomData } from '../../app-logic/screening-room-data';
+
+
 
 @Component({
   selector: 'app-add-timeslot',
@@ -16,12 +20,14 @@ export class AddTimeslot implements OnInit {
   item!: Timeslot;
   itemId!: number;
   selectedMovie?: Film;
+  selectedScreeningRoom?: ScreeningRoomData;
 
   constructor(
     private formBuilder: FormBuilder,
     private timeslotData: TimeslotData,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private addTimeslotTransfer: AddTimeslotTransfer
   ) {
     this.addTimeslotForm = this.formBuilder.group({});
     activatedRoute.params.subscribe((params) => {
@@ -40,12 +46,15 @@ export class AddTimeslot implements OnInit {
 
   ngOnInit(): void {
     if (this.itemId == 0) {
+      console.log('Room:', this.selectedScreeningRoom);
       this.item = new Timeslot();
 
       this.addTimeslotForm = this.formBuilder.group({
-        name: [this.item.startTime, Validators.required],
-        description: [this.item.endTime, Validators.maxLength(50)],
+        startTime: [this.item.startTime, Validators.required],
+        endTime: [this.item.endTime, Validators.maxLength(50)],
       });
+      this.selectedMovie = this.addTimeslotTransfer.getMovie();
+      this.selectedScreeningRoom = this.addTimeslotTransfer.getScreeningRoom();
     } else {
       this.timeslotData.getTimeslotById(this.itemId).subscribe((data) => {
         this.item = data;
@@ -55,6 +64,8 @@ export class AddTimeslot implements OnInit {
           description: [this.item.endTime, Validators.maxLength(50)],
         });
       });
+      this.selectedMovie = this.addTimeslotTransfer.getMovie();
+      this.selectedScreeningRoom = this.addTimeslotTransfer.getScreeningRoom();
     }
   }
 
