@@ -13,12 +13,8 @@ export class AuthService {
   private user = new BehaviorSubject<User | null>(null);
 
   private readonly USER_KEY = 'user';
-<<<<<<< HEAD
-  private readonly TOKEN_KEY = 'token';
-=======
   private readonly ACCESS_TOKEN_KEY = 'accessToken';
   private readonly REFRESH_TOKEN_KEY = 'refreshToken';
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 
   constructor(private http: HttpClient) {
     const storedUser = this.getUser();
@@ -61,15 +57,11 @@ export class AuthService {
       .post<LoginResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
         tap((response: LoginResponse) => {
-<<<<<<< HEAD
-          this.saveAuthData(response.user, response.token);
-=======
           this.saveAuthData(
             response.user,
             response.accessToken,
             response.refreshToken
           );
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 
           this.user.next(response.user);
           console.log('User logged in:', response.user);
@@ -91,16 +83,10 @@ export class AuthService {
       );
   }
 
-<<<<<<< HEAD
-  saveAuthData(user: User, token: string): void {
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-    localStorage.setItem(this.TOKEN_KEY, token);
-=======
   saveAuthData(user: User, accessToken: string, refreshToken: string): void {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
     localStorage.setItem(this.ACCESS_TOKEN_KEY, accessToken);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   }
 
   getUser(): User | null {
@@ -108,34 +94,21 @@ export class AuthService {
     return data ? (JSON.parse(data) as User) : null;
   }
 
-<<<<<<< HEAD
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
-=======
   getAccessToken(): string | null {
     return localStorage.getItem(this.ACCESS_TOKEN_KEY);
   }
 
   getRefreshToken(): string | null {
     return localStorage.getItem(this.REFRESH_TOKEN_KEY);
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   }
 
   clearAuthData(): void {
     localStorage.removeItem(this.USER_KEY);
-<<<<<<< HEAD
-    localStorage.removeItem(this.TOKEN_KEY);
-  }
-
-  isLoggedIn(): boolean {
-    return this.getUser() !== null && this.getToken() !== null;
-=======
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
 
   isLoggedIn(): boolean {
     return this.getUser() !== null && this.getAccessToken() !== null;
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   }
 }

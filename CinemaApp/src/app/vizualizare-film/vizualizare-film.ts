@@ -20,14 +20,9 @@ export class VizualizareFilm {
   isWishlisted: boolean = false;
 
   // Returnează stelele pentru afișare
-<<<<<<< HEAD
-  //harcode filmId
-  filmId: number = 1;
-=======
   //harcode filmId and userId
   filmId: number = 1;
   userId: number = 2;
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 
   constructor(private reviewService: ReviewDtoService) {}
 
@@ -67,10 +62,7 @@ export class VizualizareFilm {
       date: new Date(),
       comment: this.reviewText.trim(),
       filmId: this.filmId,
-<<<<<<< HEAD
-=======
       userId: this.userId,
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
     };
 
     this.reviewService.addReview(reviewDto);

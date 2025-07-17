@@ -7,10 +7,7 @@ import {
   Validators,
   AbstractControl,
   ValidationErrors,
-<<<<<<< HEAD
   ValidatorFn,
-=======
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -43,7 +40,6 @@ export class Register implements OnInit {
         ],
         email: ['', [Validators.required, Validators.email]],
         birthDate: ['', Validators.required],
-<<<<<<< HEAD
         password: [
         '',
         [
@@ -52,16 +48,12 @@ export class Register implements OnInit {
           this.passwordComplexityValidator()
         ]
       ],
-=======
-        password: ['', [Validators.required, Validators.minLength(6)]],
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
         confirmPassword: ['', Validators.required],
       },
       { validators: this.passwordsMatchValidator }
     );
   }
 
-<<<<<<< HEAD
   private passwordComplexityValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value: string = control.value || '';
@@ -77,8 +69,6 @@ export class Register implements OnInit {
     };
   }
 
-=======
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
   private passwordsMatchValidator(
     group: AbstractControl
   ): ValidationErrors | null {

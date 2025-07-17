@@ -28,14 +28,7 @@ export class Login implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.user = this.authService.getUser();
       this.loginForm = this.fb.group({
-<<<<<<< HEAD
         email: [this.user?.email || '', [Validators.required, Validators.email]],
-=======
-        email: [
-          this.user?.email || '',
-          [Validators.required, Validators.email],
-        ],
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
         password: ['', [Validators.required, Validators.minLength(6)]],
       });
     } else {
@@ -58,17 +51,10 @@ export class Login implements OnInit {
         next: (user: User) => {
           console.log('✅ Login reușit:', user);
           this.submitted = true;
-<<<<<<< HEAD
           this.router.navigate(['/register']); // schimbă cu ruta reală dacă nu vrei să mergi la /register
         },
         error: (error: Error) => {
           this.errorMessage = error.message; // de ex. „Email sau parolă incorecte.”
-=======
-          this.router.navigate(['/program-cinema']); // schimbă cu ruta reală dacă nu vrei să mergi la /register
-        },
-        error: (error: Error) => {
-          this.errorMessage = error.message;
->>>>>>> d8907fadb5b707183763ebe14e7c1749a734f40d
         },
       });
     } else {

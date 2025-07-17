@@ -94,20 +94,13 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     DetaliiCinema,
     CinemaModel,
     TimeslotList,
-    TimeslotList,
   ],
   imports: [
-    BrowserModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-
-    // Material
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
 
 
     // Material
