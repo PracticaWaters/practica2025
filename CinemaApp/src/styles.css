@@ -30,6 +30,8 @@ body{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
 .cdk-overlay-pane {
   background-color: var(--dark);
 }
@@ -44,13 +46,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-expansion-indicator{
   fill: white;
-}
-
-.mat-sort-header-content{
-    color: white;
-}
-
-
-.mat-mdc-cell {
-  color: white;
 }
