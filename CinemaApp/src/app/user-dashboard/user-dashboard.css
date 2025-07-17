@@ -1,0 +1,119 @@
+.dashboard-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background-color:#5a72a0;  */
+}
+
+.user-dashboard-container {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.user-dashboard-box {
+  display: flex;
+  border-radius: 12px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  height: 90vh;
+  min-height: 400px;
+}
+
+.dashboard-menu {
+  width: 280px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid rgba(90, 114, 160, 0.2);
+}
+
+
+.dashboard-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-menu li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-menu li mat-icon {
+  margin-right: 12px;
+  color: white;
+}
+
+.dashboard-menu li a {
+  text-decoration: none;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* .dashboard-menu li:hover {
+  background-color: #d7e7fa;
+} */
+
+.dashboard-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  
+}
+
+.dashboard-menu a:hover {
+  text-decoration: underline;
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(90, 114, 160, 0.2);
+}
+
+.logoutbottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;      
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 12px 16px;
+  /* background-color: white;  */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logoutbottom a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* .logoutbottom:hover {
+    background-color: #d7e7fa;
+} */
+
+.logoutbottom mat-icon {
+    margin-right: 10px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+* {
+  color: white;
+}

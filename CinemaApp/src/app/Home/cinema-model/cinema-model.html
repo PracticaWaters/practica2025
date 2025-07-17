@@ -1,0 +1,12 @@
+<div class="cinema-model-container">
+  <div class="cinema-model-viewer">
+    <div #rendererContainer class="renderer-container"></div>
+
+    <div class="cinema-model-overlay">
+      <div class="loading-indicator" *ngIf="!model">
+        <div class="spinner"></div>
+        <p>Loading 3D MODEL...</p>
+      </div>
+    </div>
+  </div>
+</div>

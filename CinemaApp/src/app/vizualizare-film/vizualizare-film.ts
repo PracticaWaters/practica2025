@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ReviewDtoService } from '../app-logic/review-dto/review-dto-service';
+import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
 
 @Component({
   standalone: false,
@@ -18,6 +20,12 @@ export class VizualizareFilm {
   isWishlisted: boolean = false;
 
   // Returnează stelele pentru afișare
+  //harcode filmId and userId
+  filmId: number = 1;
+  userId: number = 2;
+
+  constructor(private reviewService: ReviewDtoService) {}
+
   get displayedStars(): string[] {
     return Array.from({ length: 5 }, (_, i) => {
       if (this.hoverRating > 0) return i < this.hoverRating ? '★' : '☆';
@@ -47,6 +55,17 @@ export class VizualizareFilm {
       alert('Te rugăm să oferi un rating și să scrii un comentariu.');
       return;
     }
+
+    const reviewDto: ReviewDto = {
+      id: 0,
+      rating: this.selectedRating,
+      date: new Date(),
+      comment: this.reviewText.trim(),
+      filmId: this.filmId,
+      userId: this.userId,
+    };
+
+    this.reviewService.addReview(reviewDto);
 
     this.reviewSubmitted = true;
 
