@@ -22,24 +22,23 @@ namespace CinemaAPI.Controllers
         
         
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
+        public IActionResult Register([FromBody] UserDto userDto)
         {
-            if (_userOps.GetUserByEmail(user.Email) != null)
+            if (_userOps.GetUserByEmail(userDto.Email) != null)
                 return Conflict("User already exists.");
-
-            user.CreatedAt = user.ModifiedAt = DateTime.UtcNow;
-            user.IsDeleted = false;
 
             try
             {
-                _userOps.AddUser(user);
+                _userOps.AddUser(MapDtoToUser(userDto));
                 return Ok("User registered successfully.");
             }
-            catch
+            catch(Exception ex)
             {
-                return BadRequest("Error registering user.");
+                return BadRequest("Error registering user.Error:" + ex);
             }
         }
+
+
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest credentials)
@@ -87,5 +86,50 @@ namespace CinemaAPI.Controllers
 
             return Unauthorized();
         }
+
+        public static User MapDtoToUser(UserDto userDto)
+        {
+            User user = new User
+            {
+                Id = userDto.Id,
+                Name = userDto.Name,
+                Email = userDto.Email,
+                Phone = userDto.Phone,
+                BirthDate = userDto.BirthDate,
+                Role = userDto.Role,
+                AvatarUrl = userDto.AvatarUrl,
+                Gender = userDto.Gender,
+                Password = userDto.Password,
+                CreatedAt = userDto.CreatedAt,
+                ModifiedAt = userDto.ModifiedAt,
+                IsDeleted = userDto.IsDeleted,
+                Rezervations = [],
+                Reviews = [],
+            };
+
+
+            if (userDto.RezervationId != null)
+            {
+                foreach (int id in userDto.RezervationId)
+                {
+                    var rezervation = new Rezervation()
+                        ?? throw new ArgumentException($"Rezervation with Id {id} not found.");
+                    user.Rezervations.Add(rezervation);
+                }
+            }
+
+            if (userDto.ReviewsId != null)
+            {
+                foreach (int id in userDto.ReviewsId)
+                {
+                    var review = new Review()
+                        ?? throw new ArgumentException($"Review with Id {id} not found.");
+                    user.Reviews.Add(review);
+                }
+            }
+
+            return user;
+        }
+
     }
 }

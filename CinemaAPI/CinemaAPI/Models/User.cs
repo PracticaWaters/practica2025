@@ -40,9 +40,9 @@ namespace CinemaAPI.Models
         [ForeignKey("Role")]
         public Role Role { get; set; }
 
-        public List<Rezervation>? Rezervari { get; set; }
+        public List<Rezervation>? Rezervations { get; set; }
 
-        public List<Review> Reviews { get; set; }
+        public List<Review>? Reviews { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }

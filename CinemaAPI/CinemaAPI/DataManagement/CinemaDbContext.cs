@@ -49,7 +49,7 @@ namespace CinemaAPI.DataManagement
                 .IsRequired();
 
             modelBuilder.Entity<User>()
-                .HasMany(r => r.Rezervari)
+                .HasMany(r => r.Rezervations)
                 .WithOne(g => g.User)
                 .IsRequired();
 

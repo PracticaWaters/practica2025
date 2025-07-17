@@ -12,6 +12,8 @@ namespace CinemaAPI.DataManagement
             dbContext = new CinemaDbContext();
         }
 
+     
+
         // add
         public void AddUser(User user)
         {

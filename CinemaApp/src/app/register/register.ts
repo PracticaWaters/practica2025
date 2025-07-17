@@ -1,7 +1,13 @@
 import { User } from '../app-logic/user/user.model';
 import { AuthService } from '../app-logic/user/auth-service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,21 +21,34 @@ export class Register implements OnInit {
   registerForm!: FormGroup;
   errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      gender: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{7,15}$/)]],
-      email: ['', [Validators.required, Validators.email]],
-      birthdate: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-    }, { validators: this.passwordsMatchValidator });
+    this.registerForm = this.fb.group(
+      {
+        name: ['', Validators.required],
+        gender: ['', Validators.required],
+        phone: [
+          '',
+          [Validators.required, Validators.pattern(/^\+?[0-9]{7,15}$/)],
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        birthDate: ['', Validators.required],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: this.passwordsMatchValidator }
+    );
   }
 
-  private passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
+  private passwordsMatchValidator(
+    group: AbstractControl
+  ): ValidationErrors | null {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
     return pass === confirm ? null : { passwordsMismatch: true };
@@ -43,14 +62,19 @@ export class Register implements OnInit {
     if (this.registerForm.valid) {
       console.log('Form valid');
 
-      const userData: User = new User(this.registerForm.value);
+      const userData: User = new User();
+      userData.id = this.registerForm.value.id;
+      userData.name = this.registerForm.value.name;
+      userData.phone = this.registerForm.value.phone;
+      userData.birthDate = this.registerForm.value.birthDate;
+      userData.gender = this.registerForm.value.gender;
+      userData.email = this.registerForm.value.email;
       userData.avatarUrl = 'https://example.com/default-avatar.png'; // Set default avatar URL
-      userData.gender = 'feminin';
+      userData.password = this.registerForm.value.password;
       userData.role = 0;
       userData.createdAt = new Date();
       userData.modifiedAt = new Date();
       userData.isDeleted = false;
-
       console.log('Registering user:', userData);
       this.authService.register(userData).subscribe({
         next: (response: string) => {
