@@ -23,7 +23,7 @@ import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 const routes: Routes = [
-  { path: '', component: VizualizareFilm },
+  { path: '', component: CinemaModel },
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},
