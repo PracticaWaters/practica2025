@@ -20,7 +20,7 @@ export class PromoProvider {
       {
         id: 2,
         title: 'SUPERWEEKEND',
-        description: 'Doar in weekend poti beneficia de o o SUPER reducere de 25% la TOATE filmele disponibile in program',
+        description: 'Doar in weekend poti beneficia de o SUPER reducere de 25% la TOATE filmele disponibile in program',
         startDate: new Date('2025-07-1'),
         endDate: new Date('2025-07-31'),
         discountPercentage: 25,
