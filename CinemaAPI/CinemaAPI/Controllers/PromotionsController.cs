@@ -19,13 +19,14 @@ namespace CinemaAPI.Controllers
             _filmDataOps = new FilmDataOps(dbContext);
         }
 
-        // Mapare din Model -> DTO
         private static PromotionsDto ToDto(Promotions promotion)
         {
             return new PromotionsDto
             {
                 Id = promotion.Id,
-                Name = promotion.Name,
+                Title = promotion.Title,
+                Description = promotion.Description,
+                Image = promotion.Image,
                 StartDate = promotion.StartDate,
                 EndDate = promotion.EndDate,
                 DiscountPercentage = promotion.DiscountPercentage,
@@ -33,23 +34,34 @@ namespace CinemaAPI.Controllers
             };
         }
 
-        // Mapare din DTO -> Model
         private Promotions ToEntity(PromotionsDto dto)
         {
+            var allFilmIds = dto.FilmIds.Distinct().ToList();
             var films = _filmDataOps.GetFilms()
-                         .Where(f => dto.FilmIds.Contains(f.Id))
+                         .Where(f => allFilmIds.Contains(f.Id))
                          .ToList();
+
+            var foundIds = films.Select(f => f.Id).ToList();
+            var invalidIds = allFilmIds.Except(foundIds).ToList();
+
+            if (invalidIds.Any())
+            {
+                throw new ArgumentException($"Filmele cu ID-urile [{string.Join(", ", invalidIds)}] nu există.");
+            }
 
             return new Promotions
             {
                 Id = dto.Id,
-                Name = dto.Name,
+                Title = dto.Title,
+                Description = dto.Description,
+                Image = dto.Image,
                 StartDate = dto.StartDate,
                 EndDate = dto.EndDate,
                 DiscountPercentage = dto.DiscountPercentage,
                 Films = films
             };
         }
+
 
         [HttpGet]
         public ActionResult<List<PromotionsDto>> GetPromotions()
@@ -66,14 +78,41 @@ namespace CinemaAPI.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<PromotionsDto> GetPromotionById(int id)
+        {
+            try
+            {
+                var promotion = _promotionsDataOps.GetPromotions().FirstOrDefault(p => p.Id == id);
+                if (promotion == null)
+                    return NotFound($"Promoția cu ID {id} nu a fost găsită.");
+
+                var dto = ToDto(promotion);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Eroare la obținerea promoției: {ex.Message}");
+            }
+        }
+
+
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
         public ActionResult AddPromotion([FromBody] PromotionsDto dto)
         {
             try
             {
-                var entity = ToEntity(dto);
-                _promotionsDataOps.AddPromotion(entity);
+                var promotion = new Promotions
+                {
+                    Title = dto.Title,
+                    Description = dto.Description,
+                    Image = dto.Image,
+                    StartDate = dto.StartDate,
+                    EndDate = dto.EndDate,
+                    DiscountPercentage = dto.DiscountPercentage,
+                };
+
+                _promotionsDataOps.AddPromotion(promotion, dto.FilmIds);
                 return Ok("Promotion added successfully.");
             }
             catch (Exception ex)
@@ -82,8 +121,8 @@ namespace CinemaAPI.Controllers
             }
         }
 
+
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin")]
         public ActionResult UpdatePromotion(int id, [FromBody] PromotionsDto dto)
         {
             if (id != dto.Id)
@@ -102,7 +141,6 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "Admin")]
         public ActionResult DeletePromotion(int id)
         {
             try

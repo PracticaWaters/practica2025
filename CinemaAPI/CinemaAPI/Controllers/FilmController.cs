@@ -134,15 +134,17 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
+                Promotions = new List<Promotions>() 
             };
 
-            foreach (var actorId in dto.ActorIds)
+            foreach (var actorId in dto.ActorIds ?? Enumerable.Empty<int>())
             {
                 var actor = _actorDataOps.GetActorById(actorId)
                           ?? throw new ArgumentException($"Actor with Id {actorId} not found.");
                 film.FilmActors.Add(actor);
             }
-            foreach (var reviewId in dto.RewiesIds)
+
+            foreach (var reviewId in dto.RewiesIds ?? Enumerable.Empty<int>())
             {
                 var review = _reviewDataOps.GetReviewById(reviewId)
                           ?? throw new ArgumentException($"Review with Id {reviewId} not found.");

@@ -58,6 +58,11 @@ namespace CinemaAPI.DataManagement
                 .WithOne(g => g.User)
                 .IsRequired();
 
+
+             modelBuilder.Entity<Promotions>()
+            .HasMany(p => p.Films)
+            .WithMany(f => f.Promotions);
+
             base.OnModelCreating(modelBuilder);
         }
     }

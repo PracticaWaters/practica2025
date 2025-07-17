@@ -14,5 +14,7 @@
         public TimeSpan Duration { get; set; }
         public DateTime StartRunningDate { get; set; }
         public DateTime EndRunningDate { get; set; }
+        public List<int> PromotionIds { get; set; } 
+
     }
 }
