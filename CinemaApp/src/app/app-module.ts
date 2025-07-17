@@ -1,12 +1,19 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
-import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 // Import CoreUI modules and directives:
@@ -37,8 +44,13 @@ import { DetaliiPersonale } from './user-dashboard/pages/detalii-personale/detal
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/prompt-parola-component/prompt-parola-component';
+import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { SupportPage } from './Support/support-page/support-page';
+import { SupportAdmin } from './Support/support-admin/support-admin';
+import { SupportForm } from './Support/support-form/support-form';
+import { Faq } from './Support/faq/faq';
+
 
 @NgModule({
   declarations: [
@@ -50,13 +62,24 @@ import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/
     Bilete,
     Review,
     DetaliiPersonale,
-    PromptParolaComponent
+    PromptParolaComponent,
+    SupportPage,
+    SupportAdmin,
+    SupportForm,
+    Faq,
+    DetaliiCinema,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+    CommonModule,
     MatInputModule,
     MatMenuModule,
+    CommonModule,
+    MatIconModule,
     MatExpansionModule,
     MatIconModule,
     MatPaginatorModule,
@@ -83,14 +106,13 @@ import { PromptParolaComponent } from './user-dashboard/pages/detalii-personale/
     DropdownToggleDirective,
     NavLinkDirective,
     DropdownMenuDirective,
-    DropdownItemDirective
+    DropdownItemDirective,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideAnimations()
-  ],
-  bootstrap: [App]
+  providers: [provideAnimations()],
+  bootstrap: [App],
 })
-export class AppModule {
-  
- }
+export class AppModule {}

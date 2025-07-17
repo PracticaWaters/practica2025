@@ -5,14 +5,15 @@ namespace CinemaAPI.DataManagement
     public class CinemaDataOps
     {
         private CinemaDbContext dbContext;
-        public CinemaDataOps()
+
+        public CinemaDataOps(CinemaDbContext dbContext)
         {
-            dbContext= new CinemaDbContext();
+            this.dbContext = dbContext;
         }
 
         public Cinema[] GetCinemas()
-        { 
-            return dbContext.cinemas.ToArray();        
+        {
+            return dbContext.cinemas.ToArray();
         }
 
         public void AddCinema(Cinema cinema)
@@ -43,8 +44,7 @@ namespace CinemaAPI.DataManagement
 
         public Cinema? GetCinema(int id)
         {
-            return dbContext.cinemas.Where(x=> x.Id==id).FirstOrDefault();
+            return dbContext.cinemas.Where(x => x.Id == id).FirstOrDefault();
         }
-
     }
 }

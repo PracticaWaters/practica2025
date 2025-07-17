@@ -12,9 +12,9 @@ namespace CinemaAPI.Controllers
     {
         private readonly CinemaDataOps _cinemaDataOps;
 
-        public CinemaController()
+        public CinemaController(CinemaDbContext dbContext)
         {
-            _cinemaDataOps = new CinemaDataOps();
+            _cinemaDataOps = new CinemaDataOps(dbContext);
         }
 
         [HttpGet]

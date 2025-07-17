@@ -11,7 +11,7 @@ export class App {
   isMenuOpen: boolean = false;
   adminExpanded: boolean = false;
 
-  protected title = 'CinemaApp';
+  protected title = 'Liquid Cinema';
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
