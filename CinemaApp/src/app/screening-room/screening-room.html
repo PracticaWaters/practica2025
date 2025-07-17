@@ -93,7 +93,7 @@
       </div>
 
       <div class="screen">
-        <div class="screen-label">ECRAN</div>
+        <div class="screen-label"></div>
       </div>
 
       <div class="seats-container">
@@ -101,14 +101,21 @@
             class="seat-row">
           <div class="row-number">{{ getRowLetter(rowIndex + 1) }}</div>
           
-          <button 
+          <div 
             *ngFor="let seat of row; let seatIndex = index" 
             (click)="onSeatClick(seat)"
-            [disabled]="seat.occupied"
             [class]="getSeatClass(seat)"  
-            [class.middle-gap]="seatIndex === row.length/2 -1">
-            {{ seat.number }}
-          </button>
+            [class.middle-gap]="seatIndex === row.length/2 -1"
+            class="seat-wrapper">
+            
+            <div class="cinema-seat">
+              <div class="seat-cushion"></div>
+              <div class="seat-back"></div>
+              <div class="seat-armrest left"></div>
+              <div class="seat-armrest right"></div>
+              <div class="seat-number">{{ seat.number }}</div>
+            </div>
+          </div>
         </div>
       </div>
 
