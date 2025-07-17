@@ -14,14 +14,14 @@ namespace CinemaAPI.Controllers
         private readonly FilmDataOps FilmDataOps;
         private readonly ActorDataOps ActorDataOps;
         private readonly ReviewDataOps ReviewDataOps;
-        private readonly RezervareDataOps RezervareDataOps;
+        private readonly ReservationDataOps ReservationDataOps;
         private readonly WishlistDataOps WishlistDataOps;
         public FilmController(CinemaDbContext dbContext)
         {
             FilmDataOps = new FilmDataOps(dbContext);
             ActorDataOps = new ActorDataOps(dbContext);
             ReviewDataOps = new ReviewDataOps(dbContext);
-            RezervareDataOps = new RezervareDataOps(dbContext);
+            ReservationDataOps = new ReservationDataOps(dbContext);
             WishlistDataOps =new WishlistDataOps(dbContext);
         }
 
@@ -137,7 +137,7 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
-                Reservations = new List<Rezervation>(),
+                Reservations = new List<Reservation>(),
                 Wishlists = new List<Wishlist>(),
             };
 
@@ -156,7 +156,7 @@ namespace CinemaAPI.Controllers
 
             foreach (var rezervationId in dto.RezervationsIds)
             {
-                var rezervation = RezervareDataOps.GetRezervareById(rezervationId)
+                var rezervation =ReservationDataOps.GetReservationById(rezervationId)
                           ?? throw new ArgumentException($"Review with Id {rezervationId} not found.");
                 film.Reservations.Add(rezervation);
             }

@@ -9,7 +9,7 @@ namespace CinemaAPI.DataManagement
 
         public ReservationDataOps(CinemaDbContext dbContext)
         {
-            dbContext = context;
+            this.dbContext = dbContext;
         }
 
         public Reservation[] GetReservations()
