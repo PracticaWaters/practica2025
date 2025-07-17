@@ -20,6 +20,7 @@ import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
 const routes: Routes = [
@@ -58,6 +59,7 @@ const routes: Routes = [
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'cinema-model', component: CinemaModel },
+  { path: 'cinema-generator', component: CinemaGenerator },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },

@@ -1,0 +1,109 @@
+<div class="cinema-generator-container">
+  <!-- 3D Scene Container -->
+  <div #rendererContainer class="renderer-container"></div>
+  
+  <!-- Control Panel -->
+  <div class="control-panel">
+    <h2>Cinema Seat Generator</h2>
+    
+    <div class="config-section">
+      <h3>Seat Configuration</h3>
+      
+      <div class="config-group">
+        <label for="rows">Number of Rows:</label>
+        <input 
+          type="number" 
+          id="rows" 
+          [(ngModel)]="seatConfig.rows" 
+          min="1" 
+          max="20"
+          (change)="updateSeatConfiguration()"
+        >
+      </div>
+      
+      <div class="config-group">
+        <label for="seatsPerRow">Seats per Row:</label>
+        <input 
+          type="number" 
+          id="seatsPerRow" 
+          [(ngModel)]="seatConfig.seatsPerRow" 
+          min="1" 
+          max="30"
+          (change)="updateSeatConfiguration()"
+        >
+      </div>
+      
+      <div class="config-group">
+        <label for="rowSpacing">Row Spacing:</label>
+        <input 
+          type="number" 
+          id="rowSpacing" 
+          [(ngModel)]="seatConfig.rowSpacing" 
+          min="0.5" 
+          max="3" 
+          step="0.1"
+          (change)="updateSeatConfiguration()"
+        >
+      </div>
+      
+      <div class="config-group">
+        <label for="seatSpacing">Seat Spacing:</label>
+        <input 
+          type="number" 
+          id="seatSpacing" 
+          [(ngModel)]="seatConfig.seatSpacing" 
+          min="0.5" 
+          max="2" 
+          step="0.1"
+          (change)="updateSeatConfiguration()"
+        >
+      </div>
+      
+      <div class="config-group">
+        <label for="scale">Seat Scale:</label>
+        <input 
+          type="number" 
+          id="scale" 
+          [(ngModel)]="seatConfig.scale" 
+          min="0.1" 
+          max="2" 
+          step="0.1"
+          (change)="updateSeatConfiguration()"
+        >
+      </div>
+    </div>
+    
+    <div class="info-section">
+      <h3>Statistics</h3>
+      <p><strong>Total Seats:</strong> {{ getSeatCount() }}</p>
+      <p><strong>Rows:</strong> {{ seatConfig.rows }}</p>
+      <p><strong>Seats per Row:</strong> {{ seatConfig.seatsPerRow }}</p>
+      <p><strong>Selected Seats:</strong> {{ getSelectedSeatsCount() }}</p>
+    </div>
+
+    <div class="selection-section" *ngIf="getSelectedSeatsCount() > 0">
+      <h3>Selected Seats</h3>
+      <div class="selected-seats-list">
+        <div *ngFor="let seat of getSelectedSeats()" class="selected-seat">
+          Row {{ seat.row }}, Seat {{ seat.seat }}
+        </div>
+      </div>
+      <button class="clear-selections-btn" (click)="clearAllSelections()">
+        Clear All Selections
+      </button>
+    </div>
+    
+    <div class="controls-section">
+      <h3>Controls</h3>
+      <p><strong>Mouse:</strong> Rotate camera</p>
+      <p><strong>Scroll:</strong> Animate camera</p>
+      <p><strong>Click:</strong> Select/Deselect seats</p>
+      <p><strong>X:</strong> Debug info</p>
+      <p><strong>R:</strong> Reset camera</p>
+      <p><strong>C:</strong> Toggle controls</p>
+      <p><strong>G:</strong> Regenerate seats</p>
+      <p><strong>S:</strong> Clear all selections</p>
+      <p><strong>T:</strong> Test seat detection</p>
+    </div>
+  </div>
+</div> 

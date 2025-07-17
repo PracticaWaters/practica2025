@@ -70,6 +70,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
@@ -97,6 +98,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     Faq,
     DetaliiCinema,
     CinemaModel,
+    CinemaGenerator,
     TimeslotList,
   ],
   imports: [
