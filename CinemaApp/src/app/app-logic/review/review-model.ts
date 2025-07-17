@@ -3,6 +3,8 @@ export interface ReviewModel {
   rating: number;
   date: Date;
   comment: string;
+  user?: {name:string};
+  film?:any;
   //film: Film;
   //user: User;
 }

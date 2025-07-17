@@ -1,6 +1,8 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ReviewDtoService } from '../app-logic/review-dto/review-dto-service';
 import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
+import { ReviewModel } from '../app-logic/review/review-model';
+import { ReviewService } from '../app-logic/review/review-service';
 
 @Component({
   standalone: false,
@@ -9,12 +11,14 @@ import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
   styleUrls: ['./vizualizare-film.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VizualizareFilm {
+export class VizualizareFilm implements OnInit{
   // ⭐ Rating / Review
   selectedRating: number = 0;
   hoverRating: number = 0;
   reviewText: string = '';
   reviewSubmitted: boolean = false;
+
+  reviews:ReviewModel[] = [];
 
   // ❤️ Wishlist
   isWishlisted: boolean = false;
@@ -24,7 +28,7 @@ export class VizualizareFilm {
   filmId: number = 1;
   userId: number = 2;
 
-  constructor(private reviewService: ReviewDtoService) {}
+  constructor(private reviewDtoService: ReviewDtoService, private reviewService: ReviewService) {}
 
   get displayedStars(): string[] {
     return Array.from({ length: 5 }, (_, i) => {
@@ -33,6 +37,11 @@ export class VizualizareFilm {
     });
   }
 
+  ngOnInit():void{
+    this.reviewService.getReviews().subscribe((data) => {
+      this.reviews = data;
+    })
+  }
   // Stele hover
   onStarEnter(index: number): void {
     this.hoverRating = index + 1;
@@ -65,7 +74,7 @@ export class VizualizareFilm {
       userId: this.userId,
     };
 
-    this.reviewService.addReview(reviewDto);
+    this.reviewDtoService.addReview(reviewDto);
 
     this.reviewSubmitted = true;
 
