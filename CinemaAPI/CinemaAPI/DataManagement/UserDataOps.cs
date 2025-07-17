@@ -7,9 +7,9 @@ namespace CinemaAPI.DataManagement
     {
         private CinemaDbContext dbContext { get; set; }
 
-        public UserDataOps()
+        public UserDataOps(CinemaDbContext cinemaDbContext)
         {
-            dbContext = new CinemaDbContext();
+            this.dbContext = cinemaDbContext;
         }
 
      
@@ -19,13 +19,13 @@ namespace CinemaAPI.DataManagement
         {
             if (GetUserByEmail(user.Email) != null)
                 throw new Exception($"User with email '{user.Email}' already exists.");
-           
+
             try
             {
                 user.Password = PasswordHasher.HashPassword(user.Password);
                 user.CreatedAt = DateTime.Now;
                 user.ModifiedAt = DateTime.Now;
-                
+
                 dbContext.Add(user);
                 dbContext.SaveChanges();
             }
@@ -58,12 +58,12 @@ namespace CinemaAPI.DataManagement
             var user = dbContext.users
                 .Where(u => u.IsDeleted == false && u.Email == email)
                 .FirstOrDefault();
-            
+
             if (user != null && PasswordHasher.VerifyPassword(password, user.Password))
             {
                 return user;
             }
-            
+
             return null;
         }
 
@@ -109,6 +109,48 @@ namespace CinemaAPI.DataManagement
             {
                 throw new Exception("Failed to delete the user");
             }
+        }
+
+        public void SaveRefreshToken(int userId, string token, DateTime expiry)
+        {
+            dbContext.AuthenticationRefreshTokens.Add(new RefreshToken
+            {
+                UserId = userId,
+                Token = token,
+                ExpiryDate = expiry
+            });
+            dbContext.SaveChanges();
+        }
+
+
+        public RefreshToken? GetRefreshToken(string token)
+        {
+            return dbContext.AuthenticationRefreshTokens.FirstOrDefault(r => r.Token == token && !r.IsRevoked);
+        }
+
+        public void ReplaceRefreshToken(string oldToken, string newToken, DateTime newExpiry)
+        {
+           
+            var existing = dbContext.AuthenticationRefreshTokens.FirstOrDefault(r => r.Token == oldToken);
+
+            if (existing == null)
+                return;
+
+            existing.IsRevoked = true;
+            dbContext.AuthenticationRefreshTokens.Add(new RefreshToken
+            {
+                UserId = existing.UserId,
+                Token = newToken,
+                ExpiryDate = newExpiry
+            });
+            dbContext.SaveChanges();
+        }
+        
+        public void DeleteRefreshTokens(int userId)
+        {
+            var tokens = dbContext.AuthenticationRefreshTokens.Where(r => r.UserId == userId);
+            dbContext.AuthenticationRefreshTokens.RemoveRange(tokens);
+            dbContext.SaveChanges();
         }
     }
 }

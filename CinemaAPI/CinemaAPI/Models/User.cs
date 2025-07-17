@@ -40,7 +40,7 @@ namespace CinemaAPI.Models
         [ForeignKey("Role")]
         public Role Role { get; set; }
 
-        public List<Rezervation>? Rezervations { get; set; }
+        public List<Reservation>? Reservations { get; set; }
 
         public List<Review>? Reviews { get; set; }
 
@@ -51,7 +51,7 @@ namespace CinemaAPI.Models
         public DateTime ModifiedAt { get; set; }
 
         public bool IsDeleted { get; set; }
-      
-        public ICollection<Wishlist> Wishlists { get; set; }
+        
+        public List<Wishlist> Wishlists { get; set; }
     }
 }

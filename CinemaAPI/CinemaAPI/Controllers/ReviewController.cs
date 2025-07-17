@@ -10,13 +10,13 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/review")]
     public class ReviewController : Controller
     {
-        private readonly ReviewDataOps reviewDataOps;
-        private readonly FilmDataOps filmDataOps;
+        private readonly ReviewDataOps _reviewDataOps;
+        private readonly FilmDataOps _filmDataOps;
 
         public ReviewController(CinemaDbContext dbContext)
         {
-            reviewDataOps = new ReviewDataOps(dbContext);
-            filmDataOps = new FilmDataOps(dbContext);
+            _reviewDataOps = new ReviewDataOps(dbContext);
+            _filmDataOps = new FilmDataOps(dbContext);
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var reviews = reviewDataOps.GetReviews();
+                var reviews = _reviewDataOps.GetReviews();
                 return Ok(reviews);
             }
             catch (Exception ex)
@@ -40,10 +40,10 @@ namespace CinemaAPI.Controllers
             review.Rating = reviewDto.Rating;
             review.Date = reviewDto.Date;
             review.Comment = reviewDto.Comment;
-            review.Film = filmDataOps.GetFilmById(reviewDto.FilmId);
+            review.Film = _filmDataOps.GetFilmById(reviewDto.FilmId);
 
 
-            reviewDataOps.AddReview(review);
+            _reviewDataOps.AddReview(review);
             return Ok();
         }
 
@@ -52,7 +52,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                reviewDataOps.UpdateReview(review);
+                _reviewDataOps.UpdateReview(review);
                 return Ok();
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                reviewDataOps.DeleteReview(review);
+                _reviewDataOps.DeleteReview(review);
                 return Ok();
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var review = reviewDataOps.GetReviewById(id);
+                var review = _reviewDataOps.GetReviewById(id);
                 return Ok(review);
             }
             catch (Exception ex)

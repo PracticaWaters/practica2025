@@ -7,15 +7,26 @@ import { AppRoutingModule } from './app-routing-module';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { AddScreeningRoom } from './screening-room-operations/add-screening-room/add-screening-room/add-screening-room';
+import { ScreeningRoom } from './screening-room/screening-room';
+import { ProgramCinema } from './program-cinema/program-cinema';
+
+// Angular Material modules
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { App } from './app';
+import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 
 // Import CoreUI modules and directives:
@@ -39,12 +50,43 @@ import {
   NavLinkDirective,
 } from '@coreui/angular';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
+import { AppRoutingModule } from './app-routing-module';
+import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+
+// CoreUI modules and directives
+import {
+  NavbarModule,
+  DropdownModule,
+  CollapseModule,
+  NavbarComponent,
+  ContainerComponent,
+  NavbarBrandDirective,
+  NavbarTogglerDirective,
+  CollapseDirective,
+  NavbarNavComponent,
+  NavItemComponent,
+  DropdownComponent,
+  DropdownToggleDirective,
+  NavLinkDirective,
+  DropdownMenuDirective,
+  DropdownItemDirective,
+} from '@coreui/angular';
+import { MatIconModule } from '@angular/material/icon';
+import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
-import { SupportPage } from './Support/support-page/support-page';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -52,22 +94,56 @@ import { SupportPage } from './Support/support-page/support-page';
     Register,
     Login,
     VizualizareFilm,
+    DetaliiCinema,
+    ScreeningRoomList,
+    AddScreeningRoom,
+    ScreeningRoom,
     SupportPage,
     SupportAdmin,
     SupportForm,
     Faq,
-    DetaliiCinema,
   ],
   imports: [
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+
+    // Material
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
 
     CommonModule,
     MatInputModule,
     MatMenuModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatRadioModule,
+
+    // CoreUI
+    NavbarModule,
+    DropdownModule,
+    CollapseModule,
+    NavbarComponent,
+    ContainerComponent,
+    NavbarBrandDirective,
+    NavbarTogglerDirective,
+    CollapseDirective,
+    NavbarNavComponent,
+    NavItemComponent,
+    DropdownComponent,
+    DropdownToggleDirective,
+    NavLinkDirective,
+    DropdownMenuDirective,
+    DropdownItemDirective,
     CommonModule,
     // CoreUI modules:
     NavbarModule,
@@ -95,6 +171,7 @@ import { SupportPage } from './Support/support-page/support-page';
     MatNativeDateModule,
     MatSelectModule,
   ],
+  providers: [provideAnimations(), provideBrowserGlobalErrorListeners()],
   providers: [
           provideAnimations(),
     provideBrowserGlobalErrorListeners(),
