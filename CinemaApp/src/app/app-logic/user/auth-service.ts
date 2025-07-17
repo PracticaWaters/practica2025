@@ -13,7 +13,8 @@ export class AuthService {
   private user = new BehaviorSubject<User | null>(null);
 
   private readonly USER_KEY = 'user';
-  private readonly TOKEN_KEY = 'token';
+  private readonly ACCESS_TOKEN_KEY = 'accessToken';
+  private readonly REFRESH_TOKEN_KEY = 'refreshToken';
 
   constructor(private http: HttpClient) {
     const storedUser = this.getUser();
@@ -56,7 +57,11 @@ export class AuthService {
       .post<LoginResponse>(`${this.apiUrl}/login`, credentials)
       .pipe(
         tap((response: LoginResponse) => {
-          this.saveAuthData(response.user, response.token);
+          this.saveAuthData(
+            response.user,
+            response.accessToken,
+            response.refreshToken
+          );
 
           this.user.next(response.user);
           console.log('User logged in:', response.user);
@@ -78,9 +83,10 @@ export class AuthService {
       );
   }
 
-  saveAuthData(user: User, token: string): void {
+  saveAuthData(user: User, accessToken: string, refreshToken: string): void {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-    localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem(this.ACCESS_TOKEN_KEY, accessToken);
+    localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
   }
 
   getUser(): User | null {
@@ -88,16 +94,21 @@ export class AuthService {
     return data ? (JSON.parse(data) as User) : null;
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+  getAccessToken(): string | null {
+    return localStorage.getItem(this.ACCESS_TOKEN_KEY);
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
   }
 
   clearAuthData(): void {
     localStorage.removeItem(this.USER_KEY);
-    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
+    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
 
   isLoggedIn(): boolean {
-    return this.getUser() !== null && this.getToken() !== null;
+    return this.getUser() !== null && this.getAccessToken() !== null;
   }
 }
