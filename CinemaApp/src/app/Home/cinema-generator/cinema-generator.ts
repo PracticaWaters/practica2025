@@ -54,6 +54,11 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     scale: 0.8, // scale scaune
   };
 
+  // Find seat variables
+  public findSeatRow: number = 1;
+  public findSeatColumn: number = 1;
+  public seatInfo: any = null;
+
   constructor(
     private cameraService: CameraService,
     private lightingService: LightingService,
@@ -247,6 +252,46 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
 
   public clearAllSelections(): void {
     this.seatGeneratorService.clearAllSelections();
+  }
+
+  // Find and select seat by row and column
+  public findAndSelectSeat(row: number, column: number): boolean {
+    return this.seatGeneratorService.findAndSelectSeat(row, column);
+  }
+
+  // Get seat information
+  public getSeatInfo(row: number, column: number): { found: boolean; info?: any } {
+    return this.seatGeneratorService.getSeatInfo(row, column);
+  }
+
+  // Find and select seat from UI
+  public findSeat(): void {
+    console.log(`Finding seat at Row ${this.findSeatRow}, Column ${this.findSeatColumn}`);
+    
+    if (this.findSeatRow < 1 || this.findSeatRow > this.seatConfig.rows) {
+      console.error(`Invalid row number: ${this.findSeatRow}. Must be between 1 and ${this.seatConfig.rows}`);
+      return;
+    }
+    
+    if (this.findSeatColumn < 1 || this.findSeatColumn > this.seatConfig.seatsPerRow) {
+      console.error(`Invalid column number: ${this.findSeatColumn}. Must be between 1 and ${this.seatConfig.seatsPerRow}`);
+      return;
+    }
+    
+    // Find and select the seat
+    const found = this.findAndSelectSeat(this.findSeatRow, this.findSeatColumn);
+    
+    if (found) {
+      // Get seat info for display
+      const seatInfoResult = this.getSeatInfo(this.findSeatRow, this.findSeatColumn);
+      if (seatInfoResult.found) {
+        this.seatInfo = seatInfoResult.info;
+        console.log('Seat info updated:', this.seatInfo);
+      }
+    } else {
+      this.seatInfo = null;
+      console.log('Seat not found');
+    }
   }
 
   private setupClickHandler(): void {

@@ -92,6 +92,43 @@
         Clear All Selections
       </button>
     </div>
+
+    <div class="find-seat-section">
+      <h3>Find Seat</h3>
+      <div class="find-seat-inputs">
+        <div class="input-group">
+          <label for="rowInput">Row:</label>
+          <input 
+            type="number" 
+            id="rowInput" 
+            [(ngModel)]="findSeatRow" 
+            min="1" 
+            [max]="seatConfig.rows"
+            placeholder="Enter row number"
+          >
+        </div>
+        <div class="input-group">
+          <label for="columnInput">Column:</label>
+          <input 
+            type="number" 
+            id="columnInput" 
+            [(ngModel)]="findSeatColumn" 
+            min="1" 
+            [max]="seatConfig.seatsPerRow"
+            placeholder="Enter column number"
+          >
+        </div>
+      </div>
+      <button class="find-seat-btn" (click)="findSeat()">
+        Find & Select Seat
+      </button>
+      <div class="seat-info" *ngIf="seatInfo">
+        <p><strong>Seat Info:</strong></p>
+        <p>Row: {{ seatInfo.row }}, Column: {{ seatInfo.column }}</p>
+        <p>Position: ({{ seatInfo.position.x.toFixed(2) }}, {{ seatInfo.position.y.toFixed(2) }}, {{ seatInfo.position.z.toFixed(2) }})</p>
+        <p>Status: {{ seatInfo.isSelected ? 'Selected' : 'Not Selected' }}</p>
+      </div>
+    </div>
     
     <div class="controls-section">
       <h3>Controls</h3>

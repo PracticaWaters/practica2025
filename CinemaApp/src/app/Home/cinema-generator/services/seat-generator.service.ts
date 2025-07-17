@@ -286,4 +286,64 @@ export class SeatGeneratorService {
   getGeneratedSeats(): THREE.Group[] {
     return this.generatedSeats;
   }
+
+  // Find and select seat by row and column numbers
+  findAndSelectSeat(rowNumber: number, columnNumber: number): boolean {
+    console.log(`Looking for seat at Row ${rowNumber}, Column ${columnNumber}`);
+    
+    // Convert to 0-based indexing
+    const rowIndex = rowNumber - 1;
+    const columnIndex = columnNumber - 1;
+    
+    const targetSeat = this.generatedSeats.find(seat => {
+      const userData = (seat as any).userData;
+      return userData && userData.row === rowIndex && userData.seat === columnIndex;
+    });
+    
+    if (targetSeat) {
+      console.log(`Found seat at Row ${rowNumber}, Column ${columnNumber}`);
+      const isSelected = this.selectSeat(targetSeat);
+      console.log(`Seat selection result: ${isSelected ? 'selected' : 'deselected'}`);
+      return true;
+    } else {
+      console.log(`No seat found at Row ${rowNumber}, Column ${columnNumber}`);
+      console.log('Available seats:');
+      this.generatedSeats.forEach((seat, index) => {
+        const userData = (seat as any).userData;
+        if (userData) {
+          console.log(`Seat ${index}: Row ${userData.row + 1}, Column ${userData.seat + 1}`);
+        }
+      });
+      return false;
+    }
+  }
+
+  // Get seat info by row and column
+  getSeatInfo(rowNumber: number, columnNumber: number): { found: boolean; info?: any } {
+    const rowIndex = rowNumber - 1;
+    const columnIndex = columnNumber - 1;
+    
+    const targetSeat = this.generatedSeats.find(seat => {
+      const userData = (seat as any).userData;
+      return userData && userData.row === rowIndex && userData.seat === columnIndex;
+    });
+    
+    if (targetSeat) {
+      const userData = (targetSeat as any).userData;
+      const seatKey = `${userData.row}-${userData.seat}`;
+      const isSelected = this.selectedSeats.has(seatKey);
+      
+      return {
+        found: true,
+        info: {
+          row: userData.row + 1,
+          column: userData.seat + 1,
+          position: userData.position,
+          isSelected: isSelected
+        }
+      };
+    }
+    
+    return { found: false };
+  }
 } 
