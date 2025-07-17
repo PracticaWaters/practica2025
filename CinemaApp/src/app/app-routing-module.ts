@@ -8,9 +8,11 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { StartPageComponent } from './Home/start-page/start-page';
+
 
 const routes: Routes = [
-  { path: '', component: VizualizareFilm },
+  { path: '', component: StartPageComponent },
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},

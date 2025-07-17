@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Suez+One&display=swap');
+
+.start-hero {
+  height: 100vh;
+  background: url('../../../assets/home-assets/home-page.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 4rem;
+}
+
+.start-content {
+  color: white;
+  max-width: 600px;
+}
+
+.custom-heading {
+  font-family: 'Suez One', serif;
+  font-size: 90px;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.custom-paragraph {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.buy-btn {
+  background-color: #ff4081;
+  color: white;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buy-btn:hover {
+  background-color: #e73370;
+}
