@@ -12,11 +12,13 @@ namespace CinemaAPI.Controllers
     {
         private readonly ReviewDataOps _reviewDataOps;
         private readonly FilmDataOps _filmDataOps;
+        private readonly UserDataOps _userDataOps;
 
         public ReviewController(CinemaDbContext dbContext)
         {
             _reviewDataOps = new ReviewDataOps(dbContext);
             _filmDataOps = new FilmDataOps(dbContext);
+            _userDataOps = new UserDataOps(dbContext);
         }
 
         [HttpGet]
@@ -41,6 +43,7 @@ namespace CinemaAPI.Controllers
             review.Date = reviewDto.Date;
             review.Comment = reviewDto.Comment;
             review.Film = _filmDataOps.GetFilmById(reviewDto.FilmId);
+            review.User = _userDataOps.GetUserById(reviewDto.UserId);
 
 
             _reviewDataOps.AddReview(review);

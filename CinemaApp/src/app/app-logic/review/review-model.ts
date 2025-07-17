@@ -4,4 +4,5 @@ export interface ReviewModel {
   date: Date;
   comment: string;
   //film: Film;
+  //user: User;
 }
