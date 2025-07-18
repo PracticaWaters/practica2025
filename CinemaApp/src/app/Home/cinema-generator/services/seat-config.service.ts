@@ -14,8 +14,8 @@ export class SeatConfigService {
     rowOffset: 0.5,
     seatOffset: 0.4,
     scale: 0.8,
-    rowHeight: 0.4, // Maximum row height from image
-    baseHeight: -2.3, // Base height from image
+    rowHeight: 0.4, // max row height
+    baseHeight: -2.3, // base height
   };
 
   private configSubject = new BehaviorSubject<SeatConfig>(this.defaultConfig);
@@ -81,15 +81,33 @@ export class SeatConfigService {
     return [
       {
         name: 'Small Cinema',
-        config: { ...this.defaultConfig, rows: 4, seatsPerRow: 8, rowHeight: 0.3, baseHeight: -1.5 },
+        config: {
+          ...this.defaultConfig,
+          rows: 4,
+          seatsPerRow: 8,
+          rowHeight: 0.3,
+          baseHeight: -1.5,
+        },
       },
       {
         name: 'Medium Cinema',
-        config: { ...this.defaultConfig, rows: 6, seatsPerRow: 10, rowHeight: 0.4, baseHeight: -2.0 },
+        config: {
+          ...this.defaultConfig,
+          rows: 6,
+          seatsPerRow: 10,
+          rowHeight: 0.4,
+          baseHeight: -2.0,
+        },
       },
       {
         name: 'Large Cinema',
-        config: { ...this.defaultConfig, rows: 6, seatsPerRow: 10, rowHeight: 0.4, baseHeight: -2.3 },
+        config: {
+          ...this.defaultConfig,
+          rows: 6,
+          seatsPerRow: 10,
+          rowHeight: 0.4,
+          baseHeight: -2.3,
+        },
       },
       {
         name: 'IMAX Style',
