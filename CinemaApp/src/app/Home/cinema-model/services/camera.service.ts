@@ -149,6 +149,14 @@ export class CameraService {
 
   resetCameraToStart(): void {
     if (this.camera) {
+      // Restore original FOV if it was changed
+      if ((this.camera as any).originalFOV !== undefined) {
+        this.camera.fov = (this.camera as any).originalFOV;
+        this.camera.updateProjectionMatrix();
+        delete (this.camera as any).originalFOV;
+        console.log('FOV restored to original value');
+      }
+      
       this.camera.position.copy(this.config.startPosition);
       this.camera.lookAt(new THREE.Vector3(0, 0, 0));
     }

@@ -57,6 +57,9 @@ import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
@@ -90,6 +93,10 @@ import { Reservation } from './reservation/reservation';
     TimeslotList,
     Promotii,
     Reservation
+    AddTimeslot,
+    SelectMovie,
+    SelectScreeningRoom,
+    Promotii
   ],
   imports: [
     BrowserModule,
