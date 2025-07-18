@@ -14,6 +14,7 @@ body{
 }
 
 :root {
+  --mat-form-field-outlined-input-text-color: white;
   --dark: #1A2130;
   --primary: #5A72A0;
   --accent: #83B4FF;

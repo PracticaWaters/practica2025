@@ -62,7 +62,7 @@
 
     <!-- Email si Telefon pe aceeasi linie -->
     <div class="flex gap-4">
-      <mat-form-field appearance="outline" class="half-width" >
+      <mat-form-field appearance="outline" class="half-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" />
       </mat-form-field>
@@ -73,17 +73,30 @@
       </mat-form-field>
     </div>
   </div>
+  <div
+    class="flex flex-col bg-white/5 backdrop-blur-lg border border-white/20 rounded-xl p-4 w-full mx-auto mb-3"
+  >
+    <!-- Data nasterii si Gender pe aceeasi linie -->
+    <div class="flex gap-4">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Data nașterii</mat-label>
+        <input matInput formControlName="email" type="date" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Gen</mat-label>
+        <mat-select formControlName="gen" name="gender">
+          <mat-option value="Masculin">Masculin</mat-option>
+          <mat-option value="Feminin">Feminin</mat-option>
+          <mat-option value="Altul">Altul</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
 
   <!-- butoane -->
   <div class="buttons">
-    <button
-      type="button"
-      (click)="confirmAndSubmit()"
-    >
-      SALVEAZĂ
-    </button>
-    <button type="button" (click)="onCancel()">
-      ANULARE
-    </button>
+    <button class="transition-transform duration-200 active:scale-90" type="button" (click)="confirmAndSubmit()">SALVEAZĂ</button>
+    <button class="transition-transform duration-200 active:scale-90" type="button" (click)="onCancel()">ANULARE</button>
   </div>
 </form>
