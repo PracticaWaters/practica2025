@@ -305,7 +305,7 @@
           <div class="mb-4">
             <div class="flex items-center justify-between mb-2">
               <span class="text-lg font-semibold">
-                {{ review.user?.name || "Anonim" }}
+                {{ review.user.name || "Anonim" }}
               </span>
               <span class="text-[var(--button-cta)] text-lg font-semibold">
                 <ng-container *ngFor="let star of [1,2,3,4,5]">

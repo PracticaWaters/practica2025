@@ -33,7 +33,6 @@ const routes: Routes = [
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  { path: 'vizualizare-film', component: VizualizareFilm },
   {
     path: 'userdashboard',
     component: UserDashboard,
@@ -63,7 +62,7 @@ const routes: Routes = [
   { path: 'cinema-generator', component: CinemaGenerator },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
-  { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'vizualizare-film/:id', component: VizualizareFilm },
   { path: 'promotii', component: Promotii}
 ];
 

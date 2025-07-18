@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ReviewModel } from './review-model';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +11,16 @@ export class ReviewService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // getReviews(): Observable<ReviewModel[]> {
-  //   return this.httpClient.get<ReviewModel[]>(this.apiUrl);
-  // }
-
   getReviews(): Observable<ReviewModel[]> {
-  return this.httpClient.get<any[]>(this.apiUrl).pipe(
-    // Prelucrează fiecare review pentru a păstra doar câmpurile relevante
-    map(reviews => reviews.map(r => ({
-      id: r.id,
-      rating: r.rating,
-      date: new Date(r.date),
-      comment: r.comment,
-      // Hardcodăm userul cu un nume, dacă nu avem modelul User
-      user: { name: 'UserTest' },
-      // Ignorăm filmul complet sau îl poți pune null
-      film: null
-    })))
-  );
-}
+    return this.httpClient.get<ReviewModel[]>(this.apiUrl);
+  }
 
   getReviewById(id: number): Observable<ReviewModel> {
     return this.httpClient.get<ReviewModel>(`${this.apiUrl}/${id}`);
+  }
+
+  getReviewsByFilmId(filmId: number): Observable<ReviewModel[]> {
+    return this.httpClient.get<ReviewModel[]>(`${this.apiUrl}/film/${filmId}`);
   }
 
   updateReview(review: ReviewModel): void {
