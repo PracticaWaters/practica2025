@@ -5,6 +5,7 @@ import { User } from '../app-logic/user/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../app-logic/user/user-service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class Login implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private http: HttpClient,
     private snackBar: MatSnackBar
@@ -56,7 +58,8 @@ export class Login implements OnInit {
         next: (user: User) => {
           console.log('✅ Login reușit:', user);
           this.submitted = true;
-          this.router.navigate(['/program-cinema']); // schimbă cu ruta reală dacă nu vrei să mergi la /register
+          this.router.navigate(['/program-cinema']);
+          this.userService.refreshUser();
         },
         error: (error: Error) => {
           this.errorMessage = error.message;
@@ -65,7 +68,7 @@ export class Login implements OnInit {
             duration: 5000, // 5 secunde
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
-            panelClass: ['error-snackbar'] // stil opțional
+            panelClass: ['error-snackbar'], // stil opțional
           });
         },
       });
