@@ -10,12 +10,17 @@ namespace CinemaAPI.DataManagement
         public DbSet<User> users { get; set; }
         public DbSet<Cinema> cinemas { get; set; }
         public DbSet<Film> films { get; set; }
+        public DbSet<ScreeningRoom> screeningRooms { get; set; }
+        public DbSet<Seat> seats { get; set; }
         public DbSet<Review> reviews { get; set; }
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-        public DbSet<Rezervation> rezervari { get; set; }
-        
+
+        public DbSet<Reservation> rezervari { get; set; }
+
+        public DbSet<Promotions> promotions { get; set; }
+
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,11 +32,24 @@ namespace CinemaAPI.DataManagement
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+
             // existing relationship configs
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(s => s.SeatList)
+                .WithOne(sc => sc.ScreeningRoom);
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Film)
                 .WithMany(f => f.Reviews)
                 .HasForeignKey("FilmId")
+                .IsRequired();
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User)
+                .WithMany(f => f.Reviews)
+                .HasForeignKey("UserId")
                 .IsRequired();
 
             modelBuilder.Entity<User>()
@@ -47,9 +65,14 @@ namespace CinemaAPI.DataManagement
                 .WithMany(a => a.FilmActors);
 
             modelBuilder.Entity<User>()
-                .HasMany(r => r.Rezervari)
+                .HasMany(r => r.Reservations)
                 .WithOne(g => g.User)
                 .IsRequired();
+
+
+             modelBuilder.Entity<Promotions>()
+            .HasMany(p => p.Films)
+            .WithMany(f => f.Promotions);
 
             base.OnModelCreating(modelBuilder);
         }

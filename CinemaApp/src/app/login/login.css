@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #5A72A0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:host {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #5A72A0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding-left: 10px;
+}
+
+mat-label {
+  padding-left: 10px;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 30px;
+}
+.login-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 30px;
+}
+  
+.login-box {
+  display: flex;
+  width: 100%;
+  background-color: #83b4ff;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+
+.login-left {
+  background-color: #83b4ff;
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-left h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.login-left button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1772d2;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.login-left button:hover {
+  background-color: #0056b3;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.register-link {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.login-right {
+  flex: 1;
+  background-color: #fdffe2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+}
+
+.login-right img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}

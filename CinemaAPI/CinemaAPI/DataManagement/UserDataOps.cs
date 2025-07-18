@@ -1,5 +1,6 @@
 using CinemaAPI.Models;
 using CinemaAPI.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
@@ -11,6 +12,8 @@ namespace CinemaAPI.DataManagement
         {
             this.dbContext = cinemaDbContext;
         }
+
+     
 
         // add
         public void AddUser(User user)
@@ -36,12 +39,12 @@ namespace CinemaAPI.DataManagement
         // get
         public User[] GetUsers()
         {
-            return dbContext.users.Where(u => u.IsDeleted == false).ToArray();
+            return dbContext.users.Include(x => x.Reviews).Where(u => u.IsDeleted == false).ToArray();
         }
 
         public User? GetUserById(int id)
         {
-            return dbContext.users.Where(u => u.IsDeleted == false && u.Id == id).FirstOrDefault();
+            return dbContext.users.Include(x => x.Reviews).Where(u => u.IsDeleted == false && u.Id == id).FirstOrDefault();
         }
 
         public User? GetUserByEmail(string email)
@@ -56,6 +59,7 @@ namespace CinemaAPI.DataManagement
             var user = dbContext.users
                 .Where(u => u.IsDeleted == false && u.Email == email)
                 .FirstOrDefault();
+
 
             if (user != null && PasswordHasher.VerifyPassword(password, user.Password))
             {
