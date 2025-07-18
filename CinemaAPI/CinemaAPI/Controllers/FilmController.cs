@@ -139,7 +139,7 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
-                Program = new List<TimeSlot>()
+                Program = new List<TimeSlot>(),
                 Reservations = new List<Reservation>(),
                 Wishlists = new List<Wishlist>(),
             };
