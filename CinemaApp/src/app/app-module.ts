@@ -45,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
@@ -133,6 +134,7 @@ import { Promotii } from './promotii/promotii';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
 
   providers: [

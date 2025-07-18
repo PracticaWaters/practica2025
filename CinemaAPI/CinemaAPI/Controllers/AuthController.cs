@@ -99,7 +99,7 @@ namespace CinemaAPI.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet("self")]
         public IActionResult GetProfile()
         {
