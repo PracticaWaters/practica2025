@@ -9,5 +9,7 @@
         public List<Format> Format { get; set; }
         public List<Seat> SeatList {  get; set; }
         public Cinema Cinema { get; set; }
+        public List<TimeSlot>? TimeSlots { get; set; } 
+
     }
 }
