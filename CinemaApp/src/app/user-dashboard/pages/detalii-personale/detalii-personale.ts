@@ -62,4 +62,8 @@ export class DetaliiPersonale {
       reader.readAsDataURL(file);
     }
   }
+
+  removeProfileImage() {
+    this.profileImageUrl = null;
+  }
 }
