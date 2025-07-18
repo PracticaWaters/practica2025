@@ -5,18 +5,56 @@
 
     <!-- HEADER: titlu + săgeată -->
     <div class="flex items-center justify-between p-4 cursor-pointer" (click)="toggleForm()">
-      <h2 class="text-xl text-[var(--light)] text-font-bold">Adaugă Film</h2>
+      <h2 class="text-xl text-[var(--light)] font-bold">Adaugă Film</h2>
       <span [ngClass]="{ 'rotate-180': formDeschis }" class="transition-transform text-[var(--light)] text-2xl">▼</span>
     </div>
 
-    <!-- FORMULAR (lipit de header, fără spațiu și fără border separat) -->
+    <!-- FORMULAR -->
     <div *ngIf="formDeschis" class="p-4 text-[var(--light)] pt-0">
       <form (ngSubmit)="adaugaFilm()" #filmForm="ngForm" class="space-y-2">
-        <input type="text" [(ngModel)]="filmNou.titlu" name="titlu" placeholder="Titlu" required class="border p-2 w-full rounded" />
-        <input type="text" [(ngModel)]="filmNou.descriere" name="descriere" placeholder="Descriere" required class="border p-2 w-full rounded" />
-        <input type="text" [(ngModel)]="filmNou.durata" name="durata" placeholder="Durată" class="border p-2 w-full rounded" />
-        <input type="text" [(ngModel)]="filmNou.imagine" name="imagine" placeholder="URL Imagine" required class="border p-2 w-full rounded" />
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Adaugă Film</button>
+
+        <input type="text" [(ngModel)]="filmNou.name" name="name" placeholder="Titlu" required class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmNou.image" name="image" placeholder="Path imagine (din assets)" required class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmNou.trailer" name="trailer" placeholder="Link trailer YouTube" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmNou.description" name="description" placeholder="Descriere" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmNou.ageRating" name="ageRating" placeholder="Rating vârstă (ex. 12+)" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmNou.duration" name="duration" placeholder="Durată (ex. 2h 30m)" class="border p-2 w-full rounded" />
+
+  <!-- Data lansării -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Data lansării</mat-label>
+    <input matInput [matDatepicker]="releasePicker" [(ngModel)]="filmNou.releaseDate" name="releaseDate" class="text-[var(--light)]">
+    <mat-datepicker-toggle matSuffix [for]="releasePicker">
+      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #releasePicker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Început rulare -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Început rulare</mat-label>
+    <input matInput [matDatepicker]="startPicker" [(ngModel)]="filmNou.startRunningDate" name="startRunningDate" class="text-[var(--light)]">
+    <mat-datepicker-toggle matSuffix [for]="startPicker">
+      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #startPicker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Sfârșit rulare -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Sfârșit rulare</mat-label>
+    <input matInput [matDatepicker]="endPicker" [(ngModel)]="filmNou.endRunningDate" name="endRunningDate" class="text-[var(--light)]">
+    <mat-datepicker-toggle matSuffix [for]="endPicker">
+      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #endPicker></mat-datepicker>
+  </mat-form-field>
+        <button
+          class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 w-full"
+        >
+          Adaugă
+        </button>
+
       </form>
     </div>
 
@@ -25,12 +63,13 @@
   <!-- LISTĂ FILME -->
   <div class="mt-6 space-y-6">
     <div *ngFor="let film of filme" class="bg-white shadow rounded flex flex-col md:flex-row w-full overflow-hidden">
-      <img [src]="film.imagine" alt="{{ film.titlu }}" class="w-full md:w-1/3 h-64 object-cover">
+      <img [src]="film.image" alt="{{ film.name }}" class="w-full md:w-1/3 h-64 object-cover">
       <div class="p-4 flex-1 flex flex-col justify-between">
         <div>
-          <h3 class="text-2xl font-bold">{{ film.titlu }}</h3>
-          <p class="text-gray-600">{{ film.descriere }}</p>
-          <p class="text-sm text-gray-500">Durată: {{ film.durata }}</p>
+          <h3 class="text-2xl font-bold">{{ film.name }}</h3>
+          <p class="text-gray-600">{{ film.description }}</p>
+          <p class="text-sm text-gray-500">Durată: {{ film.duration }}</p>
+          <p class="text-sm text-gray-500">Rating: {{ film.ageRating }}</p>
         </div>
         <div class="mt-4 space-x-2">
           <button (click)="editeazaFilm(film)" class="bg-yellow-400 px-4 py-2 rounded">Editează</button>

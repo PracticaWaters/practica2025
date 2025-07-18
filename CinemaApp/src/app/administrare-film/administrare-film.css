@@ -1,7 +1,77 @@
-img {
-  max-width: 100%;
+/***** GENERAL CALENDAR COLOR FIXES *****/
+
+.mat-calendar {
+  background-color: #1A2130 !important; /* fundal calendar */
+  color: var(--light) !important;       /* text calendar (dacă ai var(--light) definit) */
 }
 
-button {
-  cursor: pointer;
+span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
+  background-color: #2C3650 !important;
+  color: white;
+  border-radius: 50%;
+}
+
+.mat-calendar-body-disabled {
+  color: #c0c0c0 !important;
+  pointer-events: none;
+  background-color: transparent !important;
+  opacity: 0.6;
+}
+
+/***** FORM FIELD AND INPUT COLOR FIXES *****/
+
+.mdc-menu-surface,
+.mat-mdc-select-panel,
+.mdc-list,
+.mat-mdc-option {
+  background-color: #1A2130 !important; /* fundal dropdown */
+  color: var(--light) !important;       /* text */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-mdc-option:hover,
+.mat-mdc-option.mat-mdc-option-active {
+  background-color: #2C3650 !important;
+  color: white !important;
+}
+
+.cdk-overlay-pane {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 0px !important;
+  --mdc-outlined-text-field-outline-width: 0px !important;
+  --mdc-outlined-text-field-outline-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-form-field .mdc-notched-outline {
+  border: none !important;
+}
+
+.mat-mdc-form-field-infix {
+  border: none !important;
+  background-color: #1F2937 !important;
+}
+
+/* :root {
+  --mat-form-field-filled-container-color: #1F2937 !important; 
+} */
+
+
+
+/* Text din interiorul inputului */
+.mat-mdc-form-field-input-control {
+  color: var(--light) !important;
+}
+
+/* Icon-ul de calendar (Material) */
+.mat-datepicker-toggle-default-icon,
+.mat-icon {
+  color: var(--light) !important;
+  fill: var(--light) !important;
 }

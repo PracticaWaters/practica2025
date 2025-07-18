@@ -21,5 +21,7 @@ export class Film {
     constructor(film?:Partial<Film>){
         Object.assign(this, film);
     }
+
+
 }
 

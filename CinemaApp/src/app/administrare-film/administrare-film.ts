@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilmDTO } from '../app-logic/film/film-dto';  // ajustează importul după structura ta reală
 
 @Component({
   standalone: false,
@@ -9,26 +10,93 @@ import { Component } from '@angular/core';
 export class AdministrareFilm {
   formDeschis = false;
 
-  filme = [
-    { id: 1, titlu: 'Dune 2', descriere: 'E dune 2', durata: '3h', imagine: '/assets/dune2.jpg' },
-    { id: 2, titlu: 'Oppenheimer', descriere: 'Despre bomba atomică', durata: '2h 30m', imagine: '/assets/oppenheimer.jpg' },
+  filme: FilmDTO[] = [
+    {
+      id: 1,
+      name: 'Dune 2',
+      actorsIds: [],
+      reviewsIds: [],
+      image: '/assets/dune2.jpg',
+      trailer: 'https://www.youtube.com/watch?v=example1',
+      description: 'E dune 2',
+      releaseDate: new Date('2025-07-18'),
+      ageRating: '12+',
+      duration: 180,
+      startRunningDate: new Date('2025-07-18'),
+      endRunningDate: new Date('2025-08-18'),
+      reservation: null,
+      whishlist: null
+    },
+    {
+      id: 2,
+      name: 'Oppenheimer',
+      actorsIds: [],
+      reviewsIds: [],
+      image: '/assets/oppenheimer.jpg',
+      trailer: 'https://www.youtube.com/watch?v=example2',
+      description: 'Despre bomba atomică',
+      releaseDate: new Date('2025-07-20'),
+      ageRating: '16+',
+      duration: 150,
+      startRunningDate: new Date('2025-07-20'),
+      endRunningDate: new Date('2025-08-20'),
+      reservation: null,
+      whishlist: null
+    }
   ];
 
-  filmNou = { titlu: '', descriere: '', durata: '', imagine: '' };
+  filmNou: Partial<FilmDTO> = {
+    name: '',
+    actorsIds: [],
+    reviewsIds: [],
+    image: '',
+    trailer: '',
+    description: '',
+    releaseDate: new Date(),
+    ageRating: '',
+    duration: 0,
+    startRunningDate: new Date(),
+    endRunningDate: new Date()
+  };
 
   toggleForm() {
     this.formDeschis = !this.formDeschis;
   }
 
   adaugaFilm() {
-    const newId = this.filme.length + 1;
-    this.filme.push({ id: newId, ...this.filmNou });
-    this.filmNou = { titlu: '', descriere: '', durata: '', imagine: '' };
-    this.formDeschis = false; // opțional: închide formularul după adăugare
-  }
+  const newId = this.filme.length + 1;
 
-  editeazaFilm(film: any) {
-    alert(`Funcționalitatea de editare pentru "${film.titlu}" urmează să fie implementată.`);
+  const filmToAdd: FilmDTO = {
+    ...this.filmNou as FilmDTO,
+    id: newId,
+    actorsIds: [],
+    reviewsIds: [],
+    reservation: null,
+    whishlist: null
+  };
+
+  this.filme.push(filmToAdd);
+
+
+  this.filmNou = {
+    name: '',
+    actorsIds: [],
+    reviewsIds: [],
+    image: '',
+    trailer: '',
+    description: '',
+    releaseDate: new Date(),
+    ageRating: '',
+    duration: 0,
+    startRunningDate: new Date(),
+    endRunningDate: new Date()
+  };
+
+  this.formDeschis = false;
+}
+
+  editeazaFilm(film: FilmDTO) {
+    alert(`Funcționalitatea de editare pentru "${film.name}" urmează să fie implementată.`);
   }
 
   stergeFilm(id: number) {

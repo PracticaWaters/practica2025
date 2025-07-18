@@ -11,4 +11,6 @@ export interface FilmDTO {
     duration:number;
     startRunningDate:Date;
     endRunningDate:Date;
+    reservation?:any;
+    whishlist?:any;
 }
