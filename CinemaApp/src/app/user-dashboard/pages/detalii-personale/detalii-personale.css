@@ -21,21 +21,19 @@
 .buttons {
   font-size: 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 18px;
 }
 
-/* Noua structură pentru rândul cu "Poza de profil" */
 .profile-box {
-  background-color: #1976d2; /* albastru mat, ca butonul primary Mat */
-  color: white;              /* text alb să iasă bine pe fundal */
-  border-radius: 16px;       /* colțuri mai rotunde */
+  background-color: #1976d2;
+  color: white;            
+  border-radius: 16px;       
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  /* eliminăm border-ul pentru efect filled */
   border: none;
 }
 .profile-box .label {
