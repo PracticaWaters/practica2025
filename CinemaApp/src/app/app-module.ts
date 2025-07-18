@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatCardModule } from '@angular/material/card';
 
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
@@ -114,6 +115,8 @@ import { Promotii } from './promotii/promotii';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
 
     // CoreUI components and directives:
     MatDatepickerModule,
@@ -150,3 +153,4 @@ import { Promotii } from './promotii/promotii';
   bootstrap: [App],
 })
 export class AppModule {}
+//fgehufgnefw

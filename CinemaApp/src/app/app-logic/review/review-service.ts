@@ -19,6 +19,10 @@ export class ReviewService {
     return this.httpClient.get<ReviewModel>(`${this.apiUrl}/${id}`);
   }
 
+  getReviewsByFilmId(filmId: number): Observable<ReviewModel[]> {
+    return this.httpClient.get<ReviewModel[]>(`${this.apiUrl}/film/${filmId}`);
+  }
+
   updateReview(review: ReviewModel): void {
     this.httpClient.put<ReviewModel>(this.apiUrl, review).subscribe((data) => {
       console.log('Review actualizat:', data);

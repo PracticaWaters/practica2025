@@ -28,7 +28,7 @@ import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/sel
 import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 const routes: Routes = [
-  { path: '', component: VizualizareFilm },
+  { path: '', component: CinemaModel },
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},
@@ -36,7 +36,6 @@ const routes: Routes = [
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  { path: 'vizualizare-film', component: VizualizareFilm },
   {
     path: 'userdashboard',
     component: UserDashboard,

@@ -31,3 +31,23 @@ body{
 .cdk-overlay-pane {
   background-color: var(--dark);
 }
+
+.mat-mdc-menu-item-text{
+  color: var(--light);
+}
+
+.mat-mdc-menu-item-text:hover{
+  color: var(--primary);
+}
+
+.mat-expansion-indicator svg path{
+  fill: var(--light);
+}
+
+
+#reviewsContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+
+ 
