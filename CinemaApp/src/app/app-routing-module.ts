@@ -26,6 +26,8 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
 import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
+import { FormatList } from './format-operations/format-list/format-list';
+import { AddFormat } from './format-operations/add-format/add-format';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -60,6 +62,8 @@ const routes: Routes = [
   {path: 'add-timeslot/:id',component: AddTimeslot},
   {path: 'select-movie', component:SelectMovie},
   {path: 'select-screening-room', component:SelectScreeningRoom},
+  {path: 'format-list', component:FormatList},
+  {path: 'add-format/:id', component:AddFormat},
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },

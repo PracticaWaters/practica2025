@@ -54,7 +54,7 @@ export class AddTimeslot implements OnInit {
 
       this.addTimeslotForm = this.formBuilder.group({
         startTime: [this.item.startTime, Validators.required],
-        endTime: [this.item.endTime, Validators.maxLength(50)],
+        endTime: [this.item.endTime, Validators.required],
       });
       this.selectedMovie = this.addTimeslotTransfer.getMovie();
       this.selectedScreeningRoom = this.addTimeslotTransfer.getScreeningRoom();

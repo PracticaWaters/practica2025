@@ -1,31 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormatModel } from './format-model';
+import { Format } from './format';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormatService {
-  private apiUrl = 'https://localhost:25867/api/cinema/review';
+  private apiUrl = 'https://localhost:25867/api/cinema/format';
 
   constructor(private httpClient: HttpClient) {}
 
-  getFormats(): Observable<FormatModel[]> {
-    return this.httpClient.get<FormatModel[]>(this.apiUrl);
+  getFormats(): Observable<Format[]> {
+    return this.httpClient.get<Format[]>(this.apiUrl);
   }
 
-  getFormatById(id: number): Observable<FormatModel> {
-    return this.httpClient.get<FormatModel>(`${this.apiUrl}/${id}`);
+  getFormatById(id: number): Observable<Format> {
+    return this.httpClient.get<Format>(`${this.apiUrl}/${id}`);
   }
+  addFormat(format: Format): void {
+      this.httpClient
+        .post<Format>(this.apiUrl, format)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
 
-  updateFormat(review: FormatModel): void {
-    this.httpClient.put<FormatModel>(this.apiUrl, review).subscribe((data) => {
+  updateFormat(format: Format): void {
+    this.httpClient.put<Format>(this.apiUrl, format).subscribe((data) => {
       console.log('Format actualizat:', data);
     });
   }
 
-  deleteFormat(review: FormatModel): void {
+  deleteFormat(review: Format): void {
     this.httpClient
       .request('delete', this.apiUrl, { body: review })
       .subscribe((data) => {

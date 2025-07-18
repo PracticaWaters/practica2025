@@ -1,0 +1,33 @@
+
+<div class="row" >
+  <div class="column">
+    <form [formGroup]="addFormatForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-label class="label-style">Name:</mat-label>
+        <mat-form-field appearance="outline" class="field">
+          <input
+            class="input-style"
+            matInput
+            type="text"
+            formControlName="name"
+            required
+          />
+          <mat-error *ngIf="hasError('startTime', 'required')"
+            >Start Time is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="button-div">
+        <button
+          type="submit"
+          mat-raised-button
+          [disabled]="!addFormatForm.valid"
+          class="button-style"
+        >
+          Submit
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</div>

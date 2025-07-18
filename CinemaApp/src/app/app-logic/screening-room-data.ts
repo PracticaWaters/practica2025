@@ -1,4 +1,4 @@
-import { Format } from "./format";
+import { Format } from './format/format';
 
 export class ScreeningRoomData {
   id!: number;

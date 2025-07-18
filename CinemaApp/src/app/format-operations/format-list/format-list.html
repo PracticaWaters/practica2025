@@ -1,0 +1,56 @@
+<div>
+  <table mat-table [dataSource]="formatList" matSort>
+    <!-- Column id-->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <!-- Column name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Column edit-->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-button
+          class="action-button"
+          [routerLink]="['/add-format', element.id]"
+        >
+          Edit
+        </button>
+      </td>
+    </ng-container>
+    <!-- Column delete-->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button class="action-button" (click)="delete(element)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[3, 6, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+
+  <div class="actions-bar" class="button-row">
+    <button
+      class="add-button"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/add-format', 0]"
+    >
+      Add Format
+    </button>
+  </div>
+</div>
