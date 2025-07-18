@@ -1,0 +1,12 @@
+<h2 mat-dialog-title style="text-align:center; font-size: 20px;">Cod QR</h2>
+<mat-dialog-content style="display: flex; justify-content: center; padding: 16px;">
+  <img [src]="qrUrl" alt="QR Code" style="width: 200px; height: 200px;" />
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Închide</button>
+</mat-dialog-actions>
+
+<mat-dialog-content class="flex justify-center p-4">
+  <img [src]="qrUrl" class="w-48 h-48 rounded-lg shadow-lg" />
+</mat-dialog-content>

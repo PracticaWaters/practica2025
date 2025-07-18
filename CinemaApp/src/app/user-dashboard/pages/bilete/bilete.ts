@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit, ViewEncapsulation } from '
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { QrDialog } from '../../../qr-dialog/qr-dialog';
 
 interface Bilet {
   id: number;
@@ -18,6 +20,21 @@ interface Bilet {
   encapsulation: ViewEncapsulation.None,
 })
 export class Bilete implements OnInit, AfterViewInit {
+constructor(private dialog: MatDialog) {}
+
+  deschideDialogQR(film: Bilet): void {
+
+  const qrData = `id=${film.id};title=${film.movieTitle}`;
+  
+  this.dialog.open(QrDialog, {
+    data: { qrData},
+    width: 'auto',
+    height: 'auto',
+    panelClass: 'qr-dialog-panel',
+    backdropClass: 'transparent-backdrop',
+  });
+}
+
   displayedColumns: string[] = [
     'dateTime',
     'movieTitle',

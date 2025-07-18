@@ -1,0 +1,26 @@
+.qr-dialog-panel .mat-mdc-dialog-container {
+  background-color: transparent !important;
+  color: transparent !important;
+  border-radius: 0px !important; 
+  padding: 0px !important;
+  box-shadow: none !important; 
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+}

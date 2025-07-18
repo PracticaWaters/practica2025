@@ -1,7 +1,6 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-
 import { provideRouter } from '@angular/router';
 import { AppRoutingModule } from './app-routing-module';
 
@@ -63,6 +62,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 
+
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
 import { Register } from './register/register';
@@ -71,6 +71,8 @@ import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { QrDialog } from './qr-dialog/qr-dialog';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -101,12 +103,12 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    QrDialog,
 
     // Material
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-
     CommonModule,
     MatInputModule,
     MatMenuModule,
