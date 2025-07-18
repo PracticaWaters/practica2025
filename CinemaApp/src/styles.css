@@ -19,6 +19,8 @@ body{
   --accent: #83B4FF;
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
+  --mat-form-field-outlined-input-text-color: #FDFFE2;
+  --bg: #20242c;
 }
 
 .arrow {
@@ -58,4 +60,18 @@ body{
   border-color: #1A2130;
   color: #1A2130;
   border-right-color: #1A2130;
+}
+
+.mat-mdc-table tbody, 
+.mat-mdc-table thead,
+.mat-mdc-table tfoot
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-header-row,
+.mar-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-table,
+.mat-mdc-header-cell,
+.mat-input {
+  background-color: #fff !important;
 }
