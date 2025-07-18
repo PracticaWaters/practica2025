@@ -1,0 +1,156 @@
+/* Containerul care va avea bara de scroll */
+.wishlist-page {
+  color: white;
+  overflow-y: auto; 
+  max-height: 100%;
+  padding-right: 20px; 
+  box-sizing: content-box; 
+}
+
+/* STILIZARE BARA DE SCROLL */
+
+/* Webkit (Chrome, Safari, Edge, Opera) */
+.wishlist-page::-webkit-scrollbar {
+  width: 12px; /* Lățimea barei de scroll */
+  height: 12px; /* Lățimea barei de scroll orizontale */
+}
+
+.wishlist-page::-webkit-scrollbar-thumb {
+  background-color: var(--accent); /* Culoarea butonului de scroll */
+  border-radius: 10px; /* Colțuri rotunjite ale butonului */
+}
+
+.wishlist-page::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary); /* Culoarea butonului când hover */
+}
+
+.wishlist-page::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.2); /* Culoarea fundalului barei de scroll */
+  border-radius: 10px; /* Colțuri rotunjite ale fundalului */
+}
+
+.wishlist-page::-webkit-scrollbar-track:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Fundal mai închis când hover pe track */
+}
+
+/* Firefox (schimbă în stilul pentru scrollbars personalizate) */
+.wishlist-page {
+  scrollbar-width: thin; /* Dimensiunea barei de scroll în Firefox */
+  scrollbar-color: var(--accent) rgba(255, 255, 255, 0.2); /* Culoarea butonului de scroll și a track-ului */
+}
+
+/* IE / Edge non-WebKit */
+.wishlist-page {
+  -ms-overflow-style: scrollbar; /* Forțăm stilizarea scrollbar-ului pe Internet Explorer și Edge */
+}
+
+
+.wishlist-item {
+  transition: transform 0.2s ease;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist-item:hover {
+  transform: translateY(-2px);
+}
+
+.wishlist-item .mat-icon{
+  color: var(--accent);
+}
+
+.wishlist-item .mat-icon:hover{
+  color: var(--primary);
+}
+
+mat-icon {
+  transition: color;
+  align-self: start;
+}
+
+.notification {
+  background-color: var(--dark);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.notifications-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.undo-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.undo-btn:hover {
+  background-color: var(--accent);
+}
+
+.close-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.wishlist-item img {
+  width: 7rem;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.wishlist-item .info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wishlist-item .movie-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.wishlist-item .movie-details {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.wishlist-item .movie-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--accent);
+  margin-top: auto;
+  display: inline-block;
+  padding-top: 0.5rem;
+}
+
+.wishlist-item .movie-link:hover {
+  color: var(--primary);
+}

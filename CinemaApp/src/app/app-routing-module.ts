@@ -21,10 +21,14 @@ import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
 import { Promotii } from './promotii/promotii';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 const routes: Routes = [
-  { path: '', component: VizualizareFilm },
+  { path: '', component: CinemaModel },
   // {path: "program-cinema", component:ProgramCinema},
   // {path: "recomandari", component:Recomandari},
   // {path: "profil-user", component:ProfilUser},
@@ -32,13 +36,12 @@ const routes: Routes = [
   // {path: "administrare", component:Administrare},
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
-  { path: 'vizualizare-film', component: VizualizareFilm },
   {
     path: 'userdashboard',
     component: UserDashboard,
     children: [
-      { path: '', redirectTo: 'meniu-principal', pathMatch: 'full' },
-      { path: 'meniu-principal', component: MeniuPrincipal },
+      { path: '', redirectTo: 'detalii', pathMatch: 'full' },
+      // { path: 'meniu-principal', component: MeniuPrincipal },
       { path: 'wishlist', component: Wishlist },
       { path: 'bilete', component: Bilete },
       { path: 'review-uri', component: Review },
@@ -51,6 +54,11 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
+  {path: 'timeslot-list', component: TimeslotList},
+  {path: 'add-timeslot',component: AddTimeslot},
+  {path: 'add-timeslot/:id',component: AddTimeslot},
+  {path: 'select-movie', component:SelectMovie},
+  {path: 'select-screening-room', component:SelectScreeningRoom},
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },
@@ -59,6 +67,7 @@ const routes: Routes = [
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'cinema-model', component: CinemaModel },
+  { path: 'cinema-generator', component: CinemaGenerator },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },

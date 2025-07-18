@@ -133,3 +133,9 @@ mat-label {
   height: auto;
   object-fit: contain;
 }
+
+.error-snackbar {
+  background-color: #e53935;
+  color: white;
+  font-weight: bold;
+}

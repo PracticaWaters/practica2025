@@ -12,7 +12,7 @@ namespace CinemaAPI.Models
         public string Image { get; set; }
         [Url(ErrorMessage = "Url is not valid")]
         public string Trailer { get; set; }
-        //public List<TimeSlot> Program {  get; set; }   
+        public List<TimeSlot>? Program {  get; set; }   
         public string Description { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string AgeRating { get; set; }

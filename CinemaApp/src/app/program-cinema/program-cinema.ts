@@ -159,14 +159,6 @@ filtruDateValide = (d: Date | null): boolean => {
   return d >= azi; // permite doar datele de azi sau din viitor
 };
 
-
-
-
-
-
-
-
-
 filmeCarousel = [
   { titlu: 'Onward', poster: 'onward.jpg' },
   { titlu: 'Free Guy', poster: 'freeguy.jpg' },

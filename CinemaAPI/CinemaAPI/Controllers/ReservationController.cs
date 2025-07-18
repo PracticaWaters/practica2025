@@ -23,8 +23,8 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var rezervari = _reservationDatOps.GetReservations();
-                return Ok(rezervari);
+                var reservations = _reservationDatOps.GetReservations();
+                return Ok(reservations);
             }
             catch (Exception ex)
             {
@@ -33,15 +33,15 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(RezervareDto rezervareDto)
+        public ActionResult Add(ReservationDto ReservationDto)
         {
             try
             {
                 Reservation reservation = new Reservation();
-                reservation.NrOfPersons = rezervareDto.NrPersoane;
-                reservation.Price = rezervareDto.Pret;
-                reservation.Film = _filmDataOps.GetFilmById(rezervareDto.FilmId);
-                reservation.User = _userDataOps.GetUserById(rezervareDto.UserId);
+                reservation.NrOfPersons = ReservationDto.NrPersoane;
+                reservation.Price = ReservationDto.Pret;
+                reservation.Film = _filmDataOps.GetFilmById(ReservationDto.FilmId);
+                reservation.User = _userDataOps.GetUserById(ReservationDto.UserId);
                 _reservationDatOps.AddReservation(reservation);
                 return Ok();
             }
