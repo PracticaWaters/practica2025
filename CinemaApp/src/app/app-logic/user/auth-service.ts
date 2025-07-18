@@ -10,17 +10,14 @@ import { LoginResponse, TokenResponse } from './response';
 })
 export class AuthService {
   private authUrl = 'https://localhost:25867/api/cinema/auth';
-  private user = new BehaviorSubject<User | null>(null);
+  private user = new BehaviorSubject<Partial<User> | null>(null);
 
   private readonly USER_KEY = 'user';
   private readonly ACCESS_TOKEN_KEY = 'accessToken';
   private readonly REFRESH_TOKEN_KEY = 'refreshToken';
 
   constructor(private http: HttpClient) {
-    const storedUser = this.getUser();
-    if (storedUser) {
-      this.user.next(storedUser);
-    }
+    this.user.next(this.getUser());
   }
 
   register(userData: Partial<User>): Observable<string> {
@@ -30,7 +27,7 @@ export class AuthService {
       })
       .pipe(
         tap(() => {
-          localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
+          this.user.next(userData);
         }),
         catchError((error: HttpErrorResponse) => {
           console.error('Registration failed:', error);
@@ -114,14 +111,14 @@ export class AuthService {
   }
 
   saveAuthData(user: User, accessToken: string, refreshToken: string): void {
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    this.user.next(user);
     localStorage.setItem(this.ACCESS_TOKEN_KEY, accessToken);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
   }
 
   getUser(): User | null {
-    const data = localStorage.getItem(this.USER_KEY);
-    return data ? (JSON.parse(data) as User) : null;
+    const data = this.user.value;
+    return data ? (data as User) : null;
   }
 
   getAccessToken(): string | null {
@@ -133,7 +130,7 @@ export class AuthService {
   }
 
   logOut(): void {
-    localStorage.removeItem(this.USER_KEY);
+    this.user.next(null);
     localStorage.removeItem(this.ACCESS_TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
