@@ -19,6 +19,7 @@ import { SupportPage } from './Support/support-page/support-page';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { Faq } from './Support/faq/faq';
+import { Steps } from './Home/Steps/steps/steps';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { Faq } from './Support/faq/faq';
     SupportForm,
     Faq,
     DetaliiCinema,
+    Steps,
   ],
   imports: [
     FormsModule,
