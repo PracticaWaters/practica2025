@@ -104,6 +104,7 @@ namespace CinemaAPI.Controllers
                 Id = timeSlotDto.Id,
                 StartTime = timeSlotDto.StartTime,
                 EndTime = timeSlotDto.EndTime,
+                Price = timeSlotDto.Price,
                 ScreeningRoom = screeningRoomDataOps.GetScreeningRoomById(timeSlotDto.ScreeningRoomId),
                 Format = formatDataOps.GetFormatById(timeSlotDto.FormatID),
                 Film = filmDataOps.GetFilmById(timeSlotDto.FilmId),
