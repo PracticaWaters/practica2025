@@ -107,6 +107,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: white;
 }
 
+/*
 .mdc-text-field--outlined .mdc-notched-outline__leading{
   border-color: oklch(56.9% 0.188 70.08) !important;
 }
@@ -119,6 +120,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mdc-text-field--outlined .mdc-text-field__input {
   color: oklch(56.9% 0.188 70.08) !important;
 }
+*/
 
 .mdc-notched-outline__notch {
   border-right: none;

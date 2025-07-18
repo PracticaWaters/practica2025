@@ -133,3 +133,11 @@ mat-label {
   height: auto;
   object-fit: contain;
 }
+
+button[disabled],
+button[disabled]:hover {
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
