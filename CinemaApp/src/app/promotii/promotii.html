@@ -1,0 +1,88 @@
+<div class="relative w-screen overflow-hidden h-[50vh]">
+  <!-- Slider -->
+  <div
+    class="flex transition-transform duration-500 h-full"
+    [style.transform]="'translateX(-' + currentIndex * 100 + 'vw)'"
+    [style.width]="slides.length * 100 + 'vw'"
+  >
+    <div
+      *ngFor="let slide of slides"
+      class="w-screen flex-shrink-0 h-full relative"
+    >
+      <a routerLink="/program-cinema">
+        <!-- Background Image -->
+        <img
+          [src]="slide.images[0]"
+          alt="Promo Image"
+          class="w-full h-full object-cover"
+        />
+
+        <!-- Overlay Text -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"
+        >
+          <!-- Text Content at Bottom Center -->
+          <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 text-[var(--light)] text-center px-4"
+          >
+            <h2 class="text-[2rem] font-bold">{{ slide.title }}</h2>
+            <p class="text-[1rem]">{{ slide.description }}</p>
+            <p class="text-[0.5rem] mt-1">
+              *Oferta valabila in perioada
+              {{ slide.startDate | date : "dd.MM.yy" }} -
+              {{ slide.endDate | date : "dd.MM.yy" }}
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Left Arrow -->
+  <button
+    (click)="prevSlide()"
+    class="absolute top-1/2 left-4 -translate-y-1/2 bg-[var(--light)] hover:bg-[var(--primary)] rounded-full p-2 shadow"
+  >
+    <svg
+      class="w-5 h-5 text-black"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+  </button>
+
+  <!-- Right Arrow -->
+  <button
+    (click)="nextSlide()"
+    class="absolute top-1/2 right-7 -translate-y-1/2 bg-[var(--light)] hover:bg-[var(--primary)] rounded-full p-2 shadow"
+  >
+    <svg
+      class="w-5 h-5 text-black"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Dots -->
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+    <button
+      *ngFor="let slide of slides; let i = index"
+      class="w-3 h-3 rounded-full"
+      [ngClass]="
+        currentIndex === i ? 'bg-[var(--primary)]' : 'bg-[var(--light)]'
+      "
+      (click)="goToSlide(i)"
+    ></button>
+  </div>
+</div>
