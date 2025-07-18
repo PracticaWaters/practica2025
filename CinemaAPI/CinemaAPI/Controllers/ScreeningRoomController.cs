@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DTO;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,14 @@ namespace CinemaAPI.Controllers
     public class ScreeningRoomController : Controller
     {
         private readonly ScreeningRoomDataOps screeningRoomDataOps;
+        private readonly FormatDataOps formatDataOps;
+        private readonly TimeSlotDataOps timeSlotDataOps;
 
-        public ScreeningRoomController()
+        public ScreeningRoomController(CinemaDbContext dbContext)
         {
-            screeningRoomDataOps = new ScreeningRoomDataOps();
+            screeningRoomDataOps = new ScreeningRoomDataOps(dbContext);
+            formatDataOps = new FormatDataOps(dbContext);
+            timeSlotDataOps = new TimeSlotDataOps(dbContext);
         }
         [HttpGet]
         public ActionResult<ScreeningRoom> GetScreeningRooms()
@@ -28,17 +33,26 @@ namespace CinemaAPI.Controllers
             }
         }
         [HttpPost]
-        public ActionResult AddScreeningRoom(ScreeningRoom screeningRoom)
-        {
-            screeningRoomDataOps.AddScreeningRoom(screeningRoom);
-            return Ok();
-        }
-        [HttpPut]
-        public ActionResult UpdateScreeningRooms(ScreeningRoom screeningRooms)
+        public ActionResult AddScreeningRoom(ScreeningRoomDTO screeningRoomDto)
         {
             try
             {
-                screeningRoomDataOps.UpdateScreeningRoom(screeningRooms);
+                var screeningRoom = MapDtoToScreeningRoom(screeningRoomDto);
+                screeningRoomDataOps.AddScreeningRoom(screeningRoom);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpPut]
+        public ActionResult UpdateScreeningRooms(ScreeningRoomDTO screeningRoomDto)
+        {
+            try
+            {
+                var screeningRoom = MapDtoToScreeningRoom(screeningRoomDto);
+                screeningRoomDataOps.UpdateScreeningRoom(screeningRoom);
                 return Ok();
             }
             catch (Exception ex)
@@ -77,6 +91,23 @@ namespace CinemaAPI.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+        private ScreeningRoom MapDtoToScreeningRoom(ScreeningRoomDTO screeningRoomDTO)
+        {
+            ScreeningRoom screeningRoom = new ScreeningRoom();
+            screeningRoom.Id = screeningRoomDTO.Id;
+            screeningRoom.Name = screeningRoomDTO.Name;
+            screeningRoom.NumOfRow = screeningRoomDTO.NumOfRow;
+            screeningRoom.NumOfSeatsPerRow = screeningRoomDTO.NumOfSeatsPerRow;
+            screeningRoom.Format = new List<Format>();
+
+            foreach (var formatId in screeningRoomDTO.FormatsIds)
+            {
+                var format = formatDataOps.GetFormatById(formatId)
+                    ?? throw new ArgumentException($"Format with id {formatId} not found");
+                screeningRoom.Format.Add(format);
+            }
+            return screeningRoom;
         }
     }
 }
