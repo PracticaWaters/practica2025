@@ -12,7 +12,7 @@ import { ProgramCinema } from './program-cinema/program-cinema';
 import { ScreeningRoom } from './screening-room/screening-room';
 import { ScreeningRoomList } from './screening-room-operations/screening-room-list/screening-room-list';
 import { AddScreeningRoom } from './screening-room-operations/add-screening-room/add-screening-room/add-screening-room';
-
+import { AdministrareFilm } from './administrare-film/administrare-film';
 import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
@@ -25,7 +25,7 @@ const routes: Routes = [
   // {path: "profil-user", component:ProfilUser},
   // {path: "suport", component:Suport},
   // {path: "administrare", component:Administrare},
-  // {path: "administrare-filme", component:AdministrareFilme},
+  {path: "administrare-film", component:AdministrareFilm},
   // {path: "administrare-promotii", component:AdministrarePromotii}
   {path: "vizualizare-film", component:VizualizareFilm},
   {

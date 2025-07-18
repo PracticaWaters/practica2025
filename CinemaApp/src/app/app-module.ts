@@ -19,6 +19,8 @@ import { provideAnimations } from '@angular/platform-browser/animations'; // <--
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdministrareFilm } from './administrare-film/administrare-film';
+
 // Import CoreUI modules and directives:
 import {
   NavbarModule,
@@ -83,6 +85,7 @@ import { RouterModule } from '@angular/router';
     SupportAdmin,
     SupportForm,
     Faq,
+    AdministrareFilm,
   ],
   imports: [
     BrowserModule,
