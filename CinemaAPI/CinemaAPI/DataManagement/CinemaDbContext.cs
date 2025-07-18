@@ -26,13 +26,10 @@ namespace CinemaAPI.DataManagement
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
@@ -74,10 +71,24 @@ namespace CinemaAPI.DataManagement
                 .WithOne(g => g.User)
                 .IsRequired();
 
+            modelBuilder.Entity<Seat>()
+                .HasMany(s => s.Reservations)
+                .WithMany(r => r.Seats)
+                .UsingEntity(j => j.ToTable("seat_reservations"));
 
-             modelBuilder.Entity<Promotions>()
-            .HasMany(p => p.Films)
-            .WithMany(f => f.Promotions);
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(s => s.Format)
+                .WithMany(r => r.ScreeningRooms)
+                .UsingEntity(j => j.ToTable("screeningRoom_formats"));
+
+
+            modelBuilder.Entity<Promotions>()
+                .HasMany(p => p.Films)
+                .WithMany(f => f.Promotions);
+
+            modelBuilder.Entity<Cinema>()
+                .HasMany(p => p.ScreeningRooms)
+                .WithOne(r => r.Cinema);
 
             base.OnModelCreating(modelBuilder);
         }

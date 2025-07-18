@@ -15,5 +15,7 @@
         //De modificat cand e adaugat Promo
         //public Promo Promo { get; set; }
         public String Price { get; set; }
+        
+        public List<Seat> Seats { get; set; }
 	}
 }

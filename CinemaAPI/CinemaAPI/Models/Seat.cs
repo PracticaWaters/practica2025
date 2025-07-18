@@ -7,6 +7,7 @@
         public int Number {  get; set; }
         public bool IsReserved {  get; set; }
         public ScreeningRoom ScreeningRoom { get; set; }
-
+        
+        public List<Reservation> Reservations { get; set; }
     }
 }
