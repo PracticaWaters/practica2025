@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DataManagement;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -53,7 +54,7 @@ namespace CinemaAPI.Models
 
         public bool IsDeleted { get; set; }
 
-        public User ToUser (ReservationDataOps reservareDataOps, ReviewDataOps reviewDataOps)
+        public User ToUser(ReservationDataOps reservareDataOps, ReviewDataOps reviewDataOps)
         {
 
             User user = new User

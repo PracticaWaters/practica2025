@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { User } from './user.model';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoginResponse, TokenResponse } from './response';
@@ -52,8 +52,12 @@ export class AuthService {
       );
   }
 
-  userProfile(): Observable<User> {
-    return this.http.get<User>(`${this.authUrl}/self`).pipe();
+  userProfile(): Observable<User | null> {
+    return this.http.get<User>(`${this.authUrl}/self`).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
   }
 
   login(credentials: { email: string; password: string }): Observable<User> {

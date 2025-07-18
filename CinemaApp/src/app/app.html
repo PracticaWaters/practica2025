@@ -118,13 +118,22 @@
     </div> -->
 
     <!--Logare cu icon-->
-    <a
-      routerLink="/login"
-      class="flex items-center gap-2 px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
-    >
-      <mat-icon>account_circle</mat-icon>
-      <span>Autentificare</span>
-    </a>
+    <div *ngIf="user | async as user; else loginLink">
+      <div class="flex items-center gap-2 px-3 py-2 text-[var(--light)]">
+        <span>{{ user.name }}</span>
+      </div>
+    </div>
+
+    <!-- Else show login link -->
+    <ng-template #loginLink>
+      <a
+        routerLink="/login"
+        class="flex items-center gap-2 px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
+      >
+        <mat-icon>account_circle</mat-icon>
+        <span>Autentificare</span>
+      </a>
+    </ng-template>
   </div>
 </nav>
 
