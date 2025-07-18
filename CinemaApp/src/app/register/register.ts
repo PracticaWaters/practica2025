@@ -62,7 +62,7 @@ export class Register implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid && !this.isSubmitting){
       this.isSubmitting = true;
       console.log('Form valid');
 
@@ -96,8 +96,7 @@ export class Register implements OnInit {
             verticalPosition: 'bottom',
             panelClass: ['error-snackbar']
           });
-        },
-        complete: () => {
+
           this.isSubmitting = false;
         },
       });
