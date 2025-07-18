@@ -273,80 +273,67 @@
     </p>
   </div>
 
+  <!-- Carusel Review-uri -->
+  <div class="mt-12 max-w-6xl mx-auto w-full relative">
+    <h3 class="text-xl font-bold uppercase mb-6 text-[var(--light)]">
+      Review-uri utilizatori
+    </h3>
 
-<!-- Carusel Review-uri -->
-<div class="mt-12 max-w-6xl mx-auto w-full relative">
-  <h3 class="text-xl font-bold uppercase mb-6 text-[var(--light)]">
-    Review-uri utilizatori
-  </h3>
+    <div class="relative">
+      <!-- Buton stânga -->
+      <button
+        class="hidden sm:flex items-center justify-center cursor-pointer absolute -left-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+        (click)="scrollReviews('left')"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
 
-  <div class="relative">
-    <!-- Buton stânga -->
-    <button
-      class="hidden sm:flex items-center justify-center cursor-pointer absolute -left-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
-      (click)="scrollReviews('left')"
-    >
-      <mat-icon>chevron_left</mat-icon>
-    </button>
+      <!-- Container scroll -->
+      <div
+        #reviewsContainer
+        class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-6 py-6 px-2 sm:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        <!-- Spațiu la început -->
+        <div class="shrink-0 w-4 sm:w-6"></div>
 
-    <!-- Container scroll -->
-    <div
-      #reviewsContainer
-      class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-6 py-6 px-2 sm:px-0 [&::-webkit-scrollbar]:hidden"
-    >
-      <!-- Spațiu la început -->
-      <div class="shrink-0 w-4 sm:w-6"></div>
-
-      <!-- Carduri review -->
-      <ng-container *ngFor="let review of reviews">
-        <mat-card
-          class="snap-start flex-shrink-0 w-full sm:w-[calc(33.3333333%-1rem)] min-w-[280px] !bg-gray-800 text-[var(--light)] p-6 rounded-xl shadow-xl flex flex-col justify-between sm:hover:scale-105 transition-all duration-200"
-        >
-          <div class="mb-4">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-lg font-semibold">
-                {{ review.user.name || "Anonim" }}
-              </span>
-              <span class="text-[var(--button-cta)] text-lg font-semibold">
-                <ng-container *ngFor="let star of [1,2,3,4,5]">
-                  {{ star <= review.rating ? "★" : "☆" }}
-                </ng-container>
-              </span>
+        <!-- Carduri review -->
+        <ng-container *ngFor="let review of reviews">
+          <mat-card
+            class="snap-start flex-shrink-0 w-full sm:w-[calc(33.3333333%-1rem)] min-w-[280px] !bg-gray-800 text-[var(--light)] p-6 rounded-xl shadow-xl flex flex-col justify-between sm:hover:scale-105 transition-all duration-200"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-lg font-semibold">
+                  {{ review.user.name || "Anonim" }}
+                </span>
+                <span class="text-[var(--button-cta)] text-lg font-semibold">
+                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                    {{ star <= review.rating ? "★" : "☆" }}
+                  </ng-container>
+                </span>
+              </div>
+              <!-- Comentariu cu wrap pe mai multe linii -->
+              <p class="text-sm leading-relaxed whitespace-normal break-words">
+                {{ review.comment }}
+              </p>
             </div>
-            <!-- Comentariu cu wrap pe mai multe linii -->
-            <p class="text-sm leading-relaxed whitespace-normal break-words">
-              {{ review.comment }}
+            <p class="text-sm text-gray-400 italic">
+              {{ review.date | date : "dd.MM.yyyy" }}
             </p>
-          </div>
-          <p class="text-sm text-gray-400 italic">
-            {{ review.date | date : 'dd.MM.yyyy' }}
-          </p>
-        </mat-card>
-      </ng-container>
+          </mat-card>
+        </ng-container>
 
-      <!-- Spațiu la final -->
-      <div class="shrink-0 w-4 sm:w-6"></div>
+        <!-- Spațiu la final -->
+        <div class="shrink-0 w-4 sm:w-6"></div>
+      </div>
+
+      <!-- Buton dreapta -->
+      <button
+        class="hidden sm:flex items-center justify-center cursor-pointer ml-2 absolute -right-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+        (click)="scrollReviews('right')"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
-
-    <!-- Buton dreapta -->
-    <button
-      class="hidden sm:flex items-center justify-center cursor-pointer ml-2 absolute -right-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
-      (click)="scrollReviews('right')"
-    >
-      <mat-icon>chevron_right</mat-icon>
-    </button>
   </div>
-</div>  
-
-
-
-
-
-
-
-
-
-
-
-
 </section>

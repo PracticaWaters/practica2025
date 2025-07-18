@@ -30,7 +30,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdministrareFilm } from './administrare-film/administrare-film';
+
 // Import CoreUI modules and directives:
+
 import { UserDashboard } from './user-dashboard/user-dashboard';
 import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
 import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
@@ -96,6 +99,7 @@ import { Promotii } from './promotii/promotii';
     SelectMovie,
     SelectScreeningRoom,
     Promotii
+    AdministrareFilm,
   ],
   imports: [
     BrowserModule,
@@ -115,9 +119,8 @@ import { Promotii } from './promotii/promotii';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
-    MatButtonModule,
-    MatCardModule,
 
+    
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,

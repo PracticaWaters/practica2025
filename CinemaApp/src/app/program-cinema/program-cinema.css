@@ -1,4 +1,4 @@
-.mat-calendar{
+/*.mat-calendar{
     background-color: white;
 }
 
@@ -10,8 +10,12 @@
 #mat-select-0-panel{
     background-color: white;
     z-index: 9999;
-} 
+}  
 
+.mat-select-panel {
+  background-color: white !important;
+  z-index: 9999;
+} 
 
 span.mat-calendar-body-cell-content.mat-focus-indicator:hover{
     background-color: #2C3650 !important;
@@ -19,17 +23,134 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover{
     border-radius: 50%;
 }
 
-.mat-mdc-option:hover{
+ .mat-mdc-option:hover{
 background-color: #2C3650 !important;
  color: white;
-}
+} 
 
-/* 🔒 Stil pentru zile dezactivate în calendar */
 .mat-calendar-body-disabled {
-  color: #c0c0c0 !important; /* gri pal */
-  pointer-events: none; /* dezactivează click-ul */
+  color: #c0c0c0 !important; 
+  pointer-events: none; 
   background-color: transparent !important;
   opacity: 0.6;
+}
+
+.mdc-menu-surface {
+  background-color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-mdc-select-panel {
+  background-color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mdc-list {
+  background-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.mat-mdc-option {
+  background-color: white !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-option:hover,
+.mat-mdc-option.mat-mdc-option-active {
+  background-color: #2C3650 !important;
+  color: white !important;
+}
+
+.cdk-overlay-pane {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+ */
+
+.mat-calendar {
+  background-color: white;
+}
+
+span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
+  background-color: #2C3650 !important;
+  color: white;
+  border-radius: 50%;
+}
+
+.mat-calendar-body-disabled {
+  color: #c0c0c0 !important;
+  pointer-events: none;
+  background-color: transparent !important;
+  opacity: 0.6;
+}
+
+/* Dropdown Material Select (Angular Material MDC) */
+.mdc-menu-surface {
+  background-color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mat-mdc-select-panel {
+  background-color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.mdc-list {
+  background-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.mat-mdc-option {
+  background-color: white !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-option:hover,
+.mat-mdc-option.mat-mdc-option-active {
+  background-color: #2C3650 !important;
+  color: white !important;
+}
+
+.cdk-overlay-pane {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Eliminare contururi input / dropdown (pentru mat-form-field appearance="outline") */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 0px !important;
+  --mdc-outlined-text-field-outline-width: 0px !important;
+  --mdc-outlined-text-field-outline-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-form-field .mdc-notched-outline {
+  border: none !important;
+}
+
+.mat-mdc-form-field-infix {
+  border: none !important;
+}
+
+/* Eliminare fundal gri din appearance="fill" și păstrare alb curat */
+.mat-mdc-text-field-wrapper {
+  background-color: white !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
 }
 
 
