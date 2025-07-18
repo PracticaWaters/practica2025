@@ -59,6 +59,8 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
 import { Promotii } from './promotii/promotii';
+import { Steps } from './Home/steps/steps';
+import { CinemaModel } from './Home/cinema-model/cinema-model';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,10 @@ import { Promotii } from './promotii/promotii';
     Faq,
     DetaliiCinema,
     StartPageComponent,
+    Steps,
+    CinemaModel,
+    TimeslotList,
+    Promotii,
     
   ],
   imports: [
@@ -91,19 +97,16 @@ import { Promotii } from './promotii/promotii';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-
     // Material
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-
     CommonModule,
     MatInputModule,
     MatMenuModule,
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
-
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
@@ -112,12 +115,9 @@ import { Promotii } from './promotii/promotii';
     MatCheckboxModule,
     MatButtonModule,
     MatRadioModule,
-
     CommonModule,
-
     MatSelectModule,
     MatOptionModule,
-
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -126,8 +126,9 @@ import { Promotii } from './promotii/promotii';
     RouterModule,
     CommonModule,
     MatMenuModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    ProgramCinema
+],
 
   providers: [
     provideAnimations(),
