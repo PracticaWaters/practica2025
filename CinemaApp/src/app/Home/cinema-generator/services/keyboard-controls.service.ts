@@ -42,7 +42,6 @@ export class KeyboardControlsService {
       },
       g: () => {
         console.log('Regenerate seats');
-        // This will be handled by the component
       },
       s: () => {
         seatGeneratorService.clearAllSelections();
@@ -50,7 +49,15 @@ export class KeyboardControlsService {
       },
       t: () => {
         console.log('Test seat detection');
-        // This will be handled by the component
+      },
+      o: () => {
+        console.log('Move to seat POV');
+      },
+      n: () => {
+        console.log('Return to normal view');
+      },
+      h: () => {
+        console.log('Toggle admin panel');
       },
     };
   }

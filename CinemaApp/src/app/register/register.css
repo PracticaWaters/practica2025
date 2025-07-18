@@ -164,3 +164,9 @@ mat-form-field .mat-select-trigger {
     padding-right: 36px;
   }
 }
+
+.error-snackbar {
+  background-color: #d32f2f;
+  color: #fff;
+  font-weight: bold;
+}

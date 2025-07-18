@@ -21,6 +21,16 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
+                if (film.Reservations != null)
+                {
+
+
+                    foreach (Reservation r in film.Reservations)
+                    {
+                        dbContext.reservations.Attach(r);
+
+                    }
+                }
                 dbContext.films.Add(film);
                 dbContext.SaveChanges();
             }

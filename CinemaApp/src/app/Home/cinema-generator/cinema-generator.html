@@ -2,8 +2,15 @@
   <!-- 3D Scene Container -->
   <div #rendererContainer class="renderer-container"></div>
   
+  <!-- Toggle Button -->
+  <div class="toggle-button-container">
+    <button class="toggle-admin-btn" (click)="toggleAdminPanel()">
+      {{ isAdminPanelVisible ? 'Hide Admin Panel' : 'Show Admin Panel' }}
+    </button>
+  </div>
+  
   <!-- Control Panel -->
-  <div class="control-panel">
+  <div class="control-panel" *ngIf="isAdminPanelVisible">
     <h2>Cinema Seat Generator</h2>
     
     <div class="config-section">
@@ -169,6 +176,9 @@
       <p><strong>G:</strong> Regenerate seats</p>
       <p><strong>S:</strong> Clear all selections</p>
       <p><strong>T:</strong> Test seat detection</p>
+      <p><strong>O:</strong> Move to selected seat POV</p>
+      <p><strong>N:</strong> Return to normal view</p>
+      <p><strong>H:</strong> Toggle admin panel</p>
     </div>
   </div>
 </div> 

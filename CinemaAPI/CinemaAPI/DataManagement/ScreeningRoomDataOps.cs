@@ -5,11 +5,11 @@ namespace CinemaAPI.DataManagement
 {
     public class ScreeningRoomDataOps
     {
-        private CinemaDbContext dbContext;
+        private readonly CinemaDbContext dbContext;
 
-        public ScreeningRoomDataOps()
+        public ScreeningRoomDataOps(CinemaDbContext context)
         {
-            dbContext = new CinemaDbContext();
+            dbContext = context;
         }
 
         public ScreeningRoom[] GetScreeningRooms()

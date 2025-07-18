@@ -38,16 +38,20 @@ export class AuthService {
           let errorMsg = 'An unknown error occurred.';
 
           if (error.status === 0) {
-            errorMsg = 'Cannot connect to server.';
+            errorMsg = 'Nu se poate conecta la server.';
           } else if (error.status === 400) {
-            errorMsg = 'Invalid data. Please check your form.';
+            errorMsg = 'Date invalide. Verificați formularul.';
           } else if (error.status === 409) {
-            errorMsg = 'Email already registered.';
+            errorMsg = 'Emailul este deja înregistrat.';
           } else if (error.status >= 500) {
-            errorMsg = 'Server error. Please try again later.';
+            errorMsg = 'Eroare de server. Încearcă mai târziu.';
           }
 
-          return throwError(() => new Error(errorMsg));
+          // ❗ returnezi un obiect cu status + mesaj
+          return throwError(() => ({
+            status: error.status,
+            message: errorMsg
+          }));
         })
       );
   }
@@ -68,29 +72,29 @@ export class AuthService {
           );
 
           this.user.next(response.user);
-          console.log('User logged in:', response.user);
-          console.log('User self');
-          let user = this.userProfile().subscribe({
-            next: (user) => console.log(JSON.stringify(user, null, 2)),
-            error: (err) => {
-              if (err.status === 401) {
-                console.warn('Unauthorized: Token may be expired.');
-              }
-            },
-          });
+          // console.log('User logged in:', response.user);
+          // console.log('User self');
+          // let user = this.userProfile().subscribe({
+          //   next: (user) => console.log(JSON.stringify(user, null, 2)),
+          //   error: (err) => {
+          //     if (err.status === 401) {
+          //       console.warn('Unauthorized: Token may be expired.');
+          //     }
+          //   },
+          // });
 
-          setTimeout(() => {
-            console.log('Calling userProfile again after 2 minutes...');
-            this.userProfile().subscribe({
-              next: (user) =>
-                console.log('Delayed call:', JSON.stringify(user, null, 2)),
-              error: (err) => {
-                if (err.status === 401) {
-                  console.warn('Unauthorized after delay.');
-                }
-              },
-            });
-          }, 1 * 60 * 1000);
+          // setTimeout(() => {
+          //   console.log('Calling userProfile again after 2 minutes...');
+          //   this.userProfile().subscribe({
+          //     next: (user) =>
+          //       console.log('Delayed call:', JSON.stringify(user, null, 2)),
+          //     error: (err) => {
+          //       if (err.status === 401) {
+          //         console.warn('Unauthorized after delay.');
+          //       }
+          //     },
+          //   });
+          // }, 1 * 60 * 1000);
         }),
         map((response: LoginResponse) => response.user),
         catchError((error: HttpErrorResponse) => {
@@ -98,13 +102,16 @@ export class AuthService {
 
           if (error.status === 0) {
             errorMsg = 'Nu se poate conecta la server.';
-          } else if (error.status === 401) {
+          } else if (error.status === 401 || error.status === 400) {
             errorMsg = 'Email sau parolă incorecte.';
           } else if (error.status >= 500) {
             errorMsg = 'Eroare de server. Încearcă mai târziu.';
           }
 
-          return throwError(() => new Error(errorMsg));
+          return throwError(() => ({
+            status: error.status,
+            message: errorMsg
+          }));
         })
       );
   }

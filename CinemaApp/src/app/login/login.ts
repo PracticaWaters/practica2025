@@ -4,6 +4,7 @@ import { AuthService } from '../app-logic/user/auth-service';
 import { User } from '../app-logic/user/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,13 @@ export class Login implements OnInit {
         },
         error: (error: Error) => {
           this.errorMessage = error.message;
+
+          this.snackBar.open(error.message, 'Închide', {
+            duration: 5000, // 5 secunde
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['error-snackbar'] // stil opțional
+          });
         },
       });
     } else {
