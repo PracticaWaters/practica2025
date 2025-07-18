@@ -98,7 +98,7 @@ import { Promotii } from './promotii/promotii';
     AddTimeslot,
     SelectMovie,
     SelectScreeningRoom,
-    Promotii
+    Promotii,
     AdministrareFilm,
   ],
   imports: [
@@ -120,7 +120,6 @@ import { Promotii } from './promotii/promotii';
     MatExpansionModule,
     MatDialogModule,
 
-    
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
