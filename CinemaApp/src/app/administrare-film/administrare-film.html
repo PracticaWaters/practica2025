@@ -22,22 +22,49 @@
 
   </div>
 
-  <!-- LISTĂ FILME -->
-  <div class="mt-6 space-y-6">
-    <div *ngFor="let film of filme" class="bg-white shadow rounded flex flex-col md:flex-row w-full overflow-hidden">
-      <img [src]="film.imagine" alt="{{ film.titlu }}" class="w-full md:w-1/3 h-64 object-cover">
-      <div class="p-4 flex-1 flex flex-col justify-between">
-        <div>
-          <h3 class="text-2xl font-bold">{{ film.titlu }}</h3>
-          <p class="text-gray-600">{{ film.descriere }}</p>
-          <p class="text-sm text-gray-500">Durată: {{ film.durata }}</p>
-        </div>
-        <div class="mt-4 space-x-2">
-          <button (click)="editeazaFilm(film)" class="bg-yellow-400 px-4 py-2 rounded">Editează</button>
-          <button (click)="stergeFilm(film.id)" class="bg-red-500 text-white px-4 py-2 rounded">Șterge</button>
-        </div>
+<div class="mt-6 space-y-4">
+  <div
+    *ngFor="let film of filme"
+    class="bg-gray-800 rounded-2xl shadow flex items-center overflow-hidden h-32 px-4"
+  >
+    <!-- Imagine -->
+    <div class="h-full w-24 flex-shrink-0">
+      <img
+        [src]="film.imagine"
+        alt="{{ film.titlu }}"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- DETALII + BUTOANE pe ACELAȘI RÂND -->
+    <div class="flex-1 flex items-center justify-between px-4 text-white gap-4">
+
+      <!-- Detalii în linie -->
+      <div class="flex items-center gap-6 truncate">
+        <span class="font-bold text-lg">{{ film.titlu }}</span>
+        <span class="text-sm text-gray-300">{{ film.descriere }}</span>
+        <span class="text-xs text-gray-400">Durată: {{ film.durata }}</span>
       </div>
+
+      <!-- Butoane -->
+      <div class="flex gap-2">
+        <button
+          (click)="editeazaFilm(film)"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-1 rounded"
+        >
+          Editează
+        </button>
+        <button
+          (click)="stergeFilm(film.id)"
+          class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-1 rounded"
+        >
+          Șterge
+        </button>
+      </div>
+
     </div>
   </div>
-
 </div>
+
+
+
