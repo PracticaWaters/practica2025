@@ -1,16 +1,34 @@
 <div
   class="flex flex-col bg-white/5 backdrop-blur-lg border border-white/20 rounded-xl p-4 w-full mx-auto mb-6"
+  [formGroup]="form"
 >
-  <!-- Parola curenta si noua parola pe aceeasi linie -->
   <div class="flex gap-4">
+    <!-- Parola curentă -->
     <mat-form-field appearance="outline" class="half-width">
       <mat-label>Parola curentă</mat-label>
-      <input matInput type="password" formControlName="currentPassword" />
+      <input
+        matInput
+        type="password"
+        formControlName="currentPassword"
+        required
+      />
+      <mat-error *ngIf="form.get('currentPassword')?.hasError('required')">
+        Parola curentă este obligatorie
+      </mat-error>
     </mat-form-field>
 
+    <!-- Parolă nouă -->
     <mat-form-field appearance="outline" class="half-width">
       <mat-label>Parolă nouă</mat-label>
-      <input matInput type="password" formControlName="newPassword" />
+      <input
+        matInput
+        type="password"
+        formControlName="newPassword"
+        required
+      />
+      <mat-error *ngIf="form.get('newPassword')?.hasError('required')">
+        Parola nouă este obligatorie
+      </mat-error>
     </mat-form-field>
   </div>
 </div>
@@ -20,6 +38,7 @@
   <button
     class="cursor-pointer duration-200 active:scale-90"
     type="button"
+    [disabled]="form.invalid"
     (click)="confirmAndSubmit()"
   >
     SALVEAZĂ
