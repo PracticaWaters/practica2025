@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatCardModule } from '@angular/material/card';
 
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
@@ -45,6 +46,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
@@ -53,9 +55,17 @@ import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './app-logic/token-interceptor';
+import { Promotii } from './promotii/promotii';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
@@ -97,7 +107,11 @@ import { Promotii } from './promotii/promotii';
     Faq,
     DetaliiCinema,
     CinemaModel,
+    CinemaGenerator,
     TimeslotList,
+    AddTimeslot,
+    SelectMovie,
+    SelectScreeningRoom,
     Promotii
   ],
   imports: [
@@ -119,6 +133,8 @@ import { Promotii } from './promotii/promotii';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
 
     // CoreUI components and directives:
     MatDatepickerModule,
@@ -139,7 +155,7 @@ import { Promotii } from './promotii/promotii';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatOptionModule,
+    MatSnackBarModule,
   ],
 
   providers: [
@@ -155,3 +171,4 @@ import { Promotii } from './promotii/promotii';
   bootstrap: [App],
 })
 export class AppModule {}
+//fgehufgnefw

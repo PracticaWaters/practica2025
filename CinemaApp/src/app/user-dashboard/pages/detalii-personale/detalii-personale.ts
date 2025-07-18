@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PromptParolaComponent } from './prompt-parola-component/prompt-parola-component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
   standalone: false,
   templateUrl: './detalii-personale.html',
   styleUrl: './detalii-personale.css',
+  
 })
 export class DetaliiPersonale {
   form: FormGroup;
@@ -17,6 +18,7 @@ export class DetaliiPersonale {
       nume: [''],
       email: [''],
       telefon: [''],
+      gen: [''],
     });
   }
 
@@ -28,23 +30,6 @@ export class DetaliiPersonale {
     this.form.reset();
   }
   confirmAndSubmit() {
-    const dialogRef = this.dialog.open(PromptParolaComponent, {
-      width: '350px',
-    });
-
-    dialogRef.afterClosed().subscribe((password) => {
-      if (password) {
-        // Aici poți verifica parola dacă vrei, ex:
-        if (password === 'admin123') {
-          this.onSubmit();
-        } else {
-          alert('Parola incorectă!');
-        }
-      } else {
-        // Dialog anulat, nu se face nimic
-        console.log('Salvarea a fost anulată.');
-      }
-    });
   }
 
   // pentru poza de profil
@@ -61,5 +46,9 @@ export class DetaliiPersonale {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  removeProfileImage() {
+    this.profileImageUrl = null;
   }
 }

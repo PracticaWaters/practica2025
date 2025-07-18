@@ -1,0 +1,8 @@
+.action-button{
+    color: black;
+}
+
+.select-text{
+    padding-left: 20px;
+    color: oklch(56.9% 0.188 70.08);
+}
