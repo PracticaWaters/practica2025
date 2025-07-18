@@ -1,10 +1,3 @@
-.form-container {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 
 .full-width {
   width: 100%;
@@ -21,40 +14,59 @@
   min-width: 200px;
 }
 
-.buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+.mb-3 {
+  margin-bottom: 1rem;
 }
 
+.buttons {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 18px;
+}
 
+/* Noua structură pentru rândul cu "Poza de profil" */
+.profile-box {
+  background-color: #1976d2; /* albastru mat, ca butonul primary Mat */
+  color: white;              /* text alb să iasă bine pe fundal */
+  border-radius: 16px;       /* colțuri mai rotunde */
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  /* eliminăm border-ul pentru efect filled */
+  border: none;
+}
+.profile-box .label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Container pentru poză */
 .profile-picture-container {
   position: relative;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 20px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
 }
 
+/* Imaginea reală sau fallback cu icon */
 .profile-picture,
 .profile-picture.default {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #ccc;
-  background-color: #f0f0f0;
+  object-fit: cover;
 }
 
 .profile-picture.default {
-  font-size: 120px;
+  font-size: 100px;
   color: #ccc;
   display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
 }
 
+/* Buton de editare vizibil la hover */
 .edit-button {
   position: absolute;
   top: 50%;
@@ -65,12 +77,12 @@
   pointer-events: none;
 }
 
-.profile-picture-container:hover .edit-button {
+.profile-picture-container:hover .edit-button,
+.edit-button.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.edit-button.visible {
-  opacity: 1;
-  pointer-events: auto;
+mat-label {
+  color: white;
 }
