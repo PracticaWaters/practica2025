@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Promotii} from '../../promotii/promotii';
 import { Steps } from '../steps/steps';
+import { Reclama } from '../reclama/reclama';
 
 @Component({
   selector: 'app-start-page',

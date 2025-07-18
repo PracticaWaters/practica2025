@@ -61,6 +61,7 @@ import { TokenInterceptor } from './app-logic/token-interceptor';
 import { Promotii } from './promotii/promotii';
 import { Steps } from './Home/steps/steps';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { Reclama } from './Home/reclama/reclama';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { CinemaModel } from './Home/cinema-model/cinema-model';
     CinemaModel,
     TimeslotList,
     Promotii,
+    Reclama,
     
   ],
   imports: [
