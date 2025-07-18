@@ -30,9 +30,6 @@ mat-icon {
 }
 
 .notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background-color: var(--dark);
   color: white;
   padding: 15px;
@@ -40,7 +37,16 @@ mat-icon {
   display: flex;
   align-items: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.notifications-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .notification-content {
@@ -97,7 +103,7 @@ mat-icon {
   text-decoration: none;
   font-weight: bold;
   color: var(--accent);
-  margin-top: auto; /* Împinge linkul la baza containerului info */
+  margin-top: auto;
   display: inline-block;
   padding-top: 0.5rem;
 }

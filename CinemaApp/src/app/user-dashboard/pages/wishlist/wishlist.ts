@@ -25,39 +25,39 @@ export class Wishlist {
     }
   ];
 
-  showNotification: boolean = false;
-  notificationMessage: string = '';
-  removedItem: any = null;
-  notificationTimeout: any;
+  notifications: { id: string, message: string, timeoutId: any, item: any }[] = [];
+  removedItem: any = null; // salveaza elementul sters pt UNDO
 
-  // Metoda de eliminare din wishlist
   removeFromWishlist(itemToRemove: any) {
-    this.removedItem = itemToRemove;
     this.wishlistItems = this.wishlistItems.filter(item => item !== itemToRemove);
     
-    // Setăm mesajul de notificare
-    this.notificationMessage = `Ai eliminat filmul '${itemToRemove.title}' din wishlist.`;
+    const notificationId = itemToRemove.title + Date.now();
+    
+    const notification = {
+      id: notificationId,
+      message: `Ai eliminat filmul '${itemToRemove.title}' din wishlist.`,
+      timeoutId: setTimeout(() => this.removeNotification(notificationId), 5000),
+      item: itemToRemove 
+    };
 
-    // Arată notificarea
-    this.showNotification = true;
-
-    // Setează timeout pentru a închide notificarea automat după 5 secunde
-    clearTimeout(this.notificationTimeout);
-    this.notificationTimeout = setTimeout(() => {
-      this.showNotification = false;
-    }, 5000);
+    this.notifications.push(notification);
   }
 
-  // Metoda pentru a anula eliminarea
-  undoRemove() {
-    if (this.removedItem) {
-      this.wishlistItems.push(this.removedItem); // Adăugăm filmul înapoi în wishlist
-      this.showNotification = false; // Ascundem notificarea
+  undoRemove(notificationId: string) {
+    const notification = this.notifications.find(n => n.id === notificationId);
+    if (notification) {
+      const itemToRestore = notification.item;
+      
+      const alreadyExists = this.wishlistItems.some(item => item.title === itemToRestore.title);
+      if (!alreadyExists) {
+        this.wishlistItems.push(itemToRestore);
+      }
+
+      this.removeNotification(notificationId);
     }
   }
 
-  // Închide notificarea manual
-  closeNotification() {
-    this.showNotification = false;
+  removeNotification(notificationId: string) {
+    this.notifications = this.notifications.filter(n => n.id !== notificationId);
   }
 }
