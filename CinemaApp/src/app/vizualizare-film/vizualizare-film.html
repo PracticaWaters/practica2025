@@ -273,32 +273,63 @@
   </div>
 
   <!-- Lista Review-uri -->
-  <div class="mt-12 max-w-4xl mx-auto w-[100%]">
-    <h3 class="text-xl font-bold uppercase mb-4 text-[var(--light)]">
+  <div class="mt-12 max-w-5xl mx-auto w-full relative">
+    <h3 class="text-xl font-bold uppercase mb-6 text-[var(--light)]">
       Review-uri utilizatori
     </h3>
 
-    <div *ngFor="let review of reviews" class="bg-gray-800 text-[var(--light)] p-4 rounded-lg shadow-lg w-full">
-  <div class="flex items-center justify-between mb-2">
-    <div>
-      <span class="text-[var(--light)] text-lg font-semibold">
-        {{ review.user?.name || 'Anonim' }}
-      </span>
-      <span class="text-[var(--button-cta)] text-lg font-semibold ml-2">
-        <ng-container *ngFor="let star of [1,2,3,4,5]">
-          {{ star <= review.rating ? '★' : '☆' }}
-        </ng-container>
-        <span class="ml-1 text-sm text-gray-300">({{ review.rating }}/5)</span>
-      </span>
-    </div>
-    <span class="text-sm text-gray-400 italic">
-      {{ review.date | date:'dd.MM.yyyy' }}
-    </span>
-  </div>
-  <p class="text-[var(--light)] leading-relaxed text-sm">
-    {{ review.comment }}
-  </p>
-</div>
+    <div class="relative mt-2">
+      <!-- Săgeată stânga -->
+      <button
+        class="hidden sm:flex items-center justify-center absolute -left-8 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+        (click)="scrollReviews('left')"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
 
+      <!-- Scroll container -->
+      <div
+        #reviewsContainer
+        class="flex overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory items-stretch space-x-6 py-6 [&::-webkit-scrollbar]:hidden -mb-4"
+      >
+        <!-- Spațiu transparent la început -->
+        <div class="w-4 sm:w-6 shrink-0"></div>
+
+        <!-- Carduri review -->
+        <ng-container *ngFor="let review of reviews">
+          <div
+            class="snap-start flex-shrink-0 w-[90%] sm:w-[320px] min-h-[280px] bg-gray-800 text-[var(--light)] p-6 rounded-xl shadow-xl h-full flex flex-col justify-between break-words"
+          >
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-lg font-semibold">
+                  {{ review.user?.name || "Anonim" }}
+                </span>
+                <span class="text-[var(--button-cta)] text-lg font-semibold">
+                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                    {{ star <= review.rating ? "★" : "☆" }}
+                  </ng-container>
+                </span>
+              </div>
+              <p class="text-sm leading-relaxed">{{ review.comment }}</p>
+            </div>
+            <p class="text-sm text-gray-400 italic">
+              {{ review.date | date : "dd.MM.yyyy" }}
+            </p>
+          </div>
+        </ng-container>
+
+        <!-- Spațiu transparent la final -->
+        <div class="w-4 sm:w-6 shrink-0"></div>
+      </div>
+
+      <!-- Săgeată dreapta -->
+      <button
+        class="hidden sm:flex items-center justify-center absolute -right-8 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+        (click)="scrollReviews('right')"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
   </div>
 </section>

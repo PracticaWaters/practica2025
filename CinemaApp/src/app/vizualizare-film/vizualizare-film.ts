@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ReviewDtoService } from '../app-logic/review-dto/review-dto-service';
 import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
 import { ReviewModel } from '../app-logic/review/review-model';
@@ -105,5 +111,18 @@ export class VizualizareFilm implements OnInit {
         ? 'Film adăugat la wishlist'
         : 'Film eliminat din wishlist'
     );
+  }
+
+  @ViewChild('reviewsContainer') reviewsContainer!: ElementRef;
+
+  scrollReviews(direction: 'left' | 'right') {
+    const container = this.reviewsContainer.nativeElement;
+    const scrollAmount = 320; // ajustabil
+
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   }
 }
