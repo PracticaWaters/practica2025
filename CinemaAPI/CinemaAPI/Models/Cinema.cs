@@ -11,5 +11,6 @@
 
         public string Email { get; set; }
 
+        public List<ScreeningRoom> ScreeningRooms { get; set; }
     }
 }
