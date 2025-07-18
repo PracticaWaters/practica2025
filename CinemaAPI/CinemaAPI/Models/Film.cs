@@ -24,6 +24,6 @@ namespace CinemaAPI.Models
         
         public List<Reservation> Reservations { get; set; }
         public ICollection<Wishlist> Wishlists { get; set; }
-
+        public List<Promotions> Promotions { get; set; }
     }
 }
