@@ -20,8 +20,9 @@ export class VizualizareFilm {
   isWishlisted: boolean = false;
 
   // Returnează stelele pentru afișare
-  //harcode filmId
+  //harcode filmId and userId
   filmId: number = 1;
+  userId: number = 2;
 
   constructor(private reviewService: ReviewDtoService) {}
 
@@ -61,6 +62,7 @@ export class VizualizareFilm {
       date: new Date(),
       comment: this.reviewText.trim(),
       filmId: this.filmId,
+      userId: this.userId,
     };
 
     this.reviewService.addReview(reviewDto);

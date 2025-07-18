@@ -25,23 +25,6 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  CollapseDirective,
-  CollapseModule,
-  ContainerComponent,
-  DropdownComponent,
-  DropdownItemDirective,
-  DropdownMenuDirective,
-  DropdownModule,
-  DropdownToggleDirective,
-  NavbarBrandDirective,
-  NavbarComponent,
-  NavbarModule,
-  NavbarNavComponent,
-  NavbarTogglerDirective,
-  NavItemComponent,
-  NavLinkDirective,
-} from '@coreui/angular';
 
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { MatIconModule } from '@angular/material/icon';
@@ -75,6 +58,10 @@ import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './app-logic/token-interceptor';
+import { Promotii } from './promotii/promotii';
+
 @NgModule({
   declarations: [
     App,
@@ -100,6 +87,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     CinemaModel,
     CinemaGenerator,
     TimeslotList,
+    Promotii
   ],
   imports: [
     BrowserModule,
@@ -120,11 +108,6 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     MatExpansionModule,
     MatDialogModule,
 
-    // CoreUI modules:
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
@@ -134,43 +117,11 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
     MatButtonModule,
     MatRadioModule,
 
-    // CoreUI
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
     CommonModule,
-    // CoreUI modules:
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
+
     MatSelectModule,
     MatOptionModule,
 
-    // CoreUI components and directives:
-    NavbarComponent,
-    ContainerComponent,
-    NavbarBrandDirective,
-    NavbarTogglerDirective,
-    CollapseDirective,
-    NavbarNavComponent,
-    NavItemComponent,
-    DropdownComponent,
-    DropdownToggleDirective,
-    NavLinkDirective,
-    DropdownMenuDirective,
-    DropdownItemDirective,
     MatExpansionModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -181,7 +132,12 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
   providers: [
     provideAnimations(),
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withFetch()), // ✅ Activează Fetch API
+    provideHttpClient(withFetch()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [App],
 })
