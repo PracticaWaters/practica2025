@@ -53,9 +53,13 @@ import { Faq } from './Support/faq/faq';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportForm } from './Support/support-form/support-form';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
@@ -84,7 +88,11 @@ import { Promotii } from './promotii/promotii';
     Faq,
     DetaliiCinema,
     CinemaModel,
+    CinemaGenerator,
     TimeslotList,
+    AddTimeslot,
+    SelectMovie,
+    SelectScreeningRoom,
     Promotii
   ],
   imports: [
