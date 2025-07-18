@@ -26,13 +26,10 @@ namespace CinemaAPI.DataManagement
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
