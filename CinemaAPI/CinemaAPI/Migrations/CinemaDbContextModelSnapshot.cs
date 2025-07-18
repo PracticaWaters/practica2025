@@ -454,6 +454,21 @@ namespace CinemaAPI.Migrations
                     b.ToTable("FilmPromotions");
                 });
 
+            modelBuilder.Entity("ReservationSeat", b =>
+                {
+                    b.Property<int>("ReservationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationsId", "SeatsId");
+
+                    b.HasIndex("SeatsId");
+
+                    b.ToTable("seat_reservations", (string)null);
+                });
+
             modelBuilder.Entity("ActorFilm", b =>
                 {
                     b.HasOne("CinemaAPI.Models.Actor", null)
@@ -555,6 +570,21 @@ namespace CinemaAPI.Migrations
                     b.HasOne("CinemaAPI.Models.Promotions", null)
                         .WithMany()
                         .HasForeignKey("PromotionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ReservationSeat", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.Reservation", null)
+                        .WithMany()
+                        .HasForeignKey("ReservationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.Seat", null)
+                        .WithMany()
+                        .HasForeignKey("SeatsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

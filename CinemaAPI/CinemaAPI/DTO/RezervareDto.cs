@@ -9,7 +9,7 @@
         //De modificat cand e adaugat TimeSlot
         //public int TimeSlotId { get; set; }
 
-        //public int SeatId { get; set; }
+        public List<int> SeatIds { get; set; }
 
         //De modificat cand e adaugat Promo
         //public Promo Promo { get; set; }

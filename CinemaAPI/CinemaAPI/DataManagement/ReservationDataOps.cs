@@ -15,7 +15,7 @@ namespace CinemaAPI.DataManagement
 
         public Reservation[] GetRezervari()
         {
-            return dbContext.rezervari.Include(x => x.User).ToArray();
+            return dbContext.rezervari.Include(x => x.User).Include(x => x.Seats).ToArray();
         }
 
         //Idk daca e bine
@@ -24,6 +24,11 @@ namespace CinemaAPI.DataManagement
             try
             {
                 dbContext.users.Attach(reservation.User);
+                foreach(Seat seat in reservation.Seats)
+                {
+                    dbContext.seats.Attach(seat);
+                }
+                
                 dbContext.rezervari.Add(reservation);
                 dbContext.SaveChanges();
             }

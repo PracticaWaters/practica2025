@@ -38,7 +38,7 @@ namespace CinemaAPI.DataManagement
                 .HasMany(s => s.SeatList)
                 .WithOne(sc => sc.ScreeningRoom);
 
-            base.OnModelCreating(modelBuilder);
+            //base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Film)
@@ -73,6 +73,11 @@ namespace CinemaAPI.DataManagement
              modelBuilder.Entity<Promotions>()
             .HasMany(p => p.Films)
             .WithMany(f => f.Promotions);
+
+            modelBuilder.Entity<Reservation>()
+                .HasMany(r => r.Seats)
+                .WithMany(r => r.Reservations)
+               .UsingEntity(j => j.ToTable("seat_reservations"));
 
             base.OnModelCreating(modelBuilder);
         }

@@ -11,11 +11,13 @@ namespace CinemaAPI.Controllers
     {
         private readonly ReservationDataOps _reservationDatOps;
         private readonly UserDataOps _userDataOps;
+        private readonly SeatDataOps _seatDataOps;
 
         public ReservationController(CinemaDbContext dbContext)
         {
             _reservationDatOps = new ReservationDataOps(dbContext);
             _userDataOps = new UserDataOps(dbContext);
+            _seatDataOps = new SeatDataOps(dbContext);
         }
 
         [HttpGet]
@@ -41,6 +43,10 @@ namespace CinemaAPI.Controllers
                 rezervation.NrOfPersons = rezervareDto.NrOfPersons;
                 rezervation.Price = rezervareDto.Price;
                 rezervation.User = _userDataOps.GetUserById(rezervareDto.UserId);
+                foreach(int seatId in rezervareDto.SeatIds)
+                {
+                rezervation.Seats.Add(_seatDataOps.GetSeatById(seatId));
+                }
                 _reservationDatOps.AddReservation(rezervation);
                 return Ok();
             }
