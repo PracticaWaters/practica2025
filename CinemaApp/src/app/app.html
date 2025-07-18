@@ -120,7 +120,7 @@
     <!--Logare cu icon-->
     <div *ngIf="user | async as user; else loginLink">
       <a
-        routerLink="/login"
+        routerLink="/userdashboard"
         class="flex items-center gap-2 px-3 py-2 text-[var(--light)]"
       >
         <span>{{ user.name }}</span>
