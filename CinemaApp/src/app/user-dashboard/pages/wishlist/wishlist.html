@@ -2,7 +2,7 @@
   <h2 class="text-2xl font-bold mb-6">Filmele din wishlist</h2>
 
   <div *ngIf="wishlistItems.length > 0; else noItems">
-    <div *ngFor="let item of wishlistItems" class="wishlist-item bg-white/5 p-4 mb-4 rounded-xl shadow-md flex gap-4">
+    <div *ngFor="let item of wishlistItems" class="wishlist-item bg-white/5 backdrop-blur-lg border border-white/20 p-4 mb-4 rounded-xl shadow-md flex gap-4">
       
       <img [src]="item.imageUrl" alt="{{ item.title }}" />
 
@@ -16,6 +16,7 @@
                 (click)="removeFromWishlist(item)">
         favorite
       </mat-icon>
+
     </div>
   </div>
 
@@ -23,11 +24,15 @@
     <p class="text-white/70">Nu ai niciun film în wishlist momentan.</p>
   </ng-template>
 
-  <div *ngIf="showNotification" class="notification">
-    <div class="notification-content">
-      <p>{{ notificationMessage }}</p>
-      <button (click)="undoRemove()" class="undo-btn">Anulează</button>
-      <mat-icon class="close-icon" (click)="closeNotification()">close</mat-icon>
+  <!-- notificari active -->
+  <div class="notifications-container">
+    <div *ngFor="let notification of notifications" class="notification">
+      <div class="notification-content">
+        <p>{{ notification.message }}</p>
+        <button (click)="undoRemove(notification.id)" class="undo-btn">Anulează</button>
+        <mat-icon class="close-icon" (click)="removeNotification(notification.id)">close</mat-icon>
+      </div>
     </div>
   </div>
+
 </div>

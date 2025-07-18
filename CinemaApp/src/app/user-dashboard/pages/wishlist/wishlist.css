@@ -1,6 +1,49 @@
+/* Containerul care va avea bara de scroll */
 .wishlist-page {
   color: white;
+  overflow-y: auto; 
+  max-height: 500px;
+  padding-right: 20px; 
+  box-sizing: content-box; 
 }
+
+/* STILIZARE BARA DE SCROLL */
+
+/* Webkit (Chrome, Safari, Edge, Opera) */
+.wishlist-page::-webkit-scrollbar {
+  width: 12px; /* Lățimea barei de scroll */
+  height: 12px; /* Lățimea barei de scroll orizontale */
+}
+
+.wishlist-page::-webkit-scrollbar-thumb {
+  background-color: var(--accent); /* Culoarea butonului de scroll */
+  border-radius: 10px; /* Colțuri rotunjite ale butonului */
+}
+
+.wishlist-page::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary); /* Culoarea butonului când hover */
+}
+
+.wishlist-page::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.2); /* Culoarea fundalului barei de scroll */
+  border-radius: 10px; /* Colțuri rotunjite ale fundalului */
+}
+
+.wishlist-page::-webkit-scrollbar-track:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Fundal mai închis când hover pe track */
+}
+
+/* Firefox (schimbă în stilul pentru scrollbars personalizate) */
+.wishlist-page {
+  scrollbar-width: thin; /* Dimensiunea barei de scroll în Firefox */
+  scrollbar-color: var(--accent) rgba(255, 255, 255, 0.2); /* Culoarea butonului de scroll și a track-ului */
+}
+
+/* IE / Edge non-WebKit */
+.wishlist-page {
+  -ms-overflow-style: scrollbar; /* Forțăm stilizarea scrollbar-ului pe Internet Explorer și Edge */
+}
+
 
 .wishlist-item {
   transition: transform 0.2s ease;
@@ -30,9 +73,6 @@ mat-icon {
 }
 
 .notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   background-color: var(--dark);
   color: white;
   padding: 15px;
@@ -40,7 +80,16 @@ mat-icon {
   display: flex;
   align-items: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+.notifications-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .notification-content {
@@ -97,7 +146,7 @@ mat-icon {
   text-decoration: none;
   font-weight: bold;
   color: var(--accent);
-  margin-top: auto; /* Împinge linkul la baza containerului info */
+  margin-top: auto;
   display: inline-block;
   padding-top: 0.5rem;
 }
