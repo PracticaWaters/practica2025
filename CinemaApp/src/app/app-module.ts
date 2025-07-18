@@ -92,11 +92,10 @@ import { Reservation } from './reservation/reservation';
     CinemaGenerator,
     TimeslotList,
     Promotii,
-    Reservation
+    Reservation,
     AddTimeslot,
     SelectMovie,
-    SelectScreeningRoom,
-    Promotii
+    SelectScreeningRoom
   ],
   imports: [
     BrowserModule,
