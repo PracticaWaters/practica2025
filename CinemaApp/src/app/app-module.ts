@@ -22,24 +22,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AdministrareFilm } from './administrare-film/administrare-film';
 
 // Import CoreUI modules and directives:
-import {
-  NavbarModule,
-  DropdownModule,
-  CollapseModule,
-  NavbarComponent,
-  ContainerComponent,
-  NavbarBrandDirective,
-  NavbarTogglerDirective,
-  CollapseDirective,
-  NavbarNavComponent,
-  NavItemComponent,
-  DropdownComponent,
-  DropdownToggleDirective,
-  NavLinkDirective,
-  DropdownMenuDirective,
-  DropdownItemDirective,
-  
-} from '@coreui/angular';
+
 import { UserDashboard } from './user-dashboard/user-dashboard';
 import { MeniuPrincipal } from './user-dashboard/pages/meniu-principal/meniu-principal';
 import { Wishlist } from './user-dashboard/pages/wishlist/wishlist';
@@ -106,11 +89,7 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     MatDialogModule,
 
-    // CoreUI modules:
-    NavbarModule,
-    DropdownModule,
-    CollapseModule,
-
+    
     // CoreUI components and directives:
     MatDatepickerModule,
     MatNativeDateModule,
