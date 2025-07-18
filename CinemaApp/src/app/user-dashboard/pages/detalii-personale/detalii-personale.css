@@ -86,3 +86,12 @@
 mat-label {
   color: white;
 }
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: #ffffff !important; /* example: a blue */
+    caret-color: var(--mat-form-field-outlined-caret-color, var(--mat-sys-primary)) !important;
+}
+
+.mat-mdc-select {
+  color: white;
+}
