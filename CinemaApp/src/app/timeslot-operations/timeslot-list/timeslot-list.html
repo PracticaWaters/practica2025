@@ -1,4 +1,8 @@
 <div>
+  <div *ngIf="isEmpty()">
+    <p>Nu exista timeslot uri in database</p>
+  </div>
+  <div *ngIf="!isEmpty()">
   <table mat-table [dataSource]="timeslotList" matSort>
     <!-- Column id-->
     <ng-container matColumnDef="id">
@@ -57,13 +61,13 @@
     [pageSizeOptions]="[3, 6, 10]"
     showFirstLastButtons
   ></mat-paginator>
-
+  </div>
   <div class="actions-bar" class="button-row">
     <button
       class="add-button"
       mat-raised-button
       color="primary"
-      [routerLink]="['', 0]"
+      [routerLink]="['/add-timeslot', 0]"
     >
       Add Timeslot
     </button>

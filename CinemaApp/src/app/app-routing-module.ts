@@ -23,6 +23,9 @@ import { Promotii } from './promotii/promotii';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -52,6 +55,11 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
+  {path: 'timeslot-list', component: TimeslotList},
+  {path: 'add-timeslot',component: AddTimeslot},
+  {path: 'add-timeslot/:id',component: AddTimeslot},
+  {path: 'select-movie', component:SelectMovie},
+  {path: 'select-screening-room', component:SelectScreeningRoom},
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },
