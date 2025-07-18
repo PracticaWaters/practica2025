@@ -30,6 +30,7 @@ export class VizualizareFilm implements OnInit {
   reviews: ReviewModel[] = [];
   film!: Film;
   filmId!: number;
+  averageRating: number = 0;
 
   // ❤️ Wishlist
   isWishlisted: boolean = false;
@@ -126,6 +127,16 @@ export class VizualizareFilm implements OnInit {
   loadReviews(): void {
     this.reviewService.getReviewsByFilmId(this.filmId).subscribe((data) => {
       this.reviews = data;
+
+      if (this.reviews.length > 0) {
+        const total = this.reviews.reduce(
+          (sum, review) => sum + review.rating,
+          0
+        );
+        this.averageRating = total / this.reviews.length;
+      } else {
+        this.averageRating = 0;
+      }
     });
   }
 

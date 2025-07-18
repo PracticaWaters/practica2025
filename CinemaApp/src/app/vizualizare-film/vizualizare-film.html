@@ -123,8 +123,22 @@
               </th>
               <td class="border-y border-gray-600 p-3">
                 <div class="flex items-center gap-1">
-                  <span class="text-yellow-400">★★★★☆</span>
-                  <span class="text-sm text-gray-300">(4.5 / 5)</span>
+                  <ng-container *ngIf="reviews.length > 0; else noReviews">
+                    <span class="text-yellow-400">
+                      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                        {{ star <= averageRating ? "★" : "☆" }}
+                      </ng-container>
+                    </span>
+                    <span class="text-sm text-gray-300">
+                      ({{ averageRating | number : "1.1-2" }} / 5)
+                    </span>
+                  </ng-container>
+
+                  <ng-template #noReviews>
+                    <span class="text-gray-400 italic"
+                      >Încă nu sunt review-uri</span
+                    >
+                  </ng-template>
                 </div>
               </td>
             </tr>
@@ -132,7 +146,11 @@
         </table>
       </div>
     </mat-expansion-panel>
-    <img src="dune2.jpg" alt="" class="w-90 mx-auto rounded-md shadow-2xl" />
+    <img
+      [src]="film.image"
+      alt="{{ film.name }}"
+      class="w-90 mx-auto rounded-md shadow-2xl"
+    />
   </div>
 
   <!-- DOAR pe desktop/tablet: Informații statice -->
@@ -228,13 +246,28 @@
               </th>
               <td class="border-y border-gray-600 p-3">
                 <div class="flex items-center gap-1">
-                  <span class="text-[var(--button-cta)]">★★★★☆</span>
+                  <ng-container *ngIf="reviews.length > 0; else noReviews">
+                    <span class="text-yellow-400">
+                      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                        {{ star <= averageRating ? "★" : "☆" }}
+                      </ng-container>
+                    </span>
+                    <span class="text-sm text-gray-300">
+                      ({{ averageRating | number : "1.1-2" }} / 5)
+                    </span>
+                  </ng-container>
+
+                  <ng-template #noReviews>
+                    <span class="text-gray-400 italic"
+                      >Încă nu sunt review-uri</span
+                    >
+                  </ng-template>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <img src="dune2.jpg" alt="" class="w-80" />
+        <img [src]="film.image" alt="{{ film.name }}" class="w-80" />
       </div>
     </div>
   </div>
