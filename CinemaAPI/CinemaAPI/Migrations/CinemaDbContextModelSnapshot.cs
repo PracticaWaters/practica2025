@@ -292,7 +292,7 @@ namespace CinemaAPI.Migrations
                     b.ToTable("reviews");
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.Rezervare", b =>
+            modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
             modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
@@ -320,8 +320,8 @@ namespace CinemaAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("rezervari");
-                });
+                    b.ToTable("reservations");
+                }));
 
             modelBuilder.Entity("CinemaAPI.Models.Review", b =>
                 {
@@ -383,7 +383,7 @@ namespace CinemaAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("rezervari");
+                    b.ToTable("reservations");
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.ScreeningRoom", b =>
@@ -592,16 +592,16 @@ namespace CinemaAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.Rezervare", b =>
+            modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
                     b.HasOne("CinemaAPI.Models.Film", "Film")
-                        .WithMany("Rezervari")
+                        .WithMany("reservations")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CinemaAPI.Models.User", "User")
-                        .WithMany("Rezervari")
+                        .WithMany("reservations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -674,7 +674,7 @@ namespace CinemaAPI.Migrations
 
                     b.Navigation("Reviews");
 
-                    b.Navigation("Rezervari");
+                    b.Navigation("reservations");
 
                     b.Navigation("Wishlists");
                 });
@@ -697,7 +697,7 @@ namespace CinemaAPI.Migrations
                 {
                     b.Navigation("Reviews");
 
-                    b.Navigation("Rezervari");
+                    b.Navigation("reservations");
 
                     b.Navigation("Wishlists");
                 });

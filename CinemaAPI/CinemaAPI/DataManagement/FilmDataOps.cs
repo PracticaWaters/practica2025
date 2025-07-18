@@ -21,13 +21,13 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                if (film.Rezervari != null)
+                if (film.reservations != null)
                 {
 
 
-                    foreach (Rezervare r in film.Rezervari)
+                    foreach (Reservation r in film.reservations)
                     {
-                        dbContext.rezervari.Attach(r);
+                        dbContext.reservations.Attach(r);
 
                     }
                 }
