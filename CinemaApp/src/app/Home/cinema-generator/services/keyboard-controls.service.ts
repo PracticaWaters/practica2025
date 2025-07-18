@@ -52,6 +52,18 @@ export class KeyboardControlsService {
         console.log('Test seat detection');
         // This will be handled by the component
       },
+      o: () => {
+        console.log('Move to seat POV');
+        // This will be handled by the component
+      },
+      n: () => {
+        console.log('Return to normal view');
+        // This will be handled by the component
+      },
+      h: () => {
+        console.log('Toggle admin panel');
+        // This will be handled by the component
+      },
     };
   }
 }
