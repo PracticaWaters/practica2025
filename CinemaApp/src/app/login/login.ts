@@ -4,6 +4,8 @@ import { AuthService } from '../app-logic/user/auth-service';
 import { User } from '../app-logic/user/user.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from '../app-logic/user/user-service';
 
 @Component({
   selector: 'app-login',
@@ -20,18 +22,17 @@ export class Login implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.user = this.authService.getUser();
       this.loginForm = this.fb.group({
-        email: [
-          this.user?.email || '',
-          [Validators.required, Validators.email],
-        ],
+        email: [this.user?.email || '', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
       });
     } else {
@@ -54,10 +55,18 @@ export class Login implements OnInit {
         next: (user: User) => {
           console.log('✅ Login reușit:', user);
           this.submitted = true;
-          this.router.navigate(['/program-cinema']); // schimbă cu ruta reală dacă nu vrei să mergi la /register
+          this.router.navigate(['/program-cinema']);
+          this.userService.refreshUser();
         },
         error: (error: Error) => {
           this.errorMessage = error.message;
+
+          this.snackBar.open(error.message, 'Închide', {
+            duration: 5000, // 5 secunde
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['error-snackbar'], // stil opțional
+          });
         },
       });
     } else {

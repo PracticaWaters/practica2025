@@ -1,72 +1,102 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
   <!-- poza profil -->
   <div
-    class="profile-picture-container"
-    (mouseenter)="hover = true"
-    (mouseleave)="hover = false"
+    class="flex justify-between items-center bg-white/5 backdrop-blur-lg border border-white/20 rounded-xl p-4 mb-3"
   >
-    <img
-      *ngIf="profileImageUrl; else defaultAvatar"
-      [src]="profileImageUrl"
-      alt="Poza de profil"
-      class="profile-picture"
-    />
-    <ng-template #defaultAvatar>
-       <mat-icon class="profile-picture default">account_circle</mat-icon>
-    </ng-template>
-
-    <input
-      type="file"
-      accept="image/*"
-      (change)="onFileSelected($event)"
-      hidden
-      #fileInput
-    />
-
-    <!-- Buton de modificare care apare doar la hover -->
-    <button
-      mat-mini-fab
-      color="primary"
-      type="button"
-      class="edit-button"
-      (click)="fileInput.click()"
-      [class.visible]="hover"
+    <div class="flex items-center gap-3">
+      <div class="label text-white font-medium">Poza de profil</div>
+      <button
+        *ngIf="profileImageUrl"
+        type="button"
+        (click)="removeProfileImage()"
+        class="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-1 rounded-md transition"
+        aria-label="Șterge poza de profil"
+      >
+        șterge
+      </button>
+    </div>
+    <div
+      class="profile-picture-container"
+      (mouseenter)="hover = true"
+      (mouseleave)="hover = false"
     >
-      <mat-icon>edit</mat-icon>
-    </button>
+      <img
+        *ngIf="profileImageUrl; else defaultAvatar"
+        [src]="profileImageUrl"
+        alt="Poza de profil"
+        class="profile-picture"
+      />
+      <ng-template #defaultAvatar>
+        <mat-icon class="profile-picture default">account_circle</mat-icon>
+      </ng-template>
+
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        hidden
+        #fileInput
+      />
+
+      <!-- Buton de modificare care apare doar la hover -->
+      <button
+        mat-mini-fab
+        color="primary"
+        type="button"
+        class="edit-button"
+        (click)="fileInput.click()"
+        [class.visible]="hover"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
   </div>
-
-  <!-- nume -->
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Nume</mat-label>
-    <input matInput formControlName="nume" />
-  </mat-form-field>
-
-  <!-- email, telefon -->
-  <div class="row">
-    <mat-form-field appearance="fill" class="half-width">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" />
+  <div
+    class="flex flex-col bg-white/5 backdrop-blur-lg border border-white/20 rounded-xl p-4 w-full mx-auto mb-3"
+  >
+    <!-- Nume pe linie separata -->
+    <mat-form-field appearance="outline" class="full-width mb-3">
+      <mat-label>Nume</mat-label>
+      <input matInput formControlName="nume" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="half-width">
-      <mat-label>Telefon</mat-label>
-      <input matInput formControlName="telefon" type="tel" />
-    </mat-form-field>
+    <!-- Email si Telefon pe aceeasi linie -->
+    <div class="flex gap-4">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Telefon</mat-label>
+        <input matInput formControlName="telefon" type="tel" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div
+    class="flex flex-col bg-white/5 backdrop-blur-lg border border-white/20 rounded-xl p-4 w-full mx-auto mb-6"
+  >
+    <!-- Data nasterii si Gender pe aceeasi linie -->
+    <div class="flex gap-4">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Data nașterii</mat-label>
+        <input matInput formControlName="email" type="date" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Gen</mat-label>
+        <mat-select formControlName="gen" name="gender">
+          <mat-option value="Masculin">Masculin</mat-option>
+          <mat-option value="Feminin">Feminin</mat-option>
+          <mat-option value="Altul">Altul</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
   <!-- butoane -->
   <div class="buttons">
-    <button
-      mat-flat-button
-      color="primary"
-      type="button"
-      (click)="confirmAndSubmit()"
-    >
-      Salvează
-    </button>
-    <button mat-stroked-button color="warn" type="button" (click)="onCancel()">
-      Anulează
-    </button>
+    <button class="cursor-pointer duration-200 active:scale-90" type="button" (click)="confirmAndSubmit()">SALVEAZĂ</button>
+    <button class="cursor-pointer duration-200 active:scale-90" type="button" (click)="onCancel()">ANULARE</button>
   </div>
 </form>

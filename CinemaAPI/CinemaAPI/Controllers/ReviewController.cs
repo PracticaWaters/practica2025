@@ -91,5 +91,19 @@ namespace CinemaAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("film/{filmId}")]
+        public ActionResult<IEnumerable<Review>> GetReviewsByFilmId(int filmId)
+        {
+            try
+            {
+                var reviews = _reviewDataOps.GetReviewsByFilmId(filmId);
+                return Ok(reviews);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

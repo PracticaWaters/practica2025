@@ -1,4 +1,4 @@
-﻿import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatCardModule } from '@angular/material/card';
 
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
@@ -45,6 +46,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SupportPage } from './Support/support-page/support-page';
 import { Login } from './login/login';
@@ -57,19 +59,32 @@ import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 
 import { RouterModule } from '@angular/router';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
-
+import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
+import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
+import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
+import { Promotii } from './promotii/promotii';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
-import { Promotii } from './promotii/promotii';
-import { PromotiiList } from './promotii-operatii/promotii-list/promotii-list/promotii-list';
-import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promotii-add';
 
 @NgModule({
   declarations: [
     App,
     Register,
     Login,
+    Register,
+    Login,
     VizualizareFilm,
+    UserDashboard,
+    MeniuPrincipal,
+    Wishlist,
+    Bilete,
+    Review,
+    DetaliiPersonale,
+    PromptParolaComponent,
+    DetaliiCinema,
+    ScreeningRoomList,
+    AddScreeningRoom,
+    ScreeningRoom,
     UserDashboard,
     MeniuPrincipal,
     Wishlist,
@@ -89,9 +104,10 @@ import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promo
     CinemaModel,
     CinemaGenerator,
     TimeslotList,
-    Promotii,
-    PromotiiList,
-    PromotiiAdd
+    AddTimeslot,
+    SelectMovie,
+    SelectScreeningRoom,
+    Promotii
   ],
   imports: [
     BrowserModule,
@@ -99,6 +115,7 @@ import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promo
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+
 
     // Material
     MatTableModule,
@@ -111,6 +128,8 @@ import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promo
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
 
     // CoreUI components and directives:
     MatDatepickerModule,
@@ -131,6 +150,7 @@ import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promo
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
 
   providers: [
@@ -146,3 +166,4 @@ import { PromotiiAdd } from './promotii-operatii/promotii-add/promotii-add/promo
   bootstrap: [App],
 })
 export class AppModule {}
+//fgehufgnefw

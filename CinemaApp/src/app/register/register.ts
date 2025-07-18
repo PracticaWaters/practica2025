@@ -7,9 +7,11 @@ import {
   Validators,
   AbstractControl,
   ValidationErrors,
+  ValidatorFn,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +28,8 @@ export class Register implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +43,33 @@ export class Register implements OnInit {
         ],
         email: ['', [Validators.required, Validators.email]],
         birthDate: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          this.passwordComplexityValidator()
+        ]
+      ],
         confirmPassword: ['', Validators.required],
       },
       { validators: this.passwordsMatchValidator }
     );
+  }
+
+  private passwordComplexityValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value: string = control.value || '';
+      if (!value) {
+        return null; // lasă Validators.required să semnaleze
+      }
+      const hasUpper = /[A-Z]/.test(value);
+      const hasLower = /[a-z]/.test(value);
+      const hasNumber = /[0-9]/.test(value);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+      const valid = hasUpper && hasLower && hasNumber && hasSpecial;
+      return valid ? null : { complexity: true };
+    };
   }
 
   private passwordsMatchValidator(
@@ -60,7 +85,7 @@ export class Register implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid && !this.isSubmitting) {
+    if (this.registerForm.valid && !this.isSubmitting){
       this.isSubmitting = true;
       console.log('Form valid');
 
@@ -86,19 +111,15 @@ export class Register implements OnInit {
           this.router.navigate(['/login']);
         },
         error: (error) => {
-          console.error('❌ Registration error:', error);
+          this.errorMessage = error.message;
 
-          if (error.status === 0) {
-            this.errorMessage = 'Nu se poate conecta la server.';
-          } else if (error.status === 400) {
-            this.errorMessage = 'Date invalide. Verificați formularul.';
-          } else if (error.status === 409) {
-            this.errorMessage = 'Emailul este deja înregistrat.';
-          } else {
-            this.errorMessage = `Eroare server (${error.status}): ${error.message}`;
-          }
-        },
-        complete: () => {
+          this.snackBar.open(error.message, 'Închide', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['error-snackbar']
+          });
+
           this.isSubmitting = false;
         },
       });

@@ -14,11 +14,14 @@ body{
 }
 
 :root {
+  --mat-form-field-outlined-input-text-color: white;
   --dark: #1A2130;
   --primary: #5A72A0;
   --accent: #83B4FF;
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
+  --mat-form-field-outlined-input-text-color: #FDFFE2;
+  --bg: #20242c;
 }
 
 .arrow {
@@ -33,7 +36,7 @@ body{
 }
 
 .mat-mdc-menu-item-text{
-  color: var(--light);
+  color: var(--dark);
 }
 
 .mat-mdc-menu-item-text:hover{
@@ -44,5 +47,32 @@ body{
   fill: var(--light);
 }
 
-
+.mdc-notched-outline__notch{
+  border-right: none;
+}
  
+.cdk-overlay-pane {
+  background-color: #7d9ddb;
+  color: #1A2130;
+  border-radius: 10px;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border-color: #1A2130;
+  color: #1A2130;
+  border-right-color: #1A2130;
+}
+
+.mat-mdc-table tbody, 
+.mat-mdc-table thead,
+.mat-mdc-table tfoot
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-header-row,
+.mar-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-table,
+.mat-mdc-header-cell,
+.mat-input {
+  background-color: #fff !important;
+}

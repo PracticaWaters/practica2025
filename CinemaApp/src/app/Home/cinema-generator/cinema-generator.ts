@@ -52,14 +52,20 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     rowOffset: 0.5, // offset ptr centra scaune
     seatOffset: 0.4, // offset ptr centra scaune
     scale: 0.8, // scale scaune
-    rowHeight: 0.4, // înălțimea de elevație per rând (maximă)
-    baseHeight: -2.3, // înălțimea de bază (coborâtă pentru platformele existente)
+    rowHeight: 0.4, // inaltimea de elev pe rand
+    baseHeight: -2.3, // base height
   };
 
-  // Find seat variables
+  // find seat variables
   public findSeatRow: number = 1;
   public findSeatColumn: number = 1;
   public seatInfo: any = null;
+
+  // admin panel vis
+  public isAdminPanelVisible: boolean = false;
+
+  // POV mode state
+  public isInPOVMode: boolean = false;
 
   constructor(
     private cameraService: CameraService,
@@ -256,12 +262,10 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     this.seatGeneratorService.clearAllSelections();
   }
 
-  // Find and select seat by row and column
   public findAndSelectSeat(row: number, column: number): boolean {
     return this.seatGeneratorService.findAndSelectSeat(row, column);
   }
 
-  // Get seat information
   public getSeatInfo(
     row: number,
     column: number
@@ -269,7 +273,6 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     return this.seatGeneratorService.getSeatInfo(row, column);
   }
 
-  // Find and select seat from UI
   public findSeat(): void {
     console.log(
       `Finding seat at Row ${this.findSeatRow}, Column ${this.findSeatColumn}`
@@ -292,11 +295,11 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
 
-    // Find and select the seat
+    // find and select the seat
     const found = this.findAndSelectSeat(this.findSeatRow, this.findSeatColumn);
 
     if (found) {
-      // Get seat info for display
+      // get seat info for display
       const seatInfoResult = this.getSeatInfo(
         this.findSeatRow,
         this.findSeatColumn
@@ -309,6 +312,121 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
       this.seatInfo = null;
       console.log('Seat not found');
     }
+  }
+
+  // move camera to seat POV
+  public moveCameraToSelectedSeat(): void {
+    const selectedSeats = this.getSelectedSeats();
+
+    if (selectedSeats.length === 0) {
+      console.log('No seats selected. Please select a seat first.');
+      return;
+    }
+
+    // use the first selected seat
+    const selectedSeat = selectedSeats[0];
+    console.log(
+      `Moving camera to seat: Row ${selectedSeat.row}, Seat ${selectedSeat.seat}`
+    );
+
+    // store original FOV
+    const originalFOV = this.camera.fov;
+
+    // calculate dynamic FOV based on seat position
+    const dynamicFOV = this.calculateSeatFOV(selectedSeat);
+
+    // change FOV to simulate realistic seat perspective
+    this.camera.fov = dynamicFOV;
+    this.camera.updateProjectionMatrix();
+
+    // get seat position
+    const seatPosition = selectedSeat.seatObject.position.clone();
+
+    // calc POV position
+    const povPosition = new THREE.Vector3(
+      seatPosition.x, // same X position as seat
+      seatPosition.y + 0.8, // above the seat
+      seatPosition.z + 0.3 // in front of the seat
+    );
+
+    // move camera to POV position
+    this.camera.position.copy(povPosition);
+
+    const lookAtPosition = new THREE.Vector3(
+      seatPosition.x,
+      seatPosition.y + 0.5,
+      seatPosition.z + 5
+    );
+
+    this.camera.lookAt(lookAtPosition);
+
+    this.camera.rotateY(Math.PI);
+
+    if (this.controls) {
+      this.controls.target.copy(lookAtPosition);
+      this.controls.update();
+
+      this.controls.enableRotate = false;
+      this.controls.enableZoom = false;
+      this.controls.enablePan = false;
+    }
+
+    (this.camera as any).originalFOV = originalFOV;
+
+    this.seatGeneratorService.deselectSeat(selectedSeat.seatObject);
+
+    this.isInPOVMode = true;
+
+    console.log(
+      `Camera moved to seat POV with 180° Y rotation and ${dynamicFOV}° FOV. Seat deselected. Controls disabled.`
+    );
+  }
+
+  private calculateSeatFOV(selectedSeat: any): number {
+    const row = selectedSeat.row;
+    const totalRows = this.seatConfig.rows;
+
+    const rowRatio = row / totalRows;
+
+    const minFOV = 70;
+    const maxFOV = 100;
+    const dynamicFOV = maxFOV - rowRatio * (maxFOV - minFOV);
+
+    console.log(`Row ${row}/${totalRows}: FOV = ${dynamicFOV.toFixed(1)}°`);
+    return dynamicFOV;
+  }
+
+  public returnToNormalView(): void {
+    if ((this.camera as any).originalFOV !== undefined) {
+      this.camera.fov = (this.camera as any).originalFOV;
+      this.camera.updateProjectionMatrix();
+      delete (this.camera as any).originalFOV;
+      console.log('FOV restored to original value');
+    }
+
+    if (this.controls) {
+      this.controls.enableRotate = true;
+      this.controls.enableZoom = this.cameraService.isControlsEnabled();
+      this.controls.enablePan = this.cameraService.isControlsEnabled();
+      console.log('Camera controls re-enabled');
+    }
+
+    this.isInPOVMode = false;
+
+    this.cameraService.resetCameraToStart();
+    console.log('Returned to normal camera view');
+  }
+
+  public toggleAdminPanel(): void {
+    this.isAdminPanelVisible = !this.isAdminPanelVisible;
+    console.log(`Admin panel ${this.isAdminPanelVisible ? 'shown' : 'hidden'}`);
+  }
+
+  public enableCameraRotation(): void {
+    this.returnToNormalView();
+    console.log(
+      'R key pressed - returned to normal camera view and enabled rotation'
+    );
   }
 
   private setupClickHandler(): void {
@@ -345,6 +463,30 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
 
     callbacks['t'] = () => {
       this.clickDetectionService.testSeatDetection(this.camera, this.scene);
+    };
+
+    // add POV camera control
+    callbacks['o'] = () => {
+      this.moveCameraToSelectedSeat();
+      console.log('O key pressed - moving to seat POV');
+    };
+
+    // add return to normal view control
+    callbacks['n'] = () => {
+      this.returnToNormalView();
+      console.log('N key pressed - returning to normal view');
+    };
+
+    // add admin panel toggle control
+    callbacks['h'] = () => {
+      this.toggleAdminPanel();
+      console.log('H key pressed - toggling admin panel');
+    };
+
+    // add camera rotation enable control
+    callbacks['r'] = () => {
+      this.enableCameraRotation();
+      console.log('R key pressed - enabling camera rotation');
     };
 
     this.keyboardControlsService.setupKeyboardDebug(callbacks);

@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.DataManagement;
+using CinemaAPI.DataManagement;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -41,7 +42,7 @@ namespace CinemaAPI.Models
         [ForeignKey("Role")]
         public Role Role { get; set; }
 
-        public List<int>? RezervationId { get; set; }
+        public List<int>? ReservationId { get; set; }
 
         public List<int>? ReviewsId { get; set; }
 
@@ -53,7 +54,7 @@ namespace CinemaAPI.Models
 
         public bool IsDeleted { get; set; }
 
-        public User ToUser (ReservationDataOps reservareDataOps, ReviewDataOps reviewDataOps)
+        public User ToUser(ReservationDataOps reservareDataOps, ReviewDataOps reviewDataOps)
         {
 
             User user = new User
@@ -75,13 +76,13 @@ namespace CinemaAPI.Models
             };
 
 
-            if (this.RezervationId != null)
+            if (this.ReservationId != null)
             {
-                foreach (int id in this.RezervationId)
+                foreach (int id in this.ReservationId)
                 {
-                    var rezervation = reservareDataOps.GetReservationById(id)
-                        ?? throw new ArgumentException($"Rezervation with Id {id} not found.");
-                    user.Reservations.Add(rezervation);
+                    var Reservation = reservareDataOps.GetReservationById(id)
+                        ?? throw new ArgumentException($"Reservation with Id {id} not found.");
+                    user.Reservations.Add(Reservation);
                 }
             }
 

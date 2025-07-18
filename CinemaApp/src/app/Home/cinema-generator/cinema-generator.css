@@ -15,6 +15,38 @@
   z-index: 1;
 }
 
+.toggle-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.toggle-admin-btn {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.toggle-admin-btn:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #1f5f8b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+}
+
+.toggle-admin-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
 .control-panel {
   position: absolute;
   top: 20px;

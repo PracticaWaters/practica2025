@@ -1,4 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { User } from './app-logic/user/user.model';
+import { Observable } from 'rxjs';
+import { UserService } from './app-logic/user/user-service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +13,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class App {
   isMenuOpen: boolean = false;
   adminExpanded: boolean = false;
+  user: Observable<User | null>;
 
   protected title = 'Liquid Cinema';
+
+  constructor(private userService: UserService) {
+    this.userService.logOut();
+    this.user = this.userService.user;
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
