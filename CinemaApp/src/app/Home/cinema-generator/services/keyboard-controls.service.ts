@@ -60,6 +60,10 @@ export class KeyboardControlsService {
         console.log('Return to normal view');
         // This will be handled by the component
       },
+      h: () => {
+        console.log('Toggle admin panel');
+        // This will be handled by the component
+      },
     };
   }
 }

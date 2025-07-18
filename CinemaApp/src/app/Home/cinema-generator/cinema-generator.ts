@@ -61,6 +61,9 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
   public findSeatColumn: number = 1;
   public seatInfo: any = null;
 
+  // Admin panel visibility
+  public isAdminPanelVisible: boolean = false;
+
   constructor(
     private cameraService: CameraService,
     private lightingService: LightingService,
@@ -395,6 +398,12 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     console.log('Returned to normal camera view');
   }
 
+  // Toggle admin panel visibility
+  public toggleAdminPanel(): void {
+    this.isAdminPanelVisible = !this.isAdminPanelVisible;
+    console.log(`Admin panel ${this.isAdminPanelVisible ? 'shown' : 'hidden'}`);
+  }
+
   private setupClickHandler(): void {
     this.clickDetectionService.setupClickHandler(
       this.renderer,
@@ -441,6 +450,12 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
     callbacks['n'] = () => {
       this.returnToNormalView();
       console.log('N key pressed - returning to normal view');
+    };
+
+    // Add admin panel toggle control
+    callbacks['h'] = () => {
+      this.toggleAdminPanel();
+      console.log('H key pressed - toggling admin panel');
     };
 
     this.keyboardControlsService.setupKeyboardDebug(callbacks);
