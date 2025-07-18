@@ -113,16 +113,18 @@ export class VizualizareFilm implements OnInit {
     );
   }
 
-  @ViewChild('reviewsContainer') reviewsContainer!: ElementRef;
+  @ViewChild('reviewsContainer', { static: false }) reviewsContainer!: ElementRef;
 
-  scrollReviews(direction: 'left' | 'right') {
-    const container = this.reviewsContainer.nativeElement;
-    const scrollAmount = 320; // ajustabil
+scrollReviews(direction: 'left' | 'right') {
+  const container = this.reviewsContainer.nativeElement as HTMLElement;
+  const scrollAmount = 320 + 24; // lățimea cardului + spațiere
 
-    if (direction === 'left') {
-      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    } else {
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
+  if (direction === 'left') {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   }
+}
+
+
 }

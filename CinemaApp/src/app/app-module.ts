@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { App } from './app';
 import { provideAnimations } from '@angular/platform-browser/animations'; // <-- importă aici
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
+import { MatCardModule } from '@angular/material/card';
 
 // Import CoreUI modules and directives:
 import { MatNativeDateModule } from '@angular/material/core';
@@ -103,6 +104,8 @@ import { TokenInterceptor } from './app-logic/token-interceptor';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
 
     // CoreUI components and directives:
     MatDatepickerModule,
