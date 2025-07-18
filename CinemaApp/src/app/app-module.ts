@@ -1,4 +1,4 @@
-﻿import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -62,17 +62,29 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
 import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
-
+import { Promotii } from './promotii/promotii';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
-import { Promotii } from './promotii/promotii';
 
 @NgModule({
   declarations: [
     App,
     Register,
     Login,
+    Register,
+    Login,
     VizualizareFilm,
+    UserDashboard,
+    MeniuPrincipal,
+    Wishlist,
+    Bilete,
+    Review,
+    DetaliiPersonale,
+    PromptParolaComponent,
+    DetaliiCinema,
+    ScreeningRoomList,
+    AddScreeningRoom,
+    ScreeningRoom,
     UserDashboard,
     MeniuPrincipal,
     Wishlist,
@@ -103,6 +115,7 @@ import { Promotii } from './promotii/promotii';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+
 
     // Material
     MatTableModule,

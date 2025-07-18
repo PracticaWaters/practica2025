@@ -20,7 +20,8 @@ body{
   --accent: #83B4FF;
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
-  --bg: #27313f;
+  --mat-form-field-outlined-input-text-color: #FDFFE2;
+  --bg: #20242c;
 }
 
 .arrow {
@@ -34,11 +35,44 @@ body{
   background-color: var(--dark);
 }
 
+.mat-mdc-menu-item-text{
+  color: var(--dark);
+}
+
+.mat-mdc-menu-item-text:hover{
+  color: var(--primary);
+}
 
 .mat-expansion-indicator svg path{
   fill: var(--light);
 }
 
-#reviewsContainer::-webkit-scrollbar {
-    display: none;
-  }
+.mdc-notched-outline__notch{
+  border-right: none;
+}
+ 
+.cdk-overlay-pane {
+  background-color: #7d9ddb;
+  color: #1A2130;
+  border-radius: 10px;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+  border-color: #1A2130;
+  color: #1A2130;
+  border-right-color: #1A2130;
+}
+
+.mat-mdc-table tbody, 
+.mat-mdc-table thead,
+.mat-mdc-table tfoot
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-header-row,
+.mar-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-table,
+.mat-mdc-header-cell,
+.mat-input {
+  background-color: #fff !important;
+}

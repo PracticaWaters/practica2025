@@ -32,10 +32,7 @@ export class Login implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.user = this.authService.getUser();
       this.loginForm = this.fb.group({
-        email: [
-          this.user?.email || '',
-          [Validators.required, Validators.email],
-        ],
+        email: [this.user?.email || '', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
       });
     } else {

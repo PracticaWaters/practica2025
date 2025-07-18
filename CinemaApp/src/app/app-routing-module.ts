@@ -74,8 +74,9 @@ const routes: Routes = [
   { path: 'promotii', component: Promotii}
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

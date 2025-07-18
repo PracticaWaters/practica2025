@@ -11,15 +11,11 @@
 
 :host {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
+  /* background-color: #1A2130; */
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-:host {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #5A72A0;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -35,46 +31,47 @@ mat-label {
 }
 
 .login-container {
-  width: 100%;
-  max-width: 1100px;
+  width: 50%;
+  max-width: 550px;
   padding: 30px;
 }
 .login-container {
-  width: 100%;
-  max-width: 1100px;
+  width: 50%;
+  max-width: 550px;
   padding: 30px;
 }
   
 .login-box {
   display: flex;
   width: 100%;
-  background-color: #83b4ff;
+  background-color: #303444;
   border-radius: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
-
+/* #20242c */
 .login-left {
-  background-color: #83b4ff;
+  background-color: #303444;
   flex: 1;
   padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .login-left h2 {
   font-size: 28px;
   margin-bottom: 30px;
-  color: #2c3e50;
+  color: #FDFFE2;
   text-align: center;
 }
 
 .login-left button {
   width: 100%;
   padding: 12px;
-  background-color: #1772d2;
+  background-color: #5A72A0;
   border: none;
   color: white;
   border-radius: 6px;
@@ -84,8 +81,12 @@ mat-label {
   margin-top: 10px;
 }
 
+.login-left button {
+  background-color: oklch(76.9% 0.188 70.08);
+}
+
 .login-left button:hover {
-  background-color: #0056b3;
+  background-color: #FDFFE2;
 }
 
 .full-width {
@@ -106,7 +107,7 @@ mat-label {
   margin-top: 25px;
   text-align: center;
   font-size: 15px;
-  color: #444;
+  color: #FDFFE2;
 }
 
 .register-link a {
@@ -121,21 +122,73 @@ mat-label {
 
 .login-right {
   flex: 1;
-  background-color: #fdffe2;
+  background-color: #FDFFE2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 60px;
+  border-radius: 10px;
 }
 
 .login-right img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
+} 
+
+.mat-mdc-table tbody, 
+.mat-mdc-table thead,
+.mat-mdc-table tfoot
+.mat-mdc-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-header-row,
+.mar-mdc-row,
+.mat-mdc-footer-row,
+.mat-mdc-table,
+.mat-mdc-header-cell,
+.mat-input {
+  background-color: var(--bg) !important;
 }
 
-.error-snackbar {
-  background-color: #e53935;
-  color: white;
-  font-weight: bold;
+.mdc-mdc-text-field-wrapper,
+.mdc-text-field {
+  background-color: var(--bg) !important;
+}
+
+/* Animated background elements */
+.bg-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-decoration::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+    opacity: 0.08;
+    border-radius: 50%;
+    top: 10%;
+    left: 5%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.bg-decoration::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--medium-blue) 0%, transparent 70%);
+    opacity: 0.08;
+    border-radius: 50%;
+    bottom: 10%;
+    right: 5%;
+    animation: float 10s ease-in-out infinite reverse;
 }
