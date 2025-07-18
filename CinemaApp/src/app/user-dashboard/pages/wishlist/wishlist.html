@@ -2,7 +2,7 @@
   <h2 class="text-2xl font-bold mb-6">Filmele din wishlist</h2>
 
   <div *ngIf="wishlistItems.length > 0; else noItems">
-    <div *ngFor="let item of wishlistItems" class="wishlist-item bg-white/5 p-4 mb-4 rounded-xl shadow-md flex gap-4">
+    <div *ngFor="let item of wishlistItems" class="wishlist-item bg-white/5 backdrop-blur-lg border border-white/20 p-4 mb-4 rounded-xl shadow-md flex gap-4">
       
       <img [src]="item.imageUrl" alt="{{ item.title }}" />
 
