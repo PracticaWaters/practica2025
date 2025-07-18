@@ -66,6 +66,7 @@ import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-s
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
 import { Promotii } from './promotii/promotii';
+import { Setari } from './user-dashboard/pages/setari/setari';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { Promotii } from './promotii/promotii';
     AddTimeslot,
     SelectMovie,
     SelectScreeningRoom,
-    Promotii
+    Promotii,
+    Setari
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
 import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
+import { Setari } from './user-dashboard/pages/setari/setari';
 
 const routes: Routes = [
   { path: '', component: CinemaModel },
@@ -44,8 +45,9 @@ const routes: Routes = [
       // { path: 'meniu-principal', component: MeniuPrincipal },
       { path: 'wishlist', component: Wishlist },
       { path: 'bilete', component: Bilete },
-      { path: 'review-uri', component: Review },
+      //{ path: 'review-uri', component: Review },
       { path: 'detalii', component: DetaliiPersonale },
+      { path: 'setari', component: Setari},
     ],
   },
   { path: 'detalii-cinema', component: DetaliiCinema },
