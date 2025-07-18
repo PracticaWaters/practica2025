@@ -7,13 +7,15 @@ import { SeatConfig } from './seat-generator.service';
 })
 export class SeatConfigService {
   private defaultConfig: SeatConfig = {
-    rows: 8,
-    seatsPerRow: 12,
-    rowSpacing: 1.2,
-    seatSpacing: 0.8,
+    rows: 6,
+    seatsPerRow: 10,
+    rowSpacing: 1,
+    seatSpacing: 0.4,
     rowOffset: 0.5,
     seatOffset: 0.4,
     scale: 0.8,
+    rowHeight: 0.4, // Maximum row height from image
+    baseHeight: -2.3, // Base height from image
   };
 
   private configSubject = new BehaviorSubject<SeatConfig>(this.defaultConfig);
@@ -40,24 +42,32 @@ export class SeatConfigService {
   validateConfig(config: SeatConfig): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
-    if (config.rows < 1 || config.rows > 20) {
-      errors.push('Number of rows must be between 1 and 20');
+    if (config.rows < 1 || config.rows > 6) {
+      errors.push('Number of rows must be between 1 and 6');
     }
 
-    if (config.seatsPerRow < 1 || config.seatsPerRow > 30) {
-      errors.push('Seats per row must be between 1 and 30');
+    if (config.seatsPerRow < 1 || config.seatsPerRow > 10) {
+      errors.push('Seats per row must be between 1 and 10');
     }
 
-    if (config.rowSpacing < 0.5 || config.rowSpacing > 3) {
-      errors.push('Row spacing must be between 0.5 and 3');
+    if (config.rowSpacing < 0.1 || config.rowSpacing > 1) {
+      errors.push('Row spacing must be between 0.1 and 1');
     }
 
-    if (config.seatSpacing < 0.5 || config.seatSpacing > 2) {
-      errors.push('Seat spacing must be between 0.5 and 2');
+    if (config.seatSpacing < 0.1 || config.seatSpacing > 0.4) {
+      errors.push('Seat spacing must be between 0.1 and 0.4');
     }
 
-    if (config.scale < 0.1 || config.scale > 2) {
-      errors.push('Scale must be between 0.1 and 2');
+    if (config.scale < 0.1 || config.scale > 0.8) {
+      errors.push('Scale must be between 0.1 and 0.8');
+    }
+
+    if (config.rowHeight < 0.1 || config.rowHeight > 0.4) {
+      errors.push('Row height must be between 0.1 and 0.4');
+    }
+
+    if (config.baseHeight < -2.3 || config.baseHeight > 0) {
+      errors.push('Base height must be between -2.3 and 0');
     }
 
     return {
@@ -71,23 +81,25 @@ export class SeatConfigService {
     return [
       {
         name: 'Small Cinema',
-        config: { ...this.defaultConfig, rows: 6, seatsPerRow: 8 },
+        config: { ...this.defaultConfig, rows: 4, seatsPerRow: 8, rowHeight: 0.3, baseHeight: -1.5 },
       },
       {
         name: 'Medium Cinema',
-        config: { ...this.defaultConfig, rows: 8, seatsPerRow: 12 },
+        config: { ...this.defaultConfig, rows: 6, seatsPerRow: 10, rowHeight: 0.4, baseHeight: -2.0 },
       },
       {
         name: 'Large Cinema',
-        config: { ...this.defaultConfig, rows: 10, seatsPerRow: 16 },
+        config: { ...this.defaultConfig, rows: 6, seatsPerRow: 10, rowHeight: 0.4, baseHeight: -2.3 },
       },
       {
         name: 'IMAX Style',
         config: {
           ...this.defaultConfig,
-          rows: 12,
-          seatsPerRow: 20,
-          rowSpacing: 1.5,
+          rows: 6,
+          seatsPerRow: 10,
+          rowSpacing: 1,
+          rowHeight: 0.4,
+          baseHeight: -2.3,
         },
       },
     ];

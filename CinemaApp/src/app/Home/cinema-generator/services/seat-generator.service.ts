@@ -10,6 +10,8 @@ export interface SeatConfig {
   rowOffset: number;
   seatOffset: number;
   scale: number;
+  rowHeight: number; // New property for row elevation
+  baseHeight: number; // New property for base platform height
 }
 
 export interface SeatPosition {
@@ -27,10 +29,9 @@ export interface SeatSelection {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SeatGeneratorService {
-
   private chairModel: THREE.Group | null = null;
   private generatedSeats: THREE.Group[] = [];
   private selectedSeats: Set<string> = new Set(); // Track selected seats by "row-seat" key
@@ -43,16 +44,18 @@ export class SeatGeneratorService {
       children: chairModel.children.length,
       position: chairModel.position,
       scale: chairModel.scale,
-      visible: chairModel.visible
+      visible: chairModel.visible,
     });
   }
 
   generateSeats(scene: THREE.Scene, config: SeatConfig): THREE.Group[] {
     console.log('SeatGeneratorService: Starting seat generation');
     console.log('SeatGeneratorService: Config:', config);
-    console.log('SeatGeneratorService: Chair model available:', !!this.chairModel);
-    
-    // Clear existing seats
+    console.log(
+      'SeatGeneratorService: Chair model available:',
+      !!this.chairModel
+    );
+
     this.clearSeats(scene);
 
     if (!this.chairModel) {
@@ -64,63 +67,64 @@ export class SeatGeneratorService {
     const startRow = -(config.rows - 1) / 2;
     const startSeat = -(config.seatsPerRow - 1) / 2;
 
-    // Generate seats
     for (let row = 0; row < config.rows; row++) {
       for (let seat = 0; seat < config.seatsPerRow; seat++) {
         const seatInstance = this.chairModel.clone();
-        
-        // Calculate position
-        const x = (startSeat + seat) * config.seatSpacing + config.seatOffset;
-        const z = (startRow + row) * config.rowSpacing + config.rowOffset;
-        const y = 0; // Ground level
-        
+
+        const x =
+          (startSeat + seat) * config.seatSpacing + config.seatOffset - 1.8;
+        const z = (startRow + row) * config.rowSpacing + config.rowOffset - 2.2;
+
+        const rowElevation = (config.rows - 1 - row) * config.rowHeight; // inverted seats
+        const y = config.baseHeight + rowElevation;
+
         seatInstance.position.set(x, y, z);
-        
-        // Add metadata for identification
+
         (seatInstance as any).userData = {
           row: row,
           seat: seat,
-          position: { x, y, z }
+          position: { x, y, z },
+          rowElevation: rowElevation,
         };
-        
-        // Store original materials for this seat and ensure they're raycaster-friendly
+
         const originalMaterials: THREE.Material[] = [];
         seatInstance.traverse((child: any) => {
           if (child instanceof THREE.Mesh && child.material) {
-            // Clone the material
             const clonedMaterial = child.material.clone();
             originalMaterials.push(clonedMaterial);
-            
-            // Ensure the material is raycaster-friendly
+
             if (child.material.transparent) {
               child.material.transparent = false;
             }
             if (child.material.opacity < 1) {
               child.material.opacity = 1;
             }
-            
-            // Make sure the mesh is visible for raycaster
+
             child.visible = true;
           }
         });
         this.originalMaterials.set(seatInstance, originalMaterials);
-        
-        // Add to scene and track
+
         scene.add(seatInstance);
         seats.push(seatInstance);
-        console.log(`Added seat ${row}-${seat} to scene at position:`, seatInstance.position);
+        console.log(
+          `Added seat ${row}-${seat} to scene at position:`,
+          seatInstance.position
+        );
       }
     }
 
     this.generatedSeats = seats;
     console.log(`Generated ${seats.length} seats`);
-    console.log('Scene children count after seat generation:', scene.children.length);
+    console.log(
+      'Scene children count after seat generation:',
+      scene.children.length
+    );
     return seats;
   }
 
   clearSeats(scene: THREE.Scene): void {
-    // Remove all generated seats from scene
-    this.generatedSeats.forEach(seat => {
+    this.generatedSeats.forEach((seat) => {
       scene.remove(seat);
     });
     this.generatedSeats = [];
@@ -135,14 +139,16 @@ export class SeatGeneratorService {
       for (let seat = 0; seat < config.seatsPerRow; seat++) {
         const x = (startSeat + seat) * config.seatSpacing + config.seatOffset;
         const z = (startRow + row) * config.rowSpacing + config.rowOffset;
-        const y = 0;
+
+        const rowElevation = row * config.rowHeight;
+        const y = config.baseHeight + rowElevation;
 
         positions.push({
           x,
           y,
           z,
           row: row + 1, // 1-based indexing
-          seat: seat + 1
+          seat: seat + 1,
         });
       }
     }
@@ -154,23 +160,32 @@ export class SeatGeneratorService {
     return config.rows * config.seatsPerRow;
   }
 
-  getSeatAtPosition(x: number, y: number, z: number, tolerance: number = 0.5): THREE.Group | null {
-    return this.generatedSeats.find(seat => {
-      const pos = seat.position;
-      return Math.abs(pos.x - x) < tolerance &&
-             Math.abs(pos.y - y) < tolerance &&
-             Math.abs(pos.z - z) < tolerance;
-    }) || null;
+  getSeatAtPosition(
+    x: number,
+    y: number,
+    z: number,
+    tolerance: number = 0.5
+  ): THREE.Group | null {
+    return (
+      this.generatedSeats.find((seat) => {
+        const pos = seat.position;
+        return (
+          Math.abs(pos.x - x) < tolerance &&
+          Math.abs(pos.y - y) < tolerance &&
+          Math.abs(pos.z - z) < tolerance
+        );
+      }) || null
+    );
   }
 
   getSeatsInRow(row: number): THREE.Group[] {
-    return this.generatedSeats.filter(seat => {
+    return this.generatedSeats.filter((seat) => {
       return (seat as any).userData?.row === row - 1; // Convert to 0-based
     });
   }
 
   getSeatsInColumn(column: number): THREE.Group[] {
-    return this.generatedSeats.filter(seat => {
+    return this.generatedSeats.filter((seat) => {
       return (seat as any).userData?.seat === column - 1; // Convert to 0-based
     });
   }
@@ -181,7 +196,7 @@ export class SeatGeneratorService {
     if (!userData) return false;
 
     const seatKey = `${userData.row}-${userData.seat}`;
-    
+
     if (this.selectedSeats.has(seatKey)) {
       // Deselect seat
       this.deselectSeat(seatObject);
@@ -190,7 +205,9 @@ export class SeatGeneratorService {
       // Select seat
       this.selectedSeats.add(seatKey);
       this.applySelectionMaterial(seatObject);
-      console.log(`Seat selected: Row ${userData.row + 1}, Seat ${userData.seat + 1}`);
+      console.log(
+        `Seat selected: Row ${userData.row + 1}, Seat ${userData.seat + 1}`
+      );
       return true;
     }
   }
@@ -203,7 +220,9 @@ export class SeatGeneratorService {
     const seatKey = `${userData.row}-${userData.seat}`;
     this.selectedSeats.delete(seatKey);
     this.restoreOriginalMaterial(seatObject);
-    console.log(`Seat deselected: Row ${userData.row + 1}, Seat ${userData.seat + 1}`);
+    console.log(
+      `Seat deselected: Row ${userData.row + 1}, Seat ${userData.seat + 1}`
+    );
   }
 
   // Apply green glow material to selected seat
@@ -212,22 +231,22 @@ export class SeatGeneratorService {
       if (child instanceof THREE.Mesh && child.material) {
         // Create a new material with green glow effect
         const glowMaterial = child.material.clone();
-        
+
         // Add green color with emission
         if (glowMaterial.color) {
           glowMaterial.color.setHex(0x00ff00); // Green color
         }
-        
+
         // Add emission for glow effect
         if (glowMaterial.emissive) {
           glowMaterial.emissive.setHex(0x00ff00);
           glowMaterial.emissiveIntensity = 0.3;
         }
-        
+
         // Add outline effect by increasing material intensity
         glowMaterial.transparent = true;
         glowMaterial.opacity = 0.9;
-        
+
         child.material = glowMaterial;
       }
     });
@@ -240,7 +259,10 @@ export class SeatGeneratorService {
 
     let materialIndex = 0;
     seatObject.traverse((child: any) => {
-      if (child instanceof THREE.Mesh && materialIndex < originalMaterials.length) {
+      if (
+        child instanceof THREE.Mesh &&
+        materialIndex < originalMaterials.length
+      ) {
         child.material = originalMaterials[materialIndex];
         materialIndex++;
       }
@@ -250,8 +272,8 @@ export class SeatGeneratorService {
   // Get all selected seats
   getSelectedSeats(): SeatSelection[] {
     const selections: SeatSelection[] = [];
-    
-    this.generatedSeats.forEach(seat => {
+
+    this.generatedSeats.forEach((seat) => {
       const userData = (seat as any).userData;
       if (userData) {
         const seatKey = `${userData.row}-${userData.seat}`;
@@ -259,19 +281,19 @@ export class SeatGeneratorService {
           selections.push({
             row: userData.row + 1,
             seat: userData.seat + 1,
-            seatObject: seat
+            seatObject: seat,
           });
         }
       }
     });
-    
+
     return selections;
   }
 
   // Clear all selections
   clearAllSelections(): void {
     this.selectedSeats.clear();
-    this.generatedSeats.forEach(seat => {
+    this.generatedSeats.forEach((seat) => {
       this.restoreOriginalMaterial(seat);
     });
     console.log('All seat selections cleared');
@@ -290,20 +312,24 @@ export class SeatGeneratorService {
   // Find and select seat by row and column numbers
   findAndSelectSeat(rowNumber: number, columnNumber: number): boolean {
     console.log(`Looking for seat at Row ${rowNumber}, Column ${columnNumber}`);
-    
+
     // Convert to 0-based indexing
     const rowIndex = rowNumber - 1;
     const columnIndex = columnNumber - 1;
-    
-    const targetSeat = this.generatedSeats.find(seat => {
+
+    const targetSeat = this.generatedSeats.find((seat) => {
       const userData = (seat as any).userData;
-      return userData && userData.row === rowIndex && userData.seat === columnIndex;
+      return (
+        userData && userData.row === rowIndex && userData.seat === columnIndex
+      );
     });
-    
+
     if (targetSeat) {
       console.log(`Found seat at Row ${rowNumber}, Column ${columnNumber}`);
       const isSelected = this.selectSeat(targetSeat);
-      console.log(`Seat selection result: ${isSelected ? 'selected' : 'deselected'}`);
+      console.log(
+        `Seat selection result: ${isSelected ? 'selected' : 'deselected'}`
+      );
       return true;
     } else {
       console.log(`No seat found at Row ${rowNumber}, Column ${columnNumber}`);
@@ -311,7 +337,11 @@ export class SeatGeneratorService {
       this.generatedSeats.forEach((seat, index) => {
         const userData = (seat as any).userData;
         if (userData) {
-          console.log(`Seat ${index}: Row ${userData.row + 1}, Column ${userData.seat + 1}`);
+          console.log(
+            `Seat ${index}: Row ${userData.row + 1}, Column ${
+              userData.seat + 1
+            }`
+          );
         }
       });
       return false;
@@ -319,31 +349,36 @@ export class SeatGeneratorService {
   }
 
   // Get seat info by row and column
-  getSeatInfo(rowNumber: number, columnNumber: number): { found: boolean; info?: any } {
+  getSeatInfo(
+    rowNumber: number,
+    columnNumber: number
+  ): { found: boolean; info?: any } {
     const rowIndex = rowNumber - 1;
     const columnIndex = columnNumber - 1;
-    
-    const targetSeat = this.generatedSeats.find(seat => {
+
+    const targetSeat = this.generatedSeats.find((seat) => {
       const userData = (seat as any).userData;
-      return userData && userData.row === rowIndex && userData.seat === columnIndex;
+      return (
+        userData && userData.row === rowIndex && userData.seat === columnIndex
+      );
     });
-    
+
     if (targetSeat) {
       const userData = (targetSeat as any).userData;
       const seatKey = `${userData.row}-${userData.seat}`;
       const isSelected = this.selectedSeats.has(seatKey);
-      
+
       return {
         found: true,
         info: {
           row: userData.row + 1,
           column: userData.seat + 1,
           position: userData.position,
-          isSelected: isSelected
-        }
+          isSelected: isSelected,
+        },
       };
     }
-    
+
     return { found: false };
   }
-} 
+}

@@ -45,13 +45,15 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
 
   // config pentru scaune
   public seatConfig: SeatConfig = {
-    rows: 8,
-    seatsPerRow: 12,
-    rowSpacing: 1.2,
-    seatSpacing: 0.8,
+    rows: 6,
+    seatsPerRow: 10,
+    rowSpacing: 1,
+    seatSpacing: 0.4,
     rowOffset: 0.5, // offset ptr centra scaune
     seatOffset: 0.4, // offset ptr centra scaune
     scale: 0.8, // scale scaune
+    rowHeight: 0.4, // înălțimea de elevație per rând (maximă)
+    baseHeight: -2.3, // înălțimea de bază (coborâtă pentru platformele existente)
   };
 
   // Find seat variables
@@ -260,30 +262,45 @@ export class CinemaGenerator implements OnInit, OnDestroy, AfterViewInit {
   }
 
   // Get seat information
-  public getSeatInfo(row: number, column: number): { found: boolean; info?: any } {
+  public getSeatInfo(
+    row: number,
+    column: number
+  ): { found: boolean; info?: any } {
     return this.seatGeneratorService.getSeatInfo(row, column);
   }
 
   // Find and select seat from UI
   public findSeat(): void {
-    console.log(`Finding seat at Row ${this.findSeatRow}, Column ${this.findSeatColumn}`);
-    
+    console.log(
+      `Finding seat at Row ${this.findSeatRow}, Column ${this.findSeatColumn}`
+    );
+
     if (this.findSeatRow < 1 || this.findSeatRow > this.seatConfig.rows) {
-      console.error(`Invalid row number: ${this.findSeatRow}. Must be between 1 and ${this.seatConfig.rows}`);
+      console.error(
+        `Invalid row number: ${this.findSeatRow}. Must be between 1 and ${this.seatConfig.rows}`
+      );
       return;
     }
-    
-    if (this.findSeatColumn < 1 || this.findSeatColumn > this.seatConfig.seatsPerRow) {
-      console.error(`Invalid column number: ${this.findSeatColumn}. Must be between 1 and ${this.seatConfig.seatsPerRow}`);
+
+    if (
+      this.findSeatColumn < 1 ||
+      this.findSeatColumn > this.seatConfig.seatsPerRow
+    ) {
+      console.error(
+        `Invalid column number: ${this.findSeatColumn}. Must be between 1 and ${this.seatConfig.seatsPerRow}`
+      );
       return;
     }
-    
+
     // Find and select the seat
     const found = this.findAndSelectSeat(this.findSeatRow, this.findSeatColumn);
-    
+
     if (found) {
       // Get seat info for display
-      const seatInfoResult = this.getSeatInfo(this.findSeatRow, this.findSeatColumn);
+      const seatInfoResult = this.getSeatInfo(
+        this.findSeatRow,
+        this.findSeatColumn
+      );
       if (seatInfoResult.found) {
         this.seatInfo = seatInfoResult.info;
         console.log('Seat info updated:', this.seatInfo);
