@@ -64,11 +64,6 @@ namespace CinemaAPI.DataManagement
                 .HasMany(f => f.FilmActors)
                 .WithMany(a => a.FilmActors);
 
-            modelBuilder.Entity<Film>()
-                .HasMany(r => r.Reservations)
-                .WithOne(g => g.Film)
-                .IsRequired();
-
             modelBuilder.Entity<User>()
                 .HasMany(r => r.Reservations)
                 .WithOne(g => g.User)

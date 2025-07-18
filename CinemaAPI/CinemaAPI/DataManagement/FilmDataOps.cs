@@ -14,7 +14,7 @@ namespace CinemaAPI.DataManagement
 
         public Film[] GetFilms()
         {
-            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Include(x => x.Reservations).Include(x => x.Wishlists).ToArray();
+            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Include(x => x.Wishlists).ToArray();
         }
 
         public void AddFilm(Film film)
@@ -65,7 +65,7 @@ namespace CinemaAPI.DataManagement
 
         public Film? GetFilmById(int id)
         {
-            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Include(x => x.Reservations).Include(x=>x.Wishlists).Where(x => x.Id == id).FirstOrDefault();
+            return dbContext.films.Include(x => x.Reviews).Include(x => x.FilmActors).Include(x=>x.Wishlists).Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }

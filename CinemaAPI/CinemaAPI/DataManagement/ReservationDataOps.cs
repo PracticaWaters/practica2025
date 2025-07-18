@@ -1,5 +1,6 @@
 ﻿using System;
 using CinemaAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAPI.DataManagement
 {
@@ -12,9 +13,9 @@ namespace CinemaAPI.DataManagement
             this.dbContext = dbContext;
         }
 
-        public Reservation[] GetReservations()
+        public Reservation[] GetRezervari()
         {
-            return dbContext.rezervari.ToArray();
+            return dbContext.rezervari.Include(x => x.User).ToArray();
         }
 
         //Idk daca e bine
@@ -22,7 +23,6 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                dbContext.films.Attach(reservation.Film);
                 dbContext.users.Attach(reservation.User);
                 dbContext.rezervari.Add(reservation);
                 dbContext.SaveChanges();
@@ -34,7 +34,7 @@ namespace CinemaAPI.DataManagement
             }
         }
 
-        public void Update(Reservation reservation)
+        public void UpdateRezervare(Reservation reservation)
         {
             try
             {

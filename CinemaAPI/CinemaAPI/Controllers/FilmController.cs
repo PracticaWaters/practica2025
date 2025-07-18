@@ -1,3 +1,4 @@
+
 using CinemaAPI.DataManagement;
 using CinemaAPI.DTO;
 using CinemaAPI.Models;
@@ -10,18 +11,15 @@ namespace CinemaAPI.Controllers
     [Route("api/cinema/film")]
     public class FilmController : ControllerBase
     {
-        private readonly FilmDataOps FilmDataOps;
-        private readonly ActorDataOps ActorDataOps;
-        private readonly ReviewDataOps ReviewDataOps;
-        private readonly ReservationDataOps ReservationDataOps;
-        private readonly WishlistDataOps WishlistDataOps;
+        private readonly FilmDataOps _filmDataOps;
+        private readonly ActorDataOps _actorDataOps;
+        private readonly ReviewDataOps _reviewDataOps;
+
         public FilmController(CinemaDbContext dbContext)
         {
-            FilmDataOps = new FilmDataOps(dbContext);
-            ActorDataOps = new ActorDataOps(dbContext);
-            ReviewDataOps = new ReviewDataOps(dbContext);
-            ReservationDataOps = new ReservationDataOps(dbContext);
-            WishlistDataOps =new WishlistDataOps(dbContext);
+            _filmDataOps = new FilmDataOps(dbContext);
+            _actorDataOps = new ActorDataOps(dbContext);
+            _reviewDataOps = new ReviewDataOps(dbContext);
         }
 
         [HttpGet]
@@ -29,7 +27,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var films = FilmDataOps.GetFilms();
+                var films = _filmDataOps.GetFilms();
                 return Ok(films);
             }
             catch (Exception ex)
@@ -45,7 +43,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                FilmDataOps.DeleteFilm(film);
+                _filmDataOps.DeleteFilm(film);
                 return Ok();
             }
             catch (Exception ex)
@@ -59,7 +57,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var film = FilmDataOps.GetFilmById(id);
+                var film = _filmDataOps.GetFilmById(id);
                 return film == null
                        ? NotFound($"Film with ID {id} was not found.")
                        : Ok(film);
@@ -77,7 +75,7 @@ namespace CinemaAPI.Controllers
             try
             {
                 var film = MapDtoToFilm(dto);
-                FilmDataOps.AddFilm(film);
+                _filmDataOps.AddFilm(film);
                 return Ok("Film added successfully.");
             }
             catch (Exception ex)
@@ -95,7 +93,7 @@ namespace CinemaAPI.Controllers
             {
                 var film = MapDtoToFilm(dto);
                 film.Id = dto.Id;
-                FilmDataOps.UpdateFilm(film);
+                _filmDataOps.UpdateFilm(film);
                 return Ok();
             }
             catch (Exception ex)
@@ -109,10 +107,10 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var film = FilmDataOps.GetFilmById(id);
+                var film = _filmDataOps.GetFilmById(id);
                 if (film == null) return NotFound($"Film with ID {id} was not found.");
 
-                FilmDataOps.DeleteFilm(film);
+                _filmDataOps.DeleteFilm(film);
                 return Ok($"Film with ID {id} was deleted.");
             }
             catch (Exception ex)
@@ -136,40 +134,20 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
-
-                Promotions = new List<Promotions>(),
-                Reservations = new List<Reservation>(),
-                Wishlists = new List<Wishlist>(),
             };
 
-            foreach (var actorId in dto.ActorIds ?? Enumerable.Empty<int>())
+            foreach (var actorId in dto.ActorIds)
             {
-                var actor = ActorDataOps.GetActorById(actorId)
+                var actor = _actorDataOps.GetActorById(actorId)
                           ?? throw new ArgumentException($"Actor with Id {actorId} not found.");
                 film.FilmActors.Add(actor);
             }
-
-            foreach (var reviewId in dto.RewiesIds ?? Enumerable.Empty<int>())
+            foreach (var reviewId in dto.RewiesIds)
             {
-                var review = ReviewDataOps.GetReviewById(reviewId)
+                var review = _reviewDataOps.GetReviewById(reviewId)
                           ?? throw new ArgumentException($"Review with Id {reviewId} not found.");
                 film.Reviews.Add(review);
             }
-
-            foreach (var rezervationId in dto.RezervationsIds)
-            {
-                var rezervation =ReservationDataOps.GetReservationById(rezervationId)
-                          ?? throw new ArgumentException($"Review with Id {rezervationId} not found.");
-                film.Reservations.Add(rezervation);
-            }
-
-            foreach (var whishlistId in dto.WhishlistIds)
-            {
-                var whishlist = WishlistDataOps.GetWishlistById(whishlistId)
-                          ?? throw new ArgumentException($"Review with Id {whishlistId} not found.");
-                film.Wishlists.Add(whishlist);
-            }
-
 
             return film;
         }

@@ -10,12 +10,12 @@ namespace CinemaAPI.Controllers
     public class ReservationController : Controller
     {
         private readonly ReservationDataOps _reservationDatOps;
-        private readonly FilmDataOps _filmDataOps;
         private readonly UserDataOps _userDataOps;
 
         public ReservationController(CinemaDbContext dbContext)
         {
             _reservationDatOps = new ReservationDataOps(dbContext);
+            _userDataOps = new UserDataOps(dbContext);
         }
 
         [HttpGet]
@@ -23,12 +23,12 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var rezervari = _reservationDatOps.GetReservations();
+                var rezervari = _reservationDatOps.GetRezervari();
                 return Ok(rezervari);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest($"Error retrieving reservations: {ex.Message}");
             }
         }
 
@@ -37,12 +37,11 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                Reservation reservation = new Reservation();
-                reservation.NrOfPersons = rezervareDto.NrPersoane;
-                reservation.Price = rezervareDto.Pret;
-                reservation.Film = _filmDataOps.GetFilmById(rezervareDto.FilmId);
-                reservation.User = _userDataOps.GetUserById(rezervareDto.UserId);
-                _reservationDatOps.AddReservation(reservation);
+                Reservation rezervation = new Reservation();
+                rezervation.NrOfPersons = rezervareDto.NrOfPersons;
+                rezervation.Price = rezervareDto.Price;
+                rezervation.User = _userDataOps.GetUserById(rezervareDto.UserId);
+                _reservationDatOps.AddReservation(rezervation);
                 return Ok();
             }
             catch (Exception ex)
@@ -56,7 +55,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                _reservationDatOps.Update(reservation);
+                _reservationDatOps.UpdateRezervare(reservation);
                 return Ok();
             }
             catch (Exception ex)

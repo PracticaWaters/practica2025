@@ -145,6 +145,40 @@ namespace CinemaAPI.Migrations
                     b.ToTable("formats");
                 });
 
+            modelBuilder.Entity("CinemaAPI.Models.Promotions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DiscountPercentage")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("promotions");
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -184,7 +218,7 @@ namespace CinemaAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FilmId")
+                    b.Property<int?>("FilmId")
                         .HasColumnType("int");
 
                     b.Property<int>("NrOfPersons")
@@ -405,6 +439,21 @@ namespace CinemaAPI.Migrations
                     b.ToTable("wishlists");
                 });
 
+            modelBuilder.Entity("FilmPromotions", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PromotionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "PromotionsId");
+
+                    b.HasIndex("PromotionsId");
+
+                    b.ToTable("FilmPromotions");
+                });
+
             modelBuilder.Entity("ActorFilm", b =>
                 {
                     b.HasOne("CinemaAPI.Models.Actor", null)
@@ -433,19 +482,15 @@ namespace CinemaAPI.Migrations
 
             modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
-                    b.HasOne("CinemaAPI.Models.Film", "Film")
+                    b.HasOne("CinemaAPI.Models.Film", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FilmId");
 
                     b.HasOne("CinemaAPI.Models.User", "User")
                         .WithMany("Reservations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Film");
 
                     b.Navigation("User");
                 });
@@ -497,6 +542,21 @@ namespace CinemaAPI.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FilmPromotions", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.Promotions", null)
+                        .WithMany()
+                        .HasForeignKey("PromotionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.Film", b =>
