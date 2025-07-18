@@ -19,17 +19,12 @@ export class FilmService {
     return this.httpClient.get<Film>(`${this.apiUrl}/${id}`);
   }
 
-  updateFilm(film: Film): void {
-    this.httpClient.put<Film>(this.apiUrl, film).subscribe((data) => {
-      console.log('Filmul a fost actualizat:', data);
-    });
-  }
+updateFilm(film: Film): Observable<Film> {
+  return this.httpClient.put<Film>(`${this.apiUrl}/${film.id}`, film);
+}
 
-  deleteFilm(film: Film): void {
-    this.httpClient
-      .request('delete', this.apiUrl, { body: film })
-      .subscribe((data) => {
-        console.log('Film a fost sters:', data);
-      });
+  
+  deleteFilm(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

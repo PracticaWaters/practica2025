@@ -1,13 +1,12 @@
 <div class="p-6">
 
+  <!-- CARD ADD FILM -->
   <div class="bg-gray-800 shadow rounded overflow-hidden">
-
     <div class="flex items-center justify-between p-4 cursor-pointer" (click)="toggleForm()">
       <h2 class="text-xl text-[var(--light)] font-bold">Adaugă Film</h2>
       <span [ngClass]="{ 'rotate-180': formDeschis }" class="transition-transform text-[var(--light)] text-2xl">▼</span>
     </div>
 
-    <!-- FORMULAR -->
     <div *ngIf="formDeschis" class="p-4 text-[var(--light)] pt-0">
       <form (ngSubmit)="adaugaFilm()" #filmForm="ngForm" class="space-y-2">
 
@@ -18,88 +17,113 @@
         <input type="text" [(ngModel)]="filmNou.ageRating" name="ageRating" placeholder="Rating vârstă (ex. 12+)" class="border p-2 w-full rounded" />
         <input type="text" [(ngModel)]="filmNou.duration" name="duration" placeholder="Durată (ex. 2h 30m)" class="border p-2 w-full rounded" />
 
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Data lansării</mat-label>
+          <input matInput [matDatepicker]="releasePicker" [(ngModel)]="filmNou.releaseDate" name="releaseDate" class="text-[var(--light)]">
+          <mat-datepicker-toggle matSuffix [for]="releasePicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #releasePicker></mat-datepicker>
+        </mat-form-field>
 
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Data lansării</mat-label>
-    <input matInput [matDatepicker]="releasePicker" [(ngModel)]="filmNou.releaseDate" name="releaseDate" class="text-[var(--light)]">
-    <mat-datepicker-toggle matSuffix [for]="releasePicker">
-      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #releasePicker></mat-datepicker>
-  </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Început rulare</mat-label>
+          <input matInput [matDatepicker]="startPicker" [(ngModel)]="filmNou.startRunningDate" name="startRunningDate" class="text-[var(--light)]">
+          <mat-datepicker-toggle matSuffix [for]="startPicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
 
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Sfârșit rulare</mat-label>
+          <input matInput [matDatepicker]="endPicker" [(ngModel)]="filmNou.endRunningDate" name="endRunningDate" class="text-[var(--light)]">
+          <mat-datepicker-toggle matSuffix [for]="endPicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
 
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Început rulare</mat-label>
-    <input matInput [matDatepicker]="startPicker" [(ngModel)]="filmNou.startRunningDate" name="startRunningDate" class="text-[var(--light)]">
-    <mat-datepicker-toggle matSuffix [for]="startPicker">
-      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #startPicker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Sfârșit rulare</mat-label>
-    <input matInput [matDatepicker]="endPicker" [(ngModel)]="filmNou.endRunningDate" name="endRunningDate" class="text-[var(--light)]">
-    <mat-datepicker-toggle matSuffix [for]="endPicker">
-      <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
-    </mat-datepicker-toggle>
-    <mat-datepicker #endPicker></mat-datepicker>
-  </mat-form-field>
-        <button
-          class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 w-full"
-        >
+        <button class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 w-full">
           Adaugă
         </button>
 
       </form>
     </div>
-
   </div>
 
-<div class="mt-6 space-y-4">
-  <div
-    *ngFor="let film of filme"
-    class="bg-gray-800 rounded-2xl shadow flex items-center overflow-hidden h-32 px-4"
-  >
-    <!-- Imagine -->
-    <div class="h-full w-24 flex-shrink-0">
-      <img
-        [src]="film.image"
-        alt="{{ film.title}"
-        class="w-full h-full object-cover"
-      />
-    </div>
+  <!-- LISTA FILME -->
+  <div class="mt-6 space-y-4">
+    <div *ngFor="let film of filme" class="bg-gray-800 rounded-2xl shadow flex flex-col overflow-hidden px-4">
 
-    <!-- DETALII + BUTOANE pe ACELAȘI RÂND -->
-    <div class="flex-1 flex items-center justify-between px-4 text-white gap-4">
+      <!-- CARD FILM -->
+      <div class="flex items-center h-32">
+        <div class="h-full w-24 flex-shrink-0">
+          <img [src]="film.image" alt="{{ film.name }}" class="w-full h-full object-cover" />
+        </div>
 
-      <!-- Detalii în linie -->
-      <div class="flex items-center gap-6 truncate">
-        <span class="font-bold text-lg">{{ film.name }}</span>
-        <span class="text-sm text-gray-300">{{ film.description }}</span>
-        <span class="text-xs text-gray-400">Durată: {{ film.duration }}</span>
+        <div class="flex-1 flex items-center justify-between px-4 text-white gap-4">
+          <div class="flex items-center gap-6 truncate">
+            <span class="font-bold text-lg">{{ film.name }}</span>
+            <span class="text-sm text-gray-300">{{ film.description }}</span>
+            <span class="text-xs text-gray-400">Durată: {{ film.duration }}</span>
+          </div>
+
+          <div class="flex gap-2">
+            <button (click)="editeazaFilm(film)" class="bg-[var(--button-cta)] hover:bg-[var(--light)] cursor-pointer text-black font-semibold px-4 py-1 rounded">
+              Editează
+            </button>
+            <button (click)="stergeFilm(film.id)" class="bg-red-500 hover:bg-red-600 cursor-pointer text-white font-semibold px-4 py-1 rounded">
+              Șterge
+            </button>
+          </div>
+        </div>
       </div>
 
-      <!-- Butoane -->
-      <div class="flex gap-2">
-        <button
-          (click)="editeazaFilm(film)"
-          class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-1 rounded"
-        >
-          Editează
-        </button>
-        <button
-          (click)="stergeFilm(film.id)"
-          class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-1 rounded"
-        >
-          Șterge
+      <!-- DROPDOWN EDITARE SUB CARDUL FILMULUI -->
+      <div *ngIf="filmEditatId === film.id" class="mt-2 p-4 bg-gray-700 rounded-lg space-y-2">
+        <h3 class="text-lg font-bold text-white mb-2">Editează filmul</h3>
+
+        <input type="text" [(ngModel)]="filmEditat.name" placeholder="Titlu" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmEditat.image" placeholder="Path imagine" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmEditat.trailer" placeholder="Link trailer YouTube" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmEditat.description" placeholder="Descriere" class="border p-2 w-full rounded" />
+        <input type="text" [(ngModel)]="filmEditat.ageRating" placeholder="Rating vârstă (ex. 12+)" class="border p-2 w-full rounded" />
+        <input type="number" [(ngModel)]="filmEditat.duration" placeholder="Durată (minute)" class="border p-2 w-full rounded" />
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Data lansării</mat-label>
+          <input matInput [matDatepicker]="editReleasePicker" [(ngModel)]="filmEditat.releaseDate" name="editReleaseDate">
+          <mat-datepicker-toggle matSuffix [for]="editReleasePicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #editReleasePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Început rulare</mat-label>
+          <input matInput [matDatepicker]="editStartPicker" [(ngModel)]="filmEditat.startRunningDate" name="editStartDate">
+          <mat-datepicker-toggle matSuffix [for]="editStartPicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #editStartPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Sfârșit rulare</mat-label>
+          <input matInput [matDatepicker]="editEndPicker" [(ngModel)]="filmEditat.endRunningDate" name="editEndDate">
+          <mat-datepicker-toggle matSuffix [for]="editEndPicker">
+            <mat-icon matDatepickerToggleIcon class="text-[var(--light)]">event</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #editEndPicker></mat-datepicker>
+        </mat-form-field>
+
+        <button (click)="salveazaFilmEditat()" class="bg-green-500 hover:bg-green-600 cursor-pointer text-white font-semibold px-4 py-2 rounded w-full">
+          Salvează
         </button>
       </div>
 
     </div>
   </div>
+
 </div>
-
-
-
