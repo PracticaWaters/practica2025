@@ -19,6 +19,7 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { Promotii } from './promotii/promotii';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'promotii', component: Promotii}
 ];
 
 @NgModule({
