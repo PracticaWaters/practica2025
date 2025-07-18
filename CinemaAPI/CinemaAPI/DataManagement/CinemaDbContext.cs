@@ -16,7 +16,6 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-        public DbSet<Reservation> reservations { get; set; }
         public DbSet<TimeSlot> timeSlots { get; set; }
 
 

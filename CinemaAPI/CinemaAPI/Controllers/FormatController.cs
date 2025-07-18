@@ -24,7 +24,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var formats = _formatDataOps.GetFormats();
+                var formats = formatDataOps.GetFormats();
                 return Ok(formats);
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                _formatDataOps.DeleteFormat(format);
+                formatDataOps.DeleteFormat(format);
                 return Ok();
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace CinemaAPI.Controllers
         {
             try
             {
-                var format = _formatDataOps.GetFormatById(id);
+                var format = formatDataOps.GetFormatById(id);
                 return Ok(format);
             }
             catch (Exception ex)

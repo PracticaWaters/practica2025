@@ -83,67 +83,6 @@ namespace CinemaAPI.Migrations
                     b.ToTable("cinemas");
                 });
 
-            modelBuilder.Entity("ActorFilm", b =>
-                {
-                    b.Property<int>("FilmActorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FilmActorsId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("FilmActorsId", "FilmActorsId1");
-
-                    b.HasIndex("FilmActorsId1");
-
-                    b.ToTable("FilmActor", (string)null);
-                });
-
-            modelBuilder.Entity("CinemaAPI.Models.Actor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("actors");
-                });
-
-            modelBuilder.Entity("CinemaAPI.Models.Cinema", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("cinemas");
-                });
-
             modelBuilder.Entity("CinemaAPI.Models.Film", b =>
                 {
                     b.Property<int>("Id")
@@ -201,9 +140,48 @@ namespace CinemaAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ScreeningRoomId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ScreeningRoomId");
+
                     b.ToTable("formats");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Promotions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DiscountPercentage")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("promotions");
                 });
 
             modelBuilder.Entity("CinemaAPI.Models.RefreshToken", b =>
@@ -237,61 +215,6 @@ namespace CinemaAPI.Migrations
                     b.ToTable("AuthenticationRefreshTokens");
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.Format", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ScreeningRoomId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ScreeningRoomId");
-
-                    b.ToTable("formats");
-                });
-
-            modelBuilder.Entity("CinemaAPI.Models.Review", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FilmId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("reviews");
-                });
-
             modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
             modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
@@ -302,6 +225,9 @@ namespace CinemaAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FilmId1")
                         .HasColumnType("int");
 
                     b.Property<int>("NrOfPersons")
@@ -317,6 +243,8 @@ namespace CinemaAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FilmId");
+
+                    b.HasIndex("FilmId1");
 
                     b.HasIndex("UserId");
 
@@ -436,6 +364,37 @@ namespace CinemaAPI.Migrations
                     b.ToTable("seats");
                 });
 
+            modelBuilder.Entity("CinemaAPI.Models.SuportTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("suporttickets");
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.TimeSlot", b =>
                 {
                     b.Property<int>("Id")
@@ -551,6 +510,21 @@ namespace CinemaAPI.Migrations
                     b.ToTable("wishlists");
                 });
 
+            modelBuilder.Entity("FilmPromotions", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PromotionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "PromotionsId");
+
+                    b.HasIndex("PromotionsId");
+
+                    b.ToTable("FilmPromotions");
+                });
+
             modelBuilder.Entity("ActorFilm", b =>
                 {
                     b.HasOne("CinemaAPI.Models.Actor", null)
@@ -573,16 +547,31 @@ namespace CinemaAPI.Migrations
                         .HasForeignKey("ScreeningRoomId");
                 });
 
-            modelBuilder.Entity("CinemaAPI.Models.Review", b =>
+            modelBuilder.Entity("CinemaAPI.Models.RefreshToken", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CinemaAPI.Models.Reservation", b =>
                 {
                     b.HasOne("CinemaAPI.Models.Film", "Film")
-                        .WithMany("Reviews")
+                        .WithMany("Reservations")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CinemaAPI.Models.Film", null)
+                        .WithMany("Rezervari")
+                        .HasForeignKey("FilmId1");
+
                     b.HasOne("CinemaAPI.Models.User", "User")
-                        .WithMany("Reviews")
+                        .WithMany("Reservations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -668,9 +657,26 @@ namespace CinemaAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FilmPromotions", b =>
+                {
+                    b.HasOne("CinemaAPI.Models.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaAPI.Models.Promotions", null)
+                        .WithMany()
+                        .HasForeignKey("PromotionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CinemaAPI.Models.Film", b =>
                 {
                     b.Navigation("Program");
+
+                    b.Navigation("Reservations");
 
                     b.Navigation("Reviews");
 
