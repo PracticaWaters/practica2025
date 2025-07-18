@@ -164,11 +164,11 @@ namespace CinemaAPI.Controllers
                 film.Program.Add(timeSlot);
             }
 
-            foreach (var rezervationId in dto.RezervationsIds)
+            foreach (var ReservationId in dto.ReservationsIds)
             {
-                var rezervation =ReservationDataOps.GetReservationById(rezervationId)
-                          ?? throw new ArgumentException($"Review with Id {rezervationId} not found.");
-                film.Reservations.Add(rezervation);
+                var Reservation =ReservationDataOps.GetReservationById(ReservationId)
+                          ?? throw new ArgumentException($"Review with Id {ReservationId} not found.");
+                film.Reservations.Add(Reservation);
             }
 
             foreach (var whishlistId in dto.WhishlistIds)

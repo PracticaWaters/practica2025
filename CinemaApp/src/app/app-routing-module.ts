@@ -19,7 +19,9 @@ import { Faq } from './Support/faq/faq';
 import { SupportForm } from './Support/support-form/support-form';
 import { SupportAdmin } from './Support/support-admin/support-admin';
 import { SupportPage } from './Support/support-page/support-page';
+import { Promotii } from './promotii/promotii';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
+import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
 import { AddTimeslot } from './timeslot-operations/add-timeslot/add-timeslot';
 import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/select-movie';
@@ -66,9 +68,11 @@ const routes: Routes = [
   { path: 'detalii-cinema', component: DetaliiCinema },
   { path: 'program-cinema', component: ProgramCinema },
   { path: 'cinema-model', component: CinemaModel },
+  { path: 'cinema-generator', component: CinemaGenerator },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'promotii', component: Promotii}
 ];
 
 @NgModule({
