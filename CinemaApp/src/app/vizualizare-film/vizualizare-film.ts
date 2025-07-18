@@ -9,6 +9,9 @@ import { ReviewDtoService } from '../app-logic/review-dto/review-dto-service';
 import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
 import { ReviewModel } from '../app-logic/review/review-model';
 import { ReviewService } from '../app-logic/review/review-service';
+import { ActivatedRoute } from '@angular/router';
+import { FilmService } from '../app-logic/film/film-service';
+import { Film } from '../app-logic/film/film';
 
 @Component({
   standalone: false,
@@ -25,18 +28,21 @@ export class VizualizareFilm implements OnInit {
   reviewSubmitted: boolean = false;
 
   reviews: ReviewModel[] = [];
+  film!: Film;
+  filmId!: number;
 
   // ❤️ Wishlist
   isWishlisted: boolean = false;
 
   // Returnează stelele pentru afișare
   //harcode filmId and userId
-  filmId: number = 1;
   userId: number = 1;
 
   constructor(
+    private route: ActivatedRoute,
     private reviewDtoService: ReviewDtoService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private filmService: FilmService
   ) {}
 
   get displayedStars(): string[] {
@@ -47,8 +53,30 @@ export class VizualizareFilm implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadReviews();
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.filmId = +id;
+        console.log(this.filmId);
+        this.loadFilmDetails();
+        this.loadReviews();
+      }
+    });
   }
+
+  loadFilmDetails(): void {
+    this.filmService.getFilmById(this.filmId).subscribe({
+      next: (filmData) => {
+        this.film = filmData;
+        console.log('Film incarcat:', this.film);
+        console.log('Actori:', this.film.filmActors);
+      },
+      error: (err) => {
+        console.error('Eroare la incarcare film:', err);
+      },
+    });
+  }
+
   // Stele hover
   onStarEnter(index: number): void {
     this.hoverRating = index + 1;
@@ -113,18 +141,17 @@ export class VizualizareFilm implements OnInit {
     );
   }
 
-  @ViewChild('reviewsContainer', { static: false }) reviewsContainer!: ElementRef;
+  @ViewChild('reviewsContainer', { static: false })
+  reviewsContainer!: ElementRef;
 
-scrollReviews(direction: 'left' | 'right') {
-  const container = this.reviewsContainer.nativeElement as HTMLElement;
-  const scrollAmount = 320 + 24; // lățimea cardului + spațiere
+  scrollReviews(direction: 'left' | 'right') {
+    const container = this.reviewsContainer.nativeElement as HTMLElement;
+    const scrollAmount = 320 + 24; // lățimea cardului + spațiere
 
-  if (direction === 'left') {
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  } else {
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    if (direction === 'left') {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   }
-}
-
-
 }

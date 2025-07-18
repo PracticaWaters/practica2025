@@ -34,7 +34,7 @@ const routes: Routes = [
   // {path: "profil-user", component:ProfilUser},
   // {path: "suport", component:Suport},
   // {path: "administrare", component:Administrare},
-  {path: "administrare-film", component:AdministrareFilm},
+  { path: 'administrare-film', component: AdministrareFilm },
   // {path: "administrare-promotii", component:AdministrarePromotii}
   {
     path: 'userdashboard',
@@ -54,11 +54,11 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
-  {path: 'timeslot-list', component: TimeslotList},
-  {path: 'add-timeslot',component: AddTimeslot},
-  {path: 'add-timeslot/:id',component: AddTimeslot},
-  {path: 'select-movie', component:SelectMovie},
-  {path: 'select-screening-room', component:SelectScreeningRoom},
+  { path: 'timeslot-list', component: TimeslotList },
+  { path: 'add-timeslot', component: AddTimeslot },
+  { path: 'add-timeslot/:id', component: AddTimeslot },
+  { path: 'select-movie', component: SelectMovie },
+  { path: 'select-screening-room', component: SelectScreeningRoom },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },
@@ -70,8 +70,8 @@ const routes: Routes = [
   { path: 'cinema-generator', component: CinemaGenerator },
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
-  { path: 'vizualizare-film', component: VizualizareFilm },
-  { path: 'promotii', component: Promotii}
+  { path: 'vizualizare-film/:id', component: VizualizareFilm },
+  { path: 'promotii', component: Promotii },
 ];
 
 @NgModule({

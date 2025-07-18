@@ -6,7 +6,7 @@
     class="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto text-center sm:text-left"
   >
     <div class="flex items-center gap-4">
-      <h1 class="text-3xl font-bold">Titlu film</h1>
+      <h1 class="text-3xl font-bold">{{ film.name }}</h1>
 
       <!-- Buton Wishlist -->
       <button
@@ -37,19 +37,14 @@
       <mat-expansion-panel-header
         class="bg-[var(--dark)] !text-[var(--light)] rounded-md border border-[var(--light)]"
       >
-        <mat-panel-title
-          class="font-bold text-lg uppercase !text-[var(--light)]"
-        >
+        <mat-panel-title class="font-bold text-lg uppercase">
           Detalii film
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="py-6 space-y-6 px-4">
         <p class="leading-relaxed text-justify">
-          Când o amenințare străveche îi pune în pericol atât pe vikingi, cât și
-          pe dragoni pe insula Berk, prietenia dintre Hiccup, un tânăr viking
-          inventiv, și Toothless, un dragon Night Fury, devine cheia pentru ca
-          ambele specii să își clădească un nou viitor împreună.
+          {{ film.description }}
         </p>
         <table class="w-full border-collapse border-y border-gray-700 text-sm">
           <tbody>
@@ -62,7 +57,7 @@
                 Titlu Original
               </th>
               <td class="border-y border-gray-600 p-3" style="border-top: none">
-                How to Train Your Dragon 2D Dub
+                {{ film.name }}
               </td>
             </tr>
             <tr>
@@ -82,8 +77,14 @@
                 Distribuție
               </th>
               <td class="border-y border-gray-600 p-3">
-                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
-                Gabriel Howell
+                <span *ngIf="film?.filmActors?.length; else noActors">
+                  <span *ngFor="let actor of film.filmActors; let last = last">
+                    {{ actor?.name }}<span *ngIf="!last">, </span>
+                  </span>
+                </span>
+                <ng-template #noActors>
+                  <span>Niciun actor disponibil</span>
+                </ng-template>
               </td>
             </tr>
             <tr>
@@ -102,7 +103,9 @@
               >
                 Data Publicare
               </th>
-              <td class="border-y border-gray-600 p-3">2025</td>
+              <td class="border-y border-gray-600 p-3">
+                {{ film.releaseDate | date : "yyyy" }}
+              </td>
             </tr>
             <tr>
               <th
@@ -110,7 +113,7 @@
               >
                 Rating Vârstă
               </th>
-              <td class="border-y border-gray-600 p-3">13+</td>
+              <td class="border-y border-gray-600 p-3">{{ film.ageRating }}</td>
             </tr>
             <tr>
               <th
@@ -141,10 +144,7 @@
     </h2>
     <div class="space-y-6 px-4 sm:px-6">
       <p class="max-w-4xl mx-auto leading-relaxed text-justify sm:text-left">
-        Când o amenințare străveche îi pune în pericol atât pe vikingi, cât și
-        pe dragoni pe insula Berk, prietenia dintre Hiccup, un tânăr viking
-        inventiv, și Toothless, un dragon Night Fury, devine cheia pentru ca
-        ambele specii să își clădească un nou viitor împreună.
+        {{ film.description }}
       </p>
       <div class="flex justify-between">
         <table
@@ -160,7 +160,7 @@
                 Titlu Original
               </th>
               <td class="border-y border-gray-600 p-3" style="border-top: none">
-                How to Train Your Dragon 2D Dub
+                {{ film.name }}
               </td>
             </tr>
             <tr>
@@ -180,8 +180,14 @@
                 Distribuție
               </th>
               <td class="border-y border-gray-600 p-3">
-                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
-                Gabriel Howell
+                <span *ngIf="film?.filmActors?.length; else noActors">
+                  <span *ngFor="let actor of film.filmActors; let last = last">
+                    {{ actor?.name }}<span *ngIf="!last">, </span>
+                  </span>
+                </span>
+                <ng-template #noActors>
+                  <span>Niciun actor disponibil</span>
+                </ng-template>
               </td>
             </tr>
             <tr>
@@ -200,7 +206,9 @@
               >
                 Data Publicare
               </th>
-              <td class="border-y border-gray-600 p-3">2025</td>
+              <td class="border-y border-gray-600 p-3">
+                {{ film.releaseDate | date : "yyyy" }}
+              </td>
             </tr>
             <tr>
               <th
@@ -208,7 +216,9 @@
               >
                 Rating Vârstă
               </th>
-              <td class="border-y border-gray-600 p-3">13+</td>
+              <td class="border-y border-gray-600 p-3">
+                {{ film.ageRating }}+
+              </td>
             </tr>
             <tr>
               <th

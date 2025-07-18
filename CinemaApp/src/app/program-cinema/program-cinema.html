@@ -154,14 +154,12 @@
             </p>
           </div>
 
-          <a href="/vizualizare-film">
-            <button
-              class="mt-4 text-[var(--dark)] font-semibold px-4 py-2 rounded transition hover:opacity-90"
-              style="background-color: var(--button-cta)"
-            >
-              Vezi Detalii
-            </button>
-          </a>
+          <button
+            (click)="deschideDetaliiFilm(film.id)"
+            class="bg-[var(--button-cta)] text-[var(--dark)] rounded px-4 py-2 transition-all duration-300 hover:opacity-90 hover:shadow-md"
+          >
+            Vezi Detalii
+          </button>
         </div>
       </div>
     </div>

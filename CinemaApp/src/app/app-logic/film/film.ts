@@ -4,7 +4,7 @@ import { Actor } from './actor';
 export class Film {
   id!: number;
   name!: string;
-  actors!: Actor[];
+  filmActors!: Actor[];
   image!: string;
   trailer!: string;
   // timeSlot:TimeSlot[];

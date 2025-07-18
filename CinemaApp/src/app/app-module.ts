@@ -119,6 +119,7 @@ import { Promotii } from './promotii/promotii';
     MatIconModule,
     MatExpansionModule,
     MatDialogModule,
+    MatCardModule,
 
     // CoreUI components and directives:
     MatDatepickerModule,

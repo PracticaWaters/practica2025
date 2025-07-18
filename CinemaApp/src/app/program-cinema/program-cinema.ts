@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FilmService } from '../app-logic/film/film-service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true, // ✅ definește componenta ca standalone
@@ -33,7 +34,7 @@ export class ProgramCinema implements OnInit {
   // filmeAfisate!: MatTableDataSource<Film>;
   filmeAfisate: Film[] = [];
 
-  constructor(private filmService: FilmService) {}
+  constructor(private filmService: FilmService, private router: Router) {}
 
   ngOnInit(): void {
     this.filmService.getFilms().subscribe((data) => {
@@ -49,6 +50,10 @@ export class ProgramCinema implements OnInit {
         }
       }
     });
+  }
+
+  deschideDetaliiFilm(filmId: number) {
+    this.router.navigate(['/vizualizare-film', filmId]);
   }
 
   ziSelectata: Date = new Date();
