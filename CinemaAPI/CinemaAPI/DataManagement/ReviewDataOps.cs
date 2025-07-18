@@ -71,5 +71,10 @@ namespace CinemaAPI.DataManagement
         {
             return dbContext.reviews.Include(x => x.Film).Include(x => x.User).Where(x =>  x.Id == id).FirstOrDefault();
         }
+
+        public Review[] GetReviewsByFilmId(int filmId)
+        {
+            return dbContext.reviews.Include(x => x.Film).Include(x => x.User).Where(x => x.Film.Id == filmId).ToArray();
+        }
     }
 }
