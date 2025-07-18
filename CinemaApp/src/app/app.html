@@ -121,11 +121,17 @@
     <div *ngIf="user | async as user; else loginLink">
       <a
         routerLink="/userdashboard"
-        class="flex items-center gap-2 px-3 py-2 text-[var(--light)]"
+        class="flex items-center gap-2 px-3 py-2 text-[var(--light)] hover:text-[var(--primary)]"
       >
+        <img
+          [src]="user.avatarUrl"
+          alt="Avatar"
+          class="w-6 h-6 rounded-full border border-gray-300 object-cover"
+        />
         <span>{{ user.name }}</span>
       </a>
     </div>
+
 
     <!-- Else show login link -->
     <ng-template #loginLink>
