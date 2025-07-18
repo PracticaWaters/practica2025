@@ -32,7 +32,7 @@ export class VizualizareFilm implements OnInit {
   // Returnează stelele pentru afișare
   //harcode filmId and userId
   filmId: number = 1;
-  userId: number = 2;
+  userId: number = 1;
 
   constructor(
     private reviewDtoService: ReviewDtoService,
