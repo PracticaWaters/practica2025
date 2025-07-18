@@ -16,8 +16,8 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-
-        public DbSet<Reservation> rezervari { get; set; }
+        public DbSet<TimeSlot> timeSlots { get; set; }
+        public DbSet<Reservation> reservations { get; set; }
 
         public DbSet<Promotions> promotions { get; set; }
 
@@ -26,10 +26,13 @@ namespace CinemaAPI.DataManagement
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
             // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
@@ -71,6 +74,14 @@ namespace CinemaAPI.DataManagement
                 .WithOne(g => g.User)
                 .IsRequired();
 
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(sc => sc.TimeSlots)
+                .WithOne(sr => sr.ScreeningRoom)
+                .IsRequired();
+
+            modelBuilder.Entity<Format>()
+                .HasMany(f => f.TimeSlots)
+                .WithOne(ts => ts.Format);
             modelBuilder.Entity<Seat>()
                 .HasMany(s => s.Reservations)
                 .WithMany(r => r.Seats)
