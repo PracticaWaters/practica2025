@@ -1,0 +1,138 @@
+<div class="container">
+  <!-- Notification Area -->
+  <div class="notification" *ngIf="showNotification" [class]="notificationType">
+    {{ notificationMessage }}
+    <button class="notification-close" (click)="hideNotification()">×</button>
+  </div>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h1>🎬 Rezervare bilet</h1>
+    <div class="progress-bar">
+      <div class="step" [class.active]="currentStep >= 1">1</div>
+      <div class="step-line" [class.completed]="currentStep > 1"></div>
+      <div class="step" [class.active]="currentStep >= 2">2</div>
+      <div class="step-line" [class.completed]="currentStep > 2"></div>
+      <div class="step" [class.active]="currentStep >= 3">3</div>
+    </div>
+    <p class="step-description">{{ getStepDescription() }}</p>
+  </div>
+
+  <!-- Movie Information Card -->
+  <div class="movie-card">
+    <div class="movie-poster">
+      <img [src]="movie.image" alt="Movie Poster" />
+      <div class="rating-badge">⭐ 8.5</div>
+    </div>
+    <div class="movie-details">
+      <h2>{{ movie.title }}</h2>
+      <p class="description">{{ movie.description }}</p>
+      <div class="movie-meta">
+        <span class="duration">⏱️ {{ movie.duration }}</span>
+        <span class="genre">🎭 Aventură, Sci-Fi</span>
+        <span class="age-rating">PG-13</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Form -->
+  <div class="reservation-form">
+    <!-- Date Selection -->
+    <div class="form-group">
+      <h3>📅 Selectează data</h3>
+      <div class="date-selector">
+        <input id="date" type="date" [(ngModel)]="selectedDate" [min]="today" (change)="onDateChange()" />
+        <div class="date-help">Alege o dată din viitor</div>
+      </div>
+    </div>
+
+    <!-- Time Selection -->
+    <div class="form-group">
+      <h3>🕒 Alege ora</h3>
+      <div class="time-grid">
+        <button *ngFor="let hourData of hours"
+                class="time-slot"
+                [class.selected]="selectedHour === hourData.time"
+                [class.available]="hourData.availableSeats > 0"
+                [disabled]="hourData.availableSeats === 0"
+                (click)="selectedHour = hourData.time; onHourChange()">
+          <span class="time">{{ hourData.time }}</span>
+          <span class="seats-left">{{ hourData.availableSeats }} locuri libere</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Seat Selection -->
+    <div class="form-group">
+      <h3>🎟️ Selectează locurile</h3>
+      <div class="cinema-screen">
+        <div class="screen">ECRAN</div>
+      </div>
+      <div class="seating-area">
+        <div class="seat-legend">
+          <div class="legend-item">
+            <div class="seat-demo available"></div>
+            <span>Disponibil</span>
+          </div>
+          <div class="legend-item">
+            <div class="seat-demo selected"></div>
+            <span>Selectat</span>
+          </div>
+          <div class="legend-item">
+            <div class="seat-demo occupied"></div>
+            <span>Ocupat</span>
+          </div>
+        </div>
+        
+        <div class="seat-grid" *ngFor="let rowData of seatLayout">
+          <div class="row-label">{{ rowData.row }}</div>
+          <button *ngFor="let seat of rowData.seats"
+                  class="seat"
+                  [class.selected]="isSeatSelected(seat)"
+                  [class.occupied]="isSeatOccupied(seat)"
+                  [disabled]="isSeatOccupied(seat)"
+                  (click)="toggleSeat(seat)">
+            {{ getSeatNumber(seat) }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary and Confirmation -->
+    <div class="reservation-summary" *ngIf="selectedDate && selectedHour && selectedSeats.length > 0">
+      <h3>📋 Rezumatul rezervării</h3>
+      <div class="summary-content">
+        <div class="summary-item">
+          <span class="label">Film:</span>
+          <span class="value">{{ movie.title }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Data:</span>
+          <span class="value">{{ getFormattedDate() || selectedDate }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Ora:</span>
+          <span class="value">{{ selectedHour }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Locuri:</span>
+          <span class="value">{{ selectedSeats.join(', ') }}</span>
+        </div>
+        <div class="summary-item total">
+          <span class="label">Total:</span>
+          <span class="value">{{ getTotalPrice() }} RON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="back-button" (click)="goBack()">← Înapoi</button>
+      <button class="confirm-button" 
+              [disabled]="!isFormValid()"
+              (click)="confirmReservation()">
+        ✅ Confirmă rezervarea ({{ getTotalPrice() }} RON)
+      </button>
+    </div>
+  </div>
+</div>

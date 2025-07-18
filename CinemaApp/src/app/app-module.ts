@@ -61,6 +61,7 @@ import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './app-logic/token-interceptor';
 import { Promotii } from './promotii/promotii';
+import { Reservation } from './reservation/reservation';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { Promotii } from './promotii/promotii';
     CinemaModel,
     CinemaGenerator,
     TimeslotList,
-    Promotii
+    Promotii,
+    Reservation
   ],
   imports: [
     BrowserModule,

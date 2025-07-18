@@ -23,6 +23,7 @@ import { Promotii } from './promotii/promotii';
 import { CinemaModel } from './Home/cinema-model/cinema-model';
 import { CinemaGenerator } from './Home/cinema-generator/cinema-generator';
 import { TimeslotList } from './timeslot-operations/timeslot-list/timeslot-list';
+import { Reservation } from './reservation/reservation';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -34,6 +35,7 @@ const routes: Routes = [
   // {path: "administrare-filme", component:AdministrareFilme},
   // {path: "administrare-promotii", component:AdministrarePromotii}
   { path: 'vizualizare-film', component: VizualizareFilm },
+  { path: 'reservation', component: Reservation },
   {
     path: 'userdashboard',
     component: UserDashboard,
