@@ -10,8 +10,8 @@ export interface SeatConfig {
   rowOffset: number;
   seatOffset: number;
   scale: number;
-  rowHeight: number; // New property for row elevation
-  baseHeight: number; // New property for base platform height
+  rowHeight: number; // row elevation
+  baseHeight: number; // base platform height
 }
 
 export interface SeatPosition {
@@ -34,8 +34,8 @@ export interface SeatSelection {
 export class SeatGeneratorService {
   private chairModel: THREE.Group | null = null;
   private generatedSeats: THREE.Group[] = [];
-  private selectedSeats: Set<string> = new Set(); // Track selected seats by "row-seat" key
-  private originalMaterials: Map<THREE.Group, THREE.Material[]> = new Map(); // Store original materials
+  private selectedSeats: Set<string> = new Set(); // track selected seats by 'row-seat' key
+  private originalMaterials: Map<THREE.Group, THREE.Material[]> = new Map(); // store original mats
 
   setChairModel(chairModel: THREE.Group): void {
     this.chairModel = chairModel;
@@ -180,13 +180,13 @@ export class SeatGeneratorService {
 
   getSeatsInRow(row: number): THREE.Group[] {
     return this.generatedSeats.filter((seat) => {
-      return (seat as any).userData?.row === row - 1; // Convert to 0-based
+      return (seat as any).userData?.row === row - 1; // conv to 0-based
     });
   }
 
   getSeatsInColumn(column: number): THREE.Group[] {
     return this.generatedSeats.filter((seat) => {
-      return (seat as any).userData?.seat === column - 1; // Convert to 0-based
+      return (seat as any).userData?.seat === column - 1; // conv to 0-based
     });
   }
 
@@ -212,7 +212,7 @@ export class SeatGeneratorService {
     }
   }
 
-  // Method to deselect a seat
+  // deselect a seat
   deselectSeat(seatObject: THREE.Group): void {
     const userData = (seatObject as any).userData;
     if (!userData) return;
@@ -225,25 +225,25 @@ export class SeatGeneratorService {
     );
   }
 
-  // Apply green glow material to selected seat
+  // apply green glow to selected seat
   private applySelectionMaterial(seatObject: THREE.Group): void {
     seatObject.traverse((child: any) => {
       if (child instanceof THREE.Mesh && child.material) {
-        // Create a new material with green glow effect
+        // create a new material with green effect
         const glowMaterial = child.material.clone();
 
-        // Add green color with emission
+        // add green color
         if (glowMaterial.color) {
-          glowMaterial.color.setHex(0x00ff00); // Green color
+          glowMaterial.color.setHex(0x00ff00); // green color
         }
 
-        // Add emission for glow effect
+        // add emission for glow effect
         if (glowMaterial.emissive) {
           glowMaterial.emissive.setHex(0x00ff00);
           glowMaterial.emissiveIntensity = 0.3;
         }
 
-        // Add outline effect by increasing material intensity
+        // add outline effect -increase mat intens
         glowMaterial.transparent = true;
         glowMaterial.opacity = 0.9;
 
@@ -252,7 +252,7 @@ export class SeatGeneratorService {
     });
   }
 
-  // Restore original material
+  // restore original material
   private restoreOriginalMaterial(seatObject: THREE.Group): void {
     const originalMaterials = this.originalMaterials.get(seatObject);
     if (!originalMaterials) return;
@@ -269,7 +269,7 @@ export class SeatGeneratorService {
     });
   }
 
-  // Get all selected seats
+  // get all selected seats
   getSelectedSeats(): SeatSelection[] {
     const selections: SeatSelection[] = [];
 
@@ -290,7 +290,7 @@ export class SeatGeneratorService {
     return selections;
   }
 
-  // Clear all selections
+  // clear all selections
   clearAllSelections(): void {
     this.selectedSeats.clear();
     this.generatedSeats.forEach((seat) => {
@@ -299,21 +299,21 @@ export class SeatGeneratorService {
     console.log('All seat selections cleared');
   }
 
-  // Get selected seats count
+  // get selected seats count
   getSelectedSeatsCount(): number {
     return this.selectedSeats.size;
   }
 
-  // Get all generated seats
+  // get all generated seats
   getGeneratedSeats(): THREE.Group[] {
     return this.generatedSeats;
   }
 
-  // Find and select seat by row and column numbers
+  // find and select seat by row and column numbers
   findAndSelectSeat(rowNumber: number, columnNumber: number): boolean {
     console.log(`Looking for seat at Row ${rowNumber}, Column ${columnNumber}`);
 
-    // Convert to 0-based indexing
+    // conv to 0-based index
     const rowIndex = rowNumber - 1;
     const columnIndex = columnNumber - 1;
 
@@ -348,7 +348,6 @@ export class SeatGeneratorService {
     }
   }
 
-  // Get seat info by row and column
   getSeatInfo(
     rowNumber: number,
     columnNumber: number

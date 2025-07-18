@@ -1,6 +1,6 @@
 ﻿namespace CinemaAPI.Models
 {
-    public class RezervareDto
+    public class ReservationDto
     {
         public int Id { get; set; }
         public int UserId { get; set; }

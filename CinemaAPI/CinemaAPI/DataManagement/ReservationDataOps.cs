@@ -14,7 +14,7 @@ namespace CinemaAPI.DataManagement
 
         public Reservation[] GetReservations()
         {
-            return dbContext.rezervari.ToArray();
+            return dbContext.reservations.ToArray();
         }
 
         //Idk daca e bine
@@ -24,7 +24,7 @@ namespace CinemaAPI.DataManagement
             {
                 dbContext.films.Attach(reservation.Film);
                 dbContext.users.Attach(reservation.User);
-                dbContext.rezervari.Add(reservation);
+                dbContext.reservations.Add(reservation);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace CinemaAPI.DataManagement
         {
             try
             {
-                dbContext.rezervari.Update(reservation);
+                dbContext.reservations.Update(reservation);
                 dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace CinemaAPI.DataManagement
             {
                 if (reservation != null)
                 {
-                    dbContext.rezervari.Remove(reservation);
+                    dbContext.reservations.Remove(reservation);
                     dbContext.SaveChanges();
                 }
                 else
@@ -69,7 +69,7 @@ namespace CinemaAPI.DataManagement
 
         public Reservation? GetReservationById(int id)
         {
-            return dbContext.rezervari.FirstOrDefault(x => x.Id == id);
+            return dbContext.reservations.FirstOrDefault(x => x.Id == id);
         }
     }
 }
