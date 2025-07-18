@@ -7,16 +7,15 @@
 }
 
 .user-dashboard-container {
-  width: 100%;
+  width: 95%;
   padding: 0 20px;
 }
-
+  
 .user-dashboard-box {
   display: flex;
   border-radius: 12px;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   height: 90vh;
   min-height: 400px;
 }
@@ -80,7 +79,6 @@
   flex: 1;
   padding: 30px;
   overflow-y: auto;
-  border-right: 1px solid rgba(90, 114, 160, 0.2);
 }
 
 .logoutbottom {

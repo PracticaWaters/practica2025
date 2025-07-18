@@ -40,8 +40,8 @@ const routes: Routes = [
     path: 'userdashboard',
     component: UserDashboard,
     children: [
-      { path: '', redirectTo: 'meniu-principal', pathMatch: 'full' },
-      { path: 'meniu-principal', component: MeniuPrincipal },
+      { path: '', redirectTo: 'detalii', pathMatch: 'full' },
+      // { path: 'meniu-principal', component: MeniuPrincipal },
       { path: 'wishlist', component: Wishlist },
       { path: 'bilete', component: Bilete },
       { path: 'review-uri', component: Review },

@@ -14,11 +14,13 @@ body{
 }
 
 :root {
+  --mat-form-field-outlined-input-text-color: white;
   --dark: #1A2130;
   --primary: #5A72A0;
   --accent: #83B4FF;
   --light: #FDFFE2;
   --button-cta: oklch(76.9% 0.188 70.08);
+  --bg: #27313f;
 }
 
 .arrow {
@@ -32,22 +34,11 @@ body{
   background-color: var(--dark);
 }
 
-.mat-mdc-menu-item-text{
-  color: var(--light);
-}
-
-.mat-mdc-menu-item-text:hover{
-  color: var(--primary);
-}
 
 .mat-expansion-indicator svg path{
   fill: var(--light);
 }
 
-
 #reviewsContainer::-webkit-scrollbar {
     display: none;
   }
-
-
- 

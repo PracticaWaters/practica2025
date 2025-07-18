@@ -25,7 +25,7 @@
 
 .mat-mdc-paginator-container {
   color: white;
-  background-color: var(--dark) !important;
+  background-color: var(--bg) !important;
 }
 
 .mat-mdc-table tbody, 
@@ -38,5 +38,10 @@
     .mat-mdc-footer-row, 
     .mat-mdc-table 
     .mat-mdc-header-cell {
-    background-color: var(--dark) !important;
+    background-color: var(--bg) !important;
 }
+
+* {
+  color: white;
+}
+
