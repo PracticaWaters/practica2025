@@ -49,9 +49,9 @@
 }
 .now-playing-custom {
  background: linear-gradient(
-    to bottom,
-    #1a2848 0%,      /* albastru foarte închis (ex: slate-900) */
-    #5a72a0 100%     /* albastru foarte deschis (ex: blue-300) până jos */
+    to top,
+    #313c64 0%,      /* albastru foarte închis (ex: slate-900) */
+     #0b0b1f 100%     /* albastru foarte deschis (ex: blue-300) până jos */
   );
   color: white;
   padding: 60px 40px;
@@ -74,6 +74,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+  margin-top: 100px;
 }
 
 .movie-card-custom {
@@ -102,7 +103,7 @@
 
 .view-showtimes-btn {
   margin-top: 70px;
-  background-color: #1A2130;
+  background-color: #0b0b1f;
   color: white;
   border: none;
   padding: 10px 80px;
@@ -125,10 +126,12 @@
   font-family: 'Suez One', serif;
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #fdffe2;
   margin-bottom: 10px;
 }
-
+hr{
+  background-color:#fdffe2 !important;
+}
 .now-playing-header hr {
   border: none;
   height: 1px;
@@ -150,11 +153,12 @@
 .trailers-section {
   background: linear-gradient(
     to bottom,
-     #5a72a0 0%,     /* albastru deschis sus */
-    #223462 100%    /* albastru închis jos */
+    #313c64 0%,      /* albastru foarte închis (ex: slate-900) */
+     #0b0b1f 100% 
   );
-  color: white;
+  color:#fdffe2;
   padding: 30px 40px;
+  
 }
 
 .trailers-header {
@@ -174,6 +178,7 @@
   height: 1px;
   background-color: white;
   width: 100%;
+    margin-bottom: 100px;
 }
 
 .trailer-grid {
