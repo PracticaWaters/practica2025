@@ -4,10 +4,11 @@ import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { ProgramCinema } from './program-cinema/program-cinema';
 
-import { Faq } from './Support/faq/faq';
-import { SupportForm } from './Support/support-form/support-form';
-import { SupportAdmin } from './Support/support-admin/support-admin';
-import { SupportPage } from './Support/support-page/support-page';
+import { Faq } from './support/faq/faq';
+import { SupportForm } from './support/support-form/support-form';
+import { SupportAdmin } from './support/support-admin/support-admin';
+import { SupportPage } from './support/support-page/support-page';
+import { Reclama } from './Home/reclama/reclama';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
+  {path: 'reclama', component: Reclama}
 ];
 
 @NgModule({

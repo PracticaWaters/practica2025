@@ -1,0 +1,145 @@
+<!-- Fundal albastru de sus - Secțiunea Preț Bilete -->
+<div class="relative bg-[#1e2a60] py-20 px-4 text-white text-center  pt-24 pb-28">
+  <!-- Titlu -->
+  <h2 class="text-3xl font-extrabold mb-6">Prețuri Bilete</h2>
+
+  <!-- Spațiu suplimentar între titlu și carduri -->
+  <div class="h-6"></div>
+
+  <!-- Grilă prețuri -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10">
+    
+    <!-- Standard -->
+    <div class="flip-card w-full h-[380px]"> <!-- CARD MAI MARE -->
+      <div class="flip-inner relative w-full h-full">
+        <div class="flip-front absolute inset-0 bg-[#243473] p-8 rounded-xl text-white flex flex-col items-center justify-center text-center">
+          <h3 class="text-3xl font-bold mb-3">Standard</h3>
+          <p class="text-base sm:text-lg px-2">Acces general la eveniment</p>
+        </div>
+        <div class="flip-back absolute inset-0 bg-white p-6 rounded-xl flex items-center justify-center">
+          <span class="text-4xl sm:text-5xl font-extrabold text-[#243473]">$15</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIP -->
+    <div class="flip-card w-full h-[380px]">
+      <div class="flip-inner relative w-full h-full">
+        <div class="flip-front absolute inset-0 bg-[#243473] p-8 rounded-xl text-white flex flex-col items-center justify-center text-center">
+          <h3 class="text-3xl font-bold mb-3">VIP</h3>
+          <p class="text-base sm:text-lg px-2">Locuri prioritare + băutură</p>
+        </div>
+        <div class="flip-back absolute inset-0 bg-white p-6 rounded-xl flex items-center justify-center">
+          <span class="text-4xl sm:text-5xl font-extrabold text-[#243473]">$30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium -->
+    <div class="flip-card w-full h-[400px]"> <!-- Premium și mai înalt -->
+      <div class="flip-inner relative w-full h-full">
+        <div class="flip-front absolute inset-0 bg-[#243473] p-8 rounded-xl text-white flex flex-col items-center justify-center text-center">
+          <h3 class="text-3xl font-bold mb-3">Premium</h3>
+          <p class="text-base sm:text-lg px-3">
+            Locuri în primul rând
+          </p>
+        </div>
+        <div class="flip-back absolute inset-0 bg-white p-6 rounded-xl flex items-center justify-center">
+          <span class="text-4xl sm:text-5xl font-extrabold text-[#243473]">$50</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="relative bg-[#2d2dbd] py-16 flex items-center justify-center text-white px-4 overflow-visible">
+
+
+  <div class="flex flex-col lg:flex-row items-center justify-between w-full max-w-[1400px]">
+
+
+    <!-- Snacks -->
+    <div class="text-center lg:text-left mb-10 lg:mb-0">
+      <h2 class="text-xl font-semibold mb-3">Snack-uri delicioase</h2>
+      <div class="border-t border-dashed border-white w-28 mx-auto lg:mx-0 mb-5"></div>
+      <ul class="space-y-3 font-extrabold text-2xl lg:text-3xl">
+        <li>Popcorn</li>
+        <li>Nachos</li>
+        <li>Covrigei</li>
+        <li>Bomboane</li>
+        <li>Inghetata</li>
+      </ul>
+    </div>
+
+   
+   
+
+
+
+<!-- Ice Cream Image (mai aproape de texte, mai mare) -->
+<div class="mx-2 my-6 relative z-10 -mb-32">
+  <img src="../../../assets/home/icecream2.png" alt="Ice Cream" class="h-[680px] w-auto object-contain" />
+</div>
+
+
+    <!-- Drinks -->
+    <div class="text-center lg:text-right">
+      <h2 class="text-xl font-semibold mb-3">Bauturi Delicioase</h2>
+      <div class="border-t border-dashed border-white w-28 mx-auto lg:mr-0 mb-5"></div>
+      <ul class="space-y-3 font-extrabold text-2xl lg:text-3xl">
+        <li>Apa</li>
+        <li>Suc</li>
+        <li>Limonada</li>
+        <li>Milkshake</li>
+        <li>Cafea</li>
+      </ul>
+      
+
+  </div>
+</div>
+</div>
+
+
+
+
+<!-- Subscribe Section -->
+<div class="relative bg-[#141450] text-white py-24 px-4 text-center">
+
+  
+
+  <h2 class="text-2xl md:text-3xl font-bold mb-4">Ramai la curent</h2>
+  <p class="max-w-xl mx-auto text-base md:text-lg mb-10 px-4">
+     Acesta este un paragraf. Apasă aici pentru a adăuga propriul tău text și pentru a-l edita. Este un loc grozav în care poți spune o poveste și să le oferi vizitatorilor mai multe informații despre tine.
+  </p>
+
+  <form class="max-w-xl mx-auto space-y-6">
+    <!-- Email Label & Input -->
+    <div class="text-left">
+      <label for="email" class="block text-lg font-semibold mb-1">Email *</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email here"
+        class="w-full px-4 py-3 border-2 border-blue-500 bg-transparent text-white placeholder-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
+
+    <!-- Checkbox -->
+    <div class="flex items-center text-left">
+      <input type="checkbox" id="subscribe" class="mr-2 accent-blue-500" />
+      <label for="subscribe" class="text-base font-semibold">
+      Da, abonează-mă la newsletterul tău.*
+      </label>
+    </div>
+
+    <!-- Join Button -->
+    <button
+      type="submit"
+      class="w-full bg-blue-600 hover:bg-blue-700 transition text-white text-lg font-bold py-3 rounded"
+    >
+       Abonează-te
+    </button>
+  </form>
+</div>

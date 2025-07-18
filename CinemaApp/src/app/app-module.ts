@@ -16,10 +16,11 @@ import { App } from './app';
 import { VizualizareFilm } from './vizualizare-film/vizualizare-film';
 import { DetaliiCinema } from './detalii-cinema/detalii-cinema';
 import { MatIconModule } from '@angular/material/icon';
-import { SupportPage } from './Support/support-page/support-page';
-import { SupportAdmin } from './Support/support-admin/support-admin';
-import { SupportForm } from './Support/support-form/support-form';
-import { Faq } from './Support/faq/faq';
+import { SupportPage } from './support/support-page/support-page';
+import { SupportAdmin } from './support/support-admin/support-admin';
+import { SupportForm } from './support/support-form/support-form';
+import { Faq } from './support/faq/faq';
+import { Reclama } from './Home/reclama/reclama';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { Faq } from './Support/faq/faq';
     SupportForm,
     Faq,
     DetaliiCinema,
+    Reclama,
   ],
   imports: [
     FormsModule,
