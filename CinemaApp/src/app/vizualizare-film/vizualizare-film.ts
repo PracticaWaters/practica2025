@@ -1,6 +1,14 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ReviewDtoService } from '../app-logic/review-dto/review-dto-service';
 import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
+import { ReviewModel } from '../app-logic/review/review-model';
+import { ReviewService } from '../app-logic/review/review-service';
 
 @Component({
   standalone: false,
@@ -9,21 +17,27 @@ import { ReviewDto } from '../app-logic/review-dto/review-dto-model';
   styleUrls: ['./vizualizare-film.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class VizualizareFilm {
+export class VizualizareFilm implements OnInit {
   // ⭐ Rating / Review
   selectedRating: number = 0;
   hoverRating: number = 0;
   reviewText: string = '';
   reviewSubmitted: boolean = false;
 
+  reviews: ReviewModel[] = [];
+
   // ❤️ Wishlist
   isWishlisted: boolean = false;
 
   // Returnează stelele pentru afișare
-  //harcode filmId
+  //harcode filmId and userId
   filmId: number = 1;
+  userId: number = 1;
 
-  constructor(private reviewService: ReviewDtoService) {}
+  constructor(
+    private reviewDtoService: ReviewDtoService,
+    private reviewService: ReviewService
+  ) {}
 
   get displayedStars(): string[] {
     return Array.from({ length: 5 }, (_, i) => {
@@ -32,6 +46,9 @@ export class VizualizareFilm {
     });
   }
 
+  ngOnInit(): void {
+    this.loadReviews();
+  }
   // Stele hover
   onStarEnter(index: number): void {
     this.hoverRating = index + 1;
@@ -61,9 +78,10 @@ export class VizualizareFilm {
       date: new Date(),
       comment: this.reviewText.trim(),
       filmId: this.filmId,
+      userId: this.userId,
     };
 
-    this.reviewService.addReview(reviewDto);
+    this.reviewDtoService.addReview(reviewDto);
 
     this.reviewSubmitted = true;
 
@@ -71,6 +89,16 @@ export class VizualizareFilm {
     this.selectedRating = 0;
     this.reviewText = '';
     this.hoverRating = 0;
+
+    setTimeout(() => {
+      this.loadReviews();
+    }, 300);
+  }
+
+  loadReviews(): void {
+    this.reviewService.getReviewsByFilmId(this.filmId).subscribe((data) => {
+      this.reviews = data;
+    });
   }
 
   // 🔴❤️ Toggle Wishlist
@@ -84,4 +112,19 @@ export class VizualizareFilm {
         : 'Film eliminat din wishlist'
     );
   }
+
+  @ViewChild('reviewsContainer', { static: false }) reviewsContainer!: ElementRef;
+
+scrollReviews(direction: 'left' | 'right') {
+  const container = this.reviewsContainer.nativeElement as HTMLElement;
+  const scrollAmount = 320 + 24; // lățimea cardului + spațiere
+
+  if (direction === 'left') {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
+
 }

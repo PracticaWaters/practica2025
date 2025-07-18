@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-timeslot-list',
   standalone: false,
   templateUrl: './timeslot-list.html',
-  styleUrl: './timeslot-list.css'
+  styleUrl: './timeslot-list.css',
 })
 export class TimeslotList implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator:
@@ -17,7 +17,7 @@ export class TimeslotList implements OnInit {
     | undefined;
   @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
 
-timeslotList: any;
+  timeslotList: any;
   listColumns: string[] = [
     'id',
     'startTime',
@@ -31,17 +31,17 @@ timeslotList: any;
   ngOnInit(): void {
     this.timeslotData.getData().subscribe((data) => {
       if (data) {
-        this.timeslotList = new MatTableDataSource<Timeslot>(
-          data
-        );
+        this.timeslotList = new MatTableDataSource<Timeslot>(data);
         this.timeslotList.paginator = this.paginator;
         this.timeslotList.sort = this.sort;
       }
     });
   }
 
-  delete(item: Timeslot): void{
+  delete(item: Timeslot): void {
     this.timeslotData.delete(item);
   }
+  isEmpty(): boolean {
+  return !this.timeslotList || this.timeslotList.data.length === 0;
 }
-
+}

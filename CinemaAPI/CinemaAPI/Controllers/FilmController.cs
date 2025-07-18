@@ -1,4 +1,3 @@
-﻿
 using CinemaAPI.DataManagement;
 using CinemaAPI.DTO;
 using CinemaAPI.Models;
@@ -14,6 +13,8 @@ namespace CinemaAPI.Controllers
         private readonly FilmDataOps FilmDataOps;
         private readonly ActorDataOps ActorDataOps;
         private readonly ReviewDataOps ReviewDataOps;
+        private readonly TimeSlotDataOps TimeSlotDataOps;
+
         private readonly ReservationDataOps ReservationDataOps;
         private readonly WishlistDataOps WishlistDataOps;
         public FilmController(CinemaDbContext dbContext)
@@ -21,6 +22,7 @@ namespace CinemaAPI.Controllers
             FilmDataOps = new FilmDataOps(dbContext);
             ActorDataOps = new ActorDataOps(dbContext);
             ReviewDataOps = new ReviewDataOps(dbContext);
+            TimeSlotDataOps = new TimeSlotDataOps(dbContext);
             ReservationDataOps = new ReservationDataOps(dbContext);
             WishlistDataOps =new WishlistDataOps(dbContext);
         }
@@ -137,28 +139,36 @@ namespace CinemaAPI.Controllers
                 EndRunningDate = dto.EndRunningDate,
                 FilmActors = new List<Actor>(),
                 Reviews = new List<Review>(),
+                Program = new List<TimeSlot>(),
                 Reservations = new List<Reservation>(),
                 Wishlists = new List<Wishlist>(),
             };
 
-            foreach (var actorId in dto.ActorIds)
+            foreach (var actorId in dto.ActorIds ?? Enumerable.Empty<int>())
             {
                 var actor = ActorDataOps.GetActorById(actorId)
                           ?? throw new ArgumentException($"Actor with Id {actorId} not found.");
                 film.FilmActors.Add(actor);
             }
-            foreach (var reviewId in dto.RewiesIds)
+
+            foreach (var reviewId in dto.RewiesIds ?? Enumerable.Empty<int>())
             {
                 var review = ReviewDataOps.GetReviewById(reviewId)
                           ?? throw new ArgumentException($"Review with Id {reviewId} not found.");
                 film.Reviews.Add(review);
             }
-
-            foreach (var rezervationId in dto.RezervationsIds)
+            foreach(var programId in dto.ProgramIds)
             {
-                var rezervation =ReservationDataOps.GetReservationById(rezervationId)
-                          ?? throw new ArgumentException($"Review with Id {rezervationId} not found.");
-                film.Reservations.Add(rezervation);
+                var timeSlot = TimeSlotDataOps.GetTimeSlotById(programId)
+                          ?? throw new ArgumentException($"TimeSlot with Id {programId} not found.");
+                film.Program.Add(timeSlot);
+            }
+
+            foreach (var ReservationId in dto.ReservationsIds)
+            {
+                var Reservation =ReservationDataOps.GetReservationById(ReservationId)
+                          ?? throw new ArgumentException($"Review with Id {ReservationId} not found.");
+                film.Reservations.Add(Reservation);
             }
 
             foreach (var whishlistId in dto.WhishlistIds)

@@ -16,20 +16,20 @@ namespace CinemaAPI.DataManagement
         public DbSet<Wishlist> wishlists { get; set; }
         public DbSet<Format> formats { get; set; }
         public DbSet<Actor> actors { get; set; }
-        public DbSet<Reservation> rezervari { get; set; }
-        
+        public DbSet<TimeSlot> timeSlots { get; set; }
+        public DbSet<Reservation> reservations { get; set; }
+
+        public DbSet<Promotions> promotions { get; set; }
+
         public DbSet<RefreshToken> AuthenticationRefreshTokens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Cinema;Trusted_Connection=True;MultipleActiveResultSets=true");
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             // existing relationship configs
             modelBuilder.Entity<ScreeningRoom>()
                 .HasMany(s => s.SeatList)
@@ -41,6 +41,12 @@ namespace CinemaAPI.DataManagement
                 .HasOne(r => r.Film)
                 .WithMany(f => f.Reviews)
                 .HasForeignKey("FilmId")
+                .IsRequired();
+
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User)
+                .WithMany(f => f.Reviews)
+                .HasForeignKey("UserId")
                 .IsRequired();
 
             modelBuilder.Entity<User>()
@@ -64,6 +70,33 @@ namespace CinemaAPI.DataManagement
                 .HasMany(r => r.Reservations)
                 .WithOne(g => g.User)
                 .IsRequired();
+
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(sc => sc.TimeSlots)
+                .WithOne(sr => sr.ScreeningRoom)
+                .IsRequired();
+
+            modelBuilder.Entity<Format>()
+                .HasMany(f => f.TimeSlots)
+                .WithOne(ts => ts.Format);
+            modelBuilder.Entity<Seat>()
+                .HasMany(s => s.Reservations)
+                .WithMany(r => r.Seats)
+                .UsingEntity(j => j.ToTable("seat_reservations"));
+
+            modelBuilder.Entity<ScreeningRoom>()
+                .HasMany(s => s.Format)
+                .WithMany(r => r.ScreeningRooms)
+                .UsingEntity(j => j.ToTable("screeningRoom_formats"));
+
+
+            modelBuilder.Entity<Promotions>()
+                .HasMany(p => p.Films)
+                .WithMany(f => f.Promotions);
+
+            modelBuilder.Entity<Cinema>()
+                .HasMany(p => p.ScreeningRooms)
+                .WithOne(r => r.Cinema);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -6,18 +6,21 @@
     class="flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto text-center sm:text-left"
   >
     <div class="flex items-center gap-4">
-  <h1 class="text-3xl font-bold">Titlu film</h1>
+      <h1 class="text-3xl font-bold">Titlu film</h1>
 
-  <!-- Buton Wishlist -->
-  <button
-    (click)="toggleWishlist()"
-    [ngClass]="{ 'text-[var(--button-cta)]': isWishlisted, 'text-gray-400': !isWishlisted }"
-    class="text-4xl hover:text-[var(--button-cta)] transition-colors duration-300 focus:outline-none cursor-pointer"
-    title="Adaugă la wishlist"
-  >
-    <mat-icon>{{ isWishlisted ? 'favorite' : 'favorite_border' }}</mat-icon>
-  </button>
-</div>
+      <!-- Buton Wishlist -->
+      <button
+        (click)="toggleWishlist()"
+        [ngClass]="{
+          'text-[var(--button-cta)]': isWishlisted,
+          'text-gray-400': !isWishlisted
+        }"
+        class="text-4xl hover:text-[var(--button-cta)] transition-colors duration-300 focus:outline-none cursor-pointer"
+        title="Adaugă la wishlist"
+      >
+        <mat-icon>{{ isWishlisted ? "favorite" : "favorite_border" }}</mat-icon>
+      </button>
+    </div>
 
     <button
       class="bg-[var(--button-cta)] text-[var(--dark)] px-6 py-3 rounded-md cursor-pointer font-bold hover:bg-[var(--light)] transition-all duration-300 uppercase"
@@ -32,9 +35,11 @@
       class="!bg-[var(--dark)] !text-[var(--light)] rounded-md shadow-lg"
     >
       <mat-expansion-panel-header
-        class="bg-[var(--dark)] text-[var(--light)] rounded-md border border-[var(--light)]"
+        class="bg-[var(--dark)] !text-[var(--light)] rounded-md border border-[var(--light)]"
       >
-        <mat-panel-title class="font-bold text-lg uppercase">
+        <mat-panel-title
+          class="font-bold text-lg uppercase !text-[var(--light)]"
+        >
           Detalii film
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -50,7 +55,10 @@
           <tbody>
             <!-- Detalii film tabel -->
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase" style="border-top: none">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                style="border-top: none"
+              >
                 Titlu Original
               </th>
               <td class="border-y border-gray-600 p-3" style="border-top: none">
@@ -58,7 +66,9 @@
               </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Genul Filmului
               </th>
               <td class="border-y border-gray-600 p-3">
@@ -66,15 +76,20 @@
               </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Distribuție
               </th>
               <td class="border-y border-gray-600 p-3">
-                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison, Gabriel Howell
+                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
+                Gabriel Howell
               </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Formatul Proiecției
               </th>
               <td class="border-y border-gray-600 p-3">
@@ -82,19 +97,25 @@
               </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Data Publicare
               </th>
               <td class="border-y border-gray-600 p-3">2025</td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Rating Vârstă
               </th>
               <td class="border-y border-gray-600 p-3">13+</td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
                 Rating User
               </th>
               <td class="border-y border-gray-600 p-3">
@@ -132,7 +153,10 @@
           <!-- Tabel identic cu cel de pe mobil -->
           <tbody>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase" style="border-top: none">
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+                style="border-top: none"
+              >
                 Titlu Original
               </th>
               <td class="border-y border-gray-600 p-3" style="border-top: none">
@@ -140,27 +164,58 @@
               </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Genul Filmului</th>
-              <td class="border-y border-gray-600 p-3">Acțiune, Aventură, Comedie, Dramă, Familie, Fantastic</td>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Genul Filmului
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Acțiune, Aventură, Comedie, Dramă, Familie, Fantastic
+              </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Distribuție</th>
-              <td class="border-y border-gray-600 p-3">Mason Thames, Nico Parker, Gerard Butler, Julian Dennison, Gabriel Howell</td>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Distribuție
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                Mason Thames, Nico Parker, Gerard Butler, Julian Dennison,
+                Gabriel Howell
+              </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Formatul Proiecției</th>
-              <td class="border-y border-gray-600 p-3">IMAX, IMAX 3D, 4DX, Dolby Atmos, 3D, 2D</td>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Formatul Proiecției
+              </th>
+              <td class="border-y border-gray-600 p-3">
+                IMAX, IMAX 3D, 4DX, Dolby Atmos, 3D, 2D
+              </td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Data Publicare</th>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Data Publicare
+              </th>
               <td class="border-y border-gray-600 p-3">2025</td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Rating Vârstă</th>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating Vârstă
+              </th>
               <td class="border-y border-gray-600 p-3">13+</td>
             </tr>
             <tr>
-              <th class="border-y border-gray-600 p-3 text-left font-semibold uppercase">Rating User</th>
+              <th
+                class="border-y border-gray-600 p-3 text-left font-semibold uppercase"
+              >
+                Rating User
+              </th>
               <td class="border-y border-gray-600 p-3">
                 <div class="flex items-center gap-1">
                   <span class="text-[var(--button-cta)]">★★★★☆</span>
@@ -175,7 +230,9 @@
   </div>
 
   <!-- Review Section -->
-  <div class="mt-12 max-w-4xl mx-auto bg-gray-800 text-[var(--light)] p-6 rounded-lg shadow-xl">
+  <div
+    class="mt-12 max-w-4xl mx-auto bg-gray-800 text-[var(--light)] p-6 rounded-lg shadow-xl"
+  >
     <h3 class="text-xl font-bold mb-4 uppercase">Adaugă review</h3>
 
     <!-- Star Rating -->
@@ -197,6 +254,7 @@
       [value]="reviewText"
       (input)="onTextChange($any($event.target).value)"
       rows="4"
+      maxlength="200"
       placeholder="Scrie părerea ta aici..."
       class="w-full bg-gray-700 text-[var(--light)] p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button-cta)] mb-4"
     ></textarea>
@@ -214,4 +272,81 @@
       Mulțumim pentru review!
     </p>
   </div>
+
+
+<!-- Carusel Review-uri -->
+<div class="mt-12 max-w-6xl mx-auto w-full relative">
+  <h3 class="text-xl font-bold uppercase mb-6 text-[var(--light)]">
+    Review-uri utilizatori
+  </h3>
+
+  <div class="relative">
+    <!-- Buton stânga -->
+    <button
+      class="hidden sm:flex items-center justify-center cursor-pointer absolute -left-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+      (click)="scrollReviews('left')"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Container scroll -->
+    <div
+      #reviewsContainer
+      class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-6 py-6 px-2 sm:px-0 [&::-webkit-scrollbar]:hidden"
+    >
+      <!-- Spațiu la început -->
+      <div class="shrink-0 w-4 sm:w-6"></div>
+
+      <!-- Carduri review -->
+      <ng-container *ngFor="let review of reviews">
+        <mat-card
+          class="snap-start flex-shrink-0 w-full sm:w-[calc(33.3333333%-1rem)] min-w-[280px] !bg-gray-800 text-[var(--light)] p-6 rounded-xl shadow-xl flex flex-col justify-between sm:hover:scale-105 transition-all duration-200"
+        >
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-lg font-semibold">
+                {{ review.user.name || "Anonim" }}
+              </span>
+              <span class="text-[var(--button-cta)] text-lg font-semibold">
+                <ng-container *ngFor="let star of [1,2,3,4,5]">
+                  {{ star <= review.rating ? "★" : "☆" }}
+                </ng-container>
+              </span>
+            </div>
+            <!-- Comentariu cu wrap pe mai multe linii -->
+            <p class="text-sm leading-relaxed whitespace-normal break-words">
+              {{ review.comment }}
+            </p>
+          </div>
+          <p class="text-sm text-gray-400 italic">
+            {{ review.date | date : 'dd.MM.yyyy' }}
+          </p>
+        </mat-card>
+      </ng-container>
+
+      <!-- Spațiu la final -->
+      <div class="shrink-0 w-4 sm:w-6"></div>
+    </div>
+
+    <!-- Buton dreapta -->
+    <button
+      class="hidden sm:flex items-center justify-center cursor-pointer ml-2 absolute -right-6 top-1/2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full shadow-lg z-10"
+      (click)="scrollReviews('right')"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>  
+
+
+
+
+
+
+
+
+
+
+
+
 </section>
