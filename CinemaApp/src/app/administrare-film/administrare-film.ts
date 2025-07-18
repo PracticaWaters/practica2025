@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { FilmDTO } from '../app-logic/film/film-dto';  // ajustează importul după structura ta reală
+import { Component, OnInit } from '@angular/core';
+import { FilmDTO } from '../app-logic/film/film-dto';  
+import { FilmDtoService } from '../app-logic/film/film-dto-service'; 
+
 
 @Component({
   standalone: false,
@@ -7,43 +9,21 @@ import { FilmDTO } from '../app-logic/film/film-dto';  // ajustează importul du
   templateUrl: './administrare-film.html',
   styleUrls: ['./administrare-film.css'],
 })
-export class AdministrareFilm {
+export class AdministrareFilm implements OnInit {
   formDeschis = false;
-
-  filme: FilmDTO[] = [
-    {
-      id: 1,
-      name: 'Dune 2',
-      actorsIds: [],
-      reviewsIds: [],
-      image: '/assets/dune2.jpg',
-      trailer: 'https://www.youtube.com/watch?v=example1',
-      description: 'E dune 2',
-      releaseDate: new Date('2025-07-18'),
-      ageRating: '12+',
-      duration: 180,
-      startRunningDate: new Date('2025-07-18'),
-      endRunningDate: new Date('2025-08-18'),
-      reservation: null,
-      whishlist: null
+  
+ngOnInit() {
+  this.filmService.getFilms().subscribe({
+    next: (data: FilmDTO[]) => {
+      this.filme = data;
     },
-    {
-      id: 2,
-      name: 'Oppenheimer',
-      actorsIds: [],
-      reviewsIds: [],
-      image: '/assets/oppenheimer.jpg',
-      trailer: 'https://www.youtube.com/watch?v=example2',
-      description: 'Despre bomba atomică',
-      releaseDate: new Date('2025-07-20'),
-      ageRating: '16+',
-      duration: 150,
-      startRunningDate: new Date('2025-07-20'),
-      endRunningDate: new Date('2025-08-20'),
-      reservation: null,
-      whishlist: null
+    error: (err: any) => {
+      console.error('Eroare la preluarea filmelor:', err);
     }
-  ];
+  });
+}
+
+  filme: FilmDTO[] = [];
 
   filmNou: Partial<FilmDTO> = {
     name: '',
@@ -59,25 +39,37 @@ export class AdministrareFilm {
     endRunningDate: new Date()
   };
 
+constructor(private filmService: FilmDtoService) {}
+
+
   toggleForm() {
     this.formDeschis = !this.formDeschis;
   }
 
-  adaugaFilm() {
-  const newId = this.filme.length + 1;
-
-  const filmToAdd: FilmDTO = {
+ adaugaFilm() {
+  const newFilm: FilmDTO = {
     ...this.filmNou as FilmDTO,
-    id: newId,
+    id: 0, 
     actorsIds: [],
     reviewsIds: [],
     reservation: null,
     whishlist: null
   };
 
-  this.filme.push(filmToAdd);
+  this.filmService.addFilm(newFilm).subscribe({
+  next: (createdFilm: FilmDTO) => {
+    console.log('Filmul a fost adăugat:', createdFilm);
+    this.filme.push(createdFilm);
+    this.resetForm();
+  },
+  error: (err: any) => {
+    console.error('Eroare la adăugare film:', err);
+  }
+});
+}
 
 
+resetForm() {
   this.filmNou = {
     name: '',
     actorsIds: [],
@@ -91,7 +83,6 @@ export class AdministrareFilm {
     startRunningDate: new Date(),
     endRunningDate: new Date()
   };
-
   this.formDeschis = false;
 }
 

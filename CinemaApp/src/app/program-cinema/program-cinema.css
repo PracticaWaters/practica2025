@@ -90,7 +90,7 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
   opacity: 0.6;
 }
 
-/* Dropdown Material Select (Angular Material MDC) */
+
 .mdc-menu-surface {
   background-color: white !important;
   box-shadow: none !important;
@@ -127,7 +127,7 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
   border: none !important;
 }
 
-/* Eliminare contururi input / dropdown (pentru mat-form-field appearance="outline") */
+
 .mat-mdc-form-field {
   --mdc-outlined-text-field-container-shape: 0px !important;
   --mdc-outlined-text-field-outline-width: 0px !important;
@@ -144,7 +144,6 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
   border: none !important;
 }
 
-/* Eliminare fundal gri din appearance="fill" și păstrare alb curat */
 .mat-mdc-text-field-wrapper {
   background-color: white !important;
 }

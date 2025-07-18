@@ -14,7 +14,7 @@ import { Observable, of } from 'rxjs';
 import { FilmService } from '../app-logic/film/film-service';
 
 @Component({
-  standalone: true, // ✅ definește componenta ca standalone
+  standalone: true, 
   selector: 'app-program-cinema',
   templateUrl: './program-cinema.html',
   styleUrls: ['./program-cinema.css'],
@@ -32,8 +32,6 @@ import { FilmService } from '../app-logic/film/film-service';
 
 
 export class ProgramCinema implements OnInit {
-
- // filmeAfisate!: MatTableDataSource<Film>;
  filmeAfisate: Film[] = [];
 
   constructor(private filmService:FilmService) {
@@ -122,7 +120,6 @@ resetFiltre() {
 filtruDateValide = (d: Date | null): boolean => {
   if (!d) return false;
   const azi = new Date();
-  // Setăm ora la 00:00 pentru comparație corectă
   azi.setHours(0, 0, 0, 0);
   d.setHours(0, 0, 0, 0);
 
@@ -130,19 +127,8 @@ filtruDateValide = (d: Date | null): boolean => {
 };
 
 
+filmeCarousel: Film[] = [];
 
-filmeCarousel = [
-  { name: 'Onward', image: 'onward.jpg' },
-  { name: 'Free Guy', image: 'freeguy.jpg' },
-  { name: 'Inside Out 2', image: 'insideout2.jpg' },
-  { name: 'Despicable Me 4', image: 'despicable4.jpg' },
-  { name: 'World War Z', image: 'wwz.jpg' },
-  { name: 'Looper', image: 'looper.jpg' },
-  { name: 'Smallfoot', image: 'smallfoot.jpg' }
-];
-
-
-// Start de la indexul 2 (al treilea film) pentru a avea spațiu stânga-dreapta
 currentIndex = 2;
 
 moveLeft() {
@@ -174,7 +160,6 @@ getStyleForIndex(index: number) {
   const total = this.filmeCarousel.length;
   const offsetRaw = index - this.currentIndex;
 
-  // carusel circular (calculare offset relativ)
   let relativeOffset =
     offsetRaw > total / 2
       ? offsetRaw - total
@@ -182,7 +167,6 @@ getStyleForIndex(index: number) {
       ? offsetRaw + total
       : offsetRaw;
 
-  // doar 3 filme vizibile (stânga, centru, dreapta)
   if (Math.abs(relativeOffset) > 1) {
     return {
       transform: `translateX(${relativeOffset * 200}px) scale(0.5)`,

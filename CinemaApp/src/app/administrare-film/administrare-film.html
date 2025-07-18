@@ -1,9 +1,7 @@
 <div class="p-6">
 
-  <!-- CARD ÎNTREG: header + formular -->
   <div class="bg-gray-800 shadow rounded overflow-hidden">
 
-    <!-- HEADER: titlu + săgeată -->
     <div class="flex items-center justify-between p-4 cursor-pointer" (click)="toggleForm()">
       <h2 class="text-xl text-[var(--light)] font-bold">Adaugă Film</h2>
       <span [ngClass]="{ 'rotate-180': formDeschis }" class="transition-transform text-[var(--light)] text-2xl">▼</span>
@@ -20,7 +18,7 @@
         <input type="text" [(ngModel)]="filmNou.ageRating" name="ageRating" placeholder="Rating vârstă (ex. 12+)" class="border p-2 w-full rounded" />
         <input type="text" [(ngModel)]="filmNou.duration" name="duration" placeholder="Durată (ex. 2h 30m)" class="border p-2 w-full rounded" />
 
-  <!-- Data lansării -->
+
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Data lansării</mat-label>
     <input matInput [matDatepicker]="releasePicker" [(ngModel)]="filmNou.releaseDate" name="releaseDate" class="text-[var(--light)]">
@@ -30,7 +28,7 @@
     <mat-datepicker #releasePicker></mat-datepicker>
   </mat-form-field>
 
-  <!-- Început rulare -->
+
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Început rulare</mat-label>
     <input matInput [matDatepicker]="startPicker" [(ngModel)]="filmNou.startRunningDate" name="startRunningDate" class="text-[var(--light)]">
@@ -40,7 +38,6 @@
     <mat-datepicker #startPicker></mat-datepicker>
   </mat-form-field>
 
-  <!-- Sfârșit rulare -->
   <mat-form-field appearance="outline" class="w-full">
     <mat-label>Sfârșit rulare</mat-label>
     <input matInput [matDatepicker]="endPicker" [(ngModel)]="filmNou.endRunningDate" name="endRunningDate" class="text-[var(--light)]">
@@ -68,8 +65,8 @@
     <!-- Imagine -->
     <div class="h-full w-24 flex-shrink-0">
       <img
-        [src]="film.imagine"
-        alt="{{ film.titlu }}"
+        [src]="film.image"
+        alt="{{ film.title}"
         class="w-full h-full object-cover"
       />
     </div>
@@ -79,9 +76,9 @@
 
       <!-- Detalii în linie -->
       <div class="flex items-center gap-6 truncate">
-        <span class="font-bold text-lg">{{ film.titlu }}</span>
-        <span class="text-sm text-gray-300">{{ film.descriere }}</span>
-        <span class="text-xs text-gray-400">Durată: {{ film.durata }}</span>
+        <span class="font-bold text-lg">{{ film.name }}</span>
+        <span class="text-sm text-gray-300">{{ film.description }}</span>
+        <span class="text-xs text-gray-400">Durată: {{ film.duration }}</span>
       </div>
 
       <!-- Butoane -->

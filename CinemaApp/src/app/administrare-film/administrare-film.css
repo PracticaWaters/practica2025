@@ -1,8 +1,6 @@
-/***** GENERAL CALENDAR COLOR FIXES *****/
-
 .mat-calendar {
-  background-color: #1A2130 !important; /* fundal calendar */
-  color: var(--light) !important;       /* text calendar (dacă ai var(--light) definit) */
+  background-color: #1A2130 !important; 
+  color: var(--light) !important;       
 }
 
 span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
@@ -18,14 +16,12 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
   opacity: 0.6;
 }
 
-/***** FORM FIELD AND INPUT COLOR FIXES *****/
-
 .mdc-menu-surface,
 .mat-mdc-select-panel,
 .mdc-list,
 .mat-mdc-option {
-  background-color: #1A2130 !important; /* fundal dropdown */
-  color: var(--light) !important;       /* text */
+  background-color: #1A2130 !important;
+  color: var(--light) !important;      
   box-shadow: none !important;
   border: none !important;
 }
@@ -58,18 +54,10 @@ span.mat-calendar-body-cell-content.mat-focus-indicator:hover {
   background-color: #1F2937 !important;
 }
 
-/* :root {
-  --mat-form-field-filled-container-color: #1F2937 !important; 
-} */
-
-
-
-/* Text din interiorul inputului */
 .mat-mdc-form-field-input-control {
   color: var(--light) !important;
 }
 
-/* Icon-ul de calendar (Material) */
 .mat-datepicker-toggle-default-icon,
 .mat-icon {
   color: var(--light) !important;
