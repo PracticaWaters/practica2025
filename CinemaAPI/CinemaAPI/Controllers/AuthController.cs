@@ -14,40 +14,46 @@ namespace CinemaAPI.Controllers
     {
         private readonly JwtService _jwt;
         private readonly UserDataOps _userOps;
+        public readonly ReviewDataOps _reviewDataOps;
+        public readonly ReservationDataOps _reservationDataOps;
 
         public AuthController(JwtService jwt, CinemaDbContext dbContext)
         {
             _userOps = new UserDataOps(dbContext);
+            _reviewDataOps = new ReviewDataOps(dbContext);
+            _reservationDataOps = new ReservationDataOps(dbContext);
             _jwt = jwt;
+
+
         }
 
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
+        public IActionResult Register([FromBody] UserDto userDto)
         {
-            if (_userOps.GetUserByEmail(user.Email) != null)
+            if (_userOps.GetUserByEmail(userDto.Email) != null)
                 return Conflict("User already exists.");
-
-            user.CreatedAt = user.ModifiedAt = DateTime.UtcNow;
-            user.IsDeleted = false;
 
             try
             {
+                var user = userDto.ToUser(_reservationDataOps, _reviewDataOps);
                 _userOps.AddUser(user);
                 return Ok("User registered successfully.");
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(500, "Error registering user.");
+                return BadRequest("Error registering user.Error:" + ex);
             }
         }
+
+
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest credentials)
         {
             var user = _userOps.GetUserByEmailAndPassword(credentials.Email, credentials.Password);
             if (user == null)
-                return Unauthorized("Invalid email or password.");
+                return BadRequest("Invalid email or password.");
 
             var accessToken = _jwt.GenerateToken(user.Id.ToString(), user.Role.ToString());
             var refreshToken = _jwt.GenerateRefreshToken();
@@ -93,7 +99,7 @@ namespace CinemaAPI.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet("self")]
         public IActionResult GetProfile()
         {
@@ -128,5 +134,8 @@ namespace CinemaAPI.Controllers
             _userOps.DeleteRefreshTokens(userId);
             return Ok("User logged out – refresh tokens revoked.");
         }
+
+      
+
     }
 }

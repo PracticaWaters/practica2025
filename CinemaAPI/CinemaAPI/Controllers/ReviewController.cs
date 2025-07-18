@@ -1,5 +1,4 @@
 ﻿using CinemaAPI.DataManagement;
-using CinemaAPI.DTO;
 using CinemaAPI.DTOs;
 using CinemaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +12,13 @@ namespace CinemaAPI.Controllers
     {
         private readonly ReviewDataOps _reviewDataOps;
         private readonly FilmDataOps _filmDataOps;
+        private readonly UserDataOps _userDataOps;
 
         public ReviewController(CinemaDbContext dbContext)
         {
             _reviewDataOps = new ReviewDataOps(dbContext);
             _filmDataOps = new FilmDataOps(dbContext);
+            _userDataOps = new UserDataOps(dbContext);
         }
 
         [HttpGet]
@@ -42,6 +43,7 @@ namespace CinemaAPI.Controllers
             review.Date = reviewDto.Date;
             review.Comment = reviewDto.Comment;
             review.Film = _filmDataOps.GetFilmById(reviewDto.FilmId);
+            review.User = _userDataOps.GetUserById(reviewDto.UserId);
 
 
             _reviewDataOps.AddReview(review);
@@ -83,6 +85,20 @@ namespace CinemaAPI.Controllers
             {
                 var review = _reviewDataOps.GetReviewById(id);
                 return Ok(review);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("film/{filmId}")]
+        public ActionResult<IEnumerable<Review>> GetReviewsByFilmId(int filmId)
+        {
+            try
+            {
+                var reviews = _reviewDataOps.GetReviewsByFilmId(filmId);
+                return Ok(reviews);
             }
             catch (Exception ex)
             {

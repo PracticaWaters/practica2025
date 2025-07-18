@@ -1,0 +1,58 @@
+
+<div class="row" >
+  <div class="column">
+    <form [formGroup]="addTimeslotForm" (ngSubmit)="onSubmit()">
+      <div>
+        <mat-label class="label-style">Start Time:</mat-label>
+        <mat-form-field appearance="outline" class="field">
+          <input
+            class="input-style"
+            matInput
+            placeholder="Start Time"
+            type="time"
+            formControlName="startTime"
+            required
+          />
+          <mat-error *ngIf="hasError('startTime', 'required')"
+            >Start Time is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-label class="label-style">End Time:</mat-label>
+        <mat-form-field appearance="outline" class="field">
+          <input
+            class="input-style"
+            matInput
+            placeholder="End time"
+            formControlName="endTime"
+            type="time"
+            required
+          />
+          <mat-error *ngIf="hasError('endTime', 'required')"
+            >End Time is required!</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div>
+        <button class="select-movie-button" routerLink="select-movie">Select movie</button>
+        <span class="selected-text">{{ selectedMovie || 'No Movie selected'}}</span>
+      </div>
+      <div>
+        <button class="select-movie-button" routerLink="/select-screening-room">Select screening room</button>
+        <span class="selected-text">{{ selectedScreeningRoom?.name || 'No Screening Room Selected'}}</span>
+      </div>
+      <div class="button-div">
+        <button
+          type="submit"
+          mat-raised-button
+          [disabled]="!addTimeslotForm.valid"
+          class="button-style"
+        >
+          Submit
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</div>

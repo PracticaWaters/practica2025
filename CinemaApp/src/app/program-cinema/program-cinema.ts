@@ -159,14 +159,6 @@ filtruDateValide = (d: Date | null): boolean => {
   return d >= azi; // permite doar datele de azi sau din viitor
 };
 
-
-
-
-
-
-
-
-
 filmeCarousel = [
   { titlu: 'Onward', poster: 'onward.jpg' },
   { titlu: 'Free Guy', poster: 'freeguy.jpg' },
@@ -181,45 +173,70 @@ filmeCarousel = [
 currentIndex = 2;
 
 moveLeft() {
-  if (this.currentIndex > 1) {
-    this.currentIndex--;
-  }
+  this.currentIndex =
+    (this.currentIndex - 1 + this.filmeCarousel.length) % this.filmeCarousel.length;
 }
 
 moveRight() {
-  if (this.currentIndex < this.filmeCarousel.length - 2) {
-    this.currentIndex++;
-  }
+  this.currentIndex =
+    (this.currentIndex + 1) % this.filmeCarousel.length;
 }
 
+
 getVisibleFilme() {
-  // Returnează mereu 3 filme: [stanga, centru, dreapta]
-  return this.filmeCarousel.slice(this.currentIndex - 1, this.currentIndex + 2);
+  const total = this.filmeCarousel.length;
+
+  const leftIndex = (this.currentIndex - 1 + total) % total;
+  const centerIndex = this.currentIndex % total;
+  const rightIndex = (this.currentIndex + 1) % total;
+
+  return [
+    this.filmeCarousel[leftIndex],
+    this.filmeCarousel[centerIndex],
+    this.filmeCarousel[rightIndex],
+  ];
 }
 
 getStyleForIndex(index: number) {
-  const offset = index - this.currentIndex;
+  const total = this.filmeCarousel.length;
+  const offsetRaw = index - this.currentIndex;
 
-  // Filme în afara celor 3: ascunse
-  if (Math.abs(offset) > 1) {
+  // carusel circular (calculare offset relativ)
+  let relativeOffset =
+    offsetRaw > total / 2
+      ? offsetRaw - total
+      : offsetRaw < -total / 2
+      ? offsetRaw + total
+      : offsetRaw;
+
+  // doar 3 filme vizibile (stânga, centru, dreapta)
+  if (Math.abs(relativeOffset) > 1) {
     return {
-      transform: 'scale(0) translateX(0px)',
+      transform: `translateX(${relativeOffset * 200}px) scale(0.5)`,
       opacity: 0,
       pointerEvents: 'none',
+      zIndex: 0,
+      transition: 'all 0.5s ease',
     };
   }
 
-  // Filmele vizibile: poziționate 3D
-  const translateX = offset * 130; 
-  const rotateY = offset * 20;   
-  const scale = offset === 0 ? 1.15 : 0.95;
+  const translateX = relativeOffset * 520;
+  const rotateY = relativeOffset * 20;
+  const scale = relativeOffset === 0 ? 1.15 : 0.95;
 
   return {
     transform: `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`,
-    zIndex: 10 - Math.abs(offset),
     opacity: 1,
+    zIndex: 10 - Math.abs(relativeOffset),
+    transition: 'transform 0.5s ease, opacity 0.5s ease',
+    willChange: 'transform',
   };
 }
+
+
+
+
+
 
 
 

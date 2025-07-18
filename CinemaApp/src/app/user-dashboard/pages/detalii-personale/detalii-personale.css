@@ -1,0 +1,95 @@
+
+.full-width {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.half-width {
+  flex: 1;
+  min-width: 200px;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.profile-box {
+  background-color: #1976d2;
+  color: white;            
+  border-radius: 16px;       
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border: none;
+}
+.profile-box .label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Container pentru poză */
+.profile-picture-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+/* Imaginea reală sau fallback cu icon */
+.profile-picture,
+.profile-picture.default {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-picture.default {
+  font-size: 100px;
+  color: #ccc;
+  display: block;
+}
+
+/* Buton de editare vizibil la hover */
+.edit-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.profile-picture-container:hover .edit-button,
+.edit-button.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+mat-label {
+  color: white;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: #ffffff !important; /* example: a blue */
+    caret-color: var(--mat-form-field-outlined-caret-color, var(--mat-sys-primary)) !important;
+}
+
+.mat-mdc-select {
+  color: white;
+}

@@ -1,0 +1,75 @@
+<div>
+  <div *ngIf="isEmpty()">
+    <p>Nu exista timeslot uri in database</p>
+  </div>
+  <div *ngIf="!isEmpty()">
+  <table mat-table [dataSource]="timeslotList" matSort>
+    <!-- Column id-->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <!-- Column startTime -->
+    <ng-container matColumnDef="startTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
+      <td mat-cell *matCellDef="let element">{{ element.startTime }}</td>
+    </ng-container>
+    <!-- Column endTime-->
+    <ng-container matColumnDef="endTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
+      <td mat-cell *matCellDef="let element">{{ element.endTime }}</td>
+    </ng-container>
+    <!-- Column screeningRoom-->
+    <ng-container matColumnDef="screeningRoom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Screening Room</th>
+      <td mat-cell *matCellDef="let element">{{ element.screeningRoom.id }}</td>
+    </ng-container>
+    <!-- Column movie-->
+    <ng-container matColumnDef="movie">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Movie</th>
+      <td mat-cell *matCellDef="let element">{{ element.movie.id }}</td>
+    </ng-container>
+
+    <!-- Column edit-->
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-button
+          class="action-button"
+          [routerLink]="['', element.id]"
+        >
+          Edit
+        </button>
+      </td>
+    </ng-container>
+    <!-- Column delete-->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button class="action-button" (click)="delete(element)">
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="listColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: listColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[3, 6, 10]"
+    showFirstLastButtons
+  ></mat-paginator>
+  </div>
+  <div class="actions-bar" class="button-row">
+    <button
+      class="add-button"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/add-timeslot', 0]"
+    >
+      Add Timeslot
+    </button>
+  </div>
+</div>

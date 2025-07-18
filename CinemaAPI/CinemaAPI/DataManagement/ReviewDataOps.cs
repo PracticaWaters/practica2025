@@ -14,7 +14,7 @@ namespace CinemaAPI.DataManagement
 
         public Review[] GetReviews()
         {
-            return dbContext.reviews.Include(x => x.Film).ToArray();
+            return dbContext.reviews.Include(x => x.Film).Include(x => x.User).ToArray();
         }
 
         public void AddReview(Review review)
@@ -23,6 +23,8 @@ namespace CinemaAPI.DataManagement
             {
                 dbContext.Attach(review.Film);
                 dbContext.Entry(review).Property("FilmId").CurrentValue = review.Film.Id;
+                //dbContext.Attach(review.User);
+                //dbContext.Entry(review).Property("UserId").CurrentValue = review.User.Id;
                 dbContext.reviews.Add(review);
                 dbContext.SaveChanges();
             }
@@ -67,7 +69,12 @@ namespace CinemaAPI.DataManagement
 
         public Review? GetReviewById(int id)
         {
-            return dbContext.reviews.Include(x => x.Film).Where(x =>  x.Id == id).FirstOrDefault();
+            return dbContext.reviews.Include(x => x.Film).Include(x => x.User).Where(x =>  x.Id == id).FirstOrDefault();
+        }
+
+        public Review[] GetReviewsByFilmId(int filmId)
+        {
+            return dbContext.reviews.Include(x => x.Film).Include(x => x.User).Where(x => x.Film.Id == filmId).ToArray();
         }
     }
 }

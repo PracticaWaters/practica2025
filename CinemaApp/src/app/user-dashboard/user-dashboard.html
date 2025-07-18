@@ -1,0 +1,25 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<div class="dashboard-wrapper bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+  <div class="user-dashboard-container bg-white/0.5 backdrop-blur-2xl shadow-2xl rounded-2xl sm:rounded-3xl lg:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-8">
+    <div class="user-dashboard-box ">
+      <div class="dashboard-menu" >
+        <ul>
+          <!-- <li class="hover:bg-white/15"><a routerLink="meniu-principal"><mat-icon>home</mat-icon>Meniu principal</a></li> -->
+          <li class="bg-white/5 hover:bg-white/10"><a routerLink="detalii"><mat-icon>person</mat-icon>Detalii personale</a></li>
+          <li class="bg-white/5 hover:bg-white/10"><a routerLink="bilete"><mat-icon>receipt</mat-icon>Bilete</a></li>
+          <li class="bg-white/5 hover:bg-white/10"><a routerLink="wishlist"><mat-icon>favorite</mat-icon>Wishlist</a></li>
+          <!-- <li class="bg-white/5 hover:bg-white/10"><a routerLink="review-uri"><mat-icon>thumbs_up_down</mat-icon>Review-uri</a></li> -->
+        </ul>
+
+        <div class="logoutbottom bg-white/5 hover:bg-white/15">
+          <a href="#"><mat-icon>meeting_room</mat-icon>Logout</a> 
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <router-outlet> </router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

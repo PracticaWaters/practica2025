@@ -1,0 +1,47 @@
+.vezi-bilet {
+  background-color: #5a72a0;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.vezi-bilet:hover {
+  background-color: #323c50;
+}
+
+
+.paginator .mat-paginator-range-label {
+  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.mat-mdc-paginator-container {
+  color: white;
+  background-color: var(--bg) !important;
+}
+
+.mat-mdc-table tbody, 
+    .mat-mdc-table tfoot, 
+    .mat-mdc-table thead, 
+    .mat-mdc-cell, 
+    .mat-mdc-footer-cell, 
+    .mat-mdc-header-row, 
+    .mat-mdc-row, 
+    .mat-mdc-footer-row, 
+    .mat-mdc-table 
+    .mat-mdc-header-cell {
+    background-color: var(--bg) !important;
+}
+
+* {
+  color: white;
+}
+

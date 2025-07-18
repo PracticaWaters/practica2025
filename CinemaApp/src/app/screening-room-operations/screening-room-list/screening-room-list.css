@@ -1,0 +1,10 @@
+.button-row{
+    padding-top: 30px;
+}
+.add-button{
+    background-color: oklch(56.9% 0.188 70.08);
+    color: white;
+}
+.action-button{
+    color: black;
+}
