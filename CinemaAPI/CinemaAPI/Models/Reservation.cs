@@ -8,7 +8,7 @@
 		//De modificat cand e adaugat TimeSlot
 		//public int TimeSlotId { get; set; }
 
-		public Seat Seat { get; set; }
+		//public Seat Seat { get; set; }
 
         //De modificat cand e adaugat Promo
         //public Promo Promo { get; set; }
