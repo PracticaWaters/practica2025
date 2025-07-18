@@ -35,12 +35,12 @@
         </mat-form-field>
       </div>
       <div>
-        <button class="select-movie-button" routerLink="select-movie">Select movie</button>
-        <span class="selected-text">{{ selectedMovie || 'No Movie selected'}}</span>
+        <button class="select-movie-button" routerLink="/select-movie">Select movie</button>
+        <span class="selected-text">{{ selectedMovie?.name || 'No movie selected'}}</span>
       </div>
       <div>
         <button class="select-movie-button" routerLink="/select-screening-room">Select screening room</button>
-        <span class="selected-text">{{ selectedScreeningRoom?.name || 'No Screening Room Selected'}}</span>
+        <span class="selected-text">{{ selectedScreeningRoom?.name || 'No screening room selected'}}</span>
       </div>
       <div class="button-div">
         <button

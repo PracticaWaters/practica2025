@@ -2,7 +2,7 @@ import { Actor } from "./actor";
 
 export interface Film {
     id:number;
-    nume:string;
+    name:string;
     actors:Actor[];
     image:string;
     trailer:string;

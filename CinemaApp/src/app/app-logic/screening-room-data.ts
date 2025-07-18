@@ -1,9 +1,11 @@
+import { Format } from "./format";
+
 export class ScreeningRoomData {
   id!: number;
   name!: string;
   numOfRow!: number;
   numOfSeatsPerRow!: number;
-  format?: string[];
+  format?: Format;
   seatList?: string[];
 
   constructor(screeningRoomData?: Partial<ScreeningRoomData>) {

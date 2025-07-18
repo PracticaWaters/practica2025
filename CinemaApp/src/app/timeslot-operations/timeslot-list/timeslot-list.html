@@ -22,12 +22,17 @@
     <!-- Column screeningRoom-->
     <ng-container matColumnDef="screeningRoom">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Screening Room</th>
-      <td mat-cell *matCellDef="let element">{{ element.screeningRoom.id }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.screeningRoom.name }}</td>
     </ng-container>
     <!-- Column movie-->
     <ng-container matColumnDef="movie">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Movie</th>
-      <td mat-cell *matCellDef="let element">{{ element.movie.id }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.film.name }}</td>
+    </ng-container>
+    <!-- Column format-->
+    <ng-container matColumnDef="format">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Format</th>
+      <td mat-cell *matCellDef="let element">{{ element.format.name }}</td>
     </ng-container>
 
     <!-- Column edit-->

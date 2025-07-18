@@ -10,7 +10,7 @@ import { Timeslot } from './timeslot';
 export class TimeslotData {
   timeslotList: Array<Timeslot> = [];
 
-  private apiUrl = 'https://localhost:25867/api/';
+  private apiUrl = 'https://localhost:25867/api/cinema/timeSlot';
 
   constructor(private httpClient: HttpClient) {}
 

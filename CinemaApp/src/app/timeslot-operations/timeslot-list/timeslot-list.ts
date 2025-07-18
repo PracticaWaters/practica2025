@@ -24,6 +24,7 @@ export class TimeslotList implements OnInit {
     'endTime',
     'screeningRoom',
     'movie',
+    'format'
   ];
 
   constructor(private timeslotData: TimeslotData) {}

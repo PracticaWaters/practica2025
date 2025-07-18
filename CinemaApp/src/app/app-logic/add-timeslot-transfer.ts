@@ -7,22 +7,29 @@ import { ScreeningRoomData } from './screening-room-data';
   providedIn: 'root',
 })
 export class AddTimeslotTransfer {
-  private selectedMovie?: Film;
-  private selectedScreeningRoom?: ScreeningRoomData;
+  private readonly MOVIE_KEY = 'addTimeslotTransfer_movie';
+  private readonly ROOM_KEY = 'addTimeslotTransfer_room';
 
   setMovie(movie: Film): void {
-    this.selectedMovie = movie;
+    localStorage.setItem(this.MOVIE_KEY, JSON.stringify(movie));
   }
 
   setScreeningRoom(screeningRoom: ScreeningRoomData): void {
-    this.selectedScreeningRoom = screeningRoom;
+    localStorage.setItem(this.ROOM_KEY, JSON.stringify(screeningRoom));
   }
 
   getMovie() : Film | undefined{
-    return this.selectedMovie;
+    const json = localStorage.getItem(this.MOVIE_KEY);
+    return json ? JSON.parse(json) : undefined;
   }
 
   getScreeningRoom() : ScreeningRoomData | undefined{
-    return this.selectedScreeningRoom;
+    const json = localStorage.getItem(this.ROOM_KEY);
+    return json ? JSON.parse(json) : undefined;
+  }
+
+  clear(): void {
+    localStorage.removeItem(this.MOVIE_KEY);
+    localStorage.removeItem(this.ROOM_KEY);
   }
 }

@@ -80,9 +80,7 @@ export class AddScreeningRoom implements OnInit {
       this.screeningRoom.seatList = this.addScreeningRoomForm.value.seatList;
 
       const formatString: string = this.addScreeningRoomForm.value.format;
-      this.screeningRoom.format = formatString
-        .split(',')
-        .map((f: string) => f.trim());
+      
 
       this.screeningRoom.seatList = new Array<string>();
 
@@ -95,9 +93,7 @@ export class AddScreeningRoom implements OnInit {
       this.screeningRoom.seatList = this.addScreeningRoomForm.value.seatList;
 
       const formatString: string = this.addScreeningRoomForm.value.format;
-      this.screeningRoom.format = formatString
-        .split(',')
-        .map((f: string) => f.trim());
+    
 
       this.screeningRoom.seatList = new Array<string>();
 

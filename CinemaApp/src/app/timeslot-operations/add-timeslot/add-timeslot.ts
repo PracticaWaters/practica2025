@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Film } from '../../app-logic/film/film';
 import { AddTimeslotTransfer } from '../../app-logic/add-timeslot-transfer';
 import { ScreeningRoomData } from '../../app-logic/screening-room-data';
-
-
+import { ScreeningRoomListMock } from '../../app-logic/screening-room-list-mock';
+import { FilmService } from '../../app-logic/film/film-service';
 
 @Component({
   selector: 'app-add-timeslot',
@@ -27,7 +27,9 @@ export class AddTimeslot implements OnInit {
     private timeslotData: TimeslotData,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private addTimeslotTransfer: AddTimeslotTransfer
+    private addTimeslotTransfer: AddTimeslotTransfer,
+    private screeningRoomListMock: ScreeningRoomListMock,
+    private filmService: FilmService
   ) {
     this.addTimeslotForm = this.formBuilder.group({});
     activatedRoute.params.subscribe((params) => {
@@ -46,7 +48,8 @@ export class AddTimeslot implements OnInit {
 
   ngOnInit(): void {
     if (this.itemId == 0) {
-      console.log('Room:', this.selectedScreeningRoom);
+      console.log('Movie:', this.selectedMovie);
+      console.log('Screening Room:', this.selectedScreeningRoom);
       this.item = new Timeslot();
 
       this.addTimeslotForm = this.formBuilder.group({
@@ -72,7 +75,7 @@ export class AddTimeslot implements OnInit {
   onSubmit() {
     if (this.itemId == 0) {
       this.item = new Timeslot(this.addTimeslotForm.value);
-    
+
       this.timeslotData.addTimeslot(this.item);
     } else {
       this.item.startTime = this.addTimeslotForm.value.startTime;

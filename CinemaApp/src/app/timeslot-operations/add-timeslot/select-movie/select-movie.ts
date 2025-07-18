@@ -5,6 +5,7 @@ import { AddTimeslotTransfer } from '../../../app-logic/add-timeslot-transfer';
 import { MovieData } from '../../../app-logic/movie-data';
 import { MatTableDataSource } from '@angular/material/table';
 import { Film } from '../../../app-logic/film/film';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-select-movie',
@@ -19,11 +20,12 @@ export class SelectMovie implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
 
   movieList: any;
-  listColumns: string[] = ['id', 'name', 'image', 'duration'];
+  listColumns: string[] = ['id', 'name', 'image', 'duration', 'select'];
 
   constructor(
     private addTimeslotTransfer: AddTimeslotTransfer,
-    private movieData: MovieData
+    private movieData: MovieData,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,8 @@ export class SelectMovie implements OnInit {
     return !this.movieList || this.movieList.data.length === 0;
   }
 
-  select(movie: Film){
-    this.addTimeslotTransfer.setMovie(movie);
+  select(film: Film) {
+    this.addTimeslotTransfer.setMovie(film);
+    this.router.navigate(['/add-timeslot', 0]);
   }
 }
