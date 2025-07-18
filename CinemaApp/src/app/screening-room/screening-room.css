@@ -7,6 +7,8 @@
   --card-bg: #2d2d2d;
   --text-primary: #ffffff;
   --text-secondary: #b0b0b0;
+  --button-cta: oklch(76.9% 0.188 70.08);
+  --button-cta2: oklch(81.44% 0.15523 72.336);
   --border-radius: 12px;
   --shadow-sm: 0 4px 6px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
@@ -37,7 +39,7 @@ body {
 }
 
 .movie-header {
-  background: linear-gradient(135deg, var(--dark-blue) 0%, #243447 50%, var(--dark-blue) 100%);
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #243447 50%, var(--dark-bg) 100%);
   color: var(--text-primary);
   padding: 2rem 1.5rem;
   border-bottom: 3px solid var(--light-blue);
@@ -259,6 +261,7 @@ body {
   border-top: 4px solid var(--light-blue);
   border-bottom: 4px solid var(--light-blue);
 }
+
 .datetime-selector h2 {
   font-size: 1.6rem;
   margin-bottom: 1.8rem;
@@ -370,21 +373,21 @@ body {
 .time-btn:hover {
   transform: translateY(-4px) scale(1.05);
   box-shadow: 
-    0 8px 25px rgba(0,0,0,0.2),
-    0 0 20px rgba(131, 180, 255, 0.4);
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-blue) 100%);
-  color: var(--dark-blue);
-  border-color: var(--light-blue);
+    0 8px 25px var(--button-cta2),
+    0 0 20px var(--button-cta);
+  background: linear-gradient(135deg, var() 0%, var() 100%);
+  color: var(--color-white);
+  border-color: var(--button-cta2);
 }
 
 .date-btn.selected,
 .time-btn.selected {
-  border-color: var(--light-blue);
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-blue) 100%);
+  border-color: var(--button-cta2);
+  background: linear-gradient(135deg, var(--button-cta2) 0%, var(--button-cta) 100%);
   color: var(--dark-blue);
   box-shadow: 
-    0 0 20px rgba(131, 180, 255, 0.6),
-    0 4px 15px rgba(0,0,0,0.2);
+    0 0 20px var(--button-cta2),
+    0 4px 15px var(--button-cta);
   transform: scale(1.05);
   font-weight: 700;
 }
@@ -413,7 +416,10 @@ body {
   text-shadow: 0 0 10px rgba(131, 180, 255, 0.3);
 }
 
-.date-btn:hover .day-num,
+.date-btn:hover .day-num{
+  color: var(--button-cta2);
+  text-shadow: none;
+}
 .date-btn.selected .day-num {
   color: var(--dark-blue);
   text-shadow: none;
@@ -791,6 +797,7 @@ body {
   color: #999999;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
+
 /* Legenda cu scaune realiste */
 .legend {
   display: flex;
@@ -910,6 +917,7 @@ body {
   background-color: var(--medium-blue);
   border-radius: 6px;
 }
+
 .summary-footer {
   display: flex;
   justify-content: space-between;
@@ -917,7 +925,7 @@ body {
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 1.5rem;
-  border-top: 2px solid var(--medium-blue);
+  border-top: 2px solid var(--button-cta);
   background: linear-gradient(135deg, rgba(90, 114, 160, 0.1) 0%, rgba(131, 180, 255, 0.05) 100%);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   position: relative;
@@ -931,7 +939,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--light-blue), var(--medium-blue), var(--light-blue));
+  background: linear-gradient(90deg, var(--button-cta), var(--button-cta2), var(--button-cta2));
 }
 
 .summary-footer::after {
@@ -941,18 +949,18 @@ body {
   left: 20px;
   width: 6px;
   height: 6px;
-  background: var(--light-blue);
+  background: var(--button-cta);
   border-radius: 50%;
   box-shadow: 
-    0 0 10px var(--light-blue),
-    20px 0 0 var(--light-blue),
-    40px 0 0 var(--light-blue);
+    0 0 10px var(--button-cta2),
+    20px 0 0 var(--button-cta2),
+    40px 0 0 var(--button-cta2);
   animation: pulse 2s infinite;
 }
 
 .total-price {
   font-size: 1.4rem;
-  color: var(--light-blue);
+  color: var(--button-cta);
   font-weight: 900;
   display: flex;
   align-items: center;
@@ -960,7 +968,7 @@ body {
   padding: 1rem 1.5rem;
   background: linear-gradient(135deg, var(--card-bg) 0%, #383838 100%);
   border-radius: 50px;
-  border: 2px solid var(--light-blue);
+  border: 2px solid var(--button-cta2);
   box-shadow: 
     0 4px 15px rgba(0,0,0,0.2),
     0 0 20px rgba(131, 180, 255, 0.3);
@@ -987,8 +995,8 @@ body {
 .total-price:hover {
   transform: scale(1.05);
   box-shadow: 
-    0 6px 20px rgba(0,0,0,0.3),
-    0 0 30px rgba(131, 180, 255, 0.5);
+    0 6px 20px var(--button-cta2),
+    0 0 30px var(--button-cta);
 }
 
 .total-price strong {
@@ -1014,13 +1022,13 @@ body {
 }
 
 .continue-btn {
-  background: linear-gradient(135deg, var(--light-blue) 0%, var(--medium-blue) 100%);
-  color: var(--dark-blue);
+  background: linear-gradient(135deg, var() 0%, var() 100%);
+  color: var(--button-cta);
   padding: 1.2rem 2.5rem;
   border-radius: 50px;
-  border: none;
+  border: 2px solid var(--button-cta2);
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   transition: var(--transition);
   box-shadow: 
@@ -1058,11 +1066,11 @@ body {
 }
 
 .continue-btn:hover {
-  background: linear-gradient(135deg, #ffffff 0%, var(--light-blue) 100%);
+  background: linear-gradient(135deg, var(--button-cta) 0%, var(--button-cta2) 100%);
   color: var(--dark-blue);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 
-    0 8px 25px rgba(0,0,0,0.3),
+    0 8px 25px var(--button-cta2),
     0 0 30px rgba(131, 180, 255, 0.6);
 }
 
@@ -1072,9 +1080,10 @@ body {
 
 .continue-btn:active {
   transform: translateY(-1px) scale(1.02);
+  background: linear-gradient(135deg, var(--button-cta) 0%, var(--button-cta2) 100%);
   box-shadow: 
-    0 4px 15px rgba(0,0,0,0.2),
-    0 0 20px rgba(131, 180, 255, 0.4);
+    0 4px 15px var(--button-cta2),
+    0 0 20px var(--button-cta);
 }
 
 @media (max-width: 768px) {
@@ -1097,6 +1106,7 @@ body {
     padding: 1rem 2rem;
     font-size: 1rem;
   }
+  
   .movie-header-content {
     flex-direction: column;
     text-align: center;
@@ -1140,7 +1150,7 @@ body {
     font-size: 0.7rem;
   }
 
-   .row-number {
+  .row-number {
     width: 28px;
     font-size: 0.9rem;
   }
