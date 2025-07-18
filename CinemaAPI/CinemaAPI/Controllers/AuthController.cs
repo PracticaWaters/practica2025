@@ -53,7 +53,7 @@ namespace CinemaAPI.Controllers
         {
             var user = _userOps.GetUserByEmailAndPassword(credentials.Email, credentials.Password);
             if (user == null)
-                return Unauthorized("Invalid email or password.");
+                return BadRequest("Invalid email or password.");
 
             var accessToken = _jwt.GenerateToken(user.Id.ToString(), user.Role.ToString());
             var refreshToken = _jwt.GenerateRefreshToken();
