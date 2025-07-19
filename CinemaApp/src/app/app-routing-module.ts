@@ -28,6 +28,8 @@ import { SelectMovie } from './timeslot-operations/add-timeslot/select-movie/sel
 import { SelectScreeningRoom } from './timeslot-operations/add-timeslot/select-screening-room/select-screening-room';
 import { FormatList } from './format-operations/format-list/format-list';
 import { AddFormat } from './format-operations/add-format/add-format';
+import { SelectControlValueAccessor } from '@angular/forms';
+import { SelectFormat } from './timeslot-operations/add-timeslot/select-format/select-format';
 
 const routes: Routes = [
   { path: '', component: VizualizareFilm },
@@ -57,13 +59,14 @@ const routes: Routes = [
   { path: 'screening-room-list', component: ScreeningRoomList },
   { path: 'add-screening-room/:id', component: AddScreeningRoom },
   { path: 'add-screening-room', component: AddScreeningRoom },
-  {path: 'timeslot-list', component: TimeslotList},
-  {path: 'add-timeslot',component: AddTimeslot},
-  {path: 'add-timeslot/:id',component: AddTimeslot},
-  {path: 'select-movie', component:SelectMovie},
-  {path: 'select-screening-room', component:SelectScreeningRoom},
-  {path: 'format-list', component:FormatList},
-  {path: 'add-format/:id', component:AddFormat},
+  { path: 'timeslot-list', component: TimeslotList },
+  { path: 'add-timeslot', component: AddTimeslot },
+  { path: 'add-timeslot/:id', component: AddTimeslot },
+  { path: 'select-movie', component: SelectMovie },
+  { path: 'select-screening-room', component: SelectScreeningRoom },
+  { path: 'format-list', component: FormatList },
+  { path: 'add-format/:id', component: AddFormat },
+  { path: 'select-format', component: SelectFormat},
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },
@@ -76,7 +79,7 @@ const routes: Routes = [
   { path: 'support/admin', component: SupportAdmin },
   { path: 'support', component: SupportPage },
   { path: 'vizualizare-film', component: VizualizareFilm },
-  { path: 'promotii', component: Promotii}
+  { path: 'promotii', component: Promotii },
 ];
 
 @NgModule({

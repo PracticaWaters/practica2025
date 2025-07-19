@@ -66,6 +66,7 @@ import { TokenInterceptor } from './app-logic/token-interceptor';
 import { Promotii } from './promotii/promotii';
 import { FormatList } from './format-operations/format-list/format-list';
 import { AddFormat } from './format-operations/add-format/add-format';
+import { SelectFormat } from './timeslot-operations/add-timeslot/select-format/select-format';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { AddFormat } from './format-operations/add-format/add-format';
     SelectScreeningRoom,
     Promotii,
     FormatList,
-    AddFormat
+    AddFormat,
+    SelectFormat
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AddTimeslotTransfer } from '../../app-logic/add-timeslot-transfer';
 import { ScreeningRoomData } from '../../app-logic/screening-room-data';
 import { ScreeningRoomListMock } from '../../app-logic/screening-room-list-mock';
 import { FilmService } from '../../app-logic/film/film-service';
+import { Format } from '../../app-logic/format/format';
 
 @Component({
   selector: 'app-add-timeslot',
@@ -21,6 +22,7 @@ export class AddTimeslot implements OnInit {
   itemId!: number;
   selectedMovie?: Film;
   selectedScreeningRoom?: ScreeningRoomData;
+  selectedFormat?: Format;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,6 +60,8 @@ export class AddTimeslot implements OnInit {
       });
       this.selectedMovie = this.addTimeslotTransfer.getMovie();
       this.selectedScreeningRoom = this.addTimeslotTransfer.getScreeningRoom();
+      this.selectedFormat = this.addTimeslotTransfer.getFormat();
+
     } else {
       this.timeslotData.getTimeslotById(this.itemId).subscribe((data) => {
         this.item = data;
@@ -69,12 +73,14 @@ export class AddTimeslot implements OnInit {
       });
       this.selectedMovie = this.addTimeslotTransfer.getMovie();
       this.selectedScreeningRoom = this.addTimeslotTransfer.getScreeningRoom();
+      this.selectedFormat = this.addTimeslotTransfer.getFormat();
     }
   }
 
   onSubmit() {
     if (this.itemId == 0) {
       this.item = new Timeslot(this.addTimeslotForm.value);
+      this.item
 
       this.timeslotData.addTimeslot(this.item);
     } else {
