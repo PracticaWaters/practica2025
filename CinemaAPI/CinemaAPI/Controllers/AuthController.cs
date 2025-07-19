@@ -114,8 +114,11 @@ namespace CinemaAPI.Controllers
                         user.Id,
                         user.Name,
                         user.Email,
-                        Role = user.Role.ToString(),
-                        user.AvatarUrl
+                        user.Phone,
+                        user.BirthDate,
+                        user.Gender,
+                        user.AvatarUrl,
+                        Role = user.Role.ToString()
                     });
                 }
             }
